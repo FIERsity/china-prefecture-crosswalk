@@ -93,6 +93,8 @@ class CrosswalkMatcher:
         self.unified_events = pd.read_csv(data_dir / "unified_events_1987_2026.csv", dtype=str).fillna("")
         self.historical_entities = pd.read_csv(data_dir / "historical_entities.csv", dtype=str).fillna("")
         self.unified_relations = pd.read_csv(data_dir / "unified_event_relations.csv", dtype=str).fillna("")
+        self.major_lineage_relations = pd.read_csv(data_dir / "major_lineage_relations.csv", dtype=str).fillna("")
+        self.county_transitions = pd.read_csv(data_dir / "county_affiliation_transitions.csv", dtype=str).fillna("")
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
         self.index: dict[str, list[dict[str, Any]]] = {}
         for _, r in self.names.iterrows():

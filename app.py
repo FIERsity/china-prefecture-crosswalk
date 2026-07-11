@@ -149,12 +149,25 @@ else:
     year = c3.number_input("年份（0 表示全部）", min_value=0, max_value=2026, value=0)
     event_types = sorted(m.unified_events.event_type.unique())
     event_type = c4.selectbox("事件类型", ["全部"] + event_types)
-    normalized_tab, archive_tab = st.tabs(["统一规范事件库", "维基历史原始记录"])
+    normalized_tab, lineage_tab, archive_tab = st.tabs(["统一规范事件库", "重大拆分与县级去向", "维基历史原始记录"])
     with normalized_tab:
         events = m.query_events(None if entity_label == "全部" else entity_options[entity_label], province or None, year or None, None if event_type == "全部" else event_type)
         st.dataframe(events, use_container_width=True)
         st.caption("统一覆盖 1987—2026 可获得资料；accepted_* 可用于事件检索，review_required 仅作待复核证据，不用于自动映射。")
         st.download_button("下载统一事件库", csv_bytes(events), "unified_events_1987_2026.csv", "text/csv")
+    with lineage_tab:
+        lineage = m.major_lineage_relations.copy()
+        counties = m.county_transitions.copy()
+        if year:
+            lineage = lineage[lineage.year.astype(int) == year]
+            counties = counties[counties.year.astype(int) == year]
+        st.caption("仅收录会改变地级实体主要辖域连续性的拆分、析设和多来源组建；一两个不构成主要辖域的边缘划转通常不收录。所有复杂关系均禁止自动换算研究变量。")
+        st.subheader("重大实体关系")
+        st.dataframe(lineage, use_container_width=True, hide_index=True)
+        st.download_button("下载重大实体关系", csv_bytes(lineage), "major_lineage_relations.csv", "text/csv")
+        st.subheader("县级单位去向证据")
+        st.dataframe(counties, use_container_width=True, hide_index=True)
+        st.download_button("下载县级去向底表", csv_bytes(counties), "county_affiliation_transitions.csv", "text/csv")
     with archive_tab:
         keyword = st.text_input("关键词（城市、地区、盟、自治州或批文号）")
         raw_rows = m.query_wikipedia_rows(year or None, keyword or None)

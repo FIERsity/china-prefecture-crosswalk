@@ -10,6 +10,7 @@
 - Added 1,138 automated continuity checks with zero unresolved entity references.
 - Added an online database browser and V2.0 downloads to the Streamlit application.
 - Added the `cnur` command-line interface for single, batch, entity, and event queries.
+- Added a county-composition audit with 70 county-unit transitions and 18 material lineage relations, including the two-way Nanning Prefecture and three-way Huiyang Prefecture successions.
 
 ## 0.1.0 - 2026-07-11
 

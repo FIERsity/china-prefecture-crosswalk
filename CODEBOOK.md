@@ -46,4 +46,6 @@ The single public event interface. It combines all normalized events into one sc
 
 Historical units absent from the 2000—2024 research panel are registered in `historical_entities.csv`. Non-1:1 outcomes are represented in `unified_event_relations.csv`; in particular, Yanbei splits to Datong and Shuozhou, while the 1996 Chongqing transition links Wanxian, Fuling, and Qianjiang without permitting automatic value conversion.
 
+`major_lineage_relations.csv` is the reviewed material-lineage layer built from county-level composition. `county_affiliation_transitions.csv` records the county-level units supporting each relation. It focuses on changes that materially alter the main territorial composition of a prefecture entity; incidental transfers of one or two peripheral counties are normally omitted. Every relation in this layer has `automatic_mapping=false`.
+
 `data/audit/unified_continuity_audit.csv` is generated from the complete unified model. It checks event uniqueness, entity references, historical lifespans, province continuity, annual-roster names, chronological name chains, relation references, and the prohibition on automatic mapping for complex events.

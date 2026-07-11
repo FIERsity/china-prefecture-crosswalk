@@ -16,6 +16,7 @@ jobs:
         run: |
           python scripts/build_release.py
           python scripts/normalize_wikipedia_history.py
+          python scripts/build_major_lineage_audit.py
           python scripts/build_unified_events.py
           python scripts/migrate_cnur_ids.py
           python scripts/build_extended_roster.py

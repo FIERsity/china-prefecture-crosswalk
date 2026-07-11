@@ -14,6 +14,7 @@ FILES = [
     "wikipedia_normalized_events_1987_1999.csv", "unified_events_1987_2026.csv",
     "historical_entities.csv", "unified_event_relations.csv", "entity_id_crosswalk.csv",
     "entity_names_1987_2026.csv", "legal_roster_1987_2026.csv",
+    "major_lineage_relations.csv", "county_affiliation_transitions.csv",
 ]
 
 DEST.mkdir(parents=True, exist_ok=True)
