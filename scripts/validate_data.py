@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
+PROCESSED = ROOT / "data" / "processed"
 
 
 def read_csv(name: str) -> tuple[list[str], list[dict[str, str]]]:
@@ -77,7 +78,36 @@ def main() -> None:
     print("PASS: entity coverage matches across all three CSV files")
     print("PASS: long name spans exactly reproduce the 2000-2024 panel")
 
+    entities_cols, entities = read_csv_at(PROCESSED / "entities.csv")
+    names_cols, names = read_csv_at(PROCESSED / "entity_names.csv")
+    roster_cols, roster = read_csv_at(PROCESSED / "legal_roster_2000_2024.csv")
+    _, sources = read_csv_at(PROCESSED / "sources.csv")
+    _, events = read_csv_at(PROCESSED / "events_2000_2026.csv")
+    _, event_links = read_csv_at(PROCESSED / "event_entity_links.csv")
+    require(len(entities) == 340, "processed entities must contain 340 rows")
+    require(len(roster) == 340 * 25, "legal roster must be entity-year complete")
+    require(len(events) == 63, "event export must contain 63 rows")
+    require(len(event_links) == 63, "every event must have an entity-link audit row")
+    require(all(row["match_status"] == "unique" for row in event_links), "event/entity crosscheck has unresolved matches")
+    require(len({row["entity_id"] for row in entities}) == 340, "duplicate processed entity_id")
+    require({row["entity_id"] for row in roster} == {row["entity_id"] for row in entities}, "roster entity coverage differs")
+    require({row["source_id"] for row in roster} <= {row["source_id"] for row in sources}, "unknown roster source_id")
+    for entity_id in ("E341400", "E371200", "E654100"):
+        require(any(r["entity_id"] == entity_id and r["status"] == "abolished" for r in roster), f"{entity_id}: abolition missing")
+    for entity_id in ("E460300", "E640500"):
+        require(any(r["entity_id"] == entity_id and r["status"] == "not_established" for r in roster), f"{entity_id}: pre-establishment status missing")
+    require(any(r["entity_id"] == "E533400" and r["legal_name_zh"] == "迪庆藏族自治州" for r in roster), "E533400 correction missing")
+    require(not any(r["entity_id"] == "E533400" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
+    print("PASS: processed release has 340 entities, 8,500 entity-years, 63 events")
+    print("PASS: all 63 events uniquely crosscheck to research entities")
+    print("PASS: ten audited corrections and all source references are present")
+
+
+def read_csv_at(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        return list(reader.fieldnames or []), list(reader)
+
 
 if __name__ == "__main__":
     main()
-

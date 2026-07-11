@@ -1,0 +1,20 @@
+name: validate-data
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild processed tables
+        run: python scripts/build_release.py
+      - name: Verify generated files are committed
+        run: git diff --exit-code
+      - name: Validate data
+        run: python scripts/validate_data.py

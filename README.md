@@ -2,7 +2,20 @@
 
 面向研究者的中国地级行政实体跨期名称对照、平衡面板与行政区划变更事件资料库。
 
-> 当前版本是初始化快照。数据中的 `entity_id` 是稳定研究实体编号，不是官方行政区划代码；`prefecture_master_wide_2000_2024.csv` 是统一口径的研究面板，不是逐年法定行政单位名录。
+> `entity_id` 是稳定研究实体编号，不是官方行政区划代码。首版 processed 数据已系统对照 63 条维基百科年度变更事件；未逐条核验的继承记录会明确标为 `inherited_unverified`。
+
+## 推荐使用的数据
+
+| 文件 | 用途 |
+|---|---|
+| `data/processed/entities.csv` | 340 个稳定研究实体及核验状态 |
+| `data/processed/entity_names.csv` | 名称和法定状态的有效年份区间 |
+| `data/processed/legal_roster_2000_2024.csv` | 实体—年份长表；区分 active、未设立和已撤销 |
+| `data/processed/events_2000_2026.csv` | 63 条地级核心变更事件 |
+| `data/processed/event_entity_links.csv` | 事件与稳定研究实体的审计连接表 |
+| `data/processed/sources.csv` | 来源注册表 |
+
+字段定义见 [`CODEBOOK.md`](CODEBOOK.md)。`data/raw/` 仅保存原始输入快照，不应直接解释为法定年度名录。
 
 ## 数据内容
 
@@ -29,9 +42,10 @@ result = names.query("name == '普洱市' and start_year <= 2010 <= end_year")
 print(result[["entity_id", "name"]])
 ```
 
-运行不依赖第三方库的基础校验：
+重新生成 processed 数据并运行不依赖第三方库的校验：
 
 ```bash
+python3 scripts/build_release.py
 python3 scripts/validate_data.py
 ```
 
@@ -48,10 +62,14 @@ python3 scripts/validate_data.py
 ## 重要限制
 
 - `Exxxxxx` 仅为研究用稳定编号，不应解释为任一年度的官方行政区划代码。
-- 当前 340 实体表是平衡面板；三沙、中卫、儋州等存在设立前回填，巢湖、莱芜、伊犁地区等存在撤销后保留。
-- 审计报告确认 E533400 应代表“迪庆藏族自治州”；现有香格里拉县级沿革误填入地级实体槽位。
+- 原始 340 实体表是平衡面板；processed 法定状态层已经修正三沙、中卫等设立前回填以及巢湖、莱芜、伊犁地区等撤销后保留问题。
+- `E533400` 已修正为“迪庆藏族自治州”；县级香格里拉沿革不再进入 processed 地级实体表。
 - 公开发布前，应补充国务院、民政部或省级政府原始批复链接，并统一批准年、公告年或年末状态的归年规则。
-- 本仓库暂不声明数据许可；确定原始数据来源与再分发权利后，再添加 LICENSE 和数据许可说明。
+- 维基百科在首版中是明确标注的二手来源；请根据 `verification_status` 判断能否用于高要求研究。
+
+## 许可
+
+代码采用 MIT License；processed 数据采用 CC BY 4.0。第三方来源内容仍受各自条款约束。
 
 ## 仓库结构
 
@@ -69,4 +87,3 @@ outputs/        后续生成的数据与报告（默认不提交）
 - 增加字段字典、来源清单、证据等级和版本变更日志。
 - 对 340 个实体逐条补充官方批复级证据。
 - 添加 Python/R 使用示例与自动化测试。
-

@@ -5,4 +5,5 @@ type: dataset
 version: 0.1.0-dev
 date-released: 2026-07-11
 abstract: "Research-oriented crosswalks and change events for Chinese prefecture-level administrative entities."
-
+license: CC-BY-4.0
+repository-code: "https://github.com/FIERsity/china-prefecture-crosswalk"
