@@ -5,3 +5,4 @@ __pycache__/
 outputs/*
 !outputs/.gitkeep
 tmp/
+*.egg-info/
