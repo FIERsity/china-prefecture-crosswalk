@@ -83,6 +83,8 @@ class CrosswalkMatcher:
         self.events = pd.read_csv(data_dir / "events_2000_2026.csv", dtype=str).fillna("")
         self.links = pd.read_csv(data_dir / "event_entity_links.csv", dtype=str).fillna("")
         self.relations = pd.read_csv(data_dir / "event_relations.csv", dtype=str).fillna("")
+        self.wikipedia_pages = pd.read_csv(data_dir / "wikipedia_change_pages.csv", dtype=str).fillna("")
+        self.wikipedia_rows = pd.read_csv(data_dir / "wikipedia_prefecture_change_rows.csv", dtype=str).fillna("")
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
         self.index: dict[str, list[dict[str, Any]]] = {}
         for _, r in self.names.iterrows():
@@ -210,6 +212,14 @@ class CrosswalkMatcher:
         if province: df = df[df["省级单位"].map(normalize_province) == normalize_province(province)]
         if year: df = df[df["年份"].astype(int) == int(year)]
         if event_type: df = df[df["事件类型"] == event_type]
+        return df
+
+    def query_wikipedia_rows(self, year: int | None = None, keyword: str | None = None) -> pd.DataFrame:
+        df = self.wikipedia_rows.copy()
+        if year: df = df[df.year.astype(int) == int(year)]
+        if keyword:
+            term = normalize_name(keyword)
+            df = df[df.row_text.map(normalize_name).str.contains(re.escape(term), na=False)]
         return df
 
 

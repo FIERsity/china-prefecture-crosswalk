@@ -122,6 +122,14 @@ else:
     year = c3.number_input("年份（0 表示全部）", min_value=0, max_value=2026, value=0)
     event_types = sorted(m.events["事件类型"].unique())
     event_type = c4.selectbox("事件类型", ["全部"] + event_types)
-    events = m.query_events(None if entity_label == "全部" else entity_options[entity_label], province or None, year or None, None if event_type == "全部" else event_type)
-    st.dataframe(events, use_container_width=True)
-    st.download_button("下载查询结果", csv_bytes(events), "events.csv", "text/csv")
+    normalized_tab, archive_tab = st.tabs(["规范事件库", "维基历史原始记录"])
+    with normalized_tab:
+        events = m.query_events(None if entity_label == "全部" else entity_options[entity_label], province or None, year or None, None if event_type == "全部" else event_type)
+        st.dataframe(events, use_container_width=True)
+        st.download_button("下载规范事件", csv_bytes(events), "events.csv", "text/csv")
+    with archive_tab:
+        keyword = st.text_input("关键词（城市、地区、盟、自治州或批文号）")
+        raw_rows = m.query_wikipedia_rows(year or None, keyword or None)
+        st.caption("覆盖维基可枚举的 1987—2026 年度页面；1989—1991 及更早年份没有同名年度页面。原始行仅作证据检索，不代表已完成实体关系标准化。")
+        st.dataframe(raw_rows, use_container_width=True)
+        st.download_button("下载维基原始记录", csv_bytes(raw_rows), "wikipedia_prefecture_change_rows.csv", "text/csv")

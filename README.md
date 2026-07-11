@@ -14,6 +14,8 @@
 | `data/processed/events_2000_2026.csv` | 63 条地级核心变更事件 |
 | `data/processed/event_entity_links.csv` | 事件与稳定研究实体的审计连接表 |
 | `data/processed/sources.csv` | 来源注册表 |
+| `data/processed/wikipedia_change_pages.csv` | 维基年度行政区划变更页面清单及修订号 |
+| `data/processed/wikipedia_prefecture_change_rows.csv` | 1987—2026 可获得页面中的地级章节原始记录 |
 
 字段定义见 [`CODEBOOK.md`](CODEBOOK.md)。`data/raw/` 仅保存原始输入快照，不应直接解释为法定年度名录。
 

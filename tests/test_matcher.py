@@ -63,3 +63,6 @@ def test_event_queries_and_complex_relations():
     complex_rows = m.relations[m.relations.relation_type.isin(["merge", "split"])]
     assert len(complex_rows) == 2
     assert set(complex_rows.automatic_continuity) == {"false"}
+    historical = m.query_wikipedia_rows(year=1987, keyword="徽州地区")
+    assert len(historical) >= 1
+    assert historical.iloc[0].source_url.startswith("https://zh.wikipedia.org/wiki/")
