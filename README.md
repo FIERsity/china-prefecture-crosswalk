@@ -96,6 +96,42 @@ python3 -m venv .venv
 .venv/bin/streamlit run app.py
 ```
 
+### CLI 命令行
+
+安装当前仓库后会提供 `cnur` 命令：
+
+```bash
+.venv/bin/pip install -e .
+```
+
+单个名称匹配：
+
+```bash
+cnur match "思茅市" --year 2005 --province 云南省
+```
+
+批量处理CSV或Excel：
+
+```bash
+cnur batch panel.csv \
+  --name-col 城市 \
+  --year-col 年份 \
+  --province-col 省份 \
+  --output matched.csv \
+  --issues-output issues.csv \
+  --audit-output audit.json
+```
+
+实体与事件查询：
+
+```bash
+cnur entity CNUR-000272
+cnur events --entity-id CNUR-000110
+cnur events --year 1993 --type split --output events.csv
+```
+
+默认情况下，命令成功执行即返回退出码0；加上 `--fail-on-review` 后，只要存在非自动接受记录就返回退出码2，便于接入数据流水线。
+
 ## 匹配原则
 
 匹配按以下顺序执行：

@@ -24,8 +24,12 @@ jobs:
       - name: Validate data
         run: python scripts/validate_data.py
       - name: Install application dependencies
-        run: pip install -r requirements.txt pytest
+        run: |
+          pip install -r requirements.txt pytest
+          pip install -e . --no-deps
       - name: Run matcher tests
         run: pytest -q
       - name: Streamlit smoke test
         run: python -m pytest -q tests/test_app.py
+      - name: CLI smoke test
+        run: cnur match "思茅市" --year 2005 --province 云南省

@@ -208,7 +208,11 @@ class CrosswalkMatcher:
         return out, results
 
     def query_entity(self, entity_id: str) -> dict[str, Any]:
-        return {"entity": self.entity_map.get(entity_id), "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records")}
+        entity = self.entity_map.get(entity_id)
+        if entity is None:
+            rows = self.historical_entities[self.historical_entities.historical_entity_id == entity_id]
+            entity = rows.iloc[0].to_dict() if len(rows) else None
+        return {"entity": entity, "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records")}
 
     def query_events(self, entity_id: str | None = None, province: str | None = None, year: int | None = None, event_type: str | None = None) -> pd.DataFrame:
         df = self.unified_events.copy()

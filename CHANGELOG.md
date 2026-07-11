@@ -7,6 +7,7 @@
 - Unified 144 historical change events and 149 entity relations across 1987—2026 source coverage.
 - Added 1,067 automated continuity checks with zero unresolved entity references.
 - Added an online database browser and V2.0 downloads to the Streamlit application.
+- Added the `cnur` command-line interface for single, batch, entity, and event queries.
 
 ## 0.1.0 - 2026-07-11
 
