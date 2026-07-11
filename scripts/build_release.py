@@ -11,6 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 PROCESSED = ROOT / "data" / "processed"
 YEARS = range(2000, 2025)
+RULE_VERSION = "2026.07.1"
+PROVINCES = {
+    "11": ("北京市", "北京"), "12": ("天津市", "天津"), "13": ("河北省", "河北"),
+    "14": ("山西省", "山西"), "15": ("内蒙古自治区", "内蒙古"), "21": ("辽宁省", "辽宁"),
+    "22": ("吉林省", "吉林"), "23": ("黑龙江省", "黑龙江"), "31": ("上海市", "上海"),
+    "32": ("江苏省", "江苏"), "33": ("浙江省", "浙江"), "34": ("安徽省", "安徽"),
+    "35": ("福建省", "福建"), "36": ("江西省", "江西"), "37": ("山东省", "山东"),
+    "41": ("河南省", "河南"), "42": ("湖北省", "湖北"), "43": ("湖南省", "湖南"),
+    "44": ("广东省", "广东"), "45": ("广西壮族自治区", "广西"), "46": ("海南省", "海南"),
+    "50": ("重庆市", "重庆"), "51": ("四川省", "四川"), "52": ("贵州省", "贵州"),
+    "53": ("云南省", "云南"), "54": ("西藏自治区", "西藏"), "61": ("陕西省", "陕西"),
+    "62": ("甘肃省", "甘肃"), "63": ("青海省", "青海"), "64": ("宁夏回族自治区", "宁夏"),
+    "65": ("新疆维吾尔自治区", "新疆"),
+}
 
 # Corrections verified against the linked Chinese Wikipedia annual change lists.
 # Empty years mean that the research entity was not an active legal prefecture.
@@ -136,6 +150,8 @@ def main() -> None:
         entity_rows.append({
             "entity_id": entity_id,
             "canonical_name_zh": active_names[-1],
+            "province_name_zh": PROVINCES[entity_id[1:3]][0],
+            "province_short_zh": PROVINCES[entity_id[1:3]][1],
             "entity_level": "prefecture_research_entity",
             "id_namespace": "project_stable_id_not_official_code",
             "verification_status": entity_verification,
@@ -145,6 +161,31 @@ def main() -> None:
     write_csv(PROCESSED / "entity_names.csv", list(name_rows[0]), name_rows)
     write_csv(PROCESSED / "legal_roster_2000_2024.csv", list(legal_rows[0]), legal_rows)
     write_csv(PROCESSED / "event_entity_links.csv", list(event_links[0]), event_links)
+
+    aliases = []
+    suffixes = ("自治州", "地区", "盟", "市")
+    common = {"恩施土家族苗族自治州": "恩施州", "湘西土家族苗族自治州": "湘西州"}
+    for span in name_rows:
+        if span["legal_status"] != "active" or not span["name_zh"]:
+            continue
+        name = str(span["name_zh"])
+        for suffix in suffixes:
+            if name.endswith(suffix) and len(name) > len(suffix) + 1:
+                aliases.append({"alias": name[:-len(suffix)], "entity_id": span["entity_id"], "alias_type": "suffix_omitted", "start_year": span["start_year"], "end_year": span["end_year"], "level": "prefecture", "source_id": span["source_id"], "review_status": "generated_reviewed", "rule_version": RULE_VERSION})
+                break
+        if name in common:
+            aliases.append({"alias": common[name], "entity_id": span["entity_id"], "alias_type": "common_abbreviation", "start_year": span["start_year"], "end_year": span["end_year"], "level": "prefecture", "source_id": span["source_id"], "review_status": "reviewed", "rule_version": RULE_VERSION})
+    for alias, entity_id in (("亳州", "E341600"), ("毫州", "E341600"), ("亳州市", "E341600"), ("毫州市", "E341600")):
+        aliases.append({"alias": alias, "entity_id": entity_id, "alias_type": "ocr_variant" if "毫" in alias else "manual_alias", "start_year": 2000, "end_year": 2024, "level": "prefecture", "source_id": "SRC-LEGACY-SNAPSHOT", "review_status": "reviewed", "rule_version": RULE_VERSION})
+    aliases = list({(r["alias"], r["entity_id"], r["start_year"], r["end_year"]): r for r in aliases}.values())
+    write_csv(PROCESSED / "aliases.csv", list(aliases[0]), aliases)
+
+    exclusions = [{"name": "香格里拉市", "normalized_name": "香格里拉市", "level": "county_level_city", "parent_entity_id": "E533400", "start_year": 2015, "end_year": 2024, "risk_code": "county_level_conflict", "source_id": "SRC-WIKI-DIQING", "review_status": "reviewed", "rule_version": RULE_VERSION}]
+    write_csv(PROCESSED / "name_exclusions.csv", list(exclusions[0]), exclusions)
+
+    relation_type = {"地级市更名": "rename", "地区改设地级市": "upgrade", "盟改设地级市": "upgrade", "县级市升格为地级市": "upgrade", "以县新设地级市": "establish", "撤销办事处并新设地级市": "establish", "撤销地区并将辖区划归自治州": "abolish", "撤销地级市并分拆辖区": "split", "撤销地级市并整体并入另一地级市": "merge"}
+    relations = [{"event_id": e["事件ID"], "entity_id": link["entity_id"], "relation_type": relation_type[e["事件类型"]], "from_name": e["原单位"], "to_name": e["新单位"], "year": e["年份"], "automatic_continuity": "true" if relation_type[e["事件类型"]] in {"rename", "upgrade"} else "false", "source_url": e["来源URL"], "rule_version": RULE_VERSION} for e, link in zip(events, event_links)]
+    write_csv(PROCESSED / "event_relations.csv", list(relations[0]), relations)
 
 
 if __name__ == "__main__":

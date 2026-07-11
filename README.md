@@ -31,15 +31,35 @@
 
 ## 快速开始
 
+### 网页工具
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/streamlit run app.py
+```
+
+网页提供批量检查、单个名称查询和行政区划变更查询。上传文件仅在当前会话内存中处理；OCR、模糊匹配、县级冲突以及合并拆分不会自动接受。
+
+可用 [`examples/sample_panel.csv`](examples/sample_panel.csv) 测试完整流程。部署到 Streamlit Community Cloud 时，入口文件选择 `app.py`。
+
+### Python 接口
+
+```python
+from urban_crosswalk import match_name, match_dataframe
+
+result = match_name("思茅市", year=2005, province="云南省")
+print(result.entity_id, result.match_status)
+```
+
+批量接口保留原始列并追加 `crosswalk_*` 审计字段：
+
 ```python
 import pandas as pd
+from urban_crosswalk import match_dataframe
 
-names = pd.read_csv("data/raw/entity_name_map_long.csv")
-panel = pd.read_csv("data/raw/prefecture_master_wide_2000_2024.csv")
-
-# 查询一个历史名称在指定年份对应的稳定研究实体
-result = names.query("name == '普洱市' and start_year <= 2010 <= end_year")
-print(result[["entity_id", "name"]])
+data = pd.read_csv("examples/sample_panel.csv")
+matched, details = match_dataframe(data, "城市", "年份", "省份")
 ```
 
 重新生成 processed 数据并运行不依赖第三方库的校验：
