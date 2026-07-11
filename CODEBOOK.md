@@ -35,3 +35,7 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 `wikipedia_change_pages.csv` inventories every discoverable annual page and its revision ID. `wikipedia_prefecture_change_rows.csv` preserves rows found under headings explicitly containing “地级”. These records cover available pages from 1987 onward and are an evidence/search layer, not automatically accepted one-to-one entity mappings.
 
 `wikipedia_normalized_events_1987_1999.csv` is the semantic normalization layer. Accepted rule extractions require explicit old and new prefecture names; manually reviewed links document their reasoning. Unresolved mergers, abolitions, and pre-2000 entities remain `review_required` and never imply automatic continuity.
+
+## `data/processed/unified_events_1987_2026.csv`
+
+The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.

@@ -59,7 +59,7 @@ def test_dataframe_preserves_original_columns():
 
 def test_event_queries_and_complex_relations():
     m = CrosswalkMatcher()
-    assert len(m.query_events(entity_id="E341400")) == 1
+    assert len(m.query_events(entity_id="E341400")) == 2
     complex_rows = m.relations[m.relations.relation_type.isin(["merge", "split"])]
     assert len(complex_rows) == 2
     assert set(complex_rows.automatic_continuity) == {"false"}
@@ -68,3 +68,5 @@ def test_event_queries_and_complex_relations():
     assert historical.iloc[0].source_url.startswith("https://zh.wikipedia.org/wiki/")
     normalized = m.query_historical_events(entity_id="E341700", accepted_only=True)
     assert any(normalized.event_id == "WIKI-1988-017")
+    unified = m.query_events(entity_id="E341700")
+    assert set(unified.year) >= {"1988", "2000"}

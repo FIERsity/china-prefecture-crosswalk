@@ -26,6 +26,18 @@ MANUAL_ENTITY_LINKS = {
     "WIKI-1997-065": ("E511400", "眉山地区 later became 眉山市"),
     "WIKI-1998-072": ("E512000", "资阳地区 later became 资阳市"),
 }
+MANUAL_ACCEPT_EVENTS = {
+    "WIKI-1988-007": "朔州市 was explicitly established as a prefecture-level city",
+    "WIKI-1988-011": "汕尾市 was explicitly established as a prefecture-level city",
+    "WIKI-1988-012": "河源市 was explicitly established as a prefecture-level city",
+    "WIKI-1988-014": "阳江市 was explicitly established as a prefecture-level city",
+    "WIKI-1988-015": "清远市 was explicitly established as a prefecture-level city",
+    "WIKI-1988-016": "安庆地区 and the existing city were merged into the unified 安庆市",
+    "WIKI-1992-022": "松原市 was explicitly established as a prefecture-level city",
+    "WIKI-1993-026": "孝感市 was explicitly established as a prefecture-level city",
+    "WIKI-1993-030": "防城港市 was explicitly established as a prefecture-level city",
+    "WIKI-1994-038": "郴州市 was explicitly established as a prefecture-level city",
+}
 
 
 def read() -> list[dict[str, str]]:
@@ -127,6 +139,8 @@ def main() -> None:
             entity_id, review_note = MANUAL_ENTITY_LINKS[event_id]
             province = entities[entity_id]["province_name_zh"]
             risks = [risk for risk in risks if risk != "entity_unresolved"]
+        if event_id in MANUAL_ACCEPT_EVENTS:
+            review_note = MANUAL_ACCEPT_EVENTS[event_id]
         status = "accepted_manual_review" if review_note else "accepted_rule_extraction" if entity_id and old_name and new_name and kind in {"rename", "upgrade"} else "review_required"
         output.append({
             "event_id": event_id, "year": year,

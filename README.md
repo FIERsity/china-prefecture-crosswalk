@@ -17,6 +17,7 @@
 | `data/processed/wikipedia_change_pages.csv` | 维基年度行政区划变更页面清单及修订号 |
 | `data/processed/wikipedia_prefecture_change_rows.csv` | 1987—2026 可获得页面中的地级章节原始记录 |
 | `data/processed/wikipedia_normalized_events_1987_1999.csv` | 1987—1999 维基地级记录的语义规范化事件 |
+| `data/processed/unified_events_1987_2026.csv` | 对外统一使用的完整规范事件主表 |
 
 字段定义见 [`CODEBOOK.md`](CODEBOOK.md)。`data/raw/` 仅保存原始输入快照，不应直接解释为法定年度名录。
 

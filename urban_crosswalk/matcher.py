@@ -86,6 +86,7 @@ class CrosswalkMatcher:
         self.wikipedia_pages = pd.read_csv(data_dir / "wikipedia_change_pages.csv", dtype=str).fillna("")
         self.wikipedia_rows = pd.read_csv(data_dir / "wikipedia_prefecture_change_rows.csv", dtype=str).fillna("")
         self.wikipedia_normalized_events = pd.read_csv(data_dir / "wikipedia_normalized_events_1987_1999.csv", dtype=str).fillna("")
+        self.unified_events = pd.read_csv(data_dir / "unified_events_1987_2026.csv", dtype=str).fillna("")
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
         self.index: dict[str, list[dict[str, Any]]] = {}
         for _, r in self.names.iterrows():
@@ -208,11 +209,11 @@ class CrosswalkMatcher:
         return {"entity": self.entity_map.get(entity_id), "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records")}
 
     def query_events(self, entity_id: str | None = None, province: str | None = None, year: int | None = None, event_type: str | None = None) -> pd.DataFrame:
-        df = self.events.merge(self.links[["event_id", "entity_id"]], left_on="事件ID", right_on="event_id", how="left")
+        df = self.unified_events.copy()
         if entity_id: df = df[df.entity_id == entity_id]
-        if province: df = df[df["省级单位"].map(normalize_province) == normalize_province(province)]
-        if year: df = df[df["年份"].astype(int) == int(year)]
-        if event_type: df = df[df["事件类型"] == event_type]
+        if province: df = df[df.province_name.map(normalize_province) == normalize_province(province)]
+        if year: df = df[df.year.astype(int) == int(year)]
+        if event_type: df = df[df.event_type == event_type]
         return df
 
     def query_wikipedia_rows(self, year: int | None = None, keyword: str | None = None) -> pd.DataFrame:
