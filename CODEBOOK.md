@@ -25,3 +25,7 @@ Audit bridge between all 63 events and stable research entities. The release val
 ## `data/processed/sources.csv`
 
 Source registry. Wikipedia is a secondary source and is explicitly labeled as such.
+
+## `data/audit/wikipedia_entity_audit.csv`
+
+Reproducible page-level audit for every entity. It records the resolved page, revision ID, canonical URL, and the category, introduction, Wikidata instance, or municipality rule used to confirm prefecture-level scope. Disambiguated pages are explicitly overridden for Baishan, Songyuan, and the former prefecture-level Chaohu.

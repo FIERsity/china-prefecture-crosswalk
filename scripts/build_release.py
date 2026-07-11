@@ -49,7 +49,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -65,6 +65,10 @@ def corrected_value(entity_id: str, year: int, fallback: str) -> tuple[str, str,
 
 def main() -> None:
     panel = read_csv(RAW / "prefecture_master_wide_2000_2024.csv")
+    audit_path = ROOT / "data" / "audit" / "wikipedia_entity_audit.csv"
+    audited_entities = {
+        row["entity_id"] for row in read_csv(audit_path) if row["review_status"] == "verified"
+    } if audit_path.exists() else set()
     events = read_csv(PROCESSED / "events_2000_2026.csv")
     names_by_entity = {
         row["entity_id"]: {value for key, value in row.items() if key.startswith("name_") and value}
@@ -126,12 +130,15 @@ def main() -> None:
                 start_year, prev_name, prev_status, prev_verification = year, name, status, verification
 
         active_names = [name for _, name, status, _ in timeline if status == "active" and name]
+        entity_verification = "wikipedia_verified" if entity_id in CORRECTIONS else "event_crosschecked" if entity_id in crosschecked_entities else "inherited_unverified"
+        if entity_id in audited_entities and entity_verification == "inherited_unverified":
+            entity_verification = "wikipedia_entity_verified"
         entity_rows.append({
             "entity_id": entity_id,
             "canonical_name_zh": active_names[-1],
             "entity_level": "prefecture_research_entity",
             "id_namespace": "project_stable_id_not_official_code",
-            "verification_status": "wikipedia_verified" if entity_id in CORRECTIONS else "event_crosschecked" if entity_id in crosschecked_entities else "inherited_unverified",
+            "verification_status": entity_verification,
         })
 
     write_csv(PROCESSED / "entities.csv", list(entity_rows[0]), entity_rows)

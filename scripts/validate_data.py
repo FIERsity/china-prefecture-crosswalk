@@ -84,11 +84,15 @@ def main() -> None:
     _, sources = read_csv_at(PROCESSED / "sources.csv")
     _, events = read_csv_at(PROCESSED / "events_2000_2026.csv")
     _, event_links = read_csv_at(PROCESSED / "event_entity_links.csv")
+    _, wiki_audit = read_csv_at(ROOT / "data" / "audit" / "wikipedia_entity_audit.csv")
     require(len(entities) == 340, "processed entities must contain 340 rows")
     require(len(roster) == 340 * 25, "legal roster must be entity-year complete")
     require(len(events) == 63, "event export must contain 63 rows")
     require(len(event_links) == 63, "every event must have an entity-link audit row")
     require(all(row["match_status"] == "unique" for row in event_links), "event/entity crosscheck has unresolved matches")
+    require(len(wiki_audit) == 340, "Wikipedia entity audit must contain 340 rows")
+    require(all(row["review_status"] == "verified" for row in wiki_audit), "Wikipedia entity audit has unresolved rows")
+    require(all(row["page_url"].startswith("https://zh.wikipedia.org/wiki/") for row in wiki_audit), "Wikipedia audit URL missing")
     require(len({row["entity_id"] for row in entities}) == 340, "duplicate processed entity_id")
     require({row["entity_id"] for row in roster} == {row["entity_id"] for row in entities}, "roster entity coverage differs")
     require({row["source_id"] for row in roster} <= {row["source_id"] for row in sources}, "unknown roster source_id")
@@ -100,6 +104,7 @@ def main() -> None:
     require(not any(r["entity_id"] == "E533400" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
     print("PASS: processed release has 340 entities, 8,500 entity-years, 63 events")
     print("PASS: all 63 events uniquely crosscheck to research entities")
+    print("PASS: all 340 research entities have page-level and level evidence")
     print("PASS: ten audited corrections and all source references are present")
 
 
