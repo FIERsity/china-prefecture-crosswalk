@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: china-prefecture-crosswalk
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.address=0.0.0.0 --server.port=$PORT --server.headless=true --browser.gatherUsageStats=false
+    healthCheckPath: /_stcore/health
+    autoDeploy: true

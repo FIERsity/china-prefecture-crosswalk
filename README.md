@@ -41,7 +41,11 @@ python3 -m venv .venv
 
 网页提供批量检查、单个名称查询和行政区划变更查询。上传文件仅在当前会话内存中处理；OCR、模糊匹配、县级冲突以及合并拆分不会自动接受。
 
-可用 [`examples/sample_panel.csv`](examples/sample_panel.csv) 测试完整流程。部署到 Streamlit Community Cloud 时，入口文件选择 `app.py`。
+可用 [`examples/sample_panel.csv`](examples/sample_panel.csv) 测试完整流程。
+
+### 部署
+
+推荐使用仓库根目录的 `render.yaml` 在 Render 创建 Blueprint。服务会执行 `streamlit run app.py`，健康检查地址为 `/_stcore/health`。仓库也提供 Dockerfile，可部署到任何支持公开 HTTP 容器的平台。
 
 ### Python 接口
 
