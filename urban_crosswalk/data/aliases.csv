@@ -240,8 +240,7 @@ alias,entity_id,alias_type,start_year,end_year,level,source_id,review_status,rul
 河池,CNUR-000228,suffix_omitted,2002,2024,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
 柳州,CNUR-000229,suffix_omitted,2000,2001,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
 来宾,CNUR-000229,suffix_omitted,2002,2024,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
-南宁,CNUR-000230,suffix_omitted,2000,2001,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
-崇左,CNUR-000230,suffix_omitted,2002,2024,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
+崇左,CNUR-000230,suffix_omitted,2002,2024,prefecture,SRC-WIKI-2002,generated_reviewed,2026.07.1
 海口,CNUR-000231,suffix_omitted,2000,2024,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
 三亚,CNUR-000232,suffix_omitted,2000,2024,prefecture,SRC-LEGACY-SNAPSHOT,generated_reviewed,2026.07.1
 三沙,CNUR-000233,suffix_omitted,2012,2024,prefecture,SRC-WIKI-2012,generated_reviewed,2026.07.1

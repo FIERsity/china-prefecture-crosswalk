@@ -28,16 +28,16 @@
 
 | 内容 | 数量/范围 |
 |---|---:|
-| 永久 CNUR 实体 | 345 |
+| 永久 CNUR 实体 | 347 |
 | 2000—2024 面板实体 | 340 |
 | 补充历史实体 | 5 |
-| 实体—年度状态 | 13,800（1987—2026） |
+| 实体—年度状态 | 13,880（1987—2026） |
 | 统一地级变更事件 | 144 |
 | 事件关系 | 149 |
 | 维基地级原始记录 | 988 |
-| 连续性审计 | 1,067 项，0 错误 |
+| 连续性审计 | 1,208 项，0 错误 |
 
-直辖市在研究实体体系中按地级等价单位处理。345个实体是跨期实体总数，不代表任一年度同时存在345个法定地级单位。
+直辖市在研究实体体系中按地级等价单位处理。347个实体是跨期实体总数，不代表任一年度同时存在347个法定地级单位。
 
 ## 推荐下载
 
@@ -47,7 +47,7 @@
 | [`china_city_entity_master_V2.0.xlsx`](data/releases/v2.0/china_city_entity_master_V2.0.xlsx) | 人工浏览、筛选和核查 |
 | [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
 | [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
-| [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 345实体 × 40年的年度状态长表 |
+| [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 347实体 × 40年的年度状态长表 |
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
 | [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
@@ -165,13 +165,13 @@ cnur events --year 1993 --type split --output events.csv
 每次提交都会在 GitHub Actions 中自动执行：
 
 - processed 数据可重复构建；
-- 345个CNUR编号唯一且连续；
+- 347个CNUR编号唯一且连续；
 - 名称长表可还原年度面板；
 - 144条事件无重复签名；
 - 当前和历史实体引用完整；
 - 改名链与撤地设市链连续；
 - 合并、拆分、撤销和代管禁止自动映射；
-- 1,067项统一连续性审计；
+- 1,208项统一连续性审计；
 - Python匹配回归测试与Streamlit启动测试。
 
 审计结果见 [`data/audit/unified_continuity_audit.csv`](data/audit/unified_continuity_audit.csv)。

@@ -103,8 +103,10 @@ CNUR-000081,淮安市,2000,2026,active,reviewed,existing_2000_2024_roster
 CNUR-000082,盐城市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000083,扬州市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000084,镇江市,1987,2026,active,reviewed,reviewed_event_chain
-CNUR-000085,泰州市,1987,2026,active,reviewed,reviewed_event_chain
-CNUR-000086,宿迁市,1987,2026,active,reviewed,reviewed_event_chain
+CNUR-000085,,1987,1995,not_established,inferred,event_chain_inference
+CNUR-000085,泰州市,1996,2026,active,reviewed,reviewed_event_chain
+CNUR-000086,,1987,1995,not_established,inferred,event_chain_inference
+CNUR-000086,宿迁市,1996,2026,active,reviewed,reviewed_event_chain
 CNUR-000087,杭州市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000088,宁波市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000089,温州市,1987,2026,active,reviewed,reviewed_event_chain
@@ -272,7 +274,7 @@ CNUR-000203,湛江市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000204,茂名市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000205,肇庆地区,1987,1987,active,reviewed,reviewed_event_chain
 CNUR-000205,肇庆市,1988,2026,active,reviewed,reviewed_event_chain
-CNUR-000206,惠阳地区,1987,1987,active,reviewed,reviewed_event_chain
+CNUR-000206,,1987,1987,not_established,inferred,event_chain_inference
 CNUR-000206,惠州市,1988,2026,active,reviewed,reviewed_event_chain
 CNUR-000207,梅县地区,1987,1987,active,reviewed,reviewed_event_chain
 CNUR-000207,梅州市,1988,2026,active,reviewed,reviewed_event_chain
@@ -310,12 +312,11 @@ CNUR-000228,河池地区,1987,2001,active,reviewed,reviewed_event_chain
 CNUR-000228,河池市,2002,2026,active,reviewed,existing_2000_2024_roster
 CNUR-000229,柳州地区,1987,2001,active,reviewed,reviewed_event_chain
 CNUR-000229,来宾市,2002,2026,active,reviewed,existing_2000_2024_roster
-CNUR-000230,南宁地区,1987,2001,active,reviewed,reviewed_event_chain
+CNUR-000230,,1987,2001,not_established,inferred,event_chain_inference
 CNUR-000230,崇左市,2002,2026,active,reviewed,existing_2000_2024_roster
 CNUR-000231,海口市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000232,三亚市,1987,2026,active,reviewed,reviewed_event_chain
-CNUR-000233,,1987,1999,not_established,inferred,event_chain_inference
-CNUR-000233,,2000,2011,not_established,reviewed,existing_2000_2024_roster
+CNUR-000233,,1987,2011,not_established,inferred,event_chain_inference
 CNUR-000233,三沙市,2012,2026,active,reviewed,existing_2000_2024_roster
 CNUR-000234,儋州市,1987,1999,active,reviewed,reviewed_event_chain
 CNUR-000234,,2000,2014,not_prefecture_level,reviewed,existing_2000_2024_roster
@@ -455,8 +456,7 @@ CNUR-000323,银南地区,1987,1997,active,reviewed,reviewed_event_chain
 CNUR-000323,吴忠市,1998,2026,active,reviewed,reviewed_event_chain
 CNUR-000324,固原地区,1987,2000,active,reviewed,reviewed_event_chain
 CNUR-000324,固原市,2001,2026,active,reviewed,existing_2000_2024_roster
-CNUR-000325,,1987,1999,not_established,inferred,event_chain_inference
-CNUR-000325,,2000,2002,not_established,reviewed,existing_2000_2024_roster
+CNUR-000325,,1987,2002,not_established,inferred,event_chain_inference
 CNUR-000325,中卫市,2003,2026,active,reviewed,existing_2000_2024_roster
 CNUR-000326,乌鲁木齐市,1987,2026,active,reviewed,reviewed_event_chain
 CNUR-000327,克拉玛依市,1987,2026,active,reviewed,reviewed_event_chain
@@ -488,3 +488,7 @@ CNUR-000344,,1998,2026,abolished,inferred,event_chain_inference
 CNUR-000345,,1987,1987,not_established,inferred,event_chain_inference
 CNUR-000345,黔江地区,1988,1997,active,reviewed,reviewed_event_chain
 CNUR-000345,,1998,2026,abolished,inferred,event_chain_inference
+CNUR-000346,南宁地区,1987,2001,active,reviewed,reviewed_event_chain
+CNUR-000346,,2002,2026,abolished,inferred,event_chain_inference
+CNUR-000347,惠阳地区,1987,1987,active,reviewed,reviewed_event_chain
+CNUR-000347,,1988,2026,abolished,inferred,event_chain_inference

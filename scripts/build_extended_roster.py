@@ -10,6 +10,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
 YEARS = range(1987, 2027)
+ESTABLISHMENT_OVERRIDES = {
+    "CNUR-000144": 1987, "CNUR-000206": 1988, "CNUR-000208": 1988,
+    "CNUR-000209": 1988, "CNUR-000057": 1992, "CNUR-000085": 1996,
+    "CNUR-000086": 1996, "CNUR-000247": 1997, "CNUR-000253": 1998,
+    "CNUR-000230": 2002, "CNUR-000325": 2003,
+}
 
 
 def read(name):
@@ -40,6 +46,7 @@ def main():
             default_name, province = meta["canonical_name_zh"], meta["province_name_zh"]
             establishing = [e for e in timeline if e["event_type"] in {"establish", "establish_prefecture"}]
             if establishing: start = int(establishing[0]["year"])
+            if entity_id in ESTABLISHMENT_OVERRIDES: start = ESTABLISHMENT_OVERRIDES[entity_id]
         for year in YEARS:
             name, status, basis = default_name, "active", "event_chain_inference"
             if year < start: name, status, basis = "", "not_established", "event_chain_inference"
@@ -58,7 +65,7 @@ def main():
                           and (entity_id in historical or event["old_prefecture_name"] == default_name)):
                         name, status = "", "abolished"
                 basis = "reviewed_event_chain"
-            if (entity_id, year) in existing:
+            if start <= year <= end and (entity_id, year) in existing:
                 old = existing[(entity_id, year)]
                 name, status, basis = old["legal_name_zh"], old["status"], "existing_2000_2024_roster"
             roster.append({"entity_id": entity_id, "year": year, "legal_name_zh": name, "province_name_zh": province, "legal_level": "prefecture" if status == "active" else "none", "status": status, "verification_status": "reviewed" if basis != "event_chain_inference" else "inferred", "derivation_basis": basis})

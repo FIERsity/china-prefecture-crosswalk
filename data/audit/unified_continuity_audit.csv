@@ -28,9 +28,9 @@ event_roster_name,pass,WIKI-1988-008,event=常德市 roster=常德市
 entity_reference,pass,WIKI-1988-009,CNUR-000205
 automatic_continuity,pass,WIKI-1988-009,type=upgrade automatic=True
 event_roster_name,pass,WIKI-1988-009,event=肇庆市 roster=肇庆市
-entity_reference,pass,WIKI-1988-010,CNUR-000206
-automatic_continuity,pass,WIKI-1988-010,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-010,event=惠州市 roster=惠州市
+entity_reference,pass,WIKI-1988-010,CNUR-000347
+automatic_continuity,pass,WIKI-1988-010,type=split automatic=False
+historical_lifespan,pass,WIKI-1988-010,event=1988 lifespan=1970-1988
 entity_reference,pass,WIKI-1988-011,CNUR-000208
 automatic_continuity,pass,WIKI-1988-011,type=establish automatic=False
 event_roster_name,pass,WIKI-1988-011,event=汕尾市 roster=汕尾市
@@ -355,9 +355,9 @@ event_roster_name,pass,PL-2002-007,event=庆阳市 roster=庆阳市
 entity_reference,pass,PL-2002-008,CNUR-000229
 automatic_continuity,pass,PL-2002-008,type=upgrade automatic=True
 event_roster_name,pass,PL-2002-008,event=来宾市 roster=来宾市
-entity_reference,pass,PL-2002-009,CNUR-000230
-automatic_continuity,pass,PL-2002-009,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-009,event=崇左市 roster=崇左市
+entity_reference,pass,PL-2002-009,CNUR-000346
+automatic_continuity,pass,PL-2002-009,type=split automatic=False
+historical_lifespan,pass,PL-2002-009,event=2002 lifespan=1971-2002
 entity_reference,pass,PL-2002-010,CNUR-000271
 automatic_continuity,pass,PL-2002-010,type=upgrade automatic=True
 event_roster_name,pass,PL-2002-010,event=丽江市 roster=丽江市
@@ -434,7 +434,7 @@ chronological_order,pass,CNUR-000012,1988
 chronological_order,pass,CNUR-000019,1988
 chronological_order,pass,CNUR-000188,1988
 chronological_order,pass,CNUR-000205,1988
-chronological_order,pass,CNUR-000206,1988
+chronological_order,pass,CNUR-000347,1988
 chronological_order,pass,CNUR-000208,1988
 chronological_order,pass,CNUR-000209,1988
 chronological_order,pass,CNUR-000207,1988
@@ -542,7 +542,7 @@ chronological_order,pass,CNUR-000228,2002
 chronological_order,pass,CNUR-000307,2002
 chronological_order,pass,CNUR-000308,2002
 chronological_order,pass,CNUR-000229,2002
-chronological_order,pass,CNUR-000230,2002
+chronological_order,pass,CNUR-000346,2002
 chronological_order,pass,CNUR-000271,2002
 chronological_order,pass,CNUR-000309,2003
 chronological_order,pass,CNUR-000024,2003
@@ -599,10 +599,9 @@ relation_event_reference,pass,WIKI-1988-009,upgrade
 relation_from_entity,pass,WIKI-1988-009,CNUR-000205
 relation_to_entity,pass,WIKI-1988-009,CNUR-000205
 complex_relation_mapping,pass,WIKI-1988-009,upgrade automatic=true
-relation_event_reference,pass,WIKI-1988-010,upgrade
-relation_from_entity,pass,WIKI-1988-010,CNUR-000206
-relation_to_entity,pass,WIKI-1988-010,CNUR-000206
-complex_relation_mapping,pass,WIKI-1988-010,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-010,split
+relation_from_entity,pass,WIKI-1988-010,CNUR-000347
+complex_relation_mapping,pass,WIKI-1988-010,split automatic=false
 relation_event_reference,pass,WIKI-1988-011,establish
 relation_from_entity,pass,WIKI-1988-011,CNUR-000208
 complex_relation_mapping,pass,WIKI-1988-011,establish automatic=false
@@ -1025,10 +1024,9 @@ relation_event_reference,pass,PL-2002-008,upgrade
 relation_from_entity,pass,PL-2002-008,CNUR-000229
 relation_to_entity,pass,PL-2002-008,CNUR-000229
 complex_relation_mapping,pass,PL-2002-008,upgrade automatic=true
-relation_event_reference,pass,PL-2002-009,upgrade
-relation_from_entity,pass,PL-2002-009,CNUR-000230
-relation_to_entity,pass,PL-2002-009,CNUR-000230
-complex_relation_mapping,pass,PL-2002-009,upgrade automatic=true
+relation_event_reference,pass,PL-2002-009,split
+relation_from_entity,pass,PL-2002-009,CNUR-000346
+complex_relation_mapping,pass,PL-2002-009,split automatic=false
 relation_event_reference,pass,PL-2002-010,upgrade
 relation_from_entity,pass,PL-2002-010,CNUR-000271
 relation_to_entity,pass,PL-2002-010,CNUR-000271
@@ -1137,3 +1135,75 @@ relation_event_reference,pass,WIKI-1996-056,jurisdiction_transfer
 relation_from_entity,pass,WIKI-1996-056,CNUR-000345
 relation_to_entity,pass,WIKI-1996-056,CNUR-000235
 complex_relation_mapping,pass,WIKI-1996-056,jurisdiction_transfer automatic=false
+major_relation_from_entity,pass,MAJOR-1987-WEIHAI,CNUR-000140
+major_relation_to_entity,pass,MAJOR-1987-WEIHAI,CNUR-000144
+major_relation_no_auto_mapping,pass,MAJOR-1987-WEIHAI,false
+major_relation_county_evidence,pass,MAJOR-1987-WEIHAI,expected=4 actual=4
+major_relation_from_entity,pass,MAJOR-1988-HUIYANG-HZ,CNUR-000347
+major_relation_to_entity,pass,MAJOR-1988-HUIYANG-HZ,CNUR-000206
+major_relation_no_auto_mapping,pass,MAJOR-1988-HUIYANG-HZ,false
+major_relation_county_evidence,pass,MAJOR-1988-HUIYANG-HZ,expected=4 actual=4
+major_relation_from_entity,pass,MAJOR-1988-HUIYANG-SW,CNUR-000347
+major_relation_to_entity,pass,MAJOR-1988-HUIYANG-SW,CNUR-000208
+major_relation_no_auto_mapping,pass,MAJOR-1988-HUIYANG-SW,false
+major_relation_county_evidence,pass,MAJOR-1988-HUIYANG-SW,expected=3 actual=3
+major_relation_from_entity,pass,MAJOR-1988-HUIYANG-HY,CNUR-000347
+major_relation_to_entity,pass,MAJOR-1988-HUIYANG-HY,CNUR-000209
+major_relation_no_auto_mapping,pass,MAJOR-1988-HUIYANG-HY,false
+major_relation_county_evidence,pass,MAJOR-1988-HUIYANG-HY,expected=5 actual=5
+major_relation_from_entity,pass,MAJOR-1992-SONGYUAN,CNUR-000058
+major_relation_to_entity,pass,MAJOR-1992-SONGYUAN,CNUR-000057
+major_relation_no_auto_mapping,pass,MAJOR-1992-SONGYUAN,false
+major_relation_county_evidence,pass,MAJOR-1992-SONGYUAN,expected=4 actual=4
+major_relation_from_entity,pass,MAJOR-1993-YANBEI-DT,CNUR-000343
+major_relation_to_entity,pass,MAJOR-1993-YANBEI-DT,CNUR-000015
+major_relation_no_auto_mapping,pass,MAJOR-1993-YANBEI-DT,false
+major_relation_county_evidence,pass,MAJOR-1993-YANBEI-DT,expected=7 actual=7
+major_relation_from_entity,pass,MAJOR-1993-YANBEI-SZ,CNUR-000343
+major_relation_to_entity,pass,MAJOR-1993-YANBEI-SZ,CNUR-000019
+major_relation_no_auto_mapping,pass,MAJOR-1993-YANBEI-SZ,false
+major_relation_county_evidence,pass,MAJOR-1993-YANBEI-SZ,expected=3 actual=3
+major_relation_from_entity,pass,MAJOR-1996-TAIZHOU,CNUR-000083
+major_relation_to_entity,pass,MAJOR-1996-TAIZHOU,CNUR-000085
+major_relation_no_auto_mapping,pass,MAJOR-1996-TAIZHOU,false
+major_relation_county_evidence,pass,MAJOR-1996-TAIZHOU,expected=5 actual=5
+major_relation_from_entity,pass,MAJOR-1996-SUQIAN,CNUR-000081
+major_relation_to_entity,pass,MAJOR-1996-SUQIAN,CNUR-000086
+major_relation_no_auto_mapping,pass,MAJOR-1996-SUQIAN,false
+major_relation_county_evidence,pass,MAJOR-1996-SUQIAN,expected=5 actual=5
+major_relation_from_entity,pass,MAJOR-1997-MEISHAN,CNUR-000245
+major_relation_to_entity,pass,MAJOR-1997-MEISHAN,CNUR-000247
+major_relation_no_auto_mapping,pass,MAJOR-1997-MEISHAN,false
+major_relation_county_evidence,pass,MAJOR-1997-MEISHAN,expected=6 actual=6
+major_relation_from_entity,pass,MAJOR-1998-ZIYANG,CNUR-000244
+major_relation_to_entity,pass,MAJOR-1998-ZIYANG,CNUR-000253
+major_relation_no_auto_mapping,pass,MAJOR-1998-ZIYANG,false
+major_relation_county_evidence,pass,MAJOR-1998-ZIYANG,expected=4 actual=4
+major_relation_from_entity,pass,MAJOR-2002-NANNING-CZ,CNUR-000346
+major_relation_to_entity,pass,MAJOR-2002-NANNING-CZ,CNUR-000230
+major_relation_no_auto_mapping,pass,MAJOR-2002-NANNING-CZ,false
+major_relation_county_evidence,pass,MAJOR-2002-NANNING-CZ,expected=7 actual=7
+major_relation_from_entity,pass,MAJOR-2002-NANNING-NN,CNUR-000346
+major_relation_to_entity,pass,MAJOR-2002-NANNING-NN,CNUR-000217
+major_relation_no_auto_mapping,pass,MAJOR-2002-NANNING-NN,false
+major_relation_county_evidence,pass,MAJOR-2002-NANNING-NN,expected=5 actual=5
+major_relation_from_entity,pass,MAJOR-2003-ZHONGWEI-WZ,CNUR-000323
+major_relation_to_entity,pass,MAJOR-2003-ZHONGWEI-WZ,CNUR-000325
+major_relation_no_auto_mapping,pass,MAJOR-2003-ZHONGWEI-WZ,false
+major_relation_county_evidence,pass,MAJOR-2003-ZHONGWEI-WZ,expected=2 actual=2
+major_relation_from_entity,pass,MAJOR-2003-ZHONGWEI-GY,CNUR-000324
+major_relation_to_entity,pass,MAJOR-2003-ZHONGWEI-GY,CNUR-000325
+major_relation_no_auto_mapping,pass,MAJOR-2003-ZHONGWEI-GY,false
+major_relation_county_evidence,pass,MAJOR-2003-ZHONGWEI-GY,expected=1 actual=1
+major_relation_from_entity,pass,MAJOR-2011-CHAOHU-HF,CNUR-000110
+major_relation_to_entity,pass,MAJOR-2011-CHAOHU-HF,CNUR-000098
+major_relation_no_auto_mapping,pass,MAJOR-2011-CHAOHU-HF,false
+major_relation_county_evidence,pass,MAJOR-2011-CHAOHU-HF,expected=2 actual=2
+major_relation_from_entity,pass,MAJOR-2011-CHAOHU-WH,CNUR-000110
+major_relation_to_entity,pass,MAJOR-2011-CHAOHU-WH,CNUR-000099
+major_relation_no_auto_mapping,pass,MAJOR-2011-CHAOHU-WH,false
+major_relation_county_evidence,pass,MAJOR-2011-CHAOHU-WH,expected=1 actual=1
+major_relation_from_entity,pass,MAJOR-2011-CHAOHU-MA,CNUR-000110
+major_relation_to_entity,pass,MAJOR-2011-CHAOHU-MA,CNUR-000102
+major_relation_no_auto_mapping,pass,MAJOR-2011-CHAOHU-MA,false
+major_relation_county_evidence,pass,MAJOR-2011-CHAOHU-MA,expected=2 actual=2

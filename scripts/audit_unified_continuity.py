@@ -19,6 +19,8 @@ def read(name: str) -> list[dict[str, str]]:
 def main() -> None:
     events = read("unified_events_1987_2026.csv")
     relations = read("unified_event_relations.csv")
+    major_relations = read("major_lineage_relations.csv")
+    county_transitions = read("county_affiliation_transitions.csv")
     current = {row["entity_id"]: row for row in read("entities.csv")}
     historical = {row["historical_entity_id"]: row for row in read("historical_entities.csv")}
     roster = {(row["entity_id"], int(row["year"])): row for row in read("legal_roster_1987_2026.csv")}
@@ -69,6 +71,16 @@ def main() -> None:
             add("relation_to_entity", "pass" if relation["to_entity_id"] in entity_ids else "error", relation["event_id"], relation["to_entity_id"])
         safe = relation["relation_type"] not in {"merge", "split", "abolish", "jurisdiction_transfer"} or relation["automatic_mapping"] == "false"
         add("complex_relation_mapping", "pass" if safe else "error", relation["event_id"], f"{relation['relation_type']} automatic={relation['automatic_mapping']}")
+
+    county_counts: dict[str, int] = {}
+    for row in county_transitions: county_counts[row["case_id"]] = county_counts.get(row["case_id"], 0) + 1
+    for relation in major_relations:
+        case_id = relation["case_id"]
+        add("major_relation_from_entity", "pass" if relation["from_entity_key"] in entity_ids else "error", case_id, relation["from_entity_key"])
+        add("major_relation_to_entity", "pass" if relation["to_entity_id"] in entity_ids else "error", case_id, relation["to_entity_id"])
+        add("major_relation_no_auto_mapping", "pass" if relation["automatic_mapping"] == "false" else "error", case_id, relation["automatic_mapping"])
+        expected = int(relation["county_unit_count"])
+        add("major_relation_county_evidence", "pass" if county_counts.get(case_id) == expected else "error", case_id, f"expected={expected} actual={county_counts.get(case_id, 0)}")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with OUTPUT.open("w", encoding="utf-8", newline="") as handle:

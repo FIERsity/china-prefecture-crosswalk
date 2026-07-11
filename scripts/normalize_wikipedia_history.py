@@ -45,6 +45,9 @@ MANUAL_HISTORICAL_LINKS = {
     "WIKI-1995-048": ("HIST-CQ-FULING", "Fuling Prefecture continued as historical prefecture-level Fuling City until 1997"),
     "WIKI-1996-056": ("HIST-CQ-QIANJIANG", "multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"),
 }
+MANUAL_SPLIT_EVENTS = {
+    "WIKI-1988-010": ("CNUR-000347", "惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体"),
+}
 
 
 def read() -> list[dict[str, str]]:
@@ -152,6 +155,10 @@ def main() -> None:
             entity_id, review_note = MANUAL_HISTORICAL_LINKS[event_id]
             risks = [risk for risk in risks if risk != "entity_unresolved"]
             if event_id in {"WIKI-1993-029", "WIKI-1996-056"}: risks.append("multi_entity_relation")
+        if event_id in MANUAL_SPLIT_EVENTS:
+            entity_id, review_note = MANUAL_SPLIT_EVENTS[event_id]
+            kind, automatic = "split", False
+            risks = [risk for risk in risks if risk != "entity_unresolved"] + ["multi_entity_relation"]
         status = "accepted_manual_review" if review_note else "accepted_rule_extraction" if entity_id and old_name and new_name and kind in {"rename", "upgrade"} else "review_required"
         output.append({
             "event_id": event_id, "year": year,

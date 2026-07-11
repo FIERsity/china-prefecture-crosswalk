@@ -96,6 +96,13 @@ class CrosswalkMatcher:
         self.major_lineage_relations = pd.read_csv(data_dir / "major_lineage_relations.csv", dtype=str).fillna("")
         self.county_transitions = pd.read_csv(data_dir / "county_affiliation_transitions.csv", dtype=str).fillna("")
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
+        for _, row in self.historical_entities.iterrows():
+            self.entity_map[row.historical_entity_id] = {
+                **row.to_dict(),
+                "canonical_name_zh": row.canonical_name_zh,
+                "province_name_zh": row.province_at_time,
+                "entity_level": "prefecture",
+            }
         self.index: dict[str, list[dict[str, Any]]] = {}
         for _, r in self.names.iterrows():
             if r["name_zh"] and r["legal_status"] == "active":
@@ -119,7 +126,10 @@ class CrosswalkMatcher:
         if year is None:
             return []
         rows = self.relations[(self.relations.entity_id == entity_id) & (self.relations.relation_type.isin(["merge", "split"]))]
-        return [f"{row.relation_type}_event" for _, row in rows.iterrows() if year >= int(row.year)]
+        risks = [f"{row.relation_type}_event" for _, row in rows.iterrows() if year >= int(row.year)]
+        material = self.major_lineage_relations[self.major_lineage_relations.from_entity_key == entity_id]
+        if any(year >= int(row.year) for _, row in material.iterrows()): risks.append("material_lineage_change")
+        return sorted(set(risks))
 
     def match_name(self, name: Any, year: int | None = None, province: Any = None, custom_rules: pd.DataFrame | None = None) -> MatchResult:
         norm = normalize_name(name)
@@ -218,7 +228,11 @@ class CrosswalkMatcher:
         if entity is None:
             rows = self.historical_entities[self.historical_entities.historical_entity_id == entity_id]
             entity = rows.iloc[0].to_dict() if len(rows) else None
-        return {"entity": entity, "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records")}
+        lineage = self.major_lineage_relations[
+            (self.major_lineage_relations.from_entity_key == entity_id) |
+            (self.major_lineage_relations.to_entity_id == entity_id)
+        ]
+        return {"entity": entity, "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records"), "major_lineage": lineage.to_dict("records")}
 
     def query_events(self, entity_id: str | None = None, province: str | None = None, year: int | None = None, event_type: str | None = None) -> pd.DataFrame:
         df = self.unified_events.copy()

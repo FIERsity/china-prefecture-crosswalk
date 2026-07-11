@@ -240,8 +240,8 @@ CNUR-000228,河池地区,2000,2001,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
 CNUR-000228,河池市,2002,2024,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
 CNUR-000229,柳州地区,2000,2001,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
 CNUR-000229,来宾市,2002,2024,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
-CNUR-000230,南宁地区,2000,2001,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
-CNUR-000230,崇左市,2002,2024,active,event_crosschecked,SRC-LEGACY-SNAPSHOT
+CNUR-000230,,2000,2001,not_established,wikipedia_verified,SRC-WIKI-2002
+CNUR-000230,崇左市,2002,2024,active,wikipedia_verified,SRC-WIKI-2002
 CNUR-000231,海口市,2000,2024,active,inherited_unverified,SRC-LEGACY-SNAPSHOT
 CNUR-000232,三亚市,2000,2024,active,inherited_unverified,SRC-LEGACY-SNAPSHOT
 CNUR-000233,,2000,2011,not_established,wikipedia_verified,SRC-WIKI-2012

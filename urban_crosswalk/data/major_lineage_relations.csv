@@ -1,8 +1,8 @@
 case_id,year,from_name,from_entity_key,to_name,to_entity_id,relation_type,county_unit_count,materiality,source_event_id,source_url,automatic_mapping,review_status
 MAJOR-1987-WEIHAI,1987,烟台市,CNUR-000140,威海市,CNUR-000144,carve_out,4,major,WIKI-RAW-1987:14-18,https://zh.wikipedia.org/wiki/1987年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
-MAJOR-1988-HUIYANG-HZ,1988,惠阳地区,HIST-GD-HUIYANG,惠州市,CNUR-000206,split_successor,4,major,WIKI-1988-010,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
-MAJOR-1988-HUIYANG-SW,1988,惠阳地区,HIST-GD-HUIYANG,汕尾市,CNUR-000208,split_successor,3,major,WIKI-1988-011,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
-MAJOR-1988-HUIYANG-HY,1988,惠阳地区,HIST-GD-HUIYANG,河源市,CNUR-000209,split_successor,5,major,WIKI-1988-012,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
+MAJOR-1988-HUIYANG-HZ,1988,惠阳地区,CNUR-000347,惠州市,CNUR-000206,split_successor,4,major,WIKI-1988-010,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
+MAJOR-1988-HUIYANG-SW,1988,惠阳地区,CNUR-000347,汕尾市,CNUR-000208,split_successor,3,major,WIKI-1988-011,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
+MAJOR-1988-HUIYANG-HY,1988,惠阳地区,CNUR-000347,河源市,CNUR-000209,split_successor,5,major,WIKI-1988-012,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1992-SONGYUAN,1992,白城地区,CNUR-000058,松原市,CNUR-000057,carve_out,4,major,WIKI-1992-022,https://zh.wikipedia.org/wiki/1992年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1993-YANBEI-DT,1993,雁北地区,CNUR-000343,大同市,CNUR-000015,split_successor,7,major,WIKI-1993-029,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1993-YANBEI-SZ,1993,雁北地区,CNUR-000343,朔州市,CNUR-000019,split_successor,3,major,WIKI-1993-029,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
@@ -10,8 +10,8 @@ MAJOR-1996-TAIZHOU,1996,扬州市,CNUR-000083,泰州市,CNUR-000085,carve_out,5,
 MAJOR-1996-SUQIAN,1996,淮阴市,CNUR-000081,宿迁市,CNUR-000086,carve_out,5,major,WIKI-RAW-1996:92-97,https://zh.wikipedia.org/wiki/1996年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1997-MEISHAN,1997,乐山市,CNUR-000245,眉山地区,CNUR-000247,carve_out,6,major,WIKI-1997-065,https://zh.wikipedia.org/wiki/1997年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1998-ZIYANG,1998,内江市,CNUR-000244,资阳地区,CNUR-000253,carve_out,4,major,WIKI-1998-072,https://zh.wikipedia.org/wiki/1998年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
-MAJOR-2002-NANNING-CZ,2002,南宁地区,HIST-GX-NANNING,崇左市,CNUR-000230,split_successor,7,major,PL-2002-009,https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
-MAJOR-2002-NANNING-NN,2002,南宁地区,HIST-GX-NANNING,南宁市,CNUR-000217,split_successor,5,major,PL-2002-009,https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
+MAJOR-2002-NANNING-CZ,2002,南宁地区,CNUR-000346,崇左市,CNUR-000230,split_successor,7,major,PL-2002-009,https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
+MAJOR-2002-NANNING-NN,2002,南宁地区,CNUR-000346,南宁市,CNUR-000217,split_successor,5,major,PL-2002-009,https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-2003-ZHONGWEI-WZ,2003,吴忠市,CNUR-000323,中卫市,CNUR-000325,carve_out,2,majority_of_new_entity,PL-2003-006,https://zh.wikipedia.org/wiki/2003年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-2003-ZHONGWEI-GY,2003,固原市,CNUR-000324,中卫市,CNUR-000325,territory_contribution,1,secondary,PL-2003-006,https://zh.wikipedia.org/wiki/2003年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-2011-CHAOHU-HF,2011,巢湖市,CNUR-000110,合肥市,CNUR-000098,split_successor,2,major,PL-2011-001,https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition

@@ -136,6 +136,7 @@ elif page == "单个名称查询":
             detail = m.query_entity(result.entity_id)
             st.subheader("名称历史"); st.dataframe(detail["names"], use_container_width=True)
             st.subheader("相关事件"); st.dataframe(detail["events"], use_container_width=True)
+            st.subheader("重大实体关系"); st.dataframe(detail["major_lineage"], use_container_width=True)
         title = quote(f"别名建议：{name}")
         body = quote(f"原始写法：{name}\n年份：{year or '未提供'}\n省份：{province or '未提供'}\n建议实体：{result.entity_id}\n匹配方法：{result.match_method}")
         st.link_button("提交公共别名建议", f"https://github.com/FIERsity/china-prefecture-crosswalk/issues/new?title={title}&body={body}")

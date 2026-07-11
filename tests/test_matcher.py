@@ -15,6 +15,19 @@ def test_historical_names_and_suffix_aliases():
     assert m.match_name("昌都地区", 2010).entity_id == "CNUR-000284"
     assert m.match_name("建阳地区", 1987).entity_id == "CNUR-000121"
     assert m.match_name("普洱市", 2026).entity_id == "CNUR-000272"
+    assert m.match_name("南宁地区", 2000).entity_id == "CNUR-000346"
+    assert m.match_name("惠阳地区", 1987).entity_id == "CNUR-000347"
+
+
+def test_split_predecessors_do_not_leak_into_successor_identity():
+    m = CrosswalkMatcher()
+    assert m.match_name("崇左市", 2001).year_status == "not_established"
+    assert "pre_establishment" in m.match_name("崇左市", 2001).risk_codes
+    assert m.match_name("崇左市", 2002).entity_id == "CNUR-000230"
+    assert m.match_name("惠州市", 1987).year_status == "not_established"
+    assert m.match_name("惠州市", 1988).entity_id == "CNUR-000206"
+    assert m.match_name("泰州市", 1995).year_status == "not_established"
+    assert m.match_name("宿迁市", 1995).year_status == "not_established"
 
 
 def test_ocr_never_auto_accepts():

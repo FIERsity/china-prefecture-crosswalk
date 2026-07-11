@@ -16,7 +16,7 @@ One row per research entity and year. This is the first provisional legal-status
 
 ## Unified 1987-2026 temporal layer
 
-`legal_roster_1987_2026.csv` contains all 345 current and historical entities for every year from 1987 through 2026. Existing 2000-2024 legal-status records take precedence; earlier and later years are reconstructed from reviewed event chains or explicitly marked `inferred`. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
+`legal_roster_1987_2026.csv` contains all 347 current and historical entities for every year from 1987 through 2026. Existing 2000-2024 legal-status records take precedence when compatible with the reviewed establishment year; earlier and later years are reconstructed from reviewed event chains or explicitly marked `inferred`. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
 
 ## `data/processed/events_2000_2026.csv`
 

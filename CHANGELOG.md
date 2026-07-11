@@ -2,12 +2,12 @@
 
 ## 2.0.0 - 2026-07-12
 
-- Migrated 345 current and historical entities to permanent `CNUR-000001` identifiers.
+- Migrated 347 current and historical entities to permanent `CNUR-000001` identifiers.
 - Published the unified V2.0 city entity master table in CSV and Excel formats.
 - Unified 144 historical change events and 149 entity relations across 1987—2026 source coverage.
 - Extended the web app, Python matcher, and CLI runtime coverage from 2000—2024 to 1987—2026.
-- Added a 13,800-row annual status layer for all 345 entities and 501 compressed temporal-name spans.
-- Added 1,138 automated continuity checks with zero unresolved entity references.
+- Added a 13,880-row annual status layer for all 347 entities.
+- Added 1,208 automated continuity checks with zero unresolved entity references.
 - Added an online database browser and V2.0 downloads to the Streamlit application.
 - Added the `cnur` command-line interface for single, batch, entity, and event queries.
 - Added a county-composition audit with 70 county-unit transitions and 18 material lineage relations, including the two-way Nanning Prefecture and three-way Huiyang Prefecture successions.
