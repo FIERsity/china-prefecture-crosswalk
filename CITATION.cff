@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite the repository release."
+title: "China Prefecture Crosswalk"
+type: dataset
+version: 0.1.0-dev
+date-released: 2026-07-11
+abstract: "Research-oriented crosswalks and change events for Chinese prefecture-level administrative entities."
+
