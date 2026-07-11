@@ -47,6 +47,8 @@ python3 -m venv .venv
 
 推荐使用仓库根目录的 `render.yaml` 在 Render 创建 Blueprint。服务会执行 `streamlit run app.py`，健康检查地址为 `/_stcore/health`。仓库也提供 Dockerfile，可部署到任何支持公开 HTTP 容器的平台。
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/FIERsity/china-prefecture-crosswalk)
+
 ### Python 接口
 
 ```python
