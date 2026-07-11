@@ -13,7 +13,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Rebuild processed tables
-        run: python scripts/build_release.py
+        run: |
+          python scripts/build_release.py
+          python scripts/normalize_wikipedia_history.py
+          python scripts/build_unified_events.py
+          python scripts/audit_unified_continuity.py
       - name: Verify generated files are committed
         run: git diff --exit-code
       - name: Validate data

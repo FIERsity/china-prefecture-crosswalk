@@ -21,6 +21,8 @@
 | `data/processed/historical_entities.csv` | 2000 年前已撤销、无法放入现有平衡面板的历史实体 |
 | `data/processed/unified_event_relations.csv` | 合并、拆分和多实体管辖变化关系 |
 
+统一事件、实体和年度名录的连续性审计保存在 `data/audit/unified_continuity_audit.csv`，并由 GitHub Actions 在每次提交时重新生成和验证。
+
 字段定义见 [`CODEBOOK.md`](CODEBOOK.md)。`data/raw/` 仅保存原始输入快照，不应直接解释为法定年度名录。
 
 ## 数据内容

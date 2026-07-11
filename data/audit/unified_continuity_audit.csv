@@ -1,0 +1,1068 @@
+check,status,subject,detail
+unique_event_id,pass,all_events,duplicates=0
+unique_event_signature,pass,all_events,events=144
+entity_reference,pass,WIKI-1987-001,E341000
+automatic_continuity,pass,WIKI-1987-001,type=upgrade automatic=True
+entity_reference,pass,WIKI-1987-002,E330900
+automatic_continuity,pass,WIKI-1987-002,type=upgrade automatic=True
+entity_reference,pass,WIKI-1987-003,HIST-HN-LMZ
+automatic_continuity,pass,WIKI-1987-003,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1987-003,event=1987 lifespan=1955-1987
+entity_reference,pass,WIKI-1987-004,E510400
+automatic_continuity,pass,WIKI-1987-004,type=rename automatic=True
+entity_reference,pass,WIKI-1987-005,E513200
+automatic_continuity,pass,WIKI-1987-005,type=rename automatic=True
+entity_reference,pass,WIKI-1988-006,E131000
+automatic_continuity,pass,WIKI-1988-006,type=upgrade automatic=True
+entity_reference,pass,WIKI-1988-007,E140600
+automatic_continuity,pass,WIKI-1988-007,type=establish automatic=False
+entity_reference,pass,WIKI-1988-008,E430700
+automatic_continuity,pass,WIKI-1988-008,type=upgrade automatic=True
+entity_reference,pass,WIKI-1988-009,E441200
+automatic_continuity,pass,WIKI-1988-009,type=upgrade automatic=True
+entity_reference,pass,WIKI-1988-010,E441300
+automatic_continuity,pass,WIKI-1988-010,type=upgrade automatic=True
+entity_reference,pass,WIKI-1988-011,E441500
+automatic_continuity,pass,WIKI-1988-011,type=establish automatic=False
+entity_reference,pass,WIKI-1988-012,E441600
+automatic_continuity,pass,WIKI-1988-012,type=establish automatic=False
+entity_reference,pass,WIKI-1988-013,E441400
+automatic_continuity,pass,WIKI-1988-013,type=upgrade automatic=True
+entity_reference,pass,WIKI-1988-014,E441700
+automatic_continuity,pass,WIKI-1988-014,type=establish automatic=False
+entity_reference,pass,WIKI-1988-015,E441800
+automatic_continuity,pass,WIKI-1988-015,type=establish automatic=False
+entity_reference,pass,WIKI-1988-016,E340800
+automatic_continuity,pass,WIKI-1988-016,type=merge automatic=False
+entity_reference,pass,WIKI-1988-017,E341700
+automatic_continuity,pass,WIKI-1988-017,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1988-018,E350700
+automatic_continuity,pass,WIKI-1988-018,type=rename automatic=True
+entity_reference,pass,WIKI-1992-019,E341100
+automatic_continuity,pass,WIKI-1992-019,type=upgrade automatic=True
+entity_reference,pass,WIKI-1992-020,HIST-CQ-WANXIAN
+automatic_continuity,pass,WIKI-1992-020,type=upgrade automatic=True
+historical_lifespan,pass,WIKI-1992-020,event=1992 lifespan=1992-1997
+entity_reference,pass,WIKI-1992-021,E420500
+automatic_continuity,pass,WIKI-1992-021,type=abolish automatic=False
+entity_reference,pass,WIKI-1992-022,E220700
+automatic_continuity,pass,WIKI-1992-022,type=establish automatic=False
+entity_reference,pass,WIKI-1992-023,E371600
+automatic_continuity,pass,WIKI-1992-023,type=rename automatic=True
+entity_reference,pass,WIKI-1993-024,E220800
+automatic_continuity,pass,WIKI-1993-024,type=upgrade automatic=True
+entity_reference,pass,WIKI-1993-025,E231100
+automatic_continuity,pass,WIKI-1993-025,type=upgrade automatic=True
+entity_reference,pass,WIKI-1993-026,E420900
+automatic_continuity,pass,WIKI-1993-026,type=establish automatic=False
+entity_reference,pass,WIKI-1993-027,E511300
+automatic_continuity,pass,WIKI-1993-027,type=upgrade automatic=True
+entity_reference,pass,WIKI-1993-028,E130100
+automatic_continuity,pass,WIKI-1993-028,type=merge automatic=False
+entity_reference,pass,WIKI-1993-029,HIST-SX-YANBEI
+automatic_continuity,pass,WIKI-1993-029,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1993-029,event=1993 lifespan=1970-1993
+entity_reference,pass,WIKI-1993-030,E450600
+automatic_continuity,pass,WIKI-1993-030,type=establish automatic=False
+entity_reference,pass,WIKI-1993-031,E422800
+automatic_continuity,pass,WIKI-1993-031,type=rename automatic=True
+entity_reference,pass,WIKI-1994-032,E331000
+automatic_continuity,pass,WIKI-1994-032,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-033,E350700
+automatic_continuity,pass,WIKI-1994-033,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-034,E371300
+automatic_continuity,pass,WIKI-1994-034,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-035,E371400
+automatic_continuity,pass,WIKI-1994-035,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-036,E411300
+automatic_continuity,pass,WIKI-1994-036,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-037,E430900
+automatic_continuity,pass,WIKI-1994-037,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-038,E431000
+automatic_continuity,pass,WIKI-1994-038,type=establish automatic=False
+entity_reference,pass,WIKI-1994-039,E450700
+automatic_continuity,pass,WIKI-1994-039,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-040,E610500
+automatic_continuity,pass,WIKI-1994-040,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-041,E420300
+automatic_continuity,pass,WIKI-1994-041,type=merge automatic=False
+entity_reference,pass,WIKI-1994-042,E421000
+automatic_continuity,pass,WIKI-1994-042,type=upgrade automatic=True
+entity_reference,pass,WIKI-1994-043,E211400
+automatic_continuity,pass,WIKI-1994-043,type=rename automatic=True
+entity_reference,pass,WIKI-1994-044,E220600
+automatic_continuity,pass,WIKI-1994-044,type=rename automatic=True
+entity_reference,pass,WIKI-1994-045,E430800
+automatic_continuity,pass,WIKI-1994-045,type=rename automatic=True
+entity_reference,pass,WIKI-1995-046,E421100
+automatic_continuity,pass,WIKI-1995-046,type=upgrade automatic=True
+entity_reference,pass,WIKI-1995-047,E431100
+automatic_continuity,pass,WIKI-1995-047,type=upgrade automatic=True
+entity_reference,pass,WIKI-1995-048,HIST-CQ-FULING
+automatic_continuity,pass,WIKI-1995-048,type=upgrade automatic=True
+historical_lifespan,pass,WIKI-1995-048,event=1995 lifespan=1995-1997
+entity_reference,pass,WIKI-1996-049,E131100
+automatic_continuity,pass,WIKI-1996-049,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-050,E341200
+automatic_continuity,pass,WIKI-1996-050,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-051,E350800
+automatic_continuity,pass,WIKI-1996-051,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-052,E511500
+automatic_continuity,pass,WIKI-1996-052,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-053,E610700
+automatic_continuity,pass,WIKI-1996-053,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-054,E610600
+automatic_continuity,pass,WIKI-1996-054,type=upgrade automatic=True
+entity_reference,pass,WIKI-1996-055,E421000
+automatic_continuity,pass,WIKI-1996-055,type=rename automatic=True
+entity_reference,pass,WIKI-1996-056,HIST-CQ-QIANJIANG
+automatic_continuity,pass,WIKI-1996-056,type=jurisdiction_transfer automatic=False
+historical_lifespan,pass,WIKI-1996-056,event=1996 lifespan=1988-1997
+entity_reference,pass,WIKI-1997-057,E371500
+automatic_continuity,pass,WIKI-1997-057,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-058,E411400
+automatic_continuity,pass,WIKI-1997-058,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-059,E431200
+automatic_continuity,pass,WIKI-1997-059,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-060,E450900
+automatic_continuity,pass,WIKI-1997-060,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-061,E520300
+automatic_continuity,pass,WIKI-1997-061,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-062,E530300
+automatic_continuity,pass,WIKI-1997-062,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-063,E530400
+automatic_continuity,pass,WIKI-1997-063,type=upgrade automatic=True
+entity_reference,pass,WIKI-1997-064,E451100
+automatic_continuity,pass,WIKI-1997-064,type=rename automatic=True
+entity_reference,pass,WIKI-1997-065,E511400
+automatic_continuity,pass,WIKI-1997-065,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1998-066,E341300
+automatic_continuity,pass,WIKI-1998-066,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-067,E360700
+automatic_continuity,pass,WIKI-1998-067,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-068,E411500
+automatic_continuity,pass,WIKI-1998-068,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-069,E421200
+automatic_continuity,pass,WIKI-1998-069,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-070,E511600
+automatic_continuity,pass,WIKI-1998-070,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-071,E640300
+automatic_continuity,pass,WIKI-1998-071,type=upgrade automatic=True
+entity_reference,pass,WIKI-1998-072,E512000
+automatic_continuity,pass,WIKI-1998-072,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1999-073,E140700
+automatic_continuity,pass,WIKI-1999-073,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-074,E231200
+automatic_continuity,pass,WIKI-1999-074,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-075,E341400
+automatic_continuity,pass,WIKI-1999-075,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-076,E341500
+automatic_continuity,pass,WIKI-1999-076,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-077,E350900
+automatic_continuity,pass,WIKI-1999-077,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-078,E431300
+automatic_continuity,pass,WIKI-1999-078,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-079,E511700
+automatic_continuity,pass,WIKI-1999-079,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-080,E610800
+automatic_continuity,pass,WIKI-1999-080,type=upgrade automatic=True
+entity_reference,pass,WIKI-1999-081,E150500
+automatic_continuity,pass,WIKI-1999-081,type=upgrade automatic=True
+entity_reference,pass,PL-2000-001,E360800
+automatic_continuity,pass,PL-2000-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-001,event=吉安市 roster=吉安市
+entity_reference,pass,PL-2000-002,E331100
+automatic_continuity,pass,PL-2000-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-002,event=丽水市 roster=丽水市
+entity_reference,pass,PL-2000-003,E360900
+automatic_continuity,pass,PL-2000-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-003,event=宜春市 roster=宜春市
+entity_reference,pass,PL-2000-004,E411600
+automatic_continuity,pass,PL-2000-004,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-004,event=周口市 roster=周口市
+entity_reference,pass,PL-2000-005,E411700
+automatic_continuity,pass,PL-2000-005,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-005,event=驻马店市 roster=驻马店市
+entity_reference,pass,PL-2000-006,E371600
+automatic_continuity,pass,PL-2000-006,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-006,event=滨州市 roster=滨州市
+entity_reference,pass,PL-2000-007,E511400
+automatic_continuity,pass,PL-2000-007,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-007,event=眉山市 roster=眉山市
+entity_reference,pass,PL-2000-008,E511800
+automatic_continuity,pass,PL-2000-008,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-008,event=雅安市 roster=雅安市
+entity_reference,pass,PL-2000-009,E511900
+automatic_continuity,pass,PL-2000-009,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-009,event=巴中市 roster=巴中市
+entity_reference,pass,PL-2000-010,E512000
+automatic_continuity,pass,PL-2000-010,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-010,event=资阳市 roster=资阳市
+entity_reference,pass,PL-2000-011,E140800
+automatic_continuity,pass,PL-2000-011,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-011,event=运城市 roster=运城市
+entity_reference,pass,PL-2000-012,E140900
+automatic_continuity,pass,PL-2000-012,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-012,event=忻州市 roster=忻州市
+entity_reference,pass,PL-2000-013,E141000
+automatic_continuity,pass,PL-2000-013,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-013,event=临汾市 roster=临汾市
+entity_reference,pass,PL-2000-014,E520400
+automatic_continuity,pass,PL-2000-014,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-014,event=安顺市 roster=安顺市
+entity_reference,pass,PL-2000-015,E610900
+automatic_continuity,pass,PL-2000-015,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-015,event=安康市 roster=安康市
+entity_reference,pass,PL-2000-016,E361000
+automatic_continuity,pass,PL-2000-016,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-016,event=抚州市 roster=抚州市
+entity_reference,pass,PL-2000-017,E361100
+automatic_continuity,pass,PL-2000-017,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-017,event=上饶市 roster=上饶市
+entity_reference,pass,PL-2000-018,E371700
+automatic_continuity,pass,PL-2000-018,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-018,event=菏泽市 roster=菏泽市
+entity_reference,pass,PL-2000-019,E341700
+automatic_continuity,pass,PL-2000-019,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-019,event=池州市 roster=池州市
+entity_reference,pass,PL-2000-020,E341800
+automatic_continuity,pass,PL-2000-020,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-020,event=宣城市 roster=宣城市
+entity_reference,pass,PL-2000-021,E530500
+automatic_continuity,pass,PL-2000-021,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-021,event=保山市 roster=保山市
+entity_reference,pass,PL-2000-022,E341600
+automatic_continuity,pass,PL-2000-022,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-022,event=亳州市 roster=亳州市
+entity_reference,pass,PL-2000-023,E421300
+automatic_continuity,pass,PL-2000-023,type=upgrade automatic=True
+event_roster_name,pass,PL-2000-023,event=随州市 roster=随州市
+entity_reference,pass,PL-2000-024,E320800
+automatic_continuity,pass,PL-2000-024,type=rename automatic=True
+event_roster_name,pass,PL-2000-024,event=淮安市 roster=淮安市
+entity_reference,pass,PL-2001-001,E530600
+automatic_continuity,pass,PL-2001-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-001,event=昭通市 roster=昭通市
+entity_reference,pass,PL-2001-002,E150600
+automatic_continuity,pass,PL-2001-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-002,event=鄂尔多斯市 roster=鄂尔多斯市
+entity_reference,pass,PL-2001-003,E620600
+automatic_continuity,pass,PL-2001-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-003,event=武威市 roster=武威市
+entity_reference,pass,PL-2001-004,E640400
+automatic_continuity,pass,PL-2001-004,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-004,event=固原市 roster=固原市
+entity_reference,pass,PL-2001-005,E611000
+automatic_continuity,pass,PL-2001-005,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-005,event=商洛市 roster=商洛市
+entity_reference,pass,PL-2001-006,E150700
+automatic_continuity,pass,PL-2001-006,type=upgrade automatic=True
+event_roster_name,pass,PL-2001-006,event=呼伦贝尔市 roster=呼伦贝尔市
+entity_reference,pass,PL-2001-007,E654100
+automatic_continuity,pass,PL-2001-007,type=abolish automatic=False
+entity_reference,pass,PL-2002-001,E620700
+automatic_continuity,pass,PL-2002-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-001,event=张掖市 roster=张掖市
+entity_reference,pass,PL-2002-002,E451000
+automatic_continuity,pass,PL-2002-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-002,event=百色市 roster=百色市
+entity_reference,pass,PL-2002-003,E620800
+automatic_continuity,pass,PL-2002-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-003,event=平凉市 roster=平凉市
+entity_reference,pass,PL-2002-004,E451100
+automatic_continuity,pass,PL-2002-004,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-004,event=贺州市 roster=贺州市
+entity_reference,pass,PL-2002-005,E451200
+automatic_continuity,pass,PL-2002-005,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-005,event=河池市 roster=河池市
+entity_reference,pass,PL-2002-006,E620900
+automatic_continuity,pass,PL-2002-006,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-006,event=酒泉市 roster=酒泉市
+entity_reference,pass,PL-2002-007,E621000
+automatic_continuity,pass,PL-2002-007,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-007,event=庆阳市 roster=庆阳市
+entity_reference,pass,PL-2002-008,E451300
+automatic_continuity,pass,PL-2002-008,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-008,event=来宾市 roster=来宾市
+entity_reference,pass,PL-2002-009,E451400
+automatic_continuity,pass,PL-2002-009,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-009,event=崇左市 roster=崇左市
+entity_reference,pass,PL-2002-010,E530700
+automatic_continuity,pass,PL-2002-010,type=upgrade automatic=True
+event_roster_name,pass,PL-2002-010,event=丽江市 roster=丽江市
+entity_reference,pass,PL-2003-001,E621100
+automatic_continuity,pass,PL-2003-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2003-001,event=定西市 roster=定西市
+entity_reference,pass,PL-2003-002,E141100
+automatic_continuity,pass,PL-2003-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2003-002,event=吕梁市 roster=吕梁市
+entity_reference,pass,PL-2003-003,E530800
+automatic_continuity,pass,PL-2003-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2003-003,event=思茅市 roster=思茅市
+entity_reference,pass,PL-2003-004,E150800
+automatic_continuity,pass,PL-2003-004,type=upgrade automatic=True
+event_roster_name,pass,PL-2003-004,event=巴彦淖尔市 roster=巴彦淖尔市
+entity_reference,pass,PL-2003-005,E150900
+automatic_continuity,pass,PL-2003-005,type=upgrade automatic=True
+event_roster_name,pass,PL-2003-005,event=乌兰察布市 roster=乌兰察布市
+entity_reference,pass,PL-2003-006,E640500
+automatic_continuity,pass,PL-2003-006,type=establish automatic=False
+event_roster_name,pass,PL-2003-006,event=中卫市 roster=中卫市
+entity_reference,pass,PL-2004-001,E621200
+automatic_continuity,pass,PL-2004-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2004-001,event=陇南市 roster=陇南市
+entity_reference,pass,PL-2007-001,E530800
+automatic_continuity,pass,PL-2007-001,type=rename automatic=True
+event_roster_name,pass,PL-2007-001,event=普洱市 roster=普洱市
+entity_reference,pass,PL-2010-001,E420600
+automatic_continuity,pass,PL-2010-001,type=rename automatic=True
+event_roster_name,pass,PL-2010-001,event=襄阳市 roster=襄阳市
+entity_reference,pass,PL-2011-001,E341400
+automatic_continuity,pass,PL-2011-001,type=split automatic=False
+entity_reference,pass,PL-2011-002,E520500
+automatic_continuity,pass,PL-2011-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2011-002,event=毕节市 roster=毕节市
+entity_reference,pass,PL-2011-003,E520600
+automatic_continuity,pass,PL-2011-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2011-003,event=铜仁市 roster=铜仁市
+entity_reference,pass,PL-2012-001,E460300
+automatic_continuity,pass,PL-2012-001,type=establish automatic=False
+event_roster_name,pass,PL-2012-001,event=三沙市 roster=三沙市
+entity_reference,pass,PL-2013-001,E630200
+automatic_continuity,pass,PL-2013-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2013-001,event=海东市 roster=海东市
+entity_reference,pass,PL-2014-001,E540200
+automatic_continuity,pass,PL-2014-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2014-001,event=日喀则市 roster=日喀则市
+entity_reference,pass,PL-2015-001,E460400
+automatic_continuity,pass,PL-2015-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2015-001,event=儋州市 roster=儋州市
+entity_reference,pass,PL-2015-002,E540400
+automatic_continuity,pass,PL-2015-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2015-002,event=林芝市 roster=林芝市
+entity_reference,pass,PL-2015-003,E650400
+automatic_continuity,pass,PL-2015-003,type=upgrade automatic=True
+event_roster_name,pass,PL-2015-003,event=吐鲁番市 roster=吐鲁番市
+entity_reference,pass,PL-2016-001,E540500
+automatic_continuity,pass,PL-2016-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2016-001,event=山南市 roster=山南市
+entity_reference,pass,PL-2016-002,E650500
+automatic_continuity,pass,PL-2016-002,type=upgrade automatic=True
+event_roster_name,pass,PL-2016-002,event=哈密市 roster=哈密市
+entity_reference,pass,PL-2017-001,E540600
+automatic_continuity,pass,PL-2017-001,type=upgrade automatic=True
+event_roster_name,pass,PL-2017-001,event=那曲市 roster=那曲市
+entity_reference,pass,PL-2018-001,E371200
+automatic_continuity,pass,PL-2018-001,type=merge automatic=False
+chronological_order,pass,E341000,1987
+chronological_order,pass,E330900,1987
+chronological_order,pass,HIST-HN-LMZ,1987
+chronological_order,pass,E510400,1987
+chronological_order,pass,E513200,1987
+chronological_order,pass,E131000,1988
+chronological_order,pass,E140600,1988
+chronological_order,pass,E430700,1988
+chronological_order,pass,E441200,1988
+chronological_order,pass,E441300,1988
+chronological_order,pass,E441500,1988
+chronological_order,pass,E441600,1988
+chronological_order,pass,E441400,1988
+chronological_order,pass,E441700,1988
+chronological_order,pass,E441800,1988
+chronological_order,pass,E340800,1988
+chronological_order,pass,E341700,"1988,2000"
+name_chain,pass,E350700,WIKI-1988-018:南平地区 -> WIKI-1994-033:南平地区
+chronological_order,pass,E350700,"1988,1994"
+chronological_order,pass,E341100,1992
+chronological_order,pass,HIST-CQ-WANXIAN,1992
+chronological_order,pass,E420500,1992
+chronological_order,pass,E220700,1992
+name_chain,pass,E371600,WIKI-1992-023:滨州地区 -> PL-2000-006:滨州地区
+chronological_order,pass,E371600,"1992,2000"
+chronological_order,pass,E220800,1993
+chronological_order,pass,E231100,1993
+chronological_order,pass,E420900,1993
+chronological_order,pass,E511300,1993
+chronological_order,pass,E130100,1993
+chronological_order,pass,HIST-SX-YANBEI,1993
+chronological_order,pass,E450600,1993
+chronological_order,pass,E422800,1993
+chronological_order,pass,E331000,1994
+chronological_order,pass,E371300,1994
+chronological_order,pass,E371400,1994
+chronological_order,pass,E411300,1994
+chronological_order,pass,E430900,1994
+chronological_order,pass,E431000,1994
+chronological_order,pass,E450700,1994
+chronological_order,pass,E610500,1994
+chronological_order,pass,E420300,1994
+name_chain,pass,E421000,WIKI-1994-042:荆沙市 -> WIKI-1996-055:荆沙市
+chronological_order,pass,E421000,"1994,1996"
+chronological_order,pass,E211400,1994
+chronological_order,pass,E220600,1994
+chronological_order,pass,E430800,1994
+chronological_order,pass,E421100,1995
+chronological_order,pass,E431100,1995
+chronological_order,pass,HIST-CQ-FULING,1995
+chronological_order,pass,E131100,1996
+chronological_order,pass,E341200,1996
+chronological_order,pass,E350800,1996
+chronological_order,pass,E511500,1996
+chronological_order,pass,E610700,1996
+chronological_order,pass,E610600,1996
+chronological_order,pass,HIST-CQ-QIANJIANG,1996
+chronological_order,pass,E371500,1997
+chronological_order,pass,E411400,1997
+chronological_order,pass,E431200,1997
+chronological_order,pass,E450900,1997
+chronological_order,pass,E520300,1997
+chronological_order,pass,E530300,1997
+chronological_order,pass,E530400,1997
+name_chain,pass,E451100,WIKI-1997-064:贺州地区 -> PL-2002-004:贺州地区
+chronological_order,pass,E451100,"1997,2002"
+chronological_order,pass,E511400,"1997,2000"
+chronological_order,pass,E341300,1998
+chronological_order,pass,E360700,1998
+chronological_order,pass,E411500,1998
+chronological_order,pass,E421200,1998
+chronological_order,pass,E511600,1998
+chronological_order,pass,E640300,1998
+chronological_order,pass,E512000,"1998,2000"
+chronological_order,pass,E140700,1999
+chronological_order,pass,E231200,1999
+chronological_order,pass,E341400,"1999,2011"
+chronological_order,pass,E341500,1999
+chronological_order,pass,E350900,1999
+chronological_order,pass,E431300,1999
+chronological_order,pass,E511700,1999
+chronological_order,pass,E610800,1999
+chronological_order,pass,E150500,1999
+chronological_order,pass,E360800,2000
+chronological_order,pass,E331100,2000
+chronological_order,pass,E360900,2000
+chronological_order,pass,E411600,2000
+chronological_order,pass,E411700,2000
+chronological_order,pass,E511800,2000
+chronological_order,pass,E511900,2000
+chronological_order,pass,E140800,2000
+chronological_order,pass,E140900,2000
+chronological_order,pass,E141000,2000
+chronological_order,pass,E520400,2000
+chronological_order,pass,E610900,2000
+chronological_order,pass,E361000,2000
+chronological_order,pass,E361100,2000
+chronological_order,pass,E371700,2000
+chronological_order,pass,E341800,2000
+chronological_order,pass,E530500,2000
+chronological_order,pass,E341600,2000
+chronological_order,pass,E421300,2000
+chronological_order,pass,E320800,2000
+chronological_order,pass,E530600,2001
+chronological_order,pass,E150600,2001
+chronological_order,pass,E620600,2001
+chronological_order,pass,E640400,2001
+chronological_order,pass,E611000,2001
+chronological_order,pass,E150700,2001
+chronological_order,pass,E654100,2001
+chronological_order,pass,E620700,2002
+chronological_order,pass,E451000,2002
+chronological_order,pass,E620800,2002
+chronological_order,pass,E451200,2002
+chronological_order,pass,E620900,2002
+chronological_order,pass,E621000,2002
+chronological_order,pass,E451300,2002
+chronological_order,pass,E451400,2002
+chronological_order,pass,E530700,2002
+chronological_order,pass,E621100,2003
+chronological_order,pass,E141100,2003
+name_chain,pass,E530800,PL-2003-003:思茅市 -> PL-2007-001:思茅市
+chronological_order,pass,E530800,"2003,2007"
+chronological_order,pass,E150800,2003
+chronological_order,pass,E150900,2003
+chronological_order,pass,E640500,2003
+chronological_order,pass,E621200,2004
+chronological_order,pass,E420600,2010
+chronological_order,pass,E520500,2011
+chronological_order,pass,E520600,2011
+chronological_order,pass,E460300,2012
+chronological_order,pass,E630200,2013
+chronological_order,pass,E540200,2014
+chronological_order,pass,E460400,2015
+chronological_order,pass,E540400,2015
+chronological_order,pass,E650400,2015
+chronological_order,pass,E540500,2016
+chronological_order,pass,E650500,2016
+chronological_order,pass,E540600,2017
+chronological_order,pass,E371200,2018
+relation_event_reference,pass,WIKI-1987-001,upgrade
+relation_from_entity,pass,WIKI-1987-001,E341000
+relation_to_entity,pass,WIKI-1987-001,E341000
+complex_relation_mapping,pass,WIKI-1987-001,upgrade automatic=true
+relation_event_reference,pass,WIKI-1987-002,upgrade
+relation_from_entity,pass,WIKI-1987-002,E330900
+relation_to_entity,pass,WIKI-1987-002,E330900
+complex_relation_mapping,pass,WIKI-1987-002,upgrade automatic=true
+relation_event_reference,pass,WIKI-1987-003,abolish
+relation_from_entity,pass,WIKI-1987-003,HIST-HN-LMZ
+complex_relation_mapping,pass,WIKI-1987-003,abolish automatic=false
+relation_event_reference,pass,WIKI-1987-004,rename
+relation_from_entity,pass,WIKI-1987-004,E510400
+relation_to_entity,pass,WIKI-1987-004,E510400
+complex_relation_mapping,pass,WIKI-1987-004,rename automatic=true
+relation_event_reference,pass,WIKI-1987-005,rename
+relation_from_entity,pass,WIKI-1987-005,E513200
+relation_to_entity,pass,WIKI-1987-005,E513200
+complex_relation_mapping,pass,WIKI-1987-005,rename automatic=true
+relation_event_reference,pass,WIKI-1988-006,upgrade
+relation_from_entity,pass,WIKI-1988-006,E131000
+relation_to_entity,pass,WIKI-1988-006,E131000
+complex_relation_mapping,pass,WIKI-1988-006,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-007,establish
+relation_from_entity,pass,WIKI-1988-007,E140600
+complex_relation_mapping,pass,WIKI-1988-007,establish automatic=false
+relation_event_reference,pass,WIKI-1988-008,upgrade
+relation_from_entity,pass,WIKI-1988-008,E430700
+relation_to_entity,pass,WIKI-1988-008,E430700
+complex_relation_mapping,pass,WIKI-1988-008,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-009,upgrade
+relation_from_entity,pass,WIKI-1988-009,E441200
+relation_to_entity,pass,WIKI-1988-009,E441200
+complex_relation_mapping,pass,WIKI-1988-009,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-010,upgrade
+relation_from_entity,pass,WIKI-1988-010,E441300
+relation_to_entity,pass,WIKI-1988-010,E441300
+complex_relation_mapping,pass,WIKI-1988-010,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-011,establish
+relation_from_entity,pass,WIKI-1988-011,E441500
+complex_relation_mapping,pass,WIKI-1988-011,establish automatic=false
+relation_event_reference,pass,WIKI-1988-012,establish
+relation_from_entity,pass,WIKI-1988-012,E441600
+complex_relation_mapping,pass,WIKI-1988-012,establish automatic=false
+relation_event_reference,pass,WIKI-1988-013,upgrade
+relation_from_entity,pass,WIKI-1988-013,E441400
+relation_to_entity,pass,WIKI-1988-013,E441400
+complex_relation_mapping,pass,WIKI-1988-013,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-014,establish
+relation_from_entity,pass,WIKI-1988-014,E441700
+complex_relation_mapping,pass,WIKI-1988-014,establish automatic=false
+relation_event_reference,pass,WIKI-1988-015,establish
+relation_from_entity,pass,WIKI-1988-015,E441800
+complex_relation_mapping,pass,WIKI-1988-015,establish automatic=false
+relation_event_reference,pass,WIKI-1988-016,merge
+relation_from_entity,pass,WIKI-1988-016,E340800
+complex_relation_mapping,pass,WIKI-1988-016,merge automatic=false
+relation_event_reference,pass,WIKI-1988-017,establish_prefecture
+relation_from_entity,pass,WIKI-1988-017,E341700
+complex_relation_mapping,pass,WIKI-1988-017,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1988-018,rename
+relation_from_entity,pass,WIKI-1988-018,E350700
+relation_to_entity,pass,WIKI-1988-018,E350700
+complex_relation_mapping,pass,WIKI-1988-018,rename automatic=true
+relation_event_reference,pass,WIKI-1992-019,upgrade
+relation_from_entity,pass,WIKI-1992-019,E341100
+relation_to_entity,pass,WIKI-1992-019,E341100
+complex_relation_mapping,pass,WIKI-1992-019,upgrade automatic=true
+relation_event_reference,pass,WIKI-1992-020,upgrade
+relation_from_entity,pass,WIKI-1992-020,HIST-CQ-WANXIAN
+relation_to_entity,pass,WIKI-1992-020,HIST-CQ-WANXIAN
+complex_relation_mapping,pass,WIKI-1992-020,upgrade automatic=true
+relation_event_reference,pass,WIKI-1992-021,abolish
+relation_from_entity,pass,WIKI-1992-021,E420500
+complex_relation_mapping,pass,WIKI-1992-021,abolish automatic=false
+relation_event_reference,pass,WIKI-1992-022,establish
+relation_from_entity,pass,WIKI-1992-022,E220700
+complex_relation_mapping,pass,WIKI-1992-022,establish automatic=false
+relation_event_reference,pass,WIKI-1992-023,rename
+relation_from_entity,pass,WIKI-1992-023,E371600
+relation_to_entity,pass,WIKI-1992-023,E371600
+complex_relation_mapping,pass,WIKI-1992-023,rename automatic=true
+relation_event_reference,pass,WIKI-1993-024,upgrade
+relation_from_entity,pass,WIKI-1993-024,E220800
+relation_to_entity,pass,WIKI-1993-024,E220800
+complex_relation_mapping,pass,WIKI-1993-024,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-025,upgrade
+relation_from_entity,pass,WIKI-1993-025,E231100
+relation_to_entity,pass,WIKI-1993-025,E231100
+complex_relation_mapping,pass,WIKI-1993-025,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-026,establish
+relation_from_entity,pass,WIKI-1993-026,E420900
+complex_relation_mapping,pass,WIKI-1993-026,establish automatic=false
+relation_event_reference,pass,WIKI-1993-027,upgrade
+relation_from_entity,pass,WIKI-1993-027,E511300
+relation_to_entity,pass,WIKI-1993-027,E511300
+complex_relation_mapping,pass,WIKI-1993-027,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-028,merge
+relation_from_entity,pass,WIKI-1993-028,E130100
+complex_relation_mapping,pass,WIKI-1993-028,merge automatic=false
+relation_event_reference,pass,WIKI-1993-029,abolish
+relation_from_entity,pass,WIKI-1993-029,HIST-SX-YANBEI
+complex_relation_mapping,pass,WIKI-1993-029,abolish automatic=false
+relation_event_reference,pass,WIKI-1993-030,establish
+relation_from_entity,pass,WIKI-1993-030,E450600
+complex_relation_mapping,pass,WIKI-1993-030,establish automatic=false
+relation_event_reference,pass,WIKI-1993-031,rename
+relation_from_entity,pass,WIKI-1993-031,E422800
+relation_to_entity,pass,WIKI-1993-031,E422800
+complex_relation_mapping,pass,WIKI-1993-031,rename automatic=true
+relation_event_reference,pass,WIKI-1994-032,upgrade
+relation_from_entity,pass,WIKI-1994-032,E331000
+relation_to_entity,pass,WIKI-1994-032,E331000
+complex_relation_mapping,pass,WIKI-1994-032,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-033,upgrade
+relation_from_entity,pass,WIKI-1994-033,E350700
+relation_to_entity,pass,WIKI-1994-033,E350700
+complex_relation_mapping,pass,WIKI-1994-033,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-034,upgrade
+relation_from_entity,pass,WIKI-1994-034,E371300
+relation_to_entity,pass,WIKI-1994-034,E371300
+complex_relation_mapping,pass,WIKI-1994-034,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-035,upgrade
+relation_from_entity,pass,WIKI-1994-035,E371400
+relation_to_entity,pass,WIKI-1994-035,E371400
+complex_relation_mapping,pass,WIKI-1994-035,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-036,upgrade
+relation_from_entity,pass,WIKI-1994-036,E411300
+relation_to_entity,pass,WIKI-1994-036,E411300
+complex_relation_mapping,pass,WIKI-1994-036,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-037,upgrade
+relation_from_entity,pass,WIKI-1994-037,E430900
+relation_to_entity,pass,WIKI-1994-037,E430900
+complex_relation_mapping,pass,WIKI-1994-037,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-038,establish
+relation_from_entity,pass,WIKI-1994-038,E431000
+complex_relation_mapping,pass,WIKI-1994-038,establish automatic=false
+relation_event_reference,pass,WIKI-1994-039,upgrade
+relation_from_entity,pass,WIKI-1994-039,E450700
+relation_to_entity,pass,WIKI-1994-039,E450700
+complex_relation_mapping,pass,WIKI-1994-039,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-040,upgrade
+relation_from_entity,pass,WIKI-1994-040,E610500
+relation_to_entity,pass,WIKI-1994-040,E610500
+complex_relation_mapping,pass,WIKI-1994-040,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-041,merge
+relation_from_entity,pass,WIKI-1994-041,E420300
+complex_relation_mapping,pass,WIKI-1994-041,merge automatic=false
+relation_event_reference,pass,WIKI-1994-042,upgrade
+relation_from_entity,pass,WIKI-1994-042,E421000
+relation_to_entity,pass,WIKI-1994-042,E421000
+complex_relation_mapping,pass,WIKI-1994-042,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-043,rename
+relation_from_entity,pass,WIKI-1994-043,E211400
+relation_to_entity,pass,WIKI-1994-043,E211400
+complex_relation_mapping,pass,WIKI-1994-043,rename automatic=true
+relation_event_reference,pass,WIKI-1994-044,rename
+relation_from_entity,pass,WIKI-1994-044,E220600
+relation_to_entity,pass,WIKI-1994-044,E220600
+complex_relation_mapping,pass,WIKI-1994-044,rename automatic=true
+relation_event_reference,pass,WIKI-1994-045,rename
+relation_from_entity,pass,WIKI-1994-045,E430800
+relation_to_entity,pass,WIKI-1994-045,E430800
+complex_relation_mapping,pass,WIKI-1994-045,rename automatic=true
+relation_event_reference,pass,WIKI-1995-046,upgrade
+relation_from_entity,pass,WIKI-1995-046,E421100
+relation_to_entity,pass,WIKI-1995-046,E421100
+complex_relation_mapping,pass,WIKI-1995-046,upgrade automatic=true
+relation_event_reference,pass,WIKI-1995-047,upgrade
+relation_from_entity,pass,WIKI-1995-047,E431100
+relation_to_entity,pass,WIKI-1995-047,E431100
+complex_relation_mapping,pass,WIKI-1995-047,upgrade automatic=true
+relation_event_reference,pass,WIKI-1995-048,upgrade
+relation_from_entity,pass,WIKI-1995-048,HIST-CQ-FULING
+relation_to_entity,pass,WIKI-1995-048,HIST-CQ-FULING
+complex_relation_mapping,pass,WIKI-1995-048,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-049,upgrade
+relation_from_entity,pass,WIKI-1996-049,E131100
+relation_to_entity,pass,WIKI-1996-049,E131100
+complex_relation_mapping,pass,WIKI-1996-049,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-050,upgrade
+relation_from_entity,pass,WIKI-1996-050,E341200
+relation_to_entity,pass,WIKI-1996-050,E341200
+complex_relation_mapping,pass,WIKI-1996-050,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-051,upgrade
+relation_from_entity,pass,WIKI-1996-051,E350800
+relation_to_entity,pass,WIKI-1996-051,E350800
+complex_relation_mapping,pass,WIKI-1996-051,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-052,upgrade
+relation_from_entity,pass,WIKI-1996-052,E511500
+relation_to_entity,pass,WIKI-1996-052,E511500
+complex_relation_mapping,pass,WIKI-1996-052,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-053,upgrade
+relation_from_entity,pass,WIKI-1996-053,E610700
+relation_to_entity,pass,WIKI-1996-053,E610700
+complex_relation_mapping,pass,WIKI-1996-053,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-054,upgrade
+relation_from_entity,pass,WIKI-1996-054,E610600
+relation_to_entity,pass,WIKI-1996-054,E610600
+complex_relation_mapping,pass,WIKI-1996-054,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-055,rename
+relation_from_entity,pass,WIKI-1996-055,E421000
+relation_to_entity,pass,WIKI-1996-055,E421000
+complex_relation_mapping,pass,WIKI-1996-055,rename automatic=true
+relation_event_reference,pass,WIKI-1996-056,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-056,HIST-CQ-QIANJIANG
+complex_relation_mapping,pass,WIKI-1996-056,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1997-057,upgrade
+relation_from_entity,pass,WIKI-1997-057,E371500
+relation_to_entity,pass,WIKI-1997-057,E371500
+complex_relation_mapping,pass,WIKI-1997-057,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-058,upgrade
+relation_from_entity,pass,WIKI-1997-058,E411400
+relation_to_entity,pass,WIKI-1997-058,E411400
+complex_relation_mapping,pass,WIKI-1997-058,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-059,upgrade
+relation_from_entity,pass,WIKI-1997-059,E431200
+relation_to_entity,pass,WIKI-1997-059,E431200
+complex_relation_mapping,pass,WIKI-1997-059,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-060,upgrade
+relation_from_entity,pass,WIKI-1997-060,E450900
+relation_to_entity,pass,WIKI-1997-060,E450900
+complex_relation_mapping,pass,WIKI-1997-060,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-061,upgrade
+relation_from_entity,pass,WIKI-1997-061,E520300
+relation_to_entity,pass,WIKI-1997-061,E520300
+complex_relation_mapping,pass,WIKI-1997-061,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-062,upgrade
+relation_from_entity,pass,WIKI-1997-062,E530300
+relation_to_entity,pass,WIKI-1997-062,E530300
+complex_relation_mapping,pass,WIKI-1997-062,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-063,upgrade
+relation_from_entity,pass,WIKI-1997-063,E530400
+relation_to_entity,pass,WIKI-1997-063,E530400
+complex_relation_mapping,pass,WIKI-1997-063,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-064,rename
+relation_from_entity,pass,WIKI-1997-064,E451100
+relation_to_entity,pass,WIKI-1997-064,E451100
+complex_relation_mapping,pass,WIKI-1997-064,rename automatic=true
+relation_event_reference,pass,WIKI-1997-065,establish_prefecture
+relation_from_entity,pass,WIKI-1997-065,E511400
+complex_relation_mapping,pass,WIKI-1997-065,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1998-066,upgrade
+relation_from_entity,pass,WIKI-1998-066,E341300
+relation_to_entity,pass,WIKI-1998-066,E341300
+complex_relation_mapping,pass,WIKI-1998-066,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-067,upgrade
+relation_from_entity,pass,WIKI-1998-067,E360700
+relation_to_entity,pass,WIKI-1998-067,E360700
+complex_relation_mapping,pass,WIKI-1998-067,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-068,upgrade
+relation_from_entity,pass,WIKI-1998-068,E411500
+relation_to_entity,pass,WIKI-1998-068,E411500
+complex_relation_mapping,pass,WIKI-1998-068,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-069,upgrade
+relation_from_entity,pass,WIKI-1998-069,E421200
+relation_to_entity,pass,WIKI-1998-069,E421200
+complex_relation_mapping,pass,WIKI-1998-069,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-070,upgrade
+relation_from_entity,pass,WIKI-1998-070,E511600
+relation_to_entity,pass,WIKI-1998-070,E511600
+complex_relation_mapping,pass,WIKI-1998-070,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-071,upgrade
+relation_from_entity,pass,WIKI-1998-071,E640300
+relation_to_entity,pass,WIKI-1998-071,E640300
+complex_relation_mapping,pass,WIKI-1998-071,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-072,establish_prefecture
+relation_from_entity,pass,WIKI-1998-072,E512000
+complex_relation_mapping,pass,WIKI-1998-072,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1999-073,upgrade
+relation_from_entity,pass,WIKI-1999-073,E140700
+relation_to_entity,pass,WIKI-1999-073,E140700
+complex_relation_mapping,pass,WIKI-1999-073,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-074,upgrade
+relation_from_entity,pass,WIKI-1999-074,E231200
+relation_to_entity,pass,WIKI-1999-074,E231200
+complex_relation_mapping,pass,WIKI-1999-074,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-075,upgrade
+relation_from_entity,pass,WIKI-1999-075,E341400
+relation_to_entity,pass,WIKI-1999-075,E341400
+complex_relation_mapping,pass,WIKI-1999-075,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-076,upgrade
+relation_from_entity,pass,WIKI-1999-076,E341500
+relation_to_entity,pass,WIKI-1999-076,E341500
+complex_relation_mapping,pass,WIKI-1999-076,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-077,upgrade
+relation_from_entity,pass,WIKI-1999-077,E350900
+relation_to_entity,pass,WIKI-1999-077,E350900
+complex_relation_mapping,pass,WIKI-1999-077,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-078,upgrade
+relation_from_entity,pass,WIKI-1999-078,E431300
+relation_to_entity,pass,WIKI-1999-078,E431300
+complex_relation_mapping,pass,WIKI-1999-078,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-079,upgrade
+relation_from_entity,pass,WIKI-1999-079,E511700
+relation_to_entity,pass,WIKI-1999-079,E511700
+complex_relation_mapping,pass,WIKI-1999-079,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-080,upgrade
+relation_from_entity,pass,WIKI-1999-080,E610800
+relation_to_entity,pass,WIKI-1999-080,E610800
+complex_relation_mapping,pass,WIKI-1999-080,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-081,upgrade
+relation_from_entity,pass,WIKI-1999-081,E150500
+relation_to_entity,pass,WIKI-1999-081,E150500
+complex_relation_mapping,pass,WIKI-1999-081,upgrade automatic=true
+relation_event_reference,pass,PL-2000-001,upgrade
+relation_from_entity,pass,PL-2000-001,E360800
+relation_to_entity,pass,PL-2000-001,E360800
+complex_relation_mapping,pass,PL-2000-001,upgrade automatic=true
+relation_event_reference,pass,PL-2000-002,upgrade
+relation_from_entity,pass,PL-2000-002,E331100
+relation_to_entity,pass,PL-2000-002,E331100
+complex_relation_mapping,pass,PL-2000-002,upgrade automatic=true
+relation_event_reference,pass,PL-2000-003,upgrade
+relation_from_entity,pass,PL-2000-003,E360900
+relation_to_entity,pass,PL-2000-003,E360900
+complex_relation_mapping,pass,PL-2000-003,upgrade automatic=true
+relation_event_reference,pass,PL-2000-004,upgrade
+relation_from_entity,pass,PL-2000-004,E411600
+relation_to_entity,pass,PL-2000-004,E411600
+complex_relation_mapping,pass,PL-2000-004,upgrade automatic=true
+relation_event_reference,pass,PL-2000-005,upgrade
+relation_from_entity,pass,PL-2000-005,E411700
+relation_to_entity,pass,PL-2000-005,E411700
+complex_relation_mapping,pass,PL-2000-005,upgrade automatic=true
+relation_event_reference,pass,PL-2000-006,upgrade
+relation_from_entity,pass,PL-2000-006,E371600
+relation_to_entity,pass,PL-2000-006,E371600
+complex_relation_mapping,pass,PL-2000-006,upgrade automatic=true
+relation_event_reference,pass,PL-2000-007,upgrade
+relation_from_entity,pass,PL-2000-007,E511400
+relation_to_entity,pass,PL-2000-007,E511400
+complex_relation_mapping,pass,PL-2000-007,upgrade automatic=true
+relation_event_reference,pass,PL-2000-008,upgrade
+relation_from_entity,pass,PL-2000-008,E511800
+relation_to_entity,pass,PL-2000-008,E511800
+complex_relation_mapping,pass,PL-2000-008,upgrade automatic=true
+relation_event_reference,pass,PL-2000-009,upgrade
+relation_from_entity,pass,PL-2000-009,E511900
+relation_to_entity,pass,PL-2000-009,E511900
+complex_relation_mapping,pass,PL-2000-009,upgrade automatic=true
+relation_event_reference,pass,PL-2000-010,upgrade
+relation_from_entity,pass,PL-2000-010,E512000
+relation_to_entity,pass,PL-2000-010,E512000
+complex_relation_mapping,pass,PL-2000-010,upgrade automatic=true
+relation_event_reference,pass,PL-2000-011,upgrade
+relation_from_entity,pass,PL-2000-011,E140800
+relation_to_entity,pass,PL-2000-011,E140800
+complex_relation_mapping,pass,PL-2000-011,upgrade automatic=true
+relation_event_reference,pass,PL-2000-012,upgrade
+relation_from_entity,pass,PL-2000-012,E140900
+relation_to_entity,pass,PL-2000-012,E140900
+complex_relation_mapping,pass,PL-2000-012,upgrade automatic=true
+relation_event_reference,pass,PL-2000-013,upgrade
+relation_from_entity,pass,PL-2000-013,E141000
+relation_to_entity,pass,PL-2000-013,E141000
+complex_relation_mapping,pass,PL-2000-013,upgrade automatic=true
+relation_event_reference,pass,PL-2000-014,upgrade
+relation_from_entity,pass,PL-2000-014,E520400
+relation_to_entity,pass,PL-2000-014,E520400
+complex_relation_mapping,pass,PL-2000-014,upgrade automatic=true
+relation_event_reference,pass,PL-2000-015,upgrade
+relation_from_entity,pass,PL-2000-015,E610900
+relation_to_entity,pass,PL-2000-015,E610900
+complex_relation_mapping,pass,PL-2000-015,upgrade automatic=true
+relation_event_reference,pass,PL-2000-016,upgrade
+relation_from_entity,pass,PL-2000-016,E361000
+relation_to_entity,pass,PL-2000-016,E361000
+complex_relation_mapping,pass,PL-2000-016,upgrade automatic=true
+relation_event_reference,pass,PL-2000-017,upgrade
+relation_from_entity,pass,PL-2000-017,E361100
+relation_to_entity,pass,PL-2000-017,E361100
+complex_relation_mapping,pass,PL-2000-017,upgrade automatic=true
+relation_event_reference,pass,PL-2000-018,upgrade
+relation_from_entity,pass,PL-2000-018,E371700
+relation_to_entity,pass,PL-2000-018,E371700
+complex_relation_mapping,pass,PL-2000-018,upgrade automatic=true
+relation_event_reference,pass,PL-2000-019,upgrade
+relation_from_entity,pass,PL-2000-019,E341700
+relation_to_entity,pass,PL-2000-019,E341700
+complex_relation_mapping,pass,PL-2000-019,upgrade automatic=true
+relation_event_reference,pass,PL-2000-020,upgrade
+relation_from_entity,pass,PL-2000-020,E341800
+relation_to_entity,pass,PL-2000-020,E341800
+complex_relation_mapping,pass,PL-2000-020,upgrade automatic=true
+relation_event_reference,pass,PL-2000-021,upgrade
+relation_from_entity,pass,PL-2000-021,E530500
+relation_to_entity,pass,PL-2000-021,E530500
+complex_relation_mapping,pass,PL-2000-021,upgrade automatic=true
+relation_event_reference,pass,PL-2000-022,upgrade
+relation_from_entity,pass,PL-2000-022,E341600
+relation_to_entity,pass,PL-2000-022,E341600
+complex_relation_mapping,pass,PL-2000-022,upgrade automatic=true
+relation_event_reference,pass,PL-2000-023,upgrade
+relation_from_entity,pass,PL-2000-023,E421300
+relation_to_entity,pass,PL-2000-023,E421300
+complex_relation_mapping,pass,PL-2000-023,upgrade automatic=true
+relation_event_reference,pass,PL-2000-024,rename
+relation_from_entity,pass,PL-2000-024,E320800
+relation_to_entity,pass,PL-2000-024,E320800
+complex_relation_mapping,pass,PL-2000-024,rename automatic=true
+relation_event_reference,pass,PL-2001-001,upgrade
+relation_from_entity,pass,PL-2001-001,E530600
+relation_to_entity,pass,PL-2001-001,E530600
+complex_relation_mapping,pass,PL-2001-001,upgrade automatic=true
+relation_event_reference,pass,PL-2001-002,upgrade
+relation_from_entity,pass,PL-2001-002,E150600
+relation_to_entity,pass,PL-2001-002,E150600
+complex_relation_mapping,pass,PL-2001-002,upgrade automatic=true
+relation_event_reference,pass,PL-2001-003,upgrade
+relation_from_entity,pass,PL-2001-003,E620600
+relation_to_entity,pass,PL-2001-003,E620600
+complex_relation_mapping,pass,PL-2001-003,upgrade automatic=true
+relation_event_reference,pass,PL-2001-004,upgrade
+relation_from_entity,pass,PL-2001-004,E640400
+relation_to_entity,pass,PL-2001-004,E640400
+complex_relation_mapping,pass,PL-2001-004,upgrade automatic=true
+relation_event_reference,pass,PL-2001-005,upgrade
+relation_from_entity,pass,PL-2001-005,E611000
+relation_to_entity,pass,PL-2001-005,E611000
+complex_relation_mapping,pass,PL-2001-005,upgrade automatic=true
+relation_event_reference,pass,PL-2001-006,upgrade
+relation_from_entity,pass,PL-2001-006,E150700
+relation_to_entity,pass,PL-2001-006,E150700
+complex_relation_mapping,pass,PL-2001-006,upgrade automatic=true
+relation_event_reference,pass,PL-2001-007,abolish
+relation_from_entity,pass,PL-2001-007,E654100
+complex_relation_mapping,pass,PL-2001-007,abolish automatic=false
+relation_event_reference,pass,PL-2002-001,upgrade
+relation_from_entity,pass,PL-2002-001,E620700
+relation_to_entity,pass,PL-2002-001,E620700
+complex_relation_mapping,pass,PL-2002-001,upgrade automatic=true
+relation_event_reference,pass,PL-2002-002,upgrade
+relation_from_entity,pass,PL-2002-002,E451000
+relation_to_entity,pass,PL-2002-002,E451000
+complex_relation_mapping,pass,PL-2002-002,upgrade automatic=true
+relation_event_reference,pass,PL-2002-003,upgrade
+relation_from_entity,pass,PL-2002-003,E620800
+relation_to_entity,pass,PL-2002-003,E620800
+complex_relation_mapping,pass,PL-2002-003,upgrade automatic=true
+relation_event_reference,pass,PL-2002-004,upgrade
+relation_from_entity,pass,PL-2002-004,E451100
+relation_to_entity,pass,PL-2002-004,E451100
+complex_relation_mapping,pass,PL-2002-004,upgrade automatic=true
+relation_event_reference,pass,PL-2002-005,upgrade
+relation_from_entity,pass,PL-2002-005,E451200
+relation_to_entity,pass,PL-2002-005,E451200
+complex_relation_mapping,pass,PL-2002-005,upgrade automatic=true
+relation_event_reference,pass,PL-2002-006,upgrade
+relation_from_entity,pass,PL-2002-006,E620900
+relation_to_entity,pass,PL-2002-006,E620900
+complex_relation_mapping,pass,PL-2002-006,upgrade automatic=true
+relation_event_reference,pass,PL-2002-007,upgrade
+relation_from_entity,pass,PL-2002-007,E621000
+relation_to_entity,pass,PL-2002-007,E621000
+complex_relation_mapping,pass,PL-2002-007,upgrade automatic=true
+relation_event_reference,pass,PL-2002-008,upgrade
+relation_from_entity,pass,PL-2002-008,E451300
+relation_to_entity,pass,PL-2002-008,E451300
+complex_relation_mapping,pass,PL-2002-008,upgrade automatic=true
+relation_event_reference,pass,PL-2002-009,upgrade
+relation_from_entity,pass,PL-2002-009,E451400
+relation_to_entity,pass,PL-2002-009,E451400
+complex_relation_mapping,pass,PL-2002-009,upgrade automatic=true
+relation_event_reference,pass,PL-2002-010,upgrade
+relation_from_entity,pass,PL-2002-010,E530700
+relation_to_entity,pass,PL-2002-010,E530700
+complex_relation_mapping,pass,PL-2002-010,upgrade automatic=true
+relation_event_reference,pass,PL-2003-001,upgrade
+relation_from_entity,pass,PL-2003-001,E621100
+relation_to_entity,pass,PL-2003-001,E621100
+complex_relation_mapping,pass,PL-2003-001,upgrade automatic=true
+relation_event_reference,pass,PL-2003-002,upgrade
+relation_from_entity,pass,PL-2003-002,E141100
+relation_to_entity,pass,PL-2003-002,E141100
+complex_relation_mapping,pass,PL-2003-002,upgrade automatic=true
+relation_event_reference,pass,PL-2003-003,upgrade
+relation_from_entity,pass,PL-2003-003,E530800
+relation_to_entity,pass,PL-2003-003,E530800
+complex_relation_mapping,pass,PL-2003-003,upgrade automatic=true
+relation_event_reference,pass,PL-2003-004,upgrade
+relation_from_entity,pass,PL-2003-004,E150800
+relation_to_entity,pass,PL-2003-004,E150800
+complex_relation_mapping,pass,PL-2003-004,upgrade automatic=true
+relation_event_reference,pass,PL-2003-005,upgrade
+relation_from_entity,pass,PL-2003-005,E150900
+relation_to_entity,pass,PL-2003-005,E150900
+complex_relation_mapping,pass,PL-2003-005,upgrade automatic=true
+relation_event_reference,pass,PL-2003-006,establish
+relation_from_entity,pass,PL-2003-006,E640500
+complex_relation_mapping,pass,PL-2003-006,establish automatic=false
+relation_event_reference,pass,PL-2004-001,upgrade
+relation_from_entity,pass,PL-2004-001,E621200
+relation_to_entity,pass,PL-2004-001,E621200
+complex_relation_mapping,pass,PL-2004-001,upgrade automatic=true
+relation_event_reference,pass,PL-2007-001,rename
+relation_from_entity,pass,PL-2007-001,E530800
+relation_to_entity,pass,PL-2007-001,E530800
+complex_relation_mapping,pass,PL-2007-001,rename automatic=true
+relation_event_reference,pass,PL-2010-001,rename
+relation_from_entity,pass,PL-2010-001,E420600
+relation_to_entity,pass,PL-2010-001,E420600
+complex_relation_mapping,pass,PL-2010-001,rename automatic=true
+relation_event_reference,pass,PL-2011-001,split
+relation_from_entity,pass,PL-2011-001,E341400
+complex_relation_mapping,pass,PL-2011-001,split automatic=false
+relation_event_reference,pass,PL-2011-002,upgrade
+relation_from_entity,pass,PL-2011-002,E520500
+relation_to_entity,pass,PL-2011-002,E520500
+complex_relation_mapping,pass,PL-2011-002,upgrade automatic=true
+relation_event_reference,pass,PL-2011-003,upgrade
+relation_from_entity,pass,PL-2011-003,E520600
+relation_to_entity,pass,PL-2011-003,E520600
+complex_relation_mapping,pass,PL-2011-003,upgrade automatic=true
+relation_event_reference,pass,PL-2012-001,establish
+relation_from_entity,pass,PL-2012-001,E460300
+complex_relation_mapping,pass,PL-2012-001,establish automatic=false
+relation_event_reference,pass,PL-2013-001,upgrade
+relation_from_entity,pass,PL-2013-001,E630200
+relation_to_entity,pass,PL-2013-001,E630200
+complex_relation_mapping,pass,PL-2013-001,upgrade automatic=true
+relation_event_reference,pass,PL-2014-001,upgrade
+relation_from_entity,pass,PL-2014-001,E540200
+relation_to_entity,pass,PL-2014-001,E540200
+complex_relation_mapping,pass,PL-2014-001,upgrade automatic=true
+relation_event_reference,pass,PL-2015-001,upgrade
+relation_from_entity,pass,PL-2015-001,E460400
+relation_to_entity,pass,PL-2015-001,E460400
+complex_relation_mapping,pass,PL-2015-001,upgrade automatic=true
+relation_event_reference,pass,PL-2015-002,upgrade
+relation_from_entity,pass,PL-2015-002,E540400
+relation_to_entity,pass,PL-2015-002,E540400
+complex_relation_mapping,pass,PL-2015-002,upgrade automatic=true
+relation_event_reference,pass,PL-2015-003,upgrade
+relation_from_entity,pass,PL-2015-003,E650400
+relation_to_entity,pass,PL-2015-003,E650400
+complex_relation_mapping,pass,PL-2015-003,upgrade automatic=true
+relation_event_reference,pass,PL-2016-001,upgrade
+relation_from_entity,pass,PL-2016-001,E540500
+relation_to_entity,pass,PL-2016-001,E540500
+complex_relation_mapping,pass,PL-2016-001,upgrade automatic=true
+relation_event_reference,pass,PL-2016-002,upgrade
+relation_from_entity,pass,PL-2016-002,E650500
+relation_to_entity,pass,PL-2016-002,E650500
+complex_relation_mapping,pass,PL-2016-002,upgrade automatic=true
+relation_event_reference,pass,PL-2017-001,upgrade
+relation_from_entity,pass,PL-2017-001,E540600
+relation_to_entity,pass,PL-2017-001,E540600
+complex_relation_mapping,pass,PL-2017-001,upgrade automatic=true
+relation_event_reference,pass,PL-2018-001,merge
+relation_from_entity,pass,PL-2018-001,E371200
+complex_relation_mapping,pass,PL-2018-001,merge automatic=false
+relation_event_reference,pass,WIKI-1993-029,split
+relation_from_entity,pass,WIKI-1993-029,HIST-SX-YANBEI
+relation_to_entity,pass,WIKI-1993-029,E140200
+complex_relation_mapping,pass,WIKI-1993-029,split automatic=false
+relation_event_reference,pass,WIKI-1993-029,split
+relation_from_entity,pass,WIKI-1993-029,HIST-SX-YANBEI
+relation_to_entity,pass,WIKI-1993-029,E140600
+complex_relation_mapping,pass,WIKI-1993-029,split automatic=false
+relation_event_reference,pass,WIKI-1996-056,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-056,HIST-CQ-WANXIAN
+relation_to_entity,pass,WIKI-1996-056,E500100
+complex_relation_mapping,pass,WIKI-1996-056,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1996-056,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-056,HIST-CQ-FULING
+relation_to_entity,pass,WIKI-1996-056,E500100
+complex_relation_mapping,pass,WIKI-1996-056,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1996-056,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-056,HIST-CQ-QIANJIANG
+relation_to_entity,pass,WIKI-1996-056,E500100
+complex_relation_mapping,pass,WIKI-1996-056,jurisdiction_transfer automatic=false
