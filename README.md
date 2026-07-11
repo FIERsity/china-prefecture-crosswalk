@@ -1,46 +1,94 @@
-# China Prefecture Crosswalk
+# China Urban Research Entity Crosswalk
 
-面向研究者的中国地级行政实体跨期名称对照、平衡面板与行政区划变更事件资料库。
+[![Data validation](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml/badge.svg)](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
+[![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
+[![Version](https://img.shields.io/badge/data-v2.0-1f6e5a.svg)](data/releases/v2.0)
 
-> `entity_id` 使用永久的 `CNUR-000001` 格式，是城市研究实体编号，不是官方行政区划代码。旧 `Exxxxxx` 和历史编号仅保存在兼容映射表中。
+面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
 
-## 推荐使用的数据
+项目提供稳定研究实体编号、历史名称区间、年度法定状态、行政区划变更事件和可解释的批量匹配工具，帮助研究者处理统计年鉴、城市面板、OCR资料和跨期名称变化。
+
+> `CNUR-000001` 等 CNUR 编号是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。
+
+## 在线工具
+
+**[打开 China Urban Research Crosswalk](https://china-prefecture-crosswalk.onrender.com)**
+
+网页提供四个入口：
+
+- 数据库浏览与 V2.0 CSV/Excel 下载；
+- 上传 CSV/XLSX 批量匹配城市名称；
+- 单个名称、年份和省份查询；
+- 1987—2026 行政区划事件与维基原始证据检索。
+
+上传文件只在当前会话内存中处理，不持久化。OCR和模糊结果必须人工确认；合并、拆分和代管关系不会自动重算研究变量。
+
+## V2.0 数据概览
+
+| 内容 | 数量/范围 |
+|---|---:|
+| 永久 CNUR 实体 | 345 |
+| 2000—2024 面板实体 | 340 |
+| 补充历史实体 | 5 |
+| 实体—年度状态 | 8,500 |
+| 统一地级变更事件 | 144 |
+| 事件关系 | 149 |
+| 维基地级原始记录 | 988 |
+| 连续性审计 | 1,067 项，0 错误 |
+
+直辖市在研究实体体系中按地级等价单位处理。345个实体是跨期实体总数，不代表任一年度同时存在345个法定地级单位。
+
+## 推荐下载
 
 | 文件 | 用途 |
 |---|---|
-| `data/processed/entities.csv` | 340 个稳定研究实体及核验状态 |
-| `data/processed/entity_id_crosswalk.csv` | 345 个 CNUR 永久编号与旧编号映射 |
-| `data/processed/entity_names.csv` | 名称和法定状态的有效年份区间 |
-| `data/processed/legal_roster_2000_2024.csv` | 实体—年份长表；区分 active、未设立和已撤销 |
-| `data/processed/events_2000_2026.csv` | 63 条地级核心变更事件 |
-| `data/processed/event_entity_links.csv` | 事件与稳定研究实体的审计连接表 |
-| `data/processed/sources.csv` | 来源注册表 |
-| `data/processed/wikipedia_change_pages.csv` | 维基年度行政区划变更页面清单及修订号 |
-| `data/processed/wikipedia_prefecture_change_rows.csv` | 1987—2026 可获得页面中的地级章节原始记录 |
-| `data/processed/wikipedia_normalized_events_1987_1999.csv` | 1987—1999 维基地级记录的语义规范化事件 |
-| `data/processed/unified_events_1987_2026.csv` | 对外统一使用的完整规范事件主表 |
-| `data/processed/historical_entities.csv` | 2000 年前已撤销、无法放入现有平衡面板的历史实体 |
-| `data/processed/unified_event_relations.csv` | 合并、拆分和多实体管辖变化关系 |
+| [`china_city_entity_master_V2.0.csv`](data/releases/v2.0/china_city_entity_master_V2.0.csv) | 机器读取、R/Python合并 |
+| [`china_city_entity_master_V2.0.xlsx`](data/releases/v2.0/china_city_entity_master_V2.0.xlsx) | 人工浏览、筛选和核查 |
+| [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
+| [`entity_names.csv`](data/processed/entity_names.csv) | 正式名和历史名有效区间 |
+| [`legal_roster_2000_2024.csv`](data/processed/legal_roster_2000_2024.csv) | 实体—年份法定状态长表 |
+| [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
+| [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
 
-统一事件、实体和年度名录的连续性审计保存在 `data/audit/unified_continuity_audit.csv`，并由 GitHub Actions 在每次提交时重新生成和验证。
+完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
 
-字段定义见 [`CODEBOOK.md`](CODEBOOK.md)。`data/raw/` 仅保存原始输入快照，不应直接解释为法定年度名录。
+## 快速使用
 
-## 数据内容
+### Python
 
-| 文件 | 规模 | 用途 |
-|---|---:|---|
-| `data/raw/entity_name_map_long.csv` | 375 行 | 实体名称及有效年份区间（长表） |
-| `data/raw/entity_name_map_wide.csv` | 340 行 | 每个实体最多三段历史名称（宽表） |
-| `data/raw/prefecture_master_wide_2000_2024.csv` | 340 × 25 年 | 研究用年度平衡面板 |
-| `data/raw/china_prefecture_changes_2000_2026_master.xlsx` | 63 个核心事件 | 地级建制变化、年度日志与处理口径 |
-| `docs/china_prefecture_entity_mapping_audit_report.pdf` | 6 页 | 数据审计、风险与重构建议 |
+```python
+import pandas as pd
+from urban_crosswalk import match_name, match_dataframe
 
-三张 CSV 内部结构一致：均覆盖 340 个稳定实体，无完全重复行；长表可用于还原年度名称矩阵。当前关键问题来自历史口径和行政层级混用，而不是表间转换错误。
+# 单个历史名称
+result = match_name("思茅市", year=2005, province="云南省")
+print(result.entity_id)       # CNUR-000272
+print(result.match_status)    # auto_matched
 
-## 快速开始
+# 城市面板批量匹配
+panel = pd.read_csv("examples/sample_panel.csv")
+matched, details = match_dataframe(panel, "城市", "年份", "省份")
+matched.to_csv("matched.csv", index=False)
+```
 
-### 网页工具
+批量结果保留全部原始列，并追加：
+
+```text
+crosswalk_entity_id
+crosswalk_canonical_name
+crosswalk_normalized_input
+crosswalk_match_status
+crosswalk_match_method
+crosswalk_confidence
+crosswalk_year_status
+crosswalk_level_status
+crosswalk_risk_codes
+crosswalk_candidate_count
+crosswalk_rule_version
+```
+
+### 本地网页
 
 ```bash
 python3 -m venv .venv
@@ -48,77 +96,85 @@ python3 -m venv .venv
 .venv/bin/streamlit run app.py
 ```
 
-网页提供批量检查、单个名称查询和行政区划变更查询。上传文件仅在当前会话内存中处理；OCR、模糊匹配、县级冲突以及合并拆分不会自动接受。
+## 匹配原则
 
-可用 [`examples/sample_panel.csv`](examples/sample_panel.csv) 测试完整流程。
+匹配按以下顺序执行：
 
-### 部署
+1. Unicode NFKC、繁简、全半角、不可见字符和标点标准化；
+2. 正式名称与历史名称精确匹配；
+3. 常用简称和已审核别名；
+4. 用户补充映射；
+5. 有限OCR候选；
+6. RapidFuzz模糊候选；
+7. 省份、年份、法定层级、设立和撤销状态复核。
 
-推荐使用仓库根目录的 `render.yaml` 在 Render 创建 Blueprint。服务会执行 `streamlit run app.py`，健康检查地址为 `/_stcore/health`。仓库也提供 Dockerfile，可部署到任何支持公开 HTTP 容器的平台。
+只有全国唯一、年份有效且层级一致的确定性结果会自动接受。OCR与模糊匹配只提供最多3个候选。香格里拉市等县级同名冲突会返回上级地级实体和风险提示，不会直接替用户修改。
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/FIERsity/china-prefecture-crosswalk)
+## 数据模型
 
-### Python 接口
+本项目严格区分：
 
-```python
-from urban_crosswalk import match_name, match_dataframe
+- **研究实体**：稳定CNUR编号，用于跨期追踪；
+- **法定年度状态**：某实体在某年是否存在、名称及层级；
+- **行政区划事件**：改名、撤地设市、新设、撤销、合并、拆分和代管；
+- **事件关系**：事件来源和目标实体，以及是否允许自动连续；
+- **历史实体**：2000年前已经撤销、但对历史事件连续性必要的实体。
 
-result = match_name("思茅市", year=2005, province="云南省")
-print(result.entity_id, result.match_status)
+例如雁北地区撤销后分别关联大同和朔州，因此被记录为一对多 `split`，不能自动把历史统计值分配给任一城市。
+
+## 质量控制
+
+每次提交都会在 GitHub Actions 中自动执行：
+
+- processed 数据可重复构建；
+- 345个CNUR编号唯一且连续；
+- 名称长表可还原年度面板；
+- 144条事件无重复签名；
+- 当前和历史实体引用完整；
+- 改名链与撤地设市链连续；
+- 合并、拆分、撤销和代管禁止自动映射；
+- 1,067项统一连续性审计；
+- Python匹配回归测试与Streamlit启动测试。
+
+审计结果见 [`data/audit/unified_continuity_audit.csv`](data/audit/unified_continuity_audit.csv)。
+
+## 信源与限制
+
+- 当前主要二手信源为中文维基百科年度行政区划变更页面，并保存页面URL和修订号；
+- 部分事件同时记录国务院、民政部或地方政府批文号；
+- 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
+- V2.0不声称已经为每条记录完成官方批复原件级核验；
+- 原始340实体宽表是研究平衡面板，不是逐年法定地级单位名单；
+- 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
+
+## 引用
+
+建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
+
+```text
+China Urban Research Entity Crosswalk, Version 2.0.
+https://github.com/FIERsity/china-prefecture-crosswalk
 ```
 
-批量接口保留原始列并追加 `crosswalk_*` 审计字段：
+仓库包含 [`CITATION.cff`](CITATION.cff)，GitHub页面右侧可直接导出引用格式。
 
-```python
-import pandas as pd
-from urban_crosswalk import match_dataframe
+## 许可与贡献
 
-data = pd.read_csv("examples/sample_panel.csv")
-matched, details = match_dataframe(data, "城市", "年份", "省份")
-```
+- 代码：MIT License；
+- processed与release数据：CC BY 4.0；
+- 第三方来源内容仍受原来源条款约束。
 
-重新生成 processed 数据并运行不依赖第三方库的校验：
-
-```bash
-python3 scripts/build_release.py
-python3 scripts/validate_data.py
-```
-
-## 推荐的小项目
-
-1. **名称标准化与实体解析器**：输入城市历史名称和年份，返回稳定 `entity_id`、有效名称区间与匹配置信度。
-2. **面板数据换名工具**：把研究者手中的 `city_name + year` 数据批量连接到稳定实体，并输出未匹配、歧义和越界记录。
-3. **行政区划变更时间线**：将 63 条核心事件做成可筛选的省份—年份—事件类型时间线。
-4. **法定名录与研究面板双层数据模型**：新增 `legal_roster`、`harmonized_panel` 和多对多关系表，避免把合并/拆分误当作简单改名。
-5. **审计规则与回归测试**：为撤销后延续、设立前回填、层级混淆建立自动检测。
-
-最适合先做的是第 2 项：它直接解决城市面板研究中常见的跨年名称连接问题，也能自然暴露当前映射表的边界。
-
-## 重要限制
-
-- `Exxxxxx` 仅为研究用稳定编号，不应解释为任一年度的官方行政区划代码。
-- 原始 340 实体表是平衡面板；processed 法定状态层已经修正三沙、中卫等设立前回填以及巢湖、莱芜、伊犁地区等撤销后保留问题。
-- 迪庆藏族自治州的历史错配已修正；县级香格里拉沿革不再进入 processed 地级实体表。
-- 公开发布前，应补充国务院、民政部或省级政府原始批复链接，并统一批准年、公告年或年末状态的归年规则。
-- 维基百科在首版中是明确标注的二手来源；请根据 `verification_status` 判断能否用于高要求研究。
-
-## 许可
-
-代码采用 MIT License；processed 数据采用 CC BY 4.0。第三方来源内容仍受各自条款约束。
+欢迎通过 GitHub Issues 提交别名、OCR错误、年份冲突和来源补充。涉及新别名或历史修订时，请同时提供名称、年份、省份、预期实体和来源链接。
 
 ## 仓库结构
 
 ```text
-data/raw/       原始输入快照，不在此目录直接修订
-docs/           审计报告与方法文档
-scripts/        可复现的数据校验脚本
-outputs/        后续生成的数据与报告（默认不提交）
+data/raw/          原始输入快照
+data/processed/    可复现生成的数据层
+data/releases/     面向研究者的版本化发布文件
+data/audit/        实体与连续性审计结果
+urban_crosswalk/   独立Python匹配模块
+scripts/           构建、迁移、抓取和验证脚本
+tests/             回归与网页测试
+app.py             Streamlit网页入口
 ```
-
-## 下一步路线
-
-- 将 Excel 中的核心事件导出为机器可读 CSV。
-- 建立 `data/processed/legal_roster.csv` 和 `harmonized_panel.csv`。
-- 增加字段字典、来源清单、证据等级和版本变更日志。
-- 对 340 个实体逐条补充官方批复级证据。
-- 添加 Python/R 使用示例与自动化测试。

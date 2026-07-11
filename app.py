@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+from pathlib import Path
 from urllib.parse import quote
 
 import pandas as pd
@@ -34,10 +35,35 @@ def xlsx_bytes(df):
 st.title("中国城市面板匹配工具")
 st.caption("保守、可解释的中国地级行政实体名称与年份核验")
 st.info("上传文件只在当前会话内存中处理，不会持久化。请勿上传包含敏感信息的数据。")
-page = st.sidebar.radio("入口", ["批量检查", "单个名称查询", "行政区划变更查询"])
+page = st.sidebar.radio("入口", ["数据库浏览与下载", "批量检查", "单个名称查询", "行政区划变更查询"])
 m = matcher()
 
-if page == "批量检查":
+if page == "数据库浏览与下载":
+    release_dir = Path(__file__).resolve().parent / "data" / "releases" / "v2.0"
+    master = pd.read_csv(release_dir / "china_city_entity_master_V2.0.csv", encoding="utf-8-sig", dtype=str).fillna("")
+    st.header("中国地级城市研究实体数据库 V2.0")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("研究实体", len(master))
+    c2.metric("当前面板实体", int((master.entity_scope == "current_panel_entity").sum()))
+    c3.metric("历史实体", int((master.entity_scope == "historical_entity").sum()))
+    c4.metric("统一事件", len(m.unified_events))
+    f1, f2, f3 = st.columns(3)
+    province = f1.selectbox("省份", ["全部"] + sorted(master.province_name_zh.unique()))
+    scope = f2.selectbox("实体范围", ["全部"] + sorted(master.entity_scope.unique()))
+    keyword = f3.text_input("名称或 CNUR 编号")
+    shown = master.copy()
+    if province != "全部": shown = shown[shown.province_name_zh == province]
+    if scope != "全部": shown = shown[shown.entity_scope == scope]
+    if keyword:
+        needle = keyword.strip().lower()
+        shown = shown[shown.apply(lambda row: needle in row.entity_id.lower() or needle in row.canonical_name_zh.lower() or needle in row.legacy_entity_id.lower(), axis=1)]
+    st.dataframe(shown, use_container_width=True, hide_index=True)
+    d1, d2 = st.columns(2)
+    d1.download_button("下载 V2.0 CSV", (release_dir / "china_city_entity_master_V2.0.csv").read_bytes(), "china_city_entity_master_V2.0.csv", "text/csv")
+    d2.download_button("下载 V2.0 Excel", (release_dir / "china_city_entity_master_V2.0.xlsx").read_bytes(), "china_city_entity_master_V2.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    st.caption("CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
+
+elif page == "批量检查":
     upload = st.file_uploader("上传 CSV 或 XLSX", type=["csv", "xlsx"])
     custom_upload = st.file_uploader("可选：个人映射 CSV（alias, entity_id）", type=["csv"], key="rules")
     if upload:
