@@ -1,6 +1,6 @@
 # Data dictionary
 
-This repository separates legal annual status from stable research entities. `entity_id` is a project identifier and is never an official administrative division code.
+This repository separates legal annual status from stable research entities. `entity_id` uses the permanent `CNUR-000001` namespace and is never an official administrative division code. Legacy identifiers remain available only through `entity_id_crosswalk.csv`.
 
 ## `data/processed/entities.csv`
 

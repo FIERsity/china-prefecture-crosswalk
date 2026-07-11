@@ -127,19 +127,23 @@ def main() -> None:
     require(all(row["entity_id"] in valid_entity_ids for row in unified_events), "unified event uses unknown entity")
     require(len(historical_entity_rows) == 5, "historical entity registry changed")
     require(sum(row["event_id"] == "WIKI-1993-029" and row["relation_type"] == "split" for row in unified_relations) == 2, "Yanbei split relations missing")
-    require(sum(row["event_id"] == "WIKI-1996-056" and row["relation_type"] == "jurisdiction_transfer" and row["to_entity_id"] == "E500100" for row in unified_relations) >= 3, "1996 Chongqing transfer relations missing")
+    require(sum(row["event_id"] == "WIKI-1996-056" and row["relation_type"] == "jurisdiction_transfer" and row["to_entity_id"] == "CNUR-000235" for row in unified_relations) >= 3, "1996 Chongqing transfer relations missing")
     require(len(continuity_audit) >= 1000, "continuity audit unexpectedly small")
     require(not any(row["status"] == "error" for row in continuity_audit), "continuity audit contains errors")
     require(all(row["automatic_continuity"] == "false" for row in unified_events if row["event_type"] in {"merge", "split", "abolish"}), "complex unified event cannot imply continuity")
     require(len({row["entity_id"] for row in entities}) == 340, "duplicate processed entity_id")
     require({row["entity_id"] for row in roster} == {row["entity_id"] for row in entities}, "roster entity coverage differs")
     require({row["source_id"] for row in roster} <= {row["source_id"] for row in sources}, "unknown roster source_id")
-    for entity_id in ("E341400", "E371200", "E654100"):
+    for entity_id in ("CNUR-000110", "CNUR-000146", "CNUR-000338"):
         require(any(r["entity_id"] == entity_id and r["status"] == "abolished" for r in roster), f"{entity_id}: abolition missing")
-    for entity_id in ("E460300", "E640500"):
+    for entity_id in ("CNUR-000233", "CNUR-000325"):
         require(any(r["entity_id"] == entity_id and r["status"] == "not_established" for r in roster), f"{entity_id}: pre-establishment status missing")
-    require(any(r["entity_id"] == "E533400" and r["legal_name_zh"] == "迪庆藏族自治州" for r in roster), "E533400 correction missing")
-    require(not any(r["entity_id"] == "E533400" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
+    require(any(r["entity_id"] == "CNUR-000281" and r["legal_name_zh"] == "迪庆藏族自治州" for r in roster), "Diqing correction missing")
+    require(not any(r["entity_id"] == "CNUR-000281" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
+    _, id_crosswalk = read_csv_at(PROCESSED / "entity_id_crosswalk.csv")
+    require(len(id_crosswalk) == 345, "CNUR crosswalk must contain 345 entities")
+    require(len({row["entity_id"] for row in id_crosswalk}) == 345, "duplicate CNUR ID")
+    require(all(row["entity_id"] == f"CNUR-{index:06d}" for index, row in enumerate(id_crosswalk, 1)), "CNUR sequence is not stable and contiguous")
     print("PASS: processed release has 340 entities, 8,500 entity-years, 63 events")
     print("PASS: all 63 events uniquely crosscheck to research entities")
     print("PASS: all 340 research entities have page-level and level evidence")

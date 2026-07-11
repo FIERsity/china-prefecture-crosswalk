@@ -10,9 +10,9 @@ def test_normalization():
 
 def test_historical_names_and_suffix_aliases():
     m = CrosswalkMatcher()
-    assert m.match_name("思茅市", 2005).entity_id == "E530800"
-    assert m.match_name("襄樊", 2009).entity_id == "E420600"
-    assert m.match_name("昌都地区", 2010).entity_id == "E540300"
+    assert m.match_name("思茅市", 2005).entity_id == "CNUR-000272"
+    assert m.match_name("襄樊", 2009).entity_id == "CNUR-000173"
+    assert m.match_name("昌都地区", 2010).entity_id == "CNUR-000284"
 
 
 def test_ocr_never_auto_accepts():
@@ -36,10 +36,10 @@ def test_year_and_level_risks():
 
 
 def test_custom_override_is_audited():
-    rules = pd.DataFrame([{"alias": "普洱市", "entity_id": "E530900"}])
+    rules = pd.DataFrame([{"alias": "普洱市", "entity_id": "CNUR-000273"}])
     r = CrosswalkMatcher().match_name("普洱市", 2010, "云南", rules)
-    assert r.entity_id == "E530900"
-    assert r.builtin_entity_id == "E530800"
+    assert r.entity_id == "CNUR-000273"
+    assert r.builtin_entity_id == "CNUR-000272"
     assert "custom_override_warning" in r.risk_codes
 
 
@@ -59,14 +59,14 @@ def test_dataframe_preserves_original_columns():
 
 def test_event_queries_and_complex_relations():
     m = CrosswalkMatcher()
-    assert len(m.query_events(entity_id="E341400")) == 2
+    assert len(m.query_events(entity_id="CNUR-000110")) == 2
     complex_rows = m.relations[m.relations.relation_type.isin(["merge", "split"])]
     assert len(complex_rows) == 2
     assert set(complex_rows.automatic_continuity) == {"false"}
     historical = m.query_wikipedia_rows(year=1987, keyword="徽州地区")
     assert len(historical) >= 1
     assert historical.iloc[0].source_url.startswith("https://zh.wikipedia.org/wiki/")
-    normalized = m.query_historical_events(entity_id="E341700", accepted_only=True)
+    normalized = m.query_historical_events(entity_id="CNUR-000113", accepted_only=True)
     assert any(normalized.event_id == "WIKI-1988-017")
-    unified = m.query_events(entity_id="E341700")
+    unified = m.query_events(entity_id="CNUR-000113")
     assert set(unified.year) >= {"1988", "2000"}
