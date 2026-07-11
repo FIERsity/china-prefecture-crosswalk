@@ -66,3 +66,5 @@ def test_event_queries_and_complex_relations():
     historical = m.query_wikipedia_rows(year=1987, keyword="徽州地区")
     assert len(historical) >= 1
     assert historical.iloc[0].source_url.startswith("https://zh.wikipedia.org/wiki/")
+    normalized = m.query_historical_events(entity_id="E341700", accepted_only=True)
+    assert any(normalized.event_id == "WIKI-1988-017")

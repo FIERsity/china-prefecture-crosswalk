@@ -122,11 +122,17 @@ else:
     year = c3.number_input("年份（0 表示全部）", min_value=0, max_value=2026, value=0)
     event_types = sorted(m.events["事件类型"].unique())
     event_type = c4.selectbox("事件类型", ["全部"] + event_types)
-    normalized_tab, archive_tab = st.tabs(["规范事件库", "维基历史原始记录"])
+    normalized_tab, historical_tab, archive_tab = st.tabs(["2000年后规范事件", "1987—1999规范事件", "维基历史原始记录"])
     with normalized_tab:
         events = m.query_events(None if entity_label == "全部" else entity_options[entity_label], province or None, year or None, None if event_type == "全部" else event_type)
         st.dataframe(events, use_container_width=True)
         st.download_button("下载规范事件", csv_bytes(events), "events.csv", "text/csv")
+    with historical_tab:
+        accepted_only = st.checkbox("仅显示已接受的规范化结果", value=True)
+        historical = m.query_historical_events(None if entity_label == "全部" else entity_options[entity_label], year or None, None, accepted_only)
+        st.caption("accepted_rule_extraction 表示原—新实体与事件语义均可由原文明示；accepted_manual_review 表示结合后续沿革人工确认；review_required 不会用于自动映射。")
+        st.dataframe(historical, use_container_width=True)
+        st.download_button("下载历史规范事件", csv_bytes(historical), "wikipedia_normalized_events_1987_1999.csv", "text/csv")
     with archive_tab:
         keyword = st.text_input("关键词（城市、地区、盟、自治州或批文号）")
         raw_rows = m.query_wikipedia_rows(year or None, keyword or None)

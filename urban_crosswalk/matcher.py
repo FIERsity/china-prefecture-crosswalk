@@ -85,6 +85,7 @@ class CrosswalkMatcher:
         self.relations = pd.read_csv(data_dir / "event_relations.csv", dtype=str).fillna("")
         self.wikipedia_pages = pd.read_csv(data_dir / "wikipedia_change_pages.csv", dtype=str).fillna("")
         self.wikipedia_rows = pd.read_csv(data_dir / "wikipedia_prefecture_change_rows.csv", dtype=str).fillna("")
+        self.wikipedia_normalized_events = pd.read_csv(data_dir / "wikipedia_normalized_events_1987_1999.csv", dtype=str).fillna("")
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
         self.index: dict[str, list[dict[str, Any]]] = {}
         for _, r in self.names.iterrows():
@@ -220,6 +221,14 @@ class CrosswalkMatcher:
         if keyword:
             term = normalize_name(keyword)
             df = df[df.row_text.map(normalize_name).str.contains(re.escape(term), na=False)]
+        return df
+
+    def query_historical_events(self, entity_id: str | None = None, year: int | None = None, event_type: str | None = None, accepted_only: bool = False) -> pd.DataFrame:
+        df = self.wikipedia_normalized_events.copy()
+        if entity_id: df = df[df.entity_id == entity_id]
+        if year: df = df[df.year.astype(int) == int(year)]
+        if event_type: df = df[df.event_type == event_type]
+        if accepted_only: df = df[df.normalization_status.str.startswith("accepted_")]
         return df
 
 
