@@ -38,6 +38,13 @@ MANUAL_ACCEPT_EVENTS = {
     "WIKI-1993-030": "防城港市 was explicitly established as a prefecture-level city",
     "WIKI-1994-038": "郴州市 was explicitly established as a prefecture-level city",
 }
+MANUAL_HISTORICAL_LINKS = {
+    "WIKI-1987-003": ("HIST-HN-LMZ", "abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control"),
+    "WIKI-1992-020": ("HIST-CQ-WANXIAN", "Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997"),
+    "WIKI-1993-029": ("HIST-SX-YANBEI", "Yanbei was abolished and split between Datong and Shuozhou"),
+    "WIKI-1995-048": ("HIST-CQ-FULING", "Fuling Prefecture continued as historical prefecture-level Fuling City until 1997"),
+    "WIKI-1996-056": ("HIST-CQ-QIANJIANG", "multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"),
+}
 
 
 def read() -> list[dict[str, str]]:
@@ -141,6 +148,10 @@ def main() -> None:
             risks = [risk for risk in risks if risk != "entity_unresolved"]
         if event_id in MANUAL_ACCEPT_EVENTS:
             review_note = MANUAL_ACCEPT_EVENTS[event_id]
+        if event_id in MANUAL_HISTORICAL_LINKS:
+            entity_id, review_note = MANUAL_HISTORICAL_LINKS[event_id]
+            risks = [risk for risk in risks if risk != "entity_unresolved"]
+            if event_id in {"WIKI-1993-029", "WIKI-1996-056"}: risks.append("multi_entity_relation")
         status = "accepted_manual_review" if review_note else "accepted_rule_extraction" if entity_id and old_name and new_name and kind in {"rename", "upgrade"} else "review_required"
         output.append({
             "event_id": event_id, "year": year,

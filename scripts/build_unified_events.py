@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
 OUTPUT = DATA / "unified_events_1987_2026.csv"
+RELATIONS_OUTPUT = DATA / "unified_event_relations.csv"
 TYPE_MAP = {
     "地区改设地级市": "upgrade", "盟改设地级市": "upgrade",
     "县级市升格为地级市": "upgrade", "地级市更名": "rename",
@@ -28,6 +29,7 @@ def main() -> None:
     current = read("events_2000_2026.csv")
     links = {row["event_id"]: row["entity_id"] for row in read("event_entity_links.csv")}
     entities = {row["entity_id"]: row for row in read("entities.csv")}
+    historical_entities = {row["historical_entity_id"]: row for row in read("historical_entities.csv")}
     rows = []
     for row in historical:
         rows.append({
@@ -71,6 +73,21 @@ def main() -> None:
     with OUTPUT.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(rows)
+    relations = []
+    for row in rows:
+        if row["entity_id"]:
+            relations.append({"event_id": row["event_id"], "from_entity_id": row["entity_id"], "to_entity_id": row["entity_id"] if row["automatic_continuity"] == "true" else "", "relation_type": row["event_type"], "mapping_quality": "exact" if row["automatic_continuity"] == "true" else "event_only", "automatic_mapping": row["automatic_continuity"], "review_note": row["review_note"]})
+    # Explicit non-1:1 relationships found during final network review.
+    relations.extend([
+        {"event_id": "WIKI-1993-029", "from_entity_id": "HIST-SX-YANBEI", "to_entity_id": "E140200", "relation_type": "split", "mapping_quality": "disaggregate", "automatic_mapping": "false", "review_note": "seven former Yanbei counties transferred to Datong"},
+        {"event_id": "WIKI-1993-029", "from_entity_id": "HIST-SX-YANBEI", "to_entity_id": "E140600", "relation_type": "split", "mapping_quality": "disaggregate", "automatic_mapping": "false", "review_note": "Huairen, Youyu, and Ying counties transferred to Shuozhou"},
+        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-WANXIAN", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
+        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-FULING", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
+        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-QIANJIANG", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
+    ])
+    with RELATIONS_OUTPUT.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(relations[0]), lineterminator="\n")
+        writer.writeheader(); writer.writerows(relations)
     print(f"events={len(rows)} years={rows[0]['year']}-{rows[-1]['year']}")
 
 

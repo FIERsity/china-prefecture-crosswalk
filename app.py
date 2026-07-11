@@ -116,6 +116,7 @@ elif page == "单个名称查询":
 
 else:
     entity_options = {f"{r.canonical_name_zh} ({r.entity_id})": r.entity_id for _, r in m.entities.iterrows()}
+    entity_options.update({f"{r.canonical_name_zh} ({r.historical_entity_id}, 历史)": r.historical_entity_id for _, r in m.historical_entities.iterrows()})
     c1, c2, c3, c4 = st.columns(4)
     entity_label = c1.selectbox("实体", ["全部"] + list(entity_options))
     province = c2.text_input("省份")

@@ -39,3 +39,5 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 ## `data/processed/unified_events_1987_2026.csv`
 
 The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.
+
+Historical units absent from the 2000—2024 research panel are registered in `historical_entities.csv`. Non-1:1 outcomes are represented in `unified_event_relations.csv`; in particular, Yanbei splits to Datong and Shuozhou, while the 1996 Chongqing transition links Wanxian, Fuling, and Qianjiang without permitting automatic value conversion.
