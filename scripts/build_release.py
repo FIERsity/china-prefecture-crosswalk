@@ -180,7 +180,7 @@ def main() -> None:
     aliases = list({(r["alias"], r["entity_id"], r["start_year"], r["end_year"]): r for r in aliases}.values())
     write_csv(PROCESSED / "aliases.csv", list(aliases[0]), aliases)
 
-    exclusions = [{"name": "香格里拉市", "normalized_name": "香格里拉市", "level": "county_level_city", "parent_entity_id": "E533400", "start_year": 2015, "end_year": 2024, "risk_code": "county_level_conflict", "source_id": "SRC-WIKI-DIQING", "review_status": "reviewed", "rule_version": RULE_VERSION}]
+    exclusions = [{"name": "香格里拉市", "normalized_name": "香格里拉市", "level": "county_level_city", "parent_entity_id": "E533400", "start_year": 2015, "end_year": 2026, "risk_code": "county_level_conflict", "source_id": "SRC-WIKI-DIQING", "review_status": "reviewed", "rule_version": RULE_VERSION}]
     write_csv(PROCESSED / "name_exclusions.csv", list(exclusions[0]), exclusions)
 
     relation_type = {"地级市更名": "rename", "地区改设地级市": "upgrade", "盟改设地级市": "upgrade", "县级市升格为地级市": "upgrade", "以县新设地级市": "establish", "撤销办事处并新设地级市": "establish", "撤销地区并将辖区划归自治州": "abolish", "撤销地级市并分拆辖区": "split", "撤销地级市并整体并入另一地级市": "merge"}

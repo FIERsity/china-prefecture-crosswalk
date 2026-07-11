@@ -31,7 +31,7 @@
 | 永久 CNUR 实体 | 345 |
 | 2000—2024 面板实体 | 340 |
 | 补充历史实体 | 5 |
-| 实体—年度状态 | 8,500 |
+| 实体—年度状态 | 13,800（1987—2026） |
 | 统一地级变更事件 | 144 |
 | 事件关系 | 149 |
 | 维基地级原始记录 | 988 |
@@ -46,8 +46,8 @@
 | [`china_city_entity_master_V2.0.csv`](data/releases/v2.0/china_city_entity_master_V2.0.csv) | 机器读取、R/Python合并 |
 | [`china_city_entity_master_V2.0.xlsx`](data/releases/v2.0/china_city_entity_master_V2.0.xlsx) | 人工浏览、筛选和核查 |
 | [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
-| [`entity_names.csv`](data/processed/entity_names.csv) | 正式名和历史名有效区间 |
-| [`legal_roster_2000_2024.csv`](data/processed/legal_roster_2000_2024.csv) | 实体—年份法定状态长表 |
+| [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
+| [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 345实体 × 40年的年度状态长表 |
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
 
@@ -151,7 +151,7 @@ cnur events --year 1993 --type split --output events.csv
 本项目严格区分：
 
 - **研究实体**：稳定CNUR编号，用于跨期追踪；
-- **法定年度状态**：某实体在某年是否存在、名称及层级；
+- **年度状态**：某实体在1987—2026各年是否存在、名称、层级及推导依据；
 - **行政区划事件**：改名、撤地设市、新设、撤销、合并、拆分和代管；
 - **事件关系**：事件来源和目标实体，以及是否允许自动连续；
 - **历史实体**：2000年前已经撤销、但对历史事件连续性必要的实体。

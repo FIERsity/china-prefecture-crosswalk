@@ -33,7 +33,7 @@ def xlsx_bytes(df):
     return buffer.getvalue()
 
 st.title("中国城市面板匹配工具")
-st.caption("保守、可解释的中国地级行政实体名称与年份核验")
+st.caption("保守、可解释的中国地级行政实体名称与年份核验 · 匹配覆盖 1987—2026")
 st.info("上传文件只在当前会话内存中处理，不会持久化。请勿上传包含敏感信息的数据。")
 page = st.sidebar.radio("入口", ["数据库浏览与下载", "批量检查", "单个名称查询", "行政区划变更查询"])
 m = matcher()
@@ -61,7 +61,7 @@ if page == "数据库浏览与下载":
     d1, d2 = st.columns(2)
     d1.download_button("下载 V2.0 CSV", (release_dir / "china_city_entity_master_V2.0.csv").read_bytes(), "china_city_entity_master_V2.0.csv", "text/csv")
     d2.download_button("下载 V2.0 Excel", (release_dir / "china_city_entity_master_V2.0.xlsx").read_bytes(), "china_city_entity_master_V2.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    st.caption("CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
+    st.caption("运行时年度状态覆盖 1987—2026。CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
 
 elif page == "批量检查":
     upload = st.file_uploader("上传 CSV 或 XLSX", type=["csv", "xlsx"])

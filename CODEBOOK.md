@@ -14,6 +14,10 @@ Temporal name/status spans. Blank `name_zh` values are intentional when the rese
 
 One row per research entity and year. This is the first provisional legal-status layer. Records marked `inherited_unverified` have passed structural checks only and must not be described as individually source-verified.
 
+## Unified 1987-2026 temporal layer
+
+`legal_roster_1987_2026.csv` contains all 345 current and historical entities for every year from 1987 through 2026. Existing 2000-2024 legal-status records take precedence; earlier and later years are reconstructed from reviewed event chains or explicitly marked `inferred`. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
+
 ## `data/processed/events_2000_2026.csv`
 
 Machine-readable export of the 63 core prefecture-level change events in the source workbook. Event dates follow the workbook's approval-date convention. The source workbook remains the archival input.

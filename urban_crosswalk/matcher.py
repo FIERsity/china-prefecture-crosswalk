@@ -21,6 +21,8 @@ REPO_DATA = ROOT / "data" / "processed"
 PACKAGED_DATA = Path(__file__).resolve().parent / "data"
 DATA = REPO_DATA if (REPO_DATA / "entities.csv").exists() else PACKAGED_DATA
 RULE_VERSION = "2026.07.1"
+MIN_YEAR = 1987
+MAX_YEAR = 2026
 PUNCT = re.compile(r"[\s\u200b-\u200f\u2060\ufeff·•,，。.;；:：()（）\[\]【】_-]+")
 
 
@@ -78,8 +80,8 @@ class CrosswalkMatcher:
     def __init__(self, data_dir: Path | str = DATA):
         data_dir = Path(data_dir)
         self.entities = pd.read_csv(data_dir / "entities.csv", dtype=str).fillna("")
-        self.names = pd.read_csv(data_dir / "entity_names.csv", dtype={"entity_id": str})
-        self.roster = pd.read_csv(data_dir / "legal_roster_2000_2024.csv", dtype={"entity_id": str})
+        self.names = pd.read_csv(data_dir / "entity_names_1987_2026.csv", dtype={"entity_id": str})
+        self.roster = pd.read_csv(data_dir / "legal_roster_1987_2026.csv", dtype={"entity_id": str})
         self.aliases = pd.read_csv(data_dir / "aliases.csv", dtype={"entity_id": str})
         self.exclusions = pd.read_csv(data_dir / "name_exclusions.csv", dtype=str).fillna("")
         self.events = pd.read_csv(data_dir / "events_2000_2026.csv", dtype=str).fillna("")
@@ -106,7 +108,7 @@ class CrosswalkMatcher:
     def _year_status(self, entity_id: str, year: int | None) -> str:
         if year is None:
             return "not_checked"
-        if not 2000 <= year <= 2024:
+        if not MIN_YEAR <= year <= MAX_YEAR:
             return "unsupported_year"
         rows = self.roster[(self.roster.entity_id == entity_id) & (self.roster.year == year)]
         return str(rows.iloc[0].status) if len(rows) else "unknown"
@@ -164,11 +166,11 @@ class CrosswalkMatcher:
                 entity_id = raw_matches[0]["entity_id"]
                 entity = self.entity_map[entity_id]
                 return MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "province_conflict", 1.0, self._year_status(entity_id, year), "prefecture", "province_mismatch", 1)
-        if year is not None and 2000 <= year <= 2024:
+        if year is not None and MIN_YEAR <= year <= MAX_YEAR:
             valid = [m for m in matches if m["start"] <= year <= m["end"]]
         else:
             valid = matches
-        if not valid and matches and year is not None and 2000 <= year <= 2024:
+        if not valid and matches and year is not None and MIN_YEAR <= year <= MAX_YEAR:
             all_ids = sorted({m["entity_id"] for m in matches})
             if len(all_ids) == 1:
                 entity_id = all_ids[0]
@@ -255,4 +257,4 @@ def query_events(entity_id=None, province=None, year=None, event_type=None): ret
 def audit_report(results: list[MatchResult], config: dict[str, Any]) -> str:
     counts: dict[str, int] = {}
     for result in results: counts[result.match_status] = counts.get(result.match_status, 0) + 1
-    return json.dumps({"data_version": "0.1.0", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)
+    return json.dumps({"data_version": "2.0.0", "coverage": "1987-2026", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)

@@ -95,6 +95,9 @@ def main() -> None:
     _, historical_entity_rows = read_csv_at(PROCESSED / "historical_entities.csv")
     _, unified_relations = read_csv_at(PROCESSED / "unified_event_relations.csv")
     _, continuity_audit = read_csv_at(ROOT / "data" / "audit" / "unified_continuity_audit.csv")
+    _, extended_roster = read_csv_at(PROCESSED / "legal_roster_1987_2026.csv")
+    _, extended_names = read_csv_at(PROCESSED / "entity_names_1987_2026.csv")
+    _, id_crosswalk = read_csv_at(PROCESSED / "entity_id_crosswalk.csv")
     require(len(entities) == 340, "processed entities must contain 340 rows")
     require(len(roster) == 340 * 25, "legal roster must be entity-year complete")
     require(len(events) == 63, "event export must contain 63 rows")
@@ -130,6 +133,16 @@ def main() -> None:
     require(sum(row["event_id"] == "WIKI-1996-056" and row["relation_type"] == "jurisdiction_transfer" and row["to_entity_id"] == "CNUR-000235" for row in unified_relations) >= 3, "1996 Chongqing transfer relations missing")
     require(len(continuity_audit) >= 1000, "continuity audit unexpectedly small")
     require(not any(row["status"] == "error" for row in continuity_audit), "continuity audit contains errors")
+    require(len(extended_roster) == 345 * 40, "extended roster must contain 13,800 entity-years")
+    require({int(row["year"]) for row in extended_roster} == set(range(1987, 2027)), "extended roster coverage must be 1987-2026")
+    extended_by_key = {(row["entity_id"], int(row["year"])): row for row in extended_roster}
+    require(extended_by_key[("CNUR-000003", 2026)]["status"] == "active", "石家庄市 must survive the 1993 prefecture-city merge")
+    require(extended_by_key[("CNUR-000105", 2026)]["status"] == "active", "安庆市 must survive the 1988 prefecture-city merge")
+    require(extended_by_key[("CNUR-000110", 2012)]["status"] == "abolished", "prefecture-level 巢湖市 must be abolished after 2011")
+    require(extended_by_key[("CNUR-000146", 2019)]["status"] == "abolished", "莱芜市 must be abolished after the 2018 approval")
+    require({row["entity_id"] for row in extended_roster} == {row["entity_id"] for row in id_crosswalk}, "extended roster entity coverage differs")
+    require(any(row["entity_id"] == "CNUR-000121" and row["name_zh"] == "建阳地区" and row["start_year"] == "1987" for row in extended_names), "pre-2000 name chain missing")
+    require(any(row["entity_id"] == "CNUR-000272" and row["name_zh"] == "普洱市" and row["end_year"] == "2026" for row in extended_names), "post-2024 name extension missing")
     require(all(row["automatic_continuity"] == "false" for row in unified_events if row["event_type"] in {"merge", "split", "abolish"}), "complex unified event cannot imply continuity")
     require(len({row["entity_id"] for row in entities}) == 340, "duplicate processed entity_id")
     require({row["entity_id"] for row in roster} == {row["entity_id"] for row in entities}, "roster entity coverage differs")
@@ -140,7 +153,6 @@ def main() -> None:
         require(any(r["entity_id"] == entity_id and r["status"] == "not_established" for r in roster), f"{entity_id}: pre-establishment status missing")
     require(any(r["entity_id"] == "CNUR-000281" and r["legal_name_zh"] == "迪庆藏族自治州" for r in roster), "Diqing correction missing")
     require(not any(r["entity_id"] == "CNUR-000281" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
-    _, id_crosswalk = read_csv_at(PROCESSED / "entity_id_crosswalk.csv")
     require(len(id_crosswalk) == 345, "CNUR crosswalk must contain 345 entities")
     require(len({row["entity_id"] for row in id_crosswalk}) == 345, "duplicate CNUR ID")
     require(all(row["entity_id"] == f"CNUR-{index:06d}" for index, row in enumerate(id_crosswalk, 1)), "CNUR sequence is not stable and contiguous")
@@ -148,6 +160,7 @@ def main() -> None:
     print("PASS: all 63 events uniquely crosscheck to research entities")
     print("PASS: all 340 research entities have page-level and level evidence")
     print("PASS: ten audited corrections and all source references are present")
+    print("PASS: extended runtime coverage is 345 entities x 40 years (1987-2026)")
 
 
 def read_csv_at(path: Path) -> tuple[list[str], list[dict[str, str]]]:

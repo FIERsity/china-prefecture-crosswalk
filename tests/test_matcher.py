@@ -13,6 +13,8 @@ def test_historical_names_and_suffix_aliases():
     assert m.match_name("思茅市", 2005).entity_id == "CNUR-000272"
     assert m.match_name("襄樊", 2009).entity_id == "CNUR-000173"
     assert m.match_name("昌都地区", 2010).entity_id == "CNUR-000284"
+    assert m.match_name("建阳地区", 1987).entity_id == "CNUR-000121"
+    assert m.match_name("普洱市", 2026).entity_id == "CNUR-000272"
 
 
 def test_ocr_never_auto_accepts():
@@ -33,6 +35,8 @@ def test_year_and_level_risks():
     assert "post_abolition" in m.match_name("伊犁地区", 2005, "新疆").risk_codes
     assert "county_level_conflict" in m.match_name("香格里拉市", 2020, "云南").risk_codes
     assert "province_mismatch" in m.match_name("普洱市", 2010, "安徽").risk_codes
+    assert "unsupported_year" in m.match_name("普洱市", 1986).risk_codes
+    assert "unsupported_year" in m.match_name("普洱市", 2027).risk_codes
 
 
 def test_custom_override_is_audited():
