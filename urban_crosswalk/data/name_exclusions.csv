@@ -1,0 +1,2 @@
+name,normalized_name,level,parent_entity_id,start_year,end_year,risk_code,source_id,review_status,rule_version
+香格里拉市,香格里拉市,county_level_city,CNUR-000281,2015,2024,county_level_conflict,SRC-WIKI-DIQING,reviewed,2026.07.1

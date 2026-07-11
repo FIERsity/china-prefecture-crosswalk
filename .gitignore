@@ -6,3 +6,5 @@ outputs/*
 !outputs/.gitkeep
 tmp/
 *.egg-info/
+build/
+dist/

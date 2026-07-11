@@ -17,7 +17,9 @@ except Exception:  # pragma: no cover
     _converter = None
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "processed"
+REPO_DATA = ROOT / "data" / "processed"
+PACKAGED_DATA = Path(__file__).resolve().parent / "data"
+DATA = REPO_DATA if (REPO_DATA / "entities.csv").exists() else PACKAGED_DATA
 RULE_VERSION = "2026.07.1"
 PUNCT = re.compile(r"[\s\u200b-\u200f\u2060\ufeff·•,，。.;；:：()（）\[\]【】_-]+")
 

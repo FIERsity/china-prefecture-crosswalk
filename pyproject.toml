@@ -10,5 +10,8 @@ cnur = "urban_crosswalk.cli:main"
 [tool.setuptools]
 packages = ["urban_crosswalk"]
 
+[tool.setuptools.package-data]
+urban_crosswalk = ["data/*.csv"]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]

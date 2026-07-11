@@ -1,0 +1,150 @@
+event_id,from_entity_id,to_entity_id,relation_type,mapping_quality,automatic_mapping,review_note
+WIKI-1987-001,CNUR-000106,CNUR-000106,upgrade,exact,true,
+WIKI-1987-002,CNUR-000095,CNUR-000095,upgrade,exact,true,
+WIKI-1987-003,CNUR-000341,,abolish,event_only,false,abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control
+WIKI-1987-004,CNUR-000238,CNUR-000238,rename,exact,true,
+WIKI-1987-005,CNUR-000254,CNUR-000254,rename,exact,true,
+WIKI-1988-006,CNUR-000012,CNUR-000012,upgrade,exact,true,
+WIKI-1988-007,CNUR-000019,,establish,event_only,false,朔州市 was explicitly established as a prefecture-level city
+WIKI-1988-008,CNUR-000188,CNUR-000188,upgrade,exact,true,
+WIKI-1988-009,CNUR-000205,CNUR-000205,upgrade,exact,true,
+WIKI-1988-010,CNUR-000206,CNUR-000206,upgrade,exact,true,
+WIKI-1988-011,CNUR-000208,,establish,event_only,false,汕尾市 was explicitly established as a prefecture-level city
+WIKI-1988-012,CNUR-000209,,establish,event_only,false,河源市 was explicitly established as a prefecture-level city
+WIKI-1988-013,CNUR-000207,CNUR-000207,upgrade,exact,true,
+WIKI-1988-014,CNUR-000210,,establish,event_only,false,阳江市 was explicitly established as a prefecture-level city
+WIKI-1988-015,CNUR-000211,,establish,event_only,false,清远市 was explicitly established as a prefecture-level city
+WIKI-1988-016,CNUR-000105,,merge,event_only,false,安庆地区 and the existing city were merged into the unified 安庆市
+WIKI-1988-017,CNUR-000113,,establish_prefecture,event_only,false,池州地区 later continued as the Chizhou research entity
+WIKI-1988-018,CNUR-000121,CNUR-000121,rename,exact,true,建阳地区 renamed 南平地区 and later became 南平市
+WIKI-1992-019,CNUR-000107,CNUR-000107,upgrade,exact,true,
+WIKI-1992-020,CNUR-000342,CNUR-000342,upgrade,exact,true,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
+WIKI-1992-021,CNUR-000172,,abolish,event_only,false,宜昌地区 merged into the existing 宜昌市
+WIKI-1992-022,CNUR-000057,,establish,event_only,false,松原市 was explicitly established as a prefecture-level city
+WIKI-1992-023,CNUR-000150,CNUR-000150,rename,exact,true,惠民地区 renamed 滨州地区 and later became 滨州市
+WIKI-1993-024,CNUR-000058,CNUR-000058,upgrade,exact,true,
+WIKI-1993-025,CNUR-000070,CNUR-000070,upgrade,exact,true,
+WIKI-1993-026,CNUR-000176,,establish,event_only,false,孝感市 was explicitly established as a prefecture-level city
+WIKI-1993-027,CNUR-000246,CNUR-000246,upgrade,exact,true,
+WIKI-1993-028,CNUR-000003,,merge,event_only,false,石家庄地区 merged into 石家庄市
+WIKI-1993-029,CNUR-000343,,abolish,event_only,false,Yanbei was abolished and split between Datong and Shuozhou
+WIKI-1993-030,CNUR-000222,,establish,event_only,false,防城港市 was explicitly established as a prefecture-level city
+WIKI-1993-031,CNUR-000181,CNUR-000181,rename,exact,true,
+WIKI-1994-032,CNUR-000096,CNUR-000096,upgrade,exact,true,
+WIKI-1994-033,CNUR-000121,CNUR-000121,upgrade,exact,true,
+WIKI-1994-034,CNUR-000147,CNUR-000147,upgrade,exact,true,
+WIKI-1994-035,CNUR-000148,CNUR-000148,upgrade,exact,true,
+WIKI-1994-036,CNUR-000164,CNUR-000164,upgrade,exact,true,
+WIKI-1994-037,CNUR-000190,CNUR-000190,upgrade,exact,true,
+WIKI-1994-038,CNUR-000191,,establish,event_only,false,郴州市 was explicitly established as a prefecture-level city
+WIKI-1994-039,CNUR-000223,CNUR-000223,upgrade,exact,true,
+WIKI-1994-040,CNUR-000293,CNUR-000293,upgrade,exact,true,
+WIKI-1994-041,CNUR-000171,,merge,event_only,false,郧阳地区 merged into 十堰市
+WIKI-1994-042,CNUR-000177,CNUR-000177,upgrade,exact,true,荆州地区 became 荆沙市 and later 荆州市
+WIKI-1994-043,CNUR-000050,CNUR-000050,rename,exact,true,
+WIKI-1994-044,CNUR-000056,CNUR-000056,rename,exact,true,
+WIKI-1994-045,CNUR-000189,CNUR-000189,rename,exact,true,
+WIKI-1995-046,CNUR-000178,CNUR-000178,upgrade,exact,true,
+WIKI-1995-047,CNUR-000192,CNUR-000192,upgrade,exact,true,
+WIKI-1995-048,CNUR-000344,CNUR-000344,upgrade,exact,true,Fuling Prefecture continued as historical prefecture-level Fuling City until 1997
+WIKI-1996-049,CNUR-000013,CNUR-000013,upgrade,exact,true,
+WIKI-1996-050,CNUR-000108,CNUR-000108,upgrade,exact,true,
+WIKI-1996-051,CNUR-000122,CNUR-000122,upgrade,exact,true,
+WIKI-1996-052,CNUR-000248,CNUR-000248,upgrade,exact,true,
+WIKI-1996-053,CNUR-000295,CNUR-000295,upgrade,exact,true,
+WIKI-1996-054,CNUR-000294,CNUR-000294,upgrade,exact,true,
+WIKI-1996-055,CNUR-000177,CNUR-000177,rename,exact,true,
+WIKI-1996-056,CNUR-000345,,jurisdiction_transfer,event_only,false,"multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"
+WIKI-1997-057,CNUR-000149,CNUR-000149,upgrade,exact,true,
+WIKI-1997-058,CNUR-000165,CNUR-000165,upgrade,exact,true,
+WIKI-1997-059,CNUR-000193,CNUR-000193,upgrade,exact,true,
+WIKI-1997-060,CNUR-000225,CNUR-000225,upgrade,exact,true,
+WIKI-1997-061,CNUR-000259,CNUR-000259,upgrade,exact,true,
+WIKI-1997-062,CNUR-000267,CNUR-000267,upgrade,exact,true,
+WIKI-1997-063,CNUR-000268,CNUR-000268,upgrade,exact,true,
+WIKI-1997-064,CNUR-000227,CNUR-000227,rename,exact,true,
+WIKI-1997-065,CNUR-000247,,establish_prefecture,event_only,false,眉山地区 later became 眉山市
+WIKI-1998-066,CNUR-000109,CNUR-000109,upgrade,exact,true,
+WIKI-1998-067,CNUR-000130,CNUR-000130,upgrade,exact,true,
+WIKI-1998-068,CNUR-000166,CNUR-000166,upgrade,exact,true,
+WIKI-1998-069,CNUR-000179,CNUR-000179,upgrade,exact,true,
+WIKI-1998-070,CNUR-000249,CNUR-000249,upgrade,exact,true,
+WIKI-1998-071,CNUR-000323,CNUR-000323,upgrade,exact,true,
+WIKI-1998-072,CNUR-000253,,establish_prefecture,event_only,false,资阳地区 later became 资阳市
+WIKI-1999-073,CNUR-000020,CNUR-000020,upgrade,exact,true,
+WIKI-1999-074,CNUR-000071,CNUR-000071,upgrade,exact,true,
+WIKI-1999-075,CNUR-000110,CNUR-000110,upgrade,exact,true,
+WIKI-1999-076,CNUR-000111,CNUR-000111,upgrade,exact,true,
+WIKI-1999-077,CNUR-000123,CNUR-000123,upgrade,exact,true,
+WIKI-1999-078,CNUR-000194,CNUR-000194,upgrade,exact,true,
+WIKI-1999-079,CNUR-000250,CNUR-000250,upgrade,exact,true,
+WIKI-1999-080,CNUR-000296,CNUR-000296,upgrade,exact,true,
+WIKI-1999-081,CNUR-000029,CNUR-000029,upgrade,exact,true,
+PL-2000-001,CNUR-000131,CNUR-000131,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-002,CNUR-000097,CNUR-000097,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-003,CNUR-000132,CNUR-000132,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-004,CNUR-000167,CNUR-000167,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-005,CNUR-000168,CNUR-000168,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-006,CNUR-000150,CNUR-000150,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-007,CNUR-000247,CNUR-000247,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-008,CNUR-000251,CNUR-000251,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-009,CNUR-000252,CNUR-000252,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-010,CNUR-000253,CNUR-000253,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-011,CNUR-000021,CNUR-000021,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-012,CNUR-000022,CNUR-000022,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-013,CNUR-000023,CNUR-000023,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-014,CNUR-000260,CNUR-000260,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-015,CNUR-000297,CNUR-000297,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-016,CNUR-000133,CNUR-000133,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-017,CNUR-000134,CNUR-000134,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-018,CNUR-000151,CNUR-000151,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-019,CNUR-000113,CNUR-000113,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-020,CNUR-000114,CNUR-000114,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-021,CNUR-000269,CNUR-000269,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2000-022,CNUR-000112,CNUR-000112,upgrade,exact,true,按用户口径计为新增地级市。
+PL-2000-023,CNUR-000180,CNUR-000180,upgrade,exact,true,按用户口径计为新增地级市。
+PL-2000-024,CNUR-000081,CNUR-000081,rename,exact,true,实体连续，地级单位净变化0。
+PL-2001-001,CNUR-000270,CNUR-000270,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-002,CNUR-000030,CNUR-000030,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-003,CNUR-000304,CNUR-000304,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-004,CNUR-000324,CNUR-000324,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-005,CNUR-000298,CNUR-000298,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-006,CNUR-000031,CNUR-000031,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2001-007,CNUR-000338,,abolish,event_only,false,没有新设地级单位，全部地级单位净减少1。
+PL-2002-001,CNUR-000305,CNUR-000305,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-002,CNUR-000226,CNUR-000226,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-003,CNUR-000306,CNUR-000306,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-004,CNUR-000227,CNUR-000227,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-005,CNUR-000228,CNUR-000228,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-006,CNUR-000307,CNUR-000307,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-007,CNUR-000308,CNUR-000308,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-008,CNUR-000229,CNUR-000229,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-009,CNUR-000230,CNUR-000230,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2002-010,CNUR-000271,CNUR-000271,upgrade,exact,true,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+PL-2003-001,CNUR-000309,CNUR-000309,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2003-002,CNUR-000024,CNUR-000024,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2003-003,CNUR-000272,CNUR-000272,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2003-004,CNUR-000032,CNUR-000032,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2003-005,CNUR-000033,CNUR-000033,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2003-006,CNUR-000325,,establish,event_only,false,原单位为县级，按用户口径计为新增地级市。
+PL-2004-001,CNUR-000310,CNUR-000310,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
+PL-2007-001,CNUR-000272,CNUR-000272,rename,exact,true,实体连续，地级单位净变化0。
+PL-2010-001,CNUR-000173,CNUR-000173,rename,exact,true,名称和建制层级连续；新增与撤销均按历史名称记录，地级单位净变化为0。
+PL-2011-001,CNUR-000110,,split,event_only,false,县级巢湖市是新县级单位，不计入地级新增。
+PL-2011-002,CNUR-000261,CNUR-000261,upgrade,exact,true,地级市数量增加1；全部地级单位数量净变化0。
+PL-2011-003,CNUR-000262,CNUR-000262,upgrade,exact,true,地级市数量增加1；全部地级单位数量净变化0。
+PL-2012-001,CNUR-000233,,establish,event_only,false,原办事处不按地级行政单位计入撤销，因此地级单位净增1。
+PL-2013-001,CNUR-000314,CNUR-000314,upgrade,exact,true,地级市数量增加1；全部地级单位数量净变化0。
+PL-2014-001,CNUR-000283,CNUR-000283,upgrade,exact,true,同名县级市终止，不计作地级撤销。
+PL-2015-001,CNUR-000234,CNUR-000234,upgrade,exact,true,按用户口径视为新增地级市；原县级市终止不计地级撤销。
+PL-2015-002,CNUR-000285,CNUR-000285,upgrade,exact,true,地级市数量增加1；全部地级单位数量净变化0。
+PL-2015-003,CNUR-000328,CNUR-000328,upgrade,exact,true,地级市数量增加1；全部地级单位数量净变化0。
+PL-2016-001,CNUR-000286,CNUR-000286,upgrade,exact,true,按批准日期归入2016年；地级市数量增加1，全部地级单位净变化0。
+PL-2016-002,CNUR-000329,CNUR-000329,upgrade,exact,true,同名县级市终止不计地级撤销。
+PL-2017-001,CNUR-000287,CNUR-000287,upgrade,exact,true,按批准年份归入2017年；公布实施发生于2018年。
+PL-2018-001,CNUR-000146,,merge,event_only,false,按批准年份归入2018年；济南市为既存地级市，不计新增。
+WIKI-1993-029,CNUR-000343,CNUR-000015,split,disaggregate,false,seven former Yanbei counties transferred to Datong
+WIKI-1993-029,CNUR-000343,CNUR-000019,split,disaggregate,false,"Huairen, Youyu, and Ying counties transferred to Shuozhou"
+WIKI-1996-056,CNUR-000342,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
+WIKI-1996-056,CNUR-000344,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
+WIKI-1996-056,CNUR-000345,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
