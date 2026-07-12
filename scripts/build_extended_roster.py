@@ -15,6 +15,18 @@ ESTABLISHMENT_OVERRIDES = {
     "CNUR-000209": 1988, "CNUR-000057": 1992, "CNUR-000085": 1996,
     "CNUR-000086": 1996, "CNUR-000247": 1997, "CNUR-000253": 1998,
     "CNUR-000230": 2002, "CNUR-000325": 2003,
+    "CNUR-000145": 1989, "CNUR-000189": 1988, "CNUR-000212": 1988,
+    "CNUR-000213": 1988, "CNUR-000214": 1991, "CNUR-000215": 1991,
+    "CNUR-000216": 1994, "CNUR-000224": 1995, "CNUR-000177": 1994,
+    "CNUR-000227": 1997, "CNUR-000229": 2002,
+}
+HISTORICAL_LAST_ACTIVE = {
+    "CNUR-000348": 1987, "CNUR-000349": 1991,
+    "CNUR-000350": 1992, "CNUR-000351": 1992, "CNUR-000352": 1992,
+    "CNUR-000353": 1992, "CNUR-000354": 1992, "CNUR-000355": 1992,
+    "CNUR-000356": 1993, "CNUR-000357": 1993, "CNUR-000358": 1993,
+    "CNUR-000359": 1993, "CNUR-000360": 1995, "CNUR-000361": 1997,
+    "CNUR-000362": 2001, "CNUR-000363": 1996,
 }
 
 
@@ -41,6 +53,7 @@ def main():
             default_name, province = meta["canonical_name_zh"], meta["province_at_time"]
             terminating = [e for e in timeline if e["event_type"] in {"abolish", "merge", "split"}]
             if terminating: end = min(end, int(terminating[0]["year"]) - 1)
+            if entity_id in HISTORICAL_LAST_ACTIVE: end = HISTORICAL_LAST_ACTIVE[entity_id]
         else:
             meta = entities[entity_id]; start, end = 1987, 2026
             default_name, province = meta["canonical_name_zh"], meta["province_name_zh"]

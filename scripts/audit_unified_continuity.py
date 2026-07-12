@@ -80,7 +80,7 @@ def main() -> None:
         add("major_relation_to_entity", "pass" if relation["to_entity_id"] in entity_ids else "error", case_id, relation["to_entity_id"])
         add("major_relation_no_auto_mapping", "pass" if relation["automatic_mapping"] == "false" else "error", case_id, relation["automatic_mapping"])
         expected = int(relation["county_unit_count"])
-        add("major_relation_county_evidence", "pass" if county_counts.get(case_id) == expected else "error", case_id, f"expected={expected} actual={county_counts.get(case_id, 0)}")
+        add("major_relation_county_evidence", "pass" if county_counts.get(case_id, 0) == expected else "error", case_id, f"expected={expected} actual={county_counts.get(case_id, 0)}")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with OUTPUT.open("w", encoding="utf-8", newline="") as handle:

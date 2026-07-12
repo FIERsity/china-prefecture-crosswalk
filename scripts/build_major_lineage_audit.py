@@ -31,6 +31,25 @@ CASES = [
     ("MAJOR-2011-CHAOHU-HF",2011,"巢湖市","CNUR-000110","合肥市","CNUR-000098","split_successor","2","major","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2011-CHAOHU-WH",2011,"巢湖市","CNUR-000110","芜湖市","CNUR-000099","split_successor","1","material_in_three_way_split","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2011-CHAOHU-MA",2011,"巢湖市","CNUR-000110","马鞍山市","CNUR-000102","split_successor","2","major","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1988-ANQING",1988,"安庆地区","CNUR-000348","安庆市","CNUR-000105","merge_into","0","whole_prefecture_merge","WIKI-1988-016","https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表"),
+    ("CARVE-1988-CHIZHOU",1988,"安庆地区","CNUR-000348","池州地区","CNUR-000113","carve_out","3","material","WIKI-1988-017","https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1992-YICHANG",1992,"宜昌地区","CNUR-000349","宜昌市","CNUR-000172","merge_into","0","whole_prefecture_merge","WIKI-1992-021","https://zh.wikipedia.org/wiki/1992年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-SHIJIAZHUANG",1993,"石家庄地区","CNUR-000350","石家庄市","CNUR-000003","merge_into","0","whole_prefecture_merge","WIKI-1993-028","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-ZHANGJIAKOU",1993,"张家口地区","CNUR-000351","张家口市","CNUR-000009","merge_into","0","whole_prefecture_merge","WIKI-RAW-1993:58","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-CANGZHOU",1993,"沧州地区","CNUR-000352","沧州市","CNUR-000011","merge_into","0","whole_prefecture_merge","WIKI-RAW-1993:71","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-HANDAN",1993,"邯郸地区","CNUR-000353","邯郸市","CNUR-000006","merge_into","0","whole_prefecture_merge","WIKI-RAW-1993:84","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-XINGTAI",1993,"邢台地区","CNUR-000354","邢台市","CNUR-000007","merge_into","0","whole_prefecture_merge","WIKI-RAW-1993:98","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1993-CHENGDE",1993,"承德地区","CNUR-000355","承德市","CNUR-000010","merge_into","0","whole_prefecture_merge","WIKI-RAW-1993:115","https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1994-BAODING",1994,"保定地区","CNUR-000356","保定市","CNUR-000008","merge_into","0","whole_prefecture_merge","WIKI-RAW-1994:104","https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1994-YUNYANG",1994,"郧阳地区","CNUR-000357","十堰市","CNUR-000171","merge_into","0","whole_prefecture_merge","WIKI-1994-041","https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1994-JINGZHOU",1994,"荆州地区","CNUR-000358","荆沙市","CNUR-000177","merge_into_new_entity","0","multi_predecessor_merge","WIKI-1994-042","https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1994-SHASHI",1994,"沙市市","CNUR-000359","荆沙市","CNUR-000177","merge_into_new_entity","0","multi_predecessor_merge","WIKI-1994-042","https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1996-SONGHUAJIANG",1996,"松花江地区","CNUR-000360","哈尔滨市","CNUR-000060","merge_into","0","whole_prefecture_merge","WIKI-RAW-1996:77","https://zh.wikipedia.org/wiki/1996年中华人民共和国县级以上行政区划变更列表"),
+    ("MERGE-1998-GUILIN",1998,"桂林地区","CNUR-000361","桂林市","CNUR-000219","merge_into","0","whole_prefecture_merge","WIKI-RAW-1998:65","https://zh.wikipedia.org/wiki/1998年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2002-LIUZHOU-LB",2002,"柳州地区","CNUR-000362","来宾市","CNUR-000229","split_successor","6","major","PL-2002-008","https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2002-LIUZHOU-LZ",2002,"柳州地区","CNUR-000362","柳州市","CNUR-000218","split_successor","4","major","PL-2002-008","https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-1997-WUZHOU-HZ",1997,"梧州地区","CNUR-000363","贺州地区","CNUR-000227","split_successor","4","major","WIKI-1997-064","https://zh.wikipedia.org/wiki/1997年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-1997-WUZHOU-WZ",1997,"梧州地区","CNUR-000363","梧州市","CNUR-000220","split_successor","3","major","WIKI-1997-064","https://zh.wikipedia.org/wiki/1997年中华人民共和国县级以上行政区划变更列表"),
 ]
 
 COUNTIES = {
@@ -52,6 +71,11 @@ COUNTIES = {
     "MAJOR-2011-CHAOHU-HF": ["居巢区（改设县级巢湖市）","庐江县"],
     "MAJOR-2011-CHAOHU-WH": ["无为县"],
     "MAJOR-2011-CHAOHU-MA": ["含山县","和县"],
+    "CARVE-1988-CHIZHOU": ["贵池县","东至县","石台县"],
+    "MAJOR-2002-LIUZHOU-LB": ["来宾县","合山市","武宣县","象州县","忻城县","金秀瑶族自治县"],
+    "MAJOR-2002-LIUZHOU-LZ": ["鹿寨县","融安县","融水苗族自治县","三江侗族自治县"],
+    "MAJOR-1997-WUZHOU-HZ": ["贺县","昭平县","钟山县","富川瑶族自治县"],
+    "MAJOR-1997-WUZHOU-WZ": ["岑溪市","藤县","蒙山县"],
 }
 
 

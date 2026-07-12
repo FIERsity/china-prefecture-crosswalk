@@ -28,6 +28,19 @@ def test_split_predecessors_do_not_leak_into_successor_identity():
     assert m.match_name("惠州市", 1988).entity_id == "CNUR-000206"
     assert m.match_name("泰州市", 1995).year_status == "not_established"
     assert m.match_name("宿迁市", 1995).year_status == "not_established"
+    assert m.match_name("柳州地区", 2001).entity_id == "CNUR-000362"
+    assert m.match_name("来宾市", 2001).year_status == "not_established"
+    assert m.match_name("梧州地区", 1996).entity_id == "CNUR-000363"
+    assert m.match_name("贺州市", 1996).year_status == "not_established"
+    assert m.match_name("荆州地区", 1993).entity_id == "CNUR-000358"
+    assert m.match_name("荆州市", 1993).year_status == "not_established"
+
+
+def test_late_prefecture_establishment_years():
+    m = CrosswalkMatcher()
+    for name, before, start in [("日照市",1988,1989),("东莞市",1987,1988),("中山市",1987,1988),("潮州市",1990,1991),("揭阳市",1990,1991),("云浮市",1993,1994),("贵港市",1994,1995)]:
+        assert m.match_name(name, before).year_status == "not_established"
+        assert m.match_name(name, start).entity_id
 
 
 def test_ocr_never_auto_accepts():

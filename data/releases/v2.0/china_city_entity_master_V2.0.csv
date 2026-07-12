@@ -1,7 +1,7 @@
 ﻿entity_id,legacy_entity_id,canonical_name_zh,entity_scope,province_name_zh,province_short_zh,entity_type,first_active_year,last_active_year,status_in_2026,verification_status,name_history,event_count,successor_summary,primary_source_url
 CNUR-000001,E110100,北京市,current_panel_entity,北京市,北京,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 北京市,0,,
 CNUR-000002,E120100,天津市,current_panel_entity,天津市,天津,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 天津市,0,,
-CNUR-000003,E130100,石家庄市,current_panel_entity,河北省,河北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 石家庄市,1,,
+CNUR-000003,E130100,石家庄市,current_panel_entity,河北省,河北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 石家庄市,0,,
 CNUR-000004,E130200,唐山市,current_panel_entity,河北省,河北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 唐山市,0,,
 CNUR-000005,E130300,秦皇岛市,current_panel_entity,河北省,河北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 秦皇岛市,0,,
 CNUR-000006,E130400,邯郸市,current_panel_entity,河北省,河北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 邯郸市,0,,
@@ -103,7 +103,7 @@ CNUR-000101,E340400,淮南市,current_panel_entity,安徽省,安徽,prefecture_r
 CNUR-000102,E340500,马鞍山市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 马鞍山市,0,,
 CNUR-000103,E340600,淮北市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 淮北市,0,,
 CNUR-000104,E340700,铜陵市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 铜陵市,0,,
-CNUR-000105,E340800,安庆市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 安庆市,1,,
+CNUR-000105,E340800,安庆市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 安庆市,0,,
 CNUR-000106,E341000,黄山市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 黄山市,1,,
 CNUR-000107,E341100,滁州市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1991 滁县地区; 1992-2026 滁州市,1,,
 CNUR-000108,E341200,阜阳市,current_panel_entity,安徽省,安徽,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1995 阜阳地区; 1996-2026 阜阳市,1,,
@@ -143,7 +143,7 @@ CNUR-000141,E370700,潍坊市,current_panel_entity,山东省,山东,prefecture_r
 CNUR-000142,E370800,济宁市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 济宁市,0,,
 CNUR-000143,E370900,泰安市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 泰安市,0,,
 CNUR-000144,E371000,威海市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 威海市,0,,
-CNUR-000145,E371100,日照市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 日照市,0,,
+CNUR-000145,E371100,日照市,current_panel_entity,山东省,山东,prefecture_research_entity,1989,2026,active,wikipedia_entity_verified,1987-1988 [not_established]; 1989-2026 日照市,0,,
 CNUR-000146,E371200,莱芜市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2018,abolished,wikipedia_verified,1987-2018 莱芜市; 2019-2026 [abolished],1,,
 CNUR-000147,E371300,临沂市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 临沂地区; 1994-2026 临沂市,1,,
 CNUR-000148,E371400,德州市,current_panel_entity,山东省,山东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 德州地区; 1994-2026 德州市,1,,
@@ -169,13 +169,13 @@ CNUR-000167,E411600,周口市,current_panel_entity,河南省,河南,prefecture_r
 CNUR-000168,E411700,驻马店市,current_panel_entity,河南省,河南,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-1999 驻马店地区; 2000-2026 驻马店市,1,,
 CNUR-000169,E420100,武汉市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 武汉市,0,,
 CNUR-000170,E420200,黄石市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 黄石市,0,,
-CNUR-000171,E420300,十堰市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 十堰市,1,,
-CNUR-000172,E420500,宜昌市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 宜昌市,1,,
+CNUR-000171,E420300,十堰市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 十堰市,0,,
+CNUR-000172,E420500,宜昌市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 宜昌市,0,,
 CNUR-000173,E420600,襄阳市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-2009 襄樊市; 2010-2026 襄阳市,1,,
 CNUR-000174,E420700,鄂州市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 鄂州市,0,,
 CNUR-000175,E420800,荆门市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 荆门市,0,,
 CNUR-000176,E420900,孝感市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1993,2026,active,wikipedia_entity_verified,1987-1992 [not_established]; 1993-2026 孝感市,1,,
-CNUR-000177,E421000,荆州市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 荆州地区; 1994-1995 荆沙市; 1996-2026 荆州市,2,,
+CNUR-000177,E421000,荆州市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1994,2026,active,wikipedia_entity_verified,1987-1993 [not_established]; 1994-1995 荆沙市; 1996-2026 荆州市,1,,
 CNUR-000178,E421100,黄冈市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1994 黄冈地区; 1995-2026 黄冈市,1,,
 CNUR-000179,E421200,咸宁市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1997 咸宁地区; 1998-2026 咸宁市,1,,
 CNUR-000180,E421300,随州市,current_panel_entity,湖北省,湖北,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-2026 随州市,1,,
@@ -187,7 +187,7 @@ CNUR-000185,E430400,衡阳市,current_panel_entity,湖南省,湖南,prefecture_r
 CNUR-000186,E430500,邵阳市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 邵阳市,0,,
 CNUR-000187,E430600,岳阳市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 岳阳市,0,,
 CNUR-000188,E430700,常德市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1987 常德地区; 1988-2026 常德市,1,,
-CNUR-000189,E430800,张家界市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 大庸市; 1994-2026 张家界市,1,,
+CNUR-000189,E430800,张家界市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-1993 大庸市; 1994-2026 张家界市,1,,
 CNUR-000190,E430900,益阳市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 益阳地区; 1994-2026 益阳市,1,,
 CNUR-000191,E431000,郴州市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1994,2026,active,wikipedia_entity_verified,1987-1993 [not_established]; 1994-2026 郴州市,1,,
 CNUR-000192,E431100,永州市,current_panel_entity,湖南省,湖南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1994 零陵地区; 1995-2026 永州市,1,,
@@ -210,11 +210,11 @@ CNUR-000208,E441500,汕尾市,current_panel_entity,广东省,广东,prefecture_r
 CNUR-000209,E441600,河源市,current_panel_entity,广东省,广东,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-2026 河源市,1,,
 CNUR-000210,E441700,阳江市,current_panel_entity,广东省,广东,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-2026 阳江市,1,,
 CNUR-000211,E441800,清远市,current_panel_entity,广东省,广东,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-2026 清远市,1,,
-CNUR-000212,E441900,东莞市,current_panel_entity,广东省,广东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 东莞市,0,,
-CNUR-000213,E442000,中山市,current_panel_entity,广东省,广东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 中山市,0,,
-CNUR-000214,E445100,潮州市,current_panel_entity,广东省,广东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 潮州市,0,,
-CNUR-000215,E445200,揭阳市,current_panel_entity,广东省,广东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 揭阳市,0,,
-CNUR-000216,E445300,云浮市,current_panel_entity,广东省,广东,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 云浮市,0,,
+CNUR-000212,E441900,东莞市,current_panel_entity,广东省,广东,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-2026 东莞市,0,,
+CNUR-000213,E442000,中山市,current_panel_entity,广东省,广东,prefecture_research_entity,1988,2026,active,wikipedia_entity_verified,1987-1987 [not_established]; 1988-2026 中山市,0,,
+CNUR-000214,E445100,潮州市,current_panel_entity,广东省,广东,prefecture_research_entity,1991,2026,active,wikipedia_entity_verified,1987-1990 [not_established]; 1991-2026 潮州市,0,,
+CNUR-000215,E445200,揭阳市,current_panel_entity,广东省,广东,prefecture_research_entity,1991,2026,active,wikipedia_entity_verified,1987-1990 [not_established]; 1991-2026 揭阳市,0,,
+CNUR-000216,E445300,云浮市,current_panel_entity,广东省,广东,prefecture_research_entity,1994,2026,active,wikipedia_entity_verified,1987-1993 [not_established]; 1994-2026 云浮市,0,,
 CNUR-000217,E450100,南宁市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 南宁市,0,,
 CNUR-000218,E450200,柳州市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 柳州市,0,,
 CNUR-000219,E450300,桂林市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 桂林市,0,,
@@ -222,12 +222,12 @@ CNUR-000220,E450400,梧州市,current_panel_entity,广西壮族自治区,广西,
 CNUR-000221,E450500,北海市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 北海市,0,,
 CNUR-000222,E450600,防城港市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1993,2026,active,wikipedia_entity_verified,1987-1992 [not_established]; 1993-2026 防城港市,1,,
 CNUR-000223,E450700,钦州市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1993 钦州地区; 1994-2026 钦州市,1,,
-CNUR-000224,E450800,贵港市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 贵港市,0,,
+CNUR-000224,E450800,贵港市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1995,2026,active,wikipedia_entity_verified,1987-1994 [not_established]; 1995-2026 贵港市,0,,
 CNUR-000225,E450900,玉林市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-1996 玉林地区; 1997-2026 玉林市,1,,
 CNUR-000226,E451000,百色市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-2001 百色地区; 2002-2026 百色市,1,,
-CNUR-000227,E451100,贺州市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-1996 梧州地区; 1997-2001 贺州地区; 2002-2026 贺州市,2,,
+CNUR-000227,E451100,贺州市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1997,2026,active,event_crosschecked,1987-1996 [not_established]; 1997-2001 贺州地区; 2002-2026 贺州市,1,,
 CNUR-000228,E451200,河池市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-2001 河池地区; 2002-2026 河池市,1,,
-CNUR-000229,E451300,来宾市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,1987,2026,active,event_crosschecked,1987-2001 柳州地区; 2002-2026 来宾市,1,,
+CNUR-000229,E451300,来宾市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,2002,2026,active,event_crosschecked,1987-2001 [not_established]; 2002-2026 来宾市,0,,
 CNUR-000230,E451400,崇左市,current_panel_entity,广西壮族自治区,广西,prefecture_research_entity,2002,2026,active,wikipedia_verified,1987-2001 [not_established]; 2002-2026 崇左市,0,,
 CNUR-000231,E460100,海口市,current_panel_entity,海南省,海南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 海口市,0,,
 CNUR-000232,E460200,三亚市,current_panel_entity,海南省,海南,prefecture_research_entity,1987,2026,active,wikipedia_entity_verified,1987-2026 三亚市,0,,
@@ -346,3 +346,19 @@ CNUR-000344,HIST-CQ-FULING,涪陵市,historical_entity,四川省,四川,abolishe
 CNUR-000345,HIST-CQ-QIANJIANG,黔江地区,historical_entity,四川省,四川,abolished_prefecture,1988,1997,abolished,reviewed,1988-1997 黔江地区,1,撤销后设重庆市黔江开发区并最终进入重庆区县体系,https://zh.wikipedia.org/wiki/黔江地区
 CNUR-000346,HIST-GX-NANNING,南宁地区,historical_entity,广西壮族自治区,广西,abolished_prefecture,1971,2001,abolished,reviewed_county_composition,1971-2001 南宁地区,1,撤销后主要分为崇左市并将五县划归南宁市,https://zh.wikipedia.org/wiki/南宁地区
 CNUR-000347,HIST-GD-HUIYANG,惠阳地区,historical_entity,广东省,广东,abolished_prefecture,1970,1987,abolished,reviewed_county_composition,1970-1987 惠阳地区,1,撤销后主要形成惠州市、汕尾市和河源市,https://zh.wikipedia.org/wiki/惠阳地区
+CNUR-000348,HIST-AH-ANQING,安庆地区,historical_entity,安徽省,安徽,abolished_prefecture,1987,1987,abolished,reviewed_event_row,1987-1987 安庆地区,1,与既有安庆市合并并析设池州地区,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表
+CNUR-000349,HIST-HB-YICHANG,宜昌地区,historical_entity,湖北省,湖北,abolished_prefecture,1987,1991,abolished,reviewed_event_row,1987-1991 宜昌地区,1,撤销后整体并入既有宜昌市,https://zh.wikipedia.org/wiki/1992年中华人民共和国县级以上行政区划变更列表
+CNUR-000350,HIST-HE-SHIJIAZHUANG,石家庄地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 石家庄地区,1,与既有石家庄市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000351,HIST-HE-ZHANGJIAKOU,张家口地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 张家口地区,0,与既有张家口市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000352,HIST-HE-CANGZHOU,沧州地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 沧州地区,0,与既有沧州市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000353,HIST-HE-HANDAN,邯郸地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 邯郸地区,0,与既有邯郸市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000354,HIST-HE-XINGTAI,邢台地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 邢台地区,0,与既有邢台市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000355,HIST-HE-CHENGDE,承德地区,historical_entity,河北省,河北,abolished_prefecture,1987,1992,abolished,reviewed_event_row,1987-1992 承德地区,0,与既有承德市实行地市合并,https://zh.wikipedia.org/wiki/1993年中华人民共和国县级以上行政区划变更列表
+CNUR-000356,HIST-HE-BAODING,保定地区,historical_entity,河北省,河北,abolished_prefecture,1987,1993,abolished,reviewed_event_row,1987-1993 保定地区,0,与既有保定市合并组建新的保定市,https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表
+CNUR-000357,HIST-HB-YUNYANG,郧阳地区,historical_entity,湖北省,湖北,abolished_prefecture,1987,1993,abolished,reviewed_event_row,1987-1993 郧阳地区,1,撤销后与既有十堰市合并,https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表
+CNUR-000358,HIST-HB-JINGZHOU,荆州地区,historical_entity,湖北省,湖北,abolished_prefecture,1987,1993,abolished,reviewed_event_row,1987-1993 荆州地区,1,与原地级沙市市共同组建荆沙市,https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表
+CNUR-000359,HIST-HB-SHASHI,沙市市,historical_entity,湖北省,湖北,abolished_prefecture_level_city,1987,1993,abolished,reviewed_event_row,1987-1993 沙市市,0,与荆州地区共同组建荆沙市,https://zh.wikipedia.org/wiki/1994年中华人民共和国县级以上行政区划变更列表
+CNUR-000360,HIST-HLJ-SONGHUAJIANG,松花江地区,historical_entity,黑龙江省,黑龙江,abolished_prefecture,1987,1995,abolished,reviewed_event_row,1987-1995 松花江地区,0,与既有哈尔滨市合并,https://zh.wikipedia.org/wiki/1996年中华人民共和国县级以上行政区划变更列表
+CNUR-000361,HIST-GX-GUILIN,桂林地区,historical_entity,广西壮族自治区,广西,abolished_prefecture,1987,1997,abolished,reviewed_event_row,1987-1997 桂林地区,0,与既有桂林市合并,https://zh.wikipedia.org/wiki/1998年中华人民共和国县级以上行政区划变更列表
+CNUR-000362,HIST-GX-LIUZHOU,柳州地区,historical_entity,广西壮族自治区,广西,abolished_prefecture,1987,2001,abolished,reviewed_county_composition,1987-2001 柳州地区,1,撤销后主要分为来宾市并将四县划归柳州市,https://zh.wikipedia.org/wiki/柳州地区
+CNUR-000363,HIST-GX-WUZHOU,梧州地区,historical_entity,广西壮族自治区,广西,abolished_prefecture,1987,1996,abolished,reviewed_county_composition,1987-1996 梧州地区,1,更名贺州地区时四县留归贺州、三县市划归既有梧州市,https://zh.wikipedia.org/wiki/1997年中华人民共和国县级以上行政区划变更列表

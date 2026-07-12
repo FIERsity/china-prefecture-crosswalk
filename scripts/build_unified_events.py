@@ -48,6 +48,8 @@ def main() -> None:
         relation_type = TYPE_MAP[row["事件类型"]]
         if row["事件ID"] == "PL-2002-009":
             entity_id, relation_type = "CNUR-000346", "split"
+        if row["事件ID"] == "PL-2002-008":
+            entity_id, relation_type = "CNUR-000362", "split"
         risks = []
         if relation_type in {"merge", "split"}: risks.append(f"{relation_type}_event")
         if row["年份"] == "2018" and row["事件ID"] == "PL-2018-001": risks.append("publication_year_differs")
