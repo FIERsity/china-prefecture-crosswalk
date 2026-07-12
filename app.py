@@ -47,20 +47,37 @@ if page == "数据库浏览与下载":
     c2.metric("当前面板实体", int((master.entity_scope == "current_panel_entity").sum()))
     c3.metric("历史实体", int((master.entity_scope == "historical_entity").sum()))
     c4.metric("统一事件", len(m.unified_events))
-    f1, f2, f3 = st.columns(3)
-    province = f1.selectbox("省份", ["全部"] + sorted(master.province_name_zh.unique()))
-    scope = f2.selectbox("实体范围", ["全部"] + sorted(master.entity_scope.unique()))
-    keyword = f3.text_input("名称或 CNUR 编号")
-    shown = master.copy()
-    if province != "全部": shown = shown[shown.province_name_zh == province]
-    if scope != "全部": shown = shown[shown.entity_scope == scope]
-    if keyword:
-        needle = keyword.strip().lower()
-        shown = shown[shown.apply(lambda row: needle in row.entity_id.lower() or needle in row.canonical_name_zh.lower() or needle in row.legacy_entity_id.lower(), axis=1)]
-    st.dataframe(shown, use_container_width=True, hide_index=True)
-    d1, d2 = st.columns(2)
-    d1.download_button("下载 V2.0 CSV", (release_dir / "china_city_entity_master_V2.0.csv").read_bytes(), "china_city_entity_master_V2.0.csv", "text/csv")
-    d2.download_button("下载 V2.0 Excel", (release_dir / "china_city_entity_master_V2.0.xlsx").read_bytes(), "china_city_entity_master_V2.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    master_tab, annual_tab = st.tabs(["实体总表", "1987—2026 年度状态"])
+    with master_tab:
+        f1, f2, f3 = st.columns(3)
+        province = f1.selectbox("省份", ["全部"] + sorted(master.province_name_zh.unique()), key="master_province")
+        scope = f2.selectbox("实体范围", ["全部"] + sorted(master.entity_scope.unique()))
+        keyword = f3.text_input("名称或 CNUR 编号")
+        shown = master.copy()
+        if province != "全部": shown = shown[shown.province_name_zh == province]
+        if scope != "全部": shown = shown[shown.entity_scope == scope]
+        if keyword:
+            needle = keyword.strip().lower()
+            shown = shown[shown.apply(lambda row: needle in row.entity_id.lower() or needle in row.canonical_name_zh.lower() or needle in row.legacy_entity_id.lower(), axis=1)]
+        st.dataframe(shown, use_container_width=True, hide_index=True)
+        d1, d2 = st.columns(2)
+        d1.download_button("下载 V2.0 CSV", (release_dir / "china_city_entity_master_V2.0.csv").read_bytes(), "china_city_entity_master_V2.0.csv", "text/csv")
+        d2.download_button("下载 V2.0 Excel", (release_dir / "china_city_entity_master_V2.0.xlsx").read_bytes(), "china_city_entity_master_V2.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    with annual_tab:
+        a1, a2 = st.columns(2)
+        selected_year = a1.selectbox("选择年份", list(range(1987, 2027)), index=39)
+        annual_province = a2.selectbox("省份", ["全部"] + sorted(m.roster.province_name_zh.unique()), key="annual_province")
+        annual = m.roster[m.roster.year.astype(int) == selected_year].copy()
+        if annual_province != "全部": annual = annual[annual.province_name_zh == annual_province]
+        active_count = int((annual.status == "active").sum())
+        s1, s2, s3 = st.columns(3)
+        s1.metric("当年有效实体", active_count)
+        s2.metric("尚未设立", int((annual.status == "not_established").sum()))
+        s3.metric("已撤销", int((annual.status == "abolished").sum()))
+        st.dataframe(annual, use_container_width=True, hide_index=True)
+        e1, e2 = st.columns(2)
+        e1.download_button("下载完整年度状态表", csv_bytes(m.roster), "legal_roster_1987_2026.csv", "text/csv")
+        e2.download_button("下载历史名称区间表", csv_bytes(m.names), "entity_names_1987_2026.csv", "text/csv")
     st.caption("运行时年度状态覆盖 1987—2026。CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
 
 elif page == "批量检查":
