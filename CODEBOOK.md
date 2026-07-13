@@ -10,13 +10,9 @@ One row per stable research entity. `verification_status` reports whether this f
 
 Temporal name/status spans. Blank `name_zh` values are intentional when the research entity was not an active legal prefecture. Spans are closed intervals.
 
-## `data/processed/legal_roster_2000_2024.csv`
-
-One row per research entity and year. This is the first provisional legal-status layer. Records marked `inherited_unverified` have passed structural checks only and must not be described as individually source-verified.
-
 ## Unified 1987-2026 temporal layer
 
-`legal_roster_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Existing 2000-2024 legal-status records take precedence when compatible with the reviewed establishment year; earlier and later years are reconstructed from reviewed event chains or explicitly marked `inferred`. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
+`legal_roster_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Annual legal-status records are reconciled against reviewed establishment years and event chains; reconstructed observations are explicitly marked `inferred`. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
 
 ## `data/processed/events_2000_2026.csv`
 
@@ -44,7 +40,7 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 
 The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.
 
-Historical units absent from the 2000—2024 research panel are registered in `historical_entities.csv`. Non-1:1 outcomes are represented in `unified_event_relations.csv`; in particular, Yanbei splits to Datong and Shuozhou, while the 1996 Chongqing transition links Wanxian, Fuling, and Qianjiang without permitting automatic value conversion.
+Historical units needed for complete lineage are registered in `historical_entities.csv`. Non-1:1 outcomes are represented in `unified_event_relations.csv`; in particular, Yanbei splits to Datong and Shuozhou, while the 1996 Chongqing transition links Wanxian, Fuling, and Qianjiang without permitting automatic value conversion.
 
 `major_lineage_relations.csv` is the reviewed material-lineage layer built from county-level composition. `county_affiliation_transitions.csv` records the county-level units supporting each relation. It focuses on changes that materially alter the main territorial composition of a prefecture entity; incidental transfers of one or two peripheral counties are normally omitted. Every relation in this layer has `automatic_mapping=false`.
 

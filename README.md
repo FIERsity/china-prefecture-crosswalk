@@ -3,7 +3,7 @@
 [![Data validation](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml/badge.svg)](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
-[![Version](https://img.shields.io/badge/data-v2.0-1f6e5a.svg)](data/releases/v2.0)
+[![Version](https://img.shields.io/badge/data-v3.0-1f6e5a.svg)](data/releases/v3.0)
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
 
@@ -17,20 +17,20 @@
 
 网页提供四个入口：
 
-- 数据库浏览与 V2.0 CSV/Excel 下载；
+- 全量数据库浏览与 V3.0 CSV/Excel 下载；
 - 上传 CSV/XLSX 批量匹配城市名称；
 - 单个名称、年份和省份查询；
 - 1987—2026 行政区划事件与维基原始证据检索。
 
 上传文件只在当前会话内存中处理，不持久化。OCR和模糊结果必须人工确认；合并、拆分和代管关系不会自动重算研究变量。
 
-## V2.0 数据概览
+## V3.0 全量数据概览
 
 | 内容 | 数量/范围 |
 |---|---:|
 | 永久 CNUR 实体 | 363 |
-| 2000—2024 面板实体 | 340 |
-| 补充历史实体 | 5 |
+| 持续追踪研究实体 | 340 |
+| 历史实体 | 23 |
 | 实体—年度状态 | 14,520（1987—2026） |
 | 统一地级变更事件 | 144 |
 | 事件关系 | 149 |
@@ -43,8 +43,8 @@
 
 | 文件 | 用途 |
 |---|---|
-| [`china_city_entity_master_V2.0.csv`](data/releases/v2.0/china_city_entity_master_V2.0.csv) | 机器读取、R/Python合并 |
-| [`china_city_entity_master_V2.0.xlsx`](data/releases/v2.0/china_city_entity_master_V2.0.xlsx) | 人工浏览、筛选和核查 |
+| [`china_city_entity_master_V3.0.csv`](data/releases/v3.0/china_city_entity_master_V3.0.csv) | 机器读取、R/Python合并 |
+| [`china_city_entity_master_V3.0.xlsx`](data/releases/v3.0/china_city_entity_master_V3.0.xlsx) | 人工浏览、筛选和核查 |
 | [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
 | [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
 | [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 363实体 × 40年的年度状态长表 |
@@ -156,7 +156,7 @@ cnur events --year 1993 --type split --output events.csv
 - **年度状态**：某实体在1987—2026各年是否存在、名称、层级及推导依据；
 - **行政区划事件**：改名、撤地设市、新设、撤销、合并、拆分和代管；
 - **事件关系**：事件来源和目标实体，以及是否允许自动连续；
-- **历史实体**：2000年前已经撤销、但对历史事件连续性必要的实体。
+- **历史实体**：覆盖期内已撤销、合并，或为解释跨期关系所必需的地级实体。
 
 例如雁北地区撤销后分别关联大同和朔州，因此被记录为一对多 `split`，不能自动把历史统计值分配给任一城市。
 
@@ -181,8 +181,8 @@ cnur events --year 1993 --type split --output events.csv
 - 当前主要二手信源为中文维基百科年度行政区划变更页面，并保存页面URL和修订号；
 - 部分事件同时记录国务院、民政部或地方政府批文号；
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
-- V2.0不声称已经为每条记录完成官方批复原件级核验；
-- 原始340实体宽表是研究平衡面板，不是逐年法定地级单位名单；
+- V3.0不声称已经为每条记录完成官方批复原件级核验；
+- 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
 - 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
 
 ## 引用
@@ -190,7 +190,7 @@ cnur events --year 1993 --type split --output events.csv
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 
 ```text
-China Urban Research Entity Crosswalk, Version 2.0.
+China Urban Research Entity Crosswalk, Version 3.0.
 https://github.com/FIERsity/china-prefecture-crosswalk
 ```
 

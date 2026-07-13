@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export the CNUR city research entity master table V2.0."""
+"""Export the CNUR full city research entity master table V3.0."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
 DEST = Path("/Volumes/DataHub/SourceData/admin/china")
-OUTPUT = DEST / "china_city_entity_master_V2.0.csv"
+OUTPUT = DEST / "china_city_entity_master_V3.0.csv"
 
 
 def read(name):
@@ -36,7 +36,7 @@ def main():
             final = sorted(roster[eid], key=lambda r: int(r["year"]))[-1]
             spans = sorted(names[eid], key=lambda r: int(r["start_year"]))
             history = "; ".join(f"{r['start_year']}-{r['end_year']} {r['name_zh'] or '['+r['legal_status']+']'}" for r in spans)
-            rows.append({"entity_id": eid, "legacy_entity_id": item["legacy_entity_id"], "canonical_name_zh": e["canonical_name_zh"], "entity_scope": "current_panel_entity", "province_name_zh": e["province_name_zh"], "province_short_zh": e["province_short_zh"], "entity_type": e["entity_level"], "first_active_year": first, "last_active_year": last, "status_in_2026": final["status"], "verification_status": e["verification_status"], "name_history": history, "event_count": events[eid], "successor_summary": "", "primary_source_url": ""})
+            rows.append({"entity_id": eid, "legacy_entity_id": item["legacy_entity_id"], "canonical_name_zh": e["canonical_name_zh"], "entity_scope": "research_entity", "province_name_zh": e["province_name_zh"], "province_short_zh": e["province_short_zh"], "entity_type": e["entity_level"], "first_active_year": first, "last_active_year": last, "status_in_2026": final["status"], "verification_status": e["verification_status"], "name_history": history, "event_count": events[eid], "successor_summary": "", "primary_source_url": ""})
         else:
             h = historical[eid]
             annual_active = [r for r in roster[eid] if r["status"] == "active"]

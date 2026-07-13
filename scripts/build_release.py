@@ -178,7 +178,7 @@ def main() -> None:
         if name in common:
             aliases.append({"alias": common[name], "entity_id": span["entity_id"], "alias_type": "common_abbreviation", "start_year": span["start_year"], "end_year": span["end_year"], "level": "prefecture", "source_id": span["source_id"], "review_status": "reviewed", "rule_version": RULE_VERSION})
     for alias, entity_id in (("亳州", "E341600"), ("毫州", "E341600"), ("亳州市", "E341600"), ("毫州市", "E341600")):
-        aliases.append({"alias": alias, "entity_id": entity_id, "alias_type": "ocr_variant" if "毫" in alias else "manual_alias", "start_year": 2000, "end_year": 2024, "level": "prefecture", "source_id": "SRC-LEGACY-SNAPSHOT", "review_status": "reviewed", "rule_version": RULE_VERSION})
+        aliases.append({"alias": alias, "entity_id": entity_id, "alias_type": "ocr_variant" if "毫" in alias else "manual_alias", "start_year": 1987, "end_year": 2026, "level": "prefecture", "source_id": "SRC-LEGACY-SNAPSHOT", "review_status": "reviewed", "rule_version": RULE_VERSION})
     aliases = list({(r["alias"], r["entity_id"], r["start_year"], r["end_year"]): r for r in aliases}.values())
     write_csv(PROCESSED / "aliases.csv", list(aliases[0]), aliases)
 

@@ -273,4 +273,4 @@ def query_events(entity_id=None, province=None, year=None, event_type=None): ret
 def audit_report(results: list[MatchResult], config: dict[str, Any]) -> str:
     counts: dict[str, int] = {}
     for result in results: counts[result.match_status] = counts.get(result.match_status, 0) + 1
-    return json.dumps({"data_version": "2.0.0", "coverage": "1987-2026", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)
+    return json.dumps({"data_version": "3.0.0", "coverage": "1987-2026", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)
