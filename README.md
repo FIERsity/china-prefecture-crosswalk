@@ -1,9 +1,14 @@
 # China Urban Research Entity Crosswalk
 
 [![Data validation](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml/badge.svg)](https://github.com/FIERsity/china-prefecture-crosswalk/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/FIERsity/china-prefecture-crosswalk?sort=semver&label=release)](https://github.com/FIERsity/china-prefecture-crosswalk/releases)
 [![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
-[![Version](https://img.shields.io/badge/data-v3.0-1f6e5a.svg)](data/releases/v3.0)
+
+[![Web app](https://img.shields.io/badge/use-online_crosswalk-1F6E5A?logo=render&logoColor=white)](https://china-prefecture-crosswalk.onrender.com)
+[![Download CSV](https://img.shields.io/badge/download-V3.0_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.csv)
+[![Download Excel](https://img.shields.io/badge/download-V3.0_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.xlsx)
+[![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速使用)
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
 
