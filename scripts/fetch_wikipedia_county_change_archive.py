@@ -363,9 +363,9 @@ def structured_change(row: dict[str, object]) -> tuple[list[str], list[str], str
     if "开发区" in all_text:
         types.append("开发区")
     types = list(dict.fromkeys(types))
-    scope = "county_level" if any(item in COUNTY_UNIT_TYPES for item in types) else (
-        "historical_county_level_other" if any(item in HISTORICAL_UNIT_TYPES for item in types) else (
-            "non_county_development_zone" if "开发区" in types else "untyped_county_record"
+    scope = "non_county_development_zone" if "开发区" in types and not (old or new) else (
+        "county_level" if any(item in COUNTY_UNIT_TYPES for item in types) else (
+            "historical_county_level_other" if any(item in HISTORICAL_UNIT_TYPES for item in types) else "untyped_county_record"
         )
     )
     return old, new, description, types, scope
