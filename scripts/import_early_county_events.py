@@ -19,6 +19,14 @@ import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
 
+from county_unit_normalization import (
+    extract_counted_source_units,
+    is_counted_unit_phrase,
+    normalize_unit_list,
+    normalize_unit_name,
+    split_counted_group,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = ROOT / "data" / "processed"
 RAW = ROOT / "data" / "raw" / "early_admin_change_sources"
@@ -241,14 +249,33 @@ def find_units(text: str) -> list[str]:
     matches = re.findall(r"[\u4e00-\u9fff]{1,18}?(?:自治县|自治旗|县级市|市|县|区|旗|林区|特区)", text)
     units = []
     for value in matches:
-        value = value.strip(PUNCTUATION)
+        raw_value = value.strip(PUNCTUATION)
+        if is_counted_unit_phrase(raw_value):
+            # The count is a list marker.  ``all_units`` recovers its members
+            # from the surrounding transfer clause instead.
+            continue
+        value = normalize_unit_name(raw_value)
+        if not value:
+            continue
+        if value.startswith("与"):
+            continue
         while value and value[0] in "撤销将把设立恢复原属以为由及和的":
             value = value[1:]
-        if any(token in value for token in ("行政", "区域", "并入", "划归", "管辖", "设立", "撤销", "原属")):
+        if any(token in value for token in ("行政", "区域", "并入", "划归", "管辖", "设立", "撤销", "原属", "国务院", "关于", "批复", "同意", "调整", "实行", "地级市", "升为", "部分", "公社", "大队", "生产队", "域", "改为", "更名为", "直辖", "并将", "领导", "所属", "等为", "市与", "及其")) or value in {"县级市", "地级市"}:
             continue
         if len(value) >= 2 and value not in units and not value.endswith(("省", "自治区")):
             units.append(value)
     return units
+
+
+def all_units(text: str) -> list[str]:
+    """Find explicit names and expand counted source lists."""
+
+    values = find_units(text)
+    for value in extract_counted_source_units(text):
+        if value not in values:
+            values.append(value)
+    return normalize_unit_list(values)
 
 
 def classify(text: str) -> str:
@@ -278,16 +305,19 @@ def field_units(text: str, event_type: str, units: list[str]) -> tuple[str, str]
         r"将([^，。；]+?)(?:划归|改为|更名为)([^，。；]+)",
     ]
     for pattern in patterns:
-        match = re.search(pattern, text)
-        if match:
-            old_units = find_units(match.group(1))
-            new_units = find_units(match.group(2))
+        for match in re.finditer(pattern, text):
+            old_units.extend(split_counted_group(match.group(1)))
+            old_units.extend(all_units(match.group(1)))
+            new_units.extend(all_units(match.group(2)))
+        if old_units or new_units:
             break
     old_units = [unit for unit in old_units if not unit.endswith(("地区", "盟", "自治州"))]
     new_units = [unit for unit in new_units if not unit.endswith(("地区", "盟", "自治州"))]
+    old_units = list(dict.fromkeys(old_units))
+    new_units = list(dict.fromkeys(new_units))
     if not old_units and event_type in {"abolish", "merge", "rename", "jurisdiction_transfer"}:
         old_units = units[:1]
-    if not new_units and event_type in {"split", "rename", "jurisdiction_transfer", "merge"}:
+    if not new_units and event_type in {"split", "rename", "merge"}:
         new_units = units[1:2] if len(units) > 1 else []
     return "、".join(old_units), "、".join(new_units)
 
@@ -322,7 +352,7 @@ def build(refresh: bool) -> list[dict[str, str]]:
             text = article_text(source, refresh)
             items = split_items(text)
         for index, (province, item) in enumerate(items, 1):
-            units = find_units(item)
+            units = all_units(item)
             event_type = classify(item)
             parents = prefecture_names(item, units, all_prefecture_names)
             county_units = [unit for unit in units if unit not in parents and not unit.endswith(("地区", "盟", "自治州"))]

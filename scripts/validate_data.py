@@ -6,6 +6,8 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+from county_unit_normalization import is_counted_unit_phrase
+
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
@@ -211,6 +213,13 @@ def main() -> None:
     )
     require(len(all_county_events) == len(early_county_events) + len(county_events), "combined county event layer is incomplete")
     require(len({row["event_id"] for row in all_county_events}) == len(all_county_events), "combined county event IDs are not unique")
+    for row in all_county_events:
+        for field in ("county_names", "old_county_units", "new_county_units"):
+            leaked = [
+                token for token in row.get(field, "").replace("，", "、").split("、")
+                if is_counted_unit_phrase(token)
+            ]
+            require(not leaked, f"count phrase leaked into {field}: {row['event_id']}={leaked}")
     require(min(int(row["year"]) for row in all_county_events) == 1983, "early county coverage does not start in 1983")
     require(max(int(row["year"]) for row in all_county_events) == 2026, "combined county coverage does not reach 2026")
     require(any("撤销韩城县" in row["change_description"] and row["prefecture_entity_ids"] == "CNUR-000293" for row in early_county_events), "Hancheng county-to-city event missing")
