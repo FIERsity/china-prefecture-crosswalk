@@ -78,6 +78,21 @@ COUNTIES = {
     "MAJOR-1997-WUZHOU-WZ": ["岑溪市","藤县","蒙山县"],
 }
 
+# County-only transfers that are important for the county history shown under
+# a prefecture query, but do not represent a major prefecture lineage case.
+# Keep the two source prefectures separate: the wording "二县/三县" is a
+# count phrase, not part of either county's name.
+COUNTY_ONLY_TRANSITIONS = [
+    ("COUNTY-1983-WEINAN-XIAN", 1983, "临潼县", "渭南地区", "CNUR-000293", "西安市", "CNUR-000289"),
+    ("COUNTY-1983-WEINAN-XIAN", 1983, "蓝田县", "渭南地区", "CNUR-000293", "西安市", "CNUR-000289"),
+    ("COUNTY-1983-XIANYANG-XIAN", 1983, "户县", "咸阳地区", "CNUR-000292", "西安市", "CNUR-000289"),
+    ("COUNTY-1983-XIANYANG-XIAN", 1983, "周至县", "咸阳地区", "CNUR-000292", "西安市", "CNUR-000289"),
+    ("COUNTY-1983-XIANYANG-XIAN", 1983, "高陵县", "咸阳地区", "CNUR-000292", "西安市", "CNUR-000289"),
+]
+
+COUNTY_ONLY_SOURCE_EVENT = "XQH-1983-SN-02"
+COUNTY_ONLY_SOURCE_URL = "https://www.xzqh.org/html/show/sn/20499.html"
+
 
 def write(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
     with path.open("w", encoding="utf-8", newline="") as handle:
@@ -94,6 +109,19 @@ def main() -> None:
         case = by_id[case_id]
         for name in names:
             county_rows.append({"case_id":case_id,"year":case["year"],"county_name_at_event":name,"from_prefecture_name":case["from_name"],"from_entity_key":case["from_entity_key"],"to_prefecture_name":case["to_name"],"to_entity_id":case["to_entity_id"],"source_event_id":case["source_event_id"],"source_url":case["source_url"],"review_status":"reviewed_county_composition"})
+    for case_id, year, county_name, from_name, from_entity_key, to_name, to_entity_id in COUNTY_ONLY_TRANSITIONS:
+        county_rows.append({
+            "case_id": case_id,
+            "year": year,
+            "county_name_at_event": county_name,
+            "from_prefecture_name": from_name,
+            "from_entity_key": from_entity_key,
+            "to_prefecture_name": to_name,
+            "to_entity_id": to_entity_id,
+            "source_event_id": COUNTY_ONLY_SOURCE_EVENT,
+            "source_url": COUNTY_ONLY_SOURCE_URL,
+            "review_status": "reviewed_county_transfer",
+        })
     write(OUT / "major_lineage_relations.csv", fields, relations)
     write(OUT / "county_affiliation_transitions.csv", list(county_rows[0]), county_rows)
     print(f"major_relations={len(relations)} county_transitions={len(county_rows)}")
