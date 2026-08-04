@@ -10,7 +10,7 @@ One row per stable research entity. `verification_status` reports whether this f
 
 Temporal name/status spans. Blank `name_zh` values are intentional when the research entity was not an active legal prefecture. Spans are closed intervals.
 
-## Unified 1987-2026 temporal layer
+## Annual status layer: 1987—2026
 
 `legal_roster_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Annual legal-status records are reconciled against reviewed establishment years and event chains; reconstructed observations are explicitly marked `inferred`. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
 
@@ -52,7 +52,7 @@ This is the browser-facing county event layer. It combines the 1987—2026 Wikip
 
 ## `data/processed/unified_events_1987_2026.csv`
 
-The reviewed 1987—2026 prefecture event table. `prefecture_administrative_events_1983_2026.csv` is the browser/package event interface: it preserves this table and appends the 67 early descriptive records from `prefecture_events_early_1983_1986.csv`. Its `entity_ids` and `prefecture_entity_ids` fields support related-card display; early rows deliberately set `automatic_continuity=false` and retain the full source wording in `description`. The 1983—1986 rows are event evidence, not a reconstructed annual legal roster.
+The reviewed 1987—2026 prefecture event table. `prefecture_administrative_events_1983_2026.csv` is the browser/package event interface: it preserves this table and appends the 67 early descriptive records from `prefecture_events_early_1983_1986.csv`. Its `entity_ids` and `prefecture_entity_ids` fields support related-card display; early rows deliberately set `automatic_continuity=false` and retain the full source wording in `description`. The display layer uses `description` as the event record; `old_prefecture_name` and `new_prefecture_name` remain analytical hints and are not rendered as a cleaned lineage. The 1983—1986 rows are event evidence, not a reconstructed annual legal roster.
 
 The combined event layer uses one event-type vocabulary and one provenance structure across the periods. The query window is 1983—2026; the current source records end in 2018, while the annual status layer continues through 2026.
 

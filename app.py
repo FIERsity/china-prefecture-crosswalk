@@ -33,7 +33,7 @@ def xlsx_bytes(df):
     return buffer.getvalue()
 
 st.title("中国城市面板匹配工具")
-st.caption("保守、可解释的中国地级行政实体名称与年份核验 · 匹配覆盖 1987—2026")
+st.caption("保守、可解释的中国地级行政实体名称与年份核验 · 查询覆盖 1983—2026")
 st.info("上传文件只在当前会话内存中处理，不会持久化。请勿上传包含敏感信息的数据。")
 page = st.sidebar.radio("入口", ["数据库浏览与下载", "批量检查", "单个名称查询", "行政区划变更查询"])
 m = matcher()
@@ -151,8 +151,10 @@ elif page == "单个名称查询":
         if result.candidates: st.dataframe(result.candidates, use_container_width=True)
         if result.entity_id:
             detail = m.query_entity(result.entity_id)
-            st.subheader("名称历史"); st.dataframe(detail["names"], use_container_width=True)
-            st.subheader("相关事件"); st.dataframe(detail["events"], use_container_width=True)
+            st.subheader("规范名沿革与地级行政区划变更")
+            st.dataframe(detail["names"], use_container_width=True)
+            event_columns = [column for column in ("year", "province_name", "event_type", "description", "source_url", "source_locator", "review_status") if column in detail["events"][0]] if detail["events"] else []
+            st.dataframe(pd.DataFrame(detail["events"])[event_columns] if event_columns else pd.DataFrame(), use_container_width=True)
             st.subheader("重大实体关系"); st.dataframe(detail["major_lineage"], use_container_width=True)
         title = quote(f"别名建议：{name}")
         body = quote(f"原始写法：{name}\n年份：{year or '未提供'}\n省份：{province or '未提供'}\n建议实体：{result.entity_id}\n匹配方法：{result.match_method}")
@@ -171,8 +173,8 @@ else:
     with normalized_tab:
         events = m.query_events(None if entity_label == "全部" else entity_options[entity_label], province or None, year or None, None if event_type == "全部" else event_type)
         st.dataframe(events, use_container_width=True)
-        st.caption("统一覆盖 1987—2026 可获得资料；accepted_* 可用于事件检索，review_required 仅作待复核证据，不用于自动映射。")
-        st.download_button("下载统一事件库", csv_bytes(events), "unified_events_1987_2026.csv", "text/csv")
+        st.caption("统一查询窗口从1983年开始；早期记录保留来源描述，accepted_* 可用于事件检索，review_required 仅作待复核证据，不用于自动映射。")
+        st.download_button("下载地级行政区划事件库", csv_bytes(events), "prefecture_administrative_events_1983_2026.csv", "text/csv")
     with lineage_tab:
         lineage = m.major_lineage_relations.copy()
         counties = m.county_transitions.copy()

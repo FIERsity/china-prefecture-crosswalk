@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.0 - 2026-08-04
+
+- Unified the public query window at 1983—2026 across the web app, Streamlit entry, CLI audit report, and repository descriptions.
+- Combined canonical-name history and prefecture-level administrative-unit changes in the single-name result view.
+- Changed event display to preserve the source `description`; derived old/new fields remain available for analysis but are not presented as cleaned facts.
+
 ## 3.3.0 - 2026-08-04
 
 - Added a 211-row prefecture event interface covering the 1983—2026 query window, including 67 early city, prefecture, and league changes extracted from preserved source text.
