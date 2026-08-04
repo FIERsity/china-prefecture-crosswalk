@@ -24,7 +24,7 @@
       <section class="hero">
         <div>
           <p class="eyebrow">RESEARCH ENTITY CROSSWALK</p>
-          <h1>中国城市行政区划沿革<br><em>按名称、年份和省份查询。</em></h1>
+          <h1>中国城市行政区划沿革<br><em>按名称查询。</em></h1>
           <p class="hero-copy">查询历史名称、年度状态和行政区划变更。</p>
         </div>
         <div class="hero-note"><span>363</span><small>跨期研究实体<br>1983—2026</small></div>
@@ -41,27 +41,19 @@
           <form id="match-form" class="card query-card">
             <div class="section-label">01 / MATCH ONE NAME</div>
             <h2>查询一个名称</h2>
-            <p class="muted">支持地级行政单位和县级名称；填写年份、省份，可缩小范围。</p>
+            <p class="muted">支持地级行政单位和县级名称；省份可选。</p>
 
             <label for="name-input">行政区名称</label>
             <input id="name-input" autocomplete="off" placeholder="例如：思茅县、思茅市、徽州地区" required>
-            <div class="form-row">
-              <div>
-                <label for="year-input">年份</label>
-                <input id="year-input" inputmode="numeric" type="number" min="1983" max="2026" placeholder="2005">
-              </div>
-              <div>
-                <label for="province-input">省份（可选）</label>
-                <input id="province-input" autocomplete="off" placeholder="云南省">
-              </div>
-            </div>
+            <label for="province-input">省份（可选）</label>
+            <input id="province-input" autocomplete="off" placeholder="云南省">
             <button class="primary-button" type="submit">开始核验 <span>↗</span></button>
 
             <div class="examples">
               <span>试试示例</span>
-              <button type="button" data-example="思茅市|2005|云南省">思茅市 · 2005</button>
-              <button type="button" data-example="徽州地区|1987|安徽省">徽州地区 · 1987</button>
-              <button type="button" data-example="香格里拉市|2010|云南省">同名风险</button>
+              <button type="button" data-example="思茅市|云南省">思茅市</button>
+              <button type="button" data-example="徽州地区|安徽省">徽州地区</button>
+              <button type="button" data-example="香格里拉市|云南省">同名风险</button>
             </div>
           </form>
 

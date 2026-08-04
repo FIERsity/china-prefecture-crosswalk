@@ -142,11 +142,9 @@ elif page == "批量检查":
 
 elif page == "单个名称查询":
     name = st.text_input("行政区名称")
-    c1, c2 = st.columns(2)
-    year = c1.number_input("年份（0 表示不提供）", min_value=0, max_value=2100, value=0)
-    province = c2.text_input("省份（可选）")
+    province = st.text_input("省份（可选）")
     if name:
-        result = m.match_name(name, year or None, province or None)
+        result = m.match_name(name, None, province or None)
         st.json(result.output_columns())
         if result.candidates: st.dataframe(result.candidates, use_container_width=True)
         if result.entity_id:
@@ -157,7 +155,7 @@ elif page == "单个名称查询":
             st.dataframe(pd.DataFrame(detail["events"])[event_columns] if event_columns else pd.DataFrame(), use_container_width=True)
             st.subheader("重大实体关系"); st.dataframe(detail["major_lineage"], use_container_width=True)
         title = quote(f"别名建议：{name}")
-        body = quote(f"原始写法：{name}\n年份：{year or '未提供'}\n省份：{province or '未提供'}\n建议实体：{result.entity_id}\n匹配方法：{result.match_method}")
+        body = quote(f"原始写法：{name}\n省份：{province or '未提供'}\n建议实体：{result.entity_id}\n匹配方法：{result.match_method}")
         st.link_button("提交公共别名建议", f"https://github.com/FIERsity/china-prefecture-crosswalk/issues/new?title={title}&body={body}")
 
 else:
