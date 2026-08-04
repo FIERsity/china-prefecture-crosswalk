@@ -36,6 +36,12 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 
 `wikipedia_normalized_events_1987_1999.csv` is the semantic normalization layer. Accepted rule extractions require explicit old and new prefecture names; manually reviewed links document their reasoning. Unresolved mergers, abolitions, and pre-2000 entities remain `review_required` and never imply automatic continuity.
 
+## County-level Wikipedia supplement
+
+`wikipedia_county_change_pages.csv` inventories the same annual pages used for the prefecture archive and records the revision checked by the fetcher. `wikipedia_county_change_rows.csv` preserves rows extracted from county-level tables, including the section, table header, cleaned row text, raw cell markup, and source URL.
+
+`county_administrative_events_1987_2026.csv` is a display-oriented layer derived from those rows. `prefecture_entity_ids` is a loose text/entity hit against current and historical prefecture names; it is intentionally not a formal county-to-prefecture genealogy. Directly administered county-level cities and rows whose historical parent is not represented in the current entity registry remain unlinked rather than being assigned by guesswork.
+
 ## `data/processed/unified_events_1987_2026.csv`
 
 The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.
