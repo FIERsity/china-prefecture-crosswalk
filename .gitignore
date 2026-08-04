@@ -5,6 +5,7 @@ __pycache__/
 outputs/*
 !outputs/.gitkeep
 tmp/
+data/raw/early_admin_change_sources/
 *.egg-info/
 build/
 dist/

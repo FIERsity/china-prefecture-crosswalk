@@ -23,14 +23,14 @@
 静态网页提供三个入口：
 
 - 单个名称、年份和省份查询；
-- 1987—2026 行政区划事件检索；
+- 1987—2026 地级行政区划事件检索，1983—2026 县级变更记录；
 - 机器可读数据下载。
 
 网页查询在浏览器本地完成，不需要 Python 服务器，也不会上传用户输入。完整的 CSV/XLSX 批量匹配仍可使用 Python API、CLI 或本地 Streamlit 入口。
 
 网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
 
-当前网页数据还包含 V3.1 县级补充层：重新读取 37 个 Wikipedia 年度页，保留 1,158 条县级原始表格行，整理为 1,149 条县级变更记录。其中 1,128 条通过历史或现行地级实体名称获得宽松关联，用于在单个城市查询结果下提示相关县级记录。该层不宣称完成严格的县级谱系重建。
+当前网页数据还包含 V3.2 县级补充层：1987—2026 年重新读取 37 个 Wikipedia 年度页，另补入 1983—1986 年的 286 条县级以上变更记录，其中六个人民日报版面提供主要原文，1983 年第四季度和 1984 年上半年补入区划地名网按国务院批复整理的转录，合计 1,435 条。早期记录保留原文、版次或页面定位和来源 ID；韩城县改韩城市等县改县级市事件已纳入。县级记录只做描述性展示和宽松地级关联，不宣称完成严格的县级谱系重建。
 
 ## V3.0 全量数据概览
 
@@ -45,8 +45,9 @@
 | 维基地级原始记录 | 988 |
 | 连续性审计 | 1,285 项，0 错误 |
 | 县级变更原始表格行 | 1,158（1987—2026） |
-| 县级变更事件记录 | 1,149，其中 1,118 条明确识别为县级行政区划 |
-| 县级事件宽松关联 | 1,128 条关联到当前或历史地级实体 |
+| 县级变更事件记录 | 1,435（1983—2026），其中 286 条来自早期补录 |
+| 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
+| 来源登记 | 49 条，含页面修订号、版次定位和来源状态 |
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
 
@@ -62,9 +63,11 @@
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
 | [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
-| [`county_administrative_events_1987_2026.csv`](data/processed/county_administrative_events_1987_2026.csv) | Wikipedia 县级变更事件：原单位、去向单位、变更描述、单位类型及宽松地级实体关联 |
+| [`county_administrative_events_1983_2026.csv`](data/processed/county_administrative_events_1983_2026.csv) | 1983—2026 县级变更事件，合并早期版面、批复转录与 Wikipedia 记录 |
+| [`county_administrative_events_1983_1986.csv`](data/processed/county_administrative_events_1983_1986.csv) | 1983—1986 早期县级以上变更补录，含原文、页面定位和来源 ID |
 | [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
 | [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
+| [`source_registry.csv`](data/processed/source_registry.csv) | 统一来源登记：来源类型、时间范围、定位、权威性和核验状态 |
 | [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
 
 完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
@@ -192,7 +195,9 @@ cnur events --year 1993 --type split --output events.csv
 
 ## 信源与限制
 
-- 当前主要二手信源为中文维基百科年度行政区划变更页面，并保存页面URL和修订号；
+- 1987 年以后县级层主要使用中文维基百科年度行政区划变更页面，并保存页面 URL 和修订号；
+- 1983—1986 年早期补录以人民日报历史版面的行政区划变更摘要为主，并用区划地名网按国务院批复整理的 1983 年第四季度、1984 年上半年条目补齐时段，分别保存版次或页面定位、原文和访问链接；
+- 国务院公报历史目录和《中华人民共和国行政区划简册》书目已登记为核验来源，公报扫描件仍需逐页 OCR 或人工复核后，才能替代摘要层；
 - 部分事件同时记录国务院、民政部或地方政府批文号；
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V3.0不声称已经为每条记录完成官方批复原件级核验；

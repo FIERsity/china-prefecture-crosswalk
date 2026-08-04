@@ -89,14 +89,18 @@ def build() -> None:
         "description": row.get("description", ""),
         "source_title": row.get("source_title", ""),
         "source_url": row.get("source_url", ""),
+        "source_id": row.get("source_id", ""),
+        "source_type": row.get("source_type", ""),
+        "source_locator": row.get("source_locator", ""),
+        "source_confidence": row.get("source_confidence", ""),
         "review_status": row.get("review_status", ""),
-    } for row in read_csv("county_administrative_events_1987_2026.csv")]
+    } for row in read_csv("county_administrative_events_1983_2026.csv")]
 
     payload = {
         "meta": {
-            "version": "3.1.0",
+            "version": "3.2.0",
             "ruleVersion": "2026.08.1",
-            "coverage": "1987—2026",
+            "coverage": "1983—2026",
             "entityCount": len(entities),
             "note": "CNUR 是项目研究编号，不是官方行政区划代码。",
         },
@@ -106,6 +110,7 @@ def build() -> None:
         "events": events,
         "countyEvents": county_events,
         "relations": read_csv("event_relations.csv"),
+        "sources": read_csv("source_registry.csv"),
     }
     (OUTPUT / "crosswalk.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
@@ -117,8 +122,9 @@ def build() -> None:
         "entity_names_1987_2026.csv",
         "legal_roster_1987_2026.csv",
         "unified_events_1987_2026.csv",
-        "county_administrative_events_1987_2026.csv",
+        "county_administrative_events_1983_2026.csv",
         "county_unit_type_coverage_1987_2026.csv",
+        "source_registry.csv",
     ):
         shutil.copyfile(SOURCE / filename, OUTPUT / filename)
 
