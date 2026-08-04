@@ -283,22 +283,18 @@ function resultHtml(result, name, year, province) {
 
 function renderMatch() {
   const name = $("#name-input").value.trim();
-  const yearValue = $("#year-input").value.trim();
-  const year = yearValue ? number(yearValue) : null;
   const province = $("#province-input").value.trim();
   if (!name) return;
-  $("#match-result").innerHTML = resultHtml(makeResult(name, year, province), name, year, province);
+  $("#match-result").innerHTML = resultHtml(makeResult(name, null, province), name, null, province);
   bindCandidateCards();
 }
 
 function bindCandidateCards() {
   $$("#match-result [data-candidate-id]").forEach((card) => card.addEventListener("click", () => {
     const name = card.dataset.candidateName || card.dataset.candidateId;
-    const yearValue = $("#year-input").value.trim();
-    const year = yearValue ? number(yearValue) : null;
     const province = $("#province-input").value.trim();
     $("#name-input").value = name;
-    $("#match-result").innerHTML = resultHtml(selectedEntityResult(card.dataset.candidateId, name, year), name, year, province);
+    $("#match-result").innerHTML = resultHtml(selectedEntityResult(card.dataset.candidateId, name, null), name, null, province);
   }));
 }
 
@@ -344,7 +340,7 @@ async function init() {
     $("#match-form").addEventListener("submit", (event) => { event.preventDefault(); renderMatch(); });
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);
-    $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, year, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#year-input").value = year; $("#province-input").value = province; renderMatch(); }));
+    $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; renderMatch(); }));
     $$("[data-view]").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
   } catch (error) {
     $("#match-result").innerHTML = `<p class="result-note">数据加载失败：${escapeHtml(error.message)}。请刷新页面，或查看 GitHub Actions 发布状态。</p>`;
