@@ -68,7 +68,7 @@ function similarity(a, b) {
 }
 
 function partialSimilarity(query, choice) {
-  if (query.length < 2 || choice.length < 2) return 0;
+  if (query.length < 1 || choice.length < 2) return 0;
   const ratio = Math.min(query.length, choice.length) / Math.max(query.length, choice.length);
   if (choice.startsWith(query)) return 0.9 + ratio * 0.08;
   if (choice.includes(query)) return 0.82 + ratio * 0.1;
@@ -81,15 +81,16 @@ function makeResult(name, year, province) {
   if (!normalized) return { status: "unmatched", method: "none", normalized, risk: "blank_name" };
   const provinceNormalized = normalizeProvince(province);
   const rawMatches = state.namesByNormalized.get(normalized) || [];
-  let matches = rawMatches.filter((item) => {
+  const exactEnabled = normalized.length >= 2;
+  let matches = exactEnabled ? rawMatches.filter((item) => {
     const entity = entityFor(item.entity_id);
     return !provinceNormalized || normalizeProvince(entity.province_name_zh) === provinceNormalized;
-  });
-  if (!matches.length && rawMatches.length && provinceNormalized) {
+  }) : [];
+  if (exactEnabled && !matches.length && rawMatches.length && provinceNormalized) {
     const unique = [...new Set(rawMatches.map((item) => item.entity_id))];
     if (unique.length === 1) return problemResult(unique[0], normalized, year, "province_conflict", "省份与实体记录不一致");
   }
-  if (year !== null && year >= 1987 && year <= 2026) {
+  if (exactEnabled && year !== null && year >= 1987 && year <= 2026) {
     const valid = matches.filter((item) => item.start <= year && year <= item.end);
     if (valid.length) matches = valid;
     else if (matches.length && new Set(matches.map((item) => item.entity_id)).size === 1) {
@@ -97,7 +98,7 @@ function makeResult(name, year, province) {
     }
   }
   const ids = [...new Set(matches.map((item) => item.entity_id))];
-  if (ids.length === 1 && (year !== null || new Set(rawMatches.map((item) => item.entity_id)).size === 1)) {
+  if (normalized.length >= 2 && ids.length === 1 && (year !== null || new Set(rawMatches.map((item) => item.entity_id)).size === 1)) {
     const entity = entityFor(ids[0]);
     const status = rosterStatus(ids[0], year);
     const risks = relationRisks(ids[0], year);
@@ -119,8 +120,10 @@ function makeResult(name, year, province) {
       candidates.push({ entity, entityId: item.entity_id, matchedName: item.name, matchType, score: Math.round(score * 1000) / 10 });
     }
   }
-  const unique = [...new Map(candidates.sort((a, b) => b.score - a.score).map((candidate) => [candidate.entityId, candidate])).values()].slice(0, 3);
-  const method = unique.some((candidate) => candidate.matchType === "partial") ? "partial_candidate" : "fuzzy_candidate";
+  const sortedCandidates = candidates.sort((a, b) => b.score - a.score || a.entity.canonical_name_zh.localeCompare(b.entity.canonical_name_zh, "zh-CN"));
+  const deduplicated = [...new Map(sortedCandidates.map((candidate) => [candidate.entityId, candidate])).values()];
+  const method = deduplicated.some((candidate) => candidate.matchType === "partial") ? "partial_candidate" : "fuzzy_candidate";
+  const unique = method === "partial_candidate" ? deduplicated : deduplicated.slice(0, 3);
   return { normalized, status: unique.length ? "needs_confirmation" : "unmatched", method: unique.length ? method : "none", confidence: unique[0]?.score ? unique[0].score / 100 : 0, yearStatus: "not_checked", risk: unique.length ? "manual_confirmation_required" : "unrecognized_name", candidates: unique };
 }
 
@@ -180,7 +183,7 @@ function resultHtml(result, name, year, province) {
     return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>没有找到确定结果</h2></div><span class="status problem">未匹配</span></div><p class="result-note">可补充年份、省份，或检查名称。</p>`;
   }
   if (result.status === "needs_confirmation") {
-    const candidateNote = result.method === "partial_candidate" ? "按输入片段找到以下名称，请选择对应实体。" : "当前有多个候选，请结合年份、省份和来源判断。";
+    const candidateNote = result.method === "partial_candidate" ? `找到 ${result.candidates.length} 个片段候选，按匹配度排列。` : "当前有多个候选，请结合年份、省份和来源判断。";
     return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">候选结果</span></div><p class="result-note">${candidateNote}</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<div class="candidate"><span><strong>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</strong><small>命中名称：${escapeHtml(item.matchedName)} · ${item.matchType === "partial" ? "部分匹配" : "相似匹配"}</small></span><b>${item.score}%</b></div>`).join("")}</div>`;
   }
   const entity = result.entity;
