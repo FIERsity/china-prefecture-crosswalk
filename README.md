@@ -30,6 +30,8 @@
 
 网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
 
+当前网页数据还包含 V3.1 县级补充层：重新读取 37 个 Wikipedia 年度页，保留 1,158 条县级原始表格行，整理为 1,149 条县级变更记录。其中 1,128 条通过历史或现行地级实体名称获得宽松关联，用于在单个城市查询结果下提示相关县级记录。该层不宣称完成严格的县级谱系重建。
+
 ## V3.0 全量数据概览
 
 | 内容 | 数量/范围 |
@@ -42,6 +44,9 @@
 | 事件关系 | 149 |
 | 维基地级原始记录 | 988 |
 | 连续性审计 | 1,285 项，0 错误 |
+| 县级变更原始表格行 | 1,158（1987—2026） |
+| 县级变更事件记录 | 1,149，其中 1,118 条明确识别为县级行政区划 |
+| 县级事件宽松关联 | 1,128 条关联到当前或历史地级实体 |
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
 
@@ -57,6 +62,9 @@
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
 | [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
+| [`county_administrative_events_1987_2026.csv`](data/processed/county_administrative_events_1987_2026.csv) | Wikipedia 县级变更事件：原单位、去向单位、变更描述、单位类型及宽松地级实体关联 |
+| [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
+| [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
 | [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
 
 完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。

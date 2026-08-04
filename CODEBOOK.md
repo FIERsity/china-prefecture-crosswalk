@@ -36,6 +36,16 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 
 `wikipedia_normalized_events_1987_1999.csv` is the semantic normalization layer. Accepted rule extractions require explicit old and new prefecture names; manually reviewed links document their reasoning. Unresolved mergers, abolitions, and pre-2000 entities remain `review_required` and never imply automatic continuity.
 
+## County-level Wikipedia supplement
+
+`wikipedia_county_change_pages.csv` inventories the same annual pages used for the prefecture archive and records the revision checked by the fetcher. `wikipedia_county_change_rows.csv` preserves rows extracted from county-level tables, including the section, table header, cleaned row text, raw cell markup, and source URL.
+
+`county_administrative_events_1987_2026.csv` is a display-oriented event layer derived from those rows. It preserves the source row in `description`, while `change_description` extracts the descriptive change cell when the table structure permits it. `old_county_units` and `new_county_units` are positional “before/related” and “after/destination” hints, not a completed county genealogy; the descriptive sentence is authoritative when the two hints are incomplete. `event_type` covers administrative transfer, merge, split, rename, residence change, abolition, establishment, and jurisdiction adjustment. `prefecture_entity_ids` is a loose text/entity hit against current and historical prefecture names; it is intentionally not a formal county-to-prefecture genealogy. Directly administered county-level cities and rows whose historical parent is not represented in the current entity registry remain unlinked rather than being assigned by guesswork.
+
+The current county-level classification follows the eight ordinary county-level administrative types listed in national statistical materials: 市辖区、县级市、县、自治县、旗、自治旗、特区、林区. Historical `工农区` is retained as an additional legacy type when it appears in a source row. `开发区` is retained for provenance but marked outside the ordinary county-level scope; rows such as government-residence changes that do not expose a type are marked `untyped_county_record` rather than being silently discarded. The source archive is the annual Chinese Wikipedia change-list collection, for example the [2024 county-level change tables](https://zh.wikipedia.org/wiki/2024年中华人民共和国县级以上行政区划变更列表); the project does not claim that Wikipedia alone proves a complete official genealogy.
+
+`county_unit_type_coverage_1987_2026.csv` is an explicit coverage audit. It lists all eight ordinary types even when a type has zero change rows in this period, so “no observed event” is not confused with “category omitted from the extractor”.
+
 ## `data/processed/unified_events_1987_2026.csv`
 
 The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.

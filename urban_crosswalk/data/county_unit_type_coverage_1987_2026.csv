@@ -1,0 +1,11 @@
+unit_type,ordinary_county_level,event_count,note
+市辖区,true,610,ordinary county-level type
+县级市,true,273,ordinary county-level type
+县,true,833,ordinary county-level type
+自治县,true,39,ordinary county-level type
+旗,true,18,ordinary county-level type
+自治旗,true,0,ordinary county-level type
+特区,true,3,ordinary county-level type
+林区,true,10,ordinary county-level type
+工农区,false,2,historical legacy type retained when present
+开发区,false,4,retained for provenance; outside ordinary county-level scope

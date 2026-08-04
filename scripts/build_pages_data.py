@@ -73,11 +73,29 @@ def build() -> None:
         "document_number", "review_status", "source_url",
     )
     events = [{key: row.get(key, "") for key in event_fields} for row in read_csv("unified_events_1987_2026.csv")]
+    county_events = [{
+        "event_id": row.get("event_id", ""),
+        "year": row.get("year", ""),
+        "section": row.get("section", ""),
+        "event_type": row.get("event_type", ""),
+        "prefecture_names": row.get("prefecture_names", ""),
+        "prefecture_entity_ids": row.get("prefecture_entity_ids", ""),
+        "county_names": row.get("county_names", ""),
+        "old_county_units": row.get("old_county_units", ""),
+        "new_county_units": row.get("new_county_units", ""),
+        "change_description": row.get("change_description", ""),
+        "county_unit_types": row.get("county_unit_types", ""),
+        "scope": row.get("scope", ""),
+        "description": row.get("description", ""),
+        "source_title": row.get("source_title", ""),
+        "source_url": row.get("source_url", ""),
+        "review_status": row.get("review_status", ""),
+    } for row in read_csv("county_administrative_events_1987_2026.csv")]
 
     payload = {
         "meta": {
-            "version": "3.0.0",
-            "ruleVersion": "2026.07.1",
+            "version": "3.1.0",
+            "ruleVersion": "2026.08.1",
             "coverage": "1987—2026",
             "entityCount": len(entities),
             "note": "CNUR 是项目研究编号，不是官方行政区划代码。",
@@ -86,6 +104,7 @@ def build() -> None:
         "names": names,
         "rosterStatus": roster_status,
         "events": events,
+        "countyEvents": county_events,
         "relations": read_csv("event_relations.csv"),
     }
     (OUTPUT / "crosswalk.json").write_text(
@@ -98,6 +117,8 @@ def build() -> None:
         "entity_names_1987_2026.csv",
         "legal_roster_1987_2026.csv",
         "unified_events_1987_2026.csv",
+        "county_administrative_events_1987_2026.csv",
+        "county_unit_type_coverage_1987_2026.csv",
     ):
         shutil.copyfile(SOURCE / filename, OUTPUT / filename)
 
