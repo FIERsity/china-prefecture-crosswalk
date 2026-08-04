@@ -21,6 +21,8 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+from county_unit_normalization import normalize_unit_list
+
 ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = ROOT / "data" / "processed"
 API = "https://zh.wikipedia.org/w/api.php"
@@ -392,11 +394,13 @@ def normalize_events(raw_rows: list[dict[str, object]], names: list[tuple[str, s
         matches = [(name, entity_id) for name, entity_id in names if name in text]
         prefecture_names = list(dict.fromkeys(name for name, _entity_id in matches))
         entity_ids = list(dict.fromkeys(entity_id for _name, entity_id in matches))
-        county_names = list(dict.fromkeys(
+        county_names = normalize_unit_list(list(dict.fromkeys(
             name for name in link_texts(str(row["raw_markup"]))
             if name not in prefecture_names and is_unit_name(name, allow_plain_city="县级市" in text or "县级" in text)
-        ))
+        )))
         old_units, new_units, change_description, unit_types, scope = structured_change(row)
+        old_units = normalize_unit_list(old_units)
+        new_units = normalize_unit_list(new_units)
         events.append({
             "event_id": row["row_id"],
             "year": row["year"],
