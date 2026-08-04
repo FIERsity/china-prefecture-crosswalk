@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
 
-[![Web app](https://img.shields.io/badge/use-online_crosswalk-1F6E5A?logo=render&logoColor=white)](https://china-prefecture-crosswalk.onrender.com)
+[![Web app](https://img.shields.io/badge/use-GitHub_Pages-1F6E5A?logo=github&logoColor=white)](https://fiersity.github.io/china-prefecture-crosswalk/)
 [![Download CSV](https://img.shields.io/badge/download-V3.0_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.csv)
 [![Download Excel](https://img.shields.io/badge/download-V3.0_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.xlsx)
 [![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速使用)
@@ -16,18 +16,19 @@
 
 > `CNUR-000001` 等 CNUR 编号是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。
 
-## 在线工具
+## 在线工具（GitHub Pages）
 
-**[打开 China Urban Research Crosswalk](https://china-prefecture-crosswalk.onrender.com)**
+**[打开 China Urban Research Crosswalk](https://fiersity.github.io/china-prefecture-crosswalk/)**
 
-网页提供四个入口：
+静态网页提供三个入口：
 
-- 全量数据库浏览与 V3.0 CSV/Excel 下载；
-- 上传 CSV/XLSX 批量匹配城市名称；
 - 单个名称、年份和省份查询；
-- 1987—2026 行政区划事件与维基原始证据检索。
+- 1987—2026 行政区划事件检索；
+- 机器可读数据下载。
 
-上传文件只在当前会话内存中处理，不持久化。OCR和模糊结果必须人工确认；合并、拆分和代管关系不会自动重算研究变量。
+网页查询在浏览器本地完成，不需要 Python 服务器，也不会上传用户输入。完整的 CSV/XLSX 批量匹配仍可使用 Python API、CLI 或本地 Streamlit 入口。
+
+网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
 
 ## V3.0 全量数据概览
 
@@ -95,7 +96,7 @@ crosswalk_candidate_count
 crosswalk_rule_version
 ```
 
-### 本地网页
+### 完整本地网页（Streamlit）
 
 ```bash
 python3 -m venv .venv
@@ -216,8 +217,10 @@ data/raw/          原始输入快照
 data/processed/    可复现生成的数据层
 data/releases/     面向研究者的版本化发布文件
 data/audit/        实体与连续性审计结果
+docs/              GitHub Pages 静态公共工具
 urban_crosswalk/   独立Python匹配模块
 scripts/           构建、迁移、抓取和验证脚本
+scripts/build_pages_data.py  生成浏览器端数据包
 tests/             回归与网页测试
 app.py             Streamlit网页入口
 ```
