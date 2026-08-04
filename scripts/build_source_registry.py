@@ -204,12 +204,13 @@ def main() -> None:
         "wikipedia_change_pages.csv", "wikipedia_prefecture_change_rows.csv",
         "wikipedia_county_change_pages.csv", "wikipedia_county_change_rows.csv",
         "unified_events_1987_2026.csv", "county_affiliation_transitions.csv",
+        "prefecture_events_early_1983_1986.csv", "prefecture_administrative_events_1983_2026.csv",
         "county_administrative_events_1987_2026.csv", "county_administrative_events_1983_1986.csv",
         "historical_entities.csv",
     ):
         enrich_file(name, url_to_id)
     enrich_derived(url_to_id)
-    print(f"sources={len(registry)} enriched_files=10")
+    print(f"sources={len(registry)} enriched_files=12")
 
 
 if __name__ == "__main__":

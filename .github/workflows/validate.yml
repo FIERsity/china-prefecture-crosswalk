@@ -21,8 +21,9 @@ jobs:
           python scripts/migrate_cnur_ids.py
           python scripts/build_extended_roster.py
           python scripts/audit_unified_continuity.py
-          python scripts/build_source_registry.py
           python scripts/build_county_events.py
+          python scripts/build_prefecture_events.py
+          python scripts/build_source_registry.py
           python scripts/sync_package_data.py
       - name: Verify generated files are committed
         run: git diff --exit-code

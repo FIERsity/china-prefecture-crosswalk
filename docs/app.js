@@ -38,7 +38,8 @@ function entityFor(id) {
 
 function rosterStatus(entityId, year) {
   if (year === null) return "not_checked";
-  if (year < 1987 || year > 2026) return "unsupported_year";
+  if (year < 1983 || year > 2026) return "unsupported_year";
+  if (year < 1987) return "early_event_only";
   return state.data.rosterStatus[entityId]?.[String(year)] || "unknown";
 }
 
@@ -184,6 +185,36 @@ function canonicalNameHistoryHtml(entityId) {
   return `<div class="canonical-history"><div class="section-label">规范名沿革</div><p class="canonical-history-line">${sequence}</p></div>`;
 }
 
+function prefectureEventTypeText(type) {
+  return {
+    jurisdiction_transfer: "行政隶属调整",
+    jurisdiction_adjustment: "辖区调整",
+    upgrade: "升格/省直管调整",
+    establish: "设立",
+    rename: "更名",
+    merge: "合并",
+    split: "拆分",
+    abolish: "撤销",
+  }[type] || "市级变动";
+}
+
+function prefectureSourceLabel(row) {
+  if (row.source_type === "people_daily_summary") return "人民日报版面";
+  if (row.source_type === "secondary_transcription") return "区划地名网转录";
+  if (row.source_type === "state_council_gazette_archive") return "国务院公报";
+  return "Wikipedia 年度页";
+}
+
+function prefectureEventsHtml(entityId) {
+  const rows = (state.data.events || [])
+    .filter((row) => String(row.entity_ids || row.entity_id || "").split("、").includes(entityId))
+    .sort((a, b) => Number(b.year) - Number(a.year) || a.event_id.localeCompare(b.event_id));
+  if (!rows.length) return "";
+  const visible = rows.slice(0, 12);
+  const more = rows.length > visible.length ? `<p class="county-history-more">另有 ${rows.length - visible.length} 条市级记录，见仓库中的市级事件数据。</p>` : "";
+  return `<div class="county-history prefecture-history"><div class="county-history-head"><div class="section-label">市级 / 地区级变更记录</div><span>${rows.length} 条相关记录</span></div><p class="county-history-note">早期记录保留原始描述，市级、地区级和盟级调整按事件文本关联到查询实体。</p><div class="county-event-list">${visible.map((row) => { const flow = `${row.old_prefecture_name || ""}${row.old_prefecture_name && row.new_prefecture_name ? " → " : ""}${row.new_prefecture_name || ""}`; const locator = row.source_locator ? ` · ${escapeHtml(row.source_locator)}` : ""; return `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></div><div class="county-event-change"><span>变更记录</span><p>${escapeHtml(flow || row.description)}</p><small>${escapeHtml(row.description || "")}</small></div><div class="county-event-foot"><span>${escapeHtml(prefectureSourceLabel(row))}</span>${row.source_url ? `<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">来源 ↗${locator}</a>` : ""}</div></article>`; }).join("")}</div>${more}</div>`;
+}
+
 function countyEventTypeText(type) {
   return {
     jurisdiction_transfer: "行政隶属调整",
@@ -225,7 +256,8 @@ function resultHtml(result, name, year, province) {
   }
   const entity = result.entity;
   const riskMessage = result.risk ? `状态：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "名称、年份和层级匹配。";
-  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}</p>${canonicalNameHistoryHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
+  const yearNote = result.yearStatus === "early_event_only" ? "该年份展示市级/县级事件记录；年度状态表从1987年开始。" : "";
+  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : result.yearStatus === "early_event_only" ? "早期事件层" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}${yearNote ? ` ${yearNote}` : ""}</p>${canonicalNameHistoryHtml(result.entityId)}${prefectureEventsHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
 }
 
 function renderMatch() {
@@ -287,7 +319,7 @@ async function init() {
     });
     $("#version-pill").textContent = `V${state.data.meta.version}`;
     $("#rule-version").textContent = state.data.meta.ruleVersion;
-    for (let year = 1987; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
+    for (let year = 1983; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
     $("#match-form").addEventListener("submit", (event) => { event.preventDefault(); renderMatch(); });
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);

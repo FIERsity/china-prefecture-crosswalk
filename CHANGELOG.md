@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.0 - 2026-08-04
+
+- Added a 211-row prefecture event interface covering the 1983—2026 query window, including 67 early city, prefecture, and league changes extracted from preserved source text.
+- Added the early event layer to the website, Python matcher, CLI, package data, downloads, source registry, and validation workflow.
+- Marked 1983—1986 matches as `early_event_only`: event evidence is available, while the annual legal roster still begins in 1987.
+
 ## 3.1.0 - 2026-08-04
 
 - Re-collected county-level administrative-change tables from 37 Chinese Wikipedia annual pages.

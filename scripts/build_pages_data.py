@@ -68,11 +68,14 @@ def build() -> None:
     for row in read_csv("legal_roster_1987_2026.csv"):
         roster_status.setdefault(row["entity_id"], {})[row["year"]] = row["status"]
     event_fields = (
-        "event_id", "year", "province_name", "event_type", "entity_id",
-        "old_prefecture_name", "new_prefecture_name", "approval_date",
-        "document_number", "review_status", "source_url",
+        "event_id", "year", "province_name", "event_type", "entity_id", "entity_ids",
+        "prefecture_names", "prefecture_entity_ids", "old_prefecture_name",
+        "new_prefecture_name", "approval_date", "document_number", "confidence",
+        "automatic_continuity", "review_status", "risk_flags", "description",
+        "review_note", "source_url", "source_revision_id", "source_locator",
+        "source_layer", "source_id", "source_type", "source_confidence",
     )
-    events = [{key: row.get(key, "") for key in event_fields} for row in read_csv("unified_events_1987_2026.csv")]
+    events = [{key: row.get(key, "") for key in event_fields} for row in read_csv("prefecture_administrative_events_1983_2026.csv")]
     county_events = [{
         "event_id": row.get("event_id", ""),
         "year": row.get("year", ""),
@@ -98,11 +101,12 @@ def build() -> None:
 
     payload = {
         "meta": {
-            "version": "3.2.0",
+            "version": "3.3.0",
             "ruleVersion": "2026.08.1",
             "coverage": "1983—2026",
             "entityCount": len(entities),
-            "note": "CNUR 是项目研究编号，不是官方行政区划代码。",
+            "note": "CNUR 是项目研究编号，不是官方行政区划代码；市级事件层覆盖1983—2026，年度状态层覆盖1987—2026。",
+            "prefectureEventCount": len(events),
         },
         "entities": entities,
         "names": names,
@@ -122,6 +126,7 @@ def build() -> None:
         "entity_names_1987_2026.csv",
         "legal_roster_1987_2026.csv",
         "unified_events_1987_2026.csv",
+        "prefecture_administrative_events_1983_2026.csv",
         "county_administrative_events_1983_2026.csv",
         "county_unit_type_coverage_1987_2026.csv",
         "source_registry.csv",
