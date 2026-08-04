@@ -110,7 +110,7 @@ def main() -> None:
     require(len(entities) == 340, "processed entities must contain 340 rows")
     source_ids = {row["source_id"] for row in source_registry}
     require(source_ids == {row["source_id"] for row in sources}, "source registry and source table differ")
-    require(len(source_registry) >= 46, "source registry unexpectedly small")
+    require(len(source_registry) >= 49, "source registry unexpectedly small")
     require(all(row.get("source_id") in source_ids for row in county_events), "Wikipedia county event has unknown source_id")
     require(all(row.get("source_id") in source_ids for row in early_county_events), "early county event has unknown source_id")
     require(all(row.get("source_id") in source_ids for row in unified_events), "unified event has unknown source_id")
@@ -195,6 +195,20 @@ def main() -> None:
     require(len(county_rows) >= 1100, "county Wikipedia archive unexpectedly small")
     require(len(county_events) >= 1100, "county event supplement unexpectedly small")
     require(len(early_county_events) >= 200, "early county event supplement unexpectedly small")
+    early_source_ids = {row["source_id"] for row in early_county_events}
+    require(
+        {
+            "SRC-RMRB-1983-10-28", "SRC-XZQH-1983-Q4",
+            "SRC-XZQH-1984-H1", "SRC-RMRB-1984-01-31",
+            "SRC-RMRB-1985-09-12", "SRC-RMRB-1986-01-26",
+            "SRC-RMRB-1986-07-18", "SRC-RMRB-1987-02-10",
+        } <= early_source_ids,
+        "early county coverage is missing one or more 1983-1986 source windows",
+    )
+    require(
+        sum(row["source_type"] == "secondary_transcription" for row in early_county_events) > 0,
+        "secondary early county transcription layer is missing",
+    )
     require(len(all_county_events) == len(early_county_events) + len(county_events), "combined county event layer is incomplete")
     require(len({row["event_id"] for row in all_county_events}) == len(all_county_events), "combined county event IDs are not unique")
     require(min(int(row["year"]) for row in all_county_events) == 1983, "early county coverage does not start in 1983")

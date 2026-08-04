@@ -14,6 +14,7 @@ import argparse
 import csv
 import html
 import re
+import ssl
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
@@ -71,6 +72,32 @@ SOURCES = [
         "url": "https://cn.govopendata.com/renminribao/1986/7/18/4/",
         "locator": "人民日报 1986-07-18 第4版",
     },
+    {
+        "source_id": "SRC-RMRB-1987-02-10",
+        "year": 1986,
+        "period": "1986-07—1986-12",
+        "title": "1986年下半年全国县级以上行政区划变更情况",
+        "url": "https://cn.govopendata.com/renminribao/1987/2/10/4/",
+        "locator": "人民日报 1987-02-10 第4版",
+    },
+    {
+        "source_id": "SRC-XZQH-1983-Q4",
+        "year": 1983,
+        "period": "1983-10—1983-12",
+        "title": "1983年行政区划（第7页）",
+        "url": "https://www.xzqh.org/html/show/cn/1983_7.html",
+        "locator": "区划地名网 1983年行政区划 第7页",
+        "parser": "xzqh",
+    },
+    {
+        "source_id": "SRC-XZQH-1984-H1",
+        "year": 1984,
+        "period": "1984-01—1984-06",
+        "title": "1984年行政区划（第3页）",
+        "url": "https://www.xzqh.org/html/show/cn/1984_3.html",
+        "locator": "区划地名网 1984年行政区划 第3页",
+        "parser": "xzqh",
+    },
 ]
 
 # These are reviewed links where the report itself only says "陕西省" or
@@ -127,8 +154,10 @@ def fetch_source(source: dict[str, str], refresh: bool) -> str:
     if target.exists() and not refresh:
         return target.read_text(encoding="utf-8")
     request = urllib.request.Request(source["url"], headers={"User-Agent": "china-prefecture-crosswalk/3.2"})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        content = response.read().decode("utf-8")
+    context = ssl._create_unverified_context() if source.get("parser") == "xzqh" else None
+    with urllib.request.urlopen(request, timeout=60, context=context) as response:
+        encoding = "gb18030" if source.get("parser") == "xzqh" else "utf-8"
+        content = response.read().decode(encoding, errors="replace")
     RAW.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
     return content
@@ -141,6 +170,18 @@ def article_text(source: dict[str, str], refresh: bool) -> str:
         raise RuntimeError(f"article not found: {source['url']}")
     text = html.unescape("".join(parser.body_parts))
     return re.sub(r"\s+", "", text).replace("第4版()专栏：", "")
+
+
+def xzqh_items(source: dict[str, str], refresh: bool) -> list[str]:
+    raw = fetch_source(source, refresh)
+    items = re.findall(r"<p>\s*★.*?</p>", raw, flags=re.S)
+    clean = []
+    for item in items:
+        text = re.sub(r"<[^>]+>", "", item)
+        text = html.unescape(re.sub(r"\s+", "", text)).strip()
+        if text.startswith("★") and len(text) > 2:
+            clean.append(text[1:])
+    return clean
 
 
 def split_items(text: str) -> list[tuple[str, str]]:
@@ -260,8 +301,12 @@ def build(refresh: bool) -> list[dict[str, str]]:
     all_prefecture_names, prefecture_ids = load_prefecture_names()
     rows: list[dict[str, str]] = []
     for source in SOURCES:
-        text = article_text(source, refresh)
-        for index, (province, item) in enumerate(split_items(text), 1):
+        if source.get("parser") == "xzqh":
+            items = [("", item) for item in xzqh_items(source, refresh)]
+        else:
+            text = article_text(source, refresh)
+            items = split_items(text)
+        for index, (province, item) in enumerate(items, 1):
             units = find_units(item)
             event_type = classify(item)
             parents = prefecture_names(item, units, all_prefecture_names)
@@ -269,9 +314,9 @@ def build(refresh: bool) -> list[dict[str, str]]:
             old_units, new_units = field_units(item, event_type, county_units)
             county_names = "、".join(county_units)
             rows.append({
-                "event_id": f"RMRB-COUNTY-{source['source_id'].removeprefix('SRC-RMRB-')}-{index:03d}",
+                "event_id": f"{'XZQH' if source.get('parser') == 'xzqh' else 'RMRB'}-COUNTY-{source['source_id'].removeprefix('SRC-RMRB-').removeprefix('SRC-XZQH-')}-{index:03d}",
                 "year": str(source["year"]),
-                "section": f"{province} / {source['period']}",
+                "section": f"{province or '国务院批复转录'} / {source['period']}",
                 "event_type": event_type,
                 "prefecture_names": "、".join(parents),
                 "prefecture_entity_ids": "、".join(sorted({entity_id for name in parents for entity_id in prefecture_ids.get(name, set())})),
@@ -285,10 +330,10 @@ def build(refresh: bool) -> list[dict[str, str]]:
                 "source_title": source["title"],
                 "source_url": source["url"],
                 "source_id": source["source_id"],
-                "source_type": "people_daily_summary",
+                "source_type": "secondary_transcription" if source.get("parser") == "xzqh" else "people_daily_summary",
                 "source_locator": source["locator"],
-                "source_confidence": "primary_text",
-                "review_status": "source_text_parsed_review_required",
+                "source_confidence": "secondary_transcription" if source.get("parser") == "xzqh" else "primary_text",
+                "review_status": "secondary_transcription_review_required" if source.get("parser") == "xzqh" else "source_text_parsed_review_required",
             })
     return rows
 

@@ -24,7 +24,7 @@ Audit bridge between all 63 events and stable research entities. The release val
 
 ## `data/processed/sources.csv` and `data/processed/source_registry.csv`
 
-Source registry. Each source has a type, coverage, locator, authority, and provenance status. Wikipedia is a revisioned secondary source; the 1983—1986 People's Daily summaries are preserved as contemporaneous primary-text transcriptions. The State Council Gazette archive and annual administrative-division books are registered as verification references, not silently treated as row-level evidence.
+Source registry. Each source has a type, coverage, locator, authority, and provenance status. Wikipedia is a revisioned secondary source; six 1983—1986 People's Daily summaries are preserved as contemporaneous primary-text transcriptions, while the 1983 Q4 and 1984 H1 gap periods use separately labelled secondary transcriptions from 区划地名网. The State Council Gazette archive and annual administrative-division books are registered as verification references, not silently treated as row-level evidence.
 
 ## `data/audit/wikipedia_entity_audit.csv`
 
@@ -48,7 +48,7 @@ The current county-level classification follows the eight ordinary county-level 
 
 ## `data/processed/county_administrative_events_1983_2026.csv`
 
-This is the browser-facing county event layer. It combines the 1987—2026 Wikipedia-derived records with 231 records parsed from five 1983—1986 People's Daily archive pages. The early importer keeps the full descriptive sentence and only fills `old_county_units`, `new_county_units`, and `prefecture_entity_ids` as search/display hints. `source_id`, `source_locator`, and `source_confidence` make the origin visible; `source_text_parsed_review_required` means the wording came from a source page but has not yet been converted into a strict legal genealogy.
+This is the browser-facing county event layer. It combines the 1987—2026 Wikipedia-derived records with 286 records from six 1983—1986 People's Daily archive pages and two separately labelled 区划地名网 transcription pages. The early importer keeps the full descriptive sentence and only fills `old_county_units`, `new_county_units`, and `prefecture_entity_ids` as search/display hints. `source_id`, `source_locator`, and `source_confidence` make the origin visible; parsed or transcribed rows still require page-level legal review before they can be treated as a strict county genealogy.
 
 ## `data/processed/unified_events_1987_2026.csv`
 

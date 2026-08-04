@@ -96,19 +96,20 @@ def build_registry() -> tuple[dict[str, dict[str, str]], dict[str, str]]:
 
     for source in SOURCES:
         start, end = source["period"].split("—")
+        is_xzqh = source.get("parser") == "xzqh"
         add_source(registry, {
             "source_id": source["source_id"],
-            "source_type": "people_daily_summary",
+            "source_type": "secondary_transcription" if is_xzqh else "people_daily_summary",
             "title": source["title"],
             "url": source["url"],
             "accessed_date": TODAY,
             "coverage_start": start,
             "coverage_end": end,
             "source_locator": source["locator"],
-            "authority": "新华社/人民日报历史版面（转录档案）",
+            "authority": "区划地名网（根据国务院批复整理）" if is_xzqh else "新华社/人民日报历史版面（转录档案）",
             "scope": "county_level_and_above_changes",
-            "provenance_status": "primary_text_transcription",
-            "notes": "The report is a contemporaneous summary of changes approved in the stated period; each imported row retains the full wording.",
+            "provenance_status": "secondary_transcription" if is_xzqh else "primary_text_transcription",
+            "notes": "条目为区划地名网根据公开国务院批复整理的转录，保留原条目文字。" if is_xzqh else "The report is a contemporaneous summary of changes approved in the stated period; each imported row retains the full wording.",
         })
         url_to_id[source["url"]] = source["source_id"]
 
@@ -162,6 +163,9 @@ def attach(rows: list[dict[str, str]], url_to_id: dict[str, str], locator: str =
         elif source_id.startswith("SRC-RMRB-"):
             row["source_type"] = "people_daily_summary"
             row["source_confidence"] = row["source_confidence"] or "primary_text"
+        elif source_id.startswith("SRC-XZQH-"):
+            row["source_type"] = "secondary_transcription"
+            row["source_confidence"] = row["source_confidence"] or "secondary_transcription"
     return rows
 
 
