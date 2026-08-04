@@ -205,6 +205,26 @@ function prefectureSourceLabel(row) {
   return "Wikipedia 年度页";
 }
 
+function prefectureDescription(row) {
+  const source = String(row.description || row.review_note || "");
+  const chunks = source.split("|").map((chunk) => chunk.trim()).filter(Boolean);
+  const actionPattern = /撤销|设立|更名|升为|改由|恢复|划归|合并|迁至|迁驻|调整|代管|改为|升格|析置|撤地/;
+  const selected = chunks.filter((chunk) => actionPattern.test(chunk)).sort((a, b) => b.length - a.length)[0] || source;
+  return selected
+    .replace(/<br\s*\/?>(?=\s*\S)/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/(?:colspan|rowspan|id)\s*=\s*["'][^"']*["']/gi, "")
+    .replace(/\s+/g, " ")
+    .replace(/^[|；;、\s]+|[|；;、\s]+$/g, "")
+    .trim();
+}
+
+function prefectureUnitTypes(row) {
+  const text = `${row.prefecture_names || ""}${row.description || ""}`;
+  const types = ["市", "地区", "自治州", "盟"].filter((type) => text.includes(type));
+  return types.length ? types.join("、") : "地级行政单位";
+}
+
 function prefectureEventsHtml(entityId) {
   const rows = (state.data.events || [])
     .filter((row) => String(row.entity_ids || row.entity_id || "").split("、").includes(entityId))
@@ -213,7 +233,7 @@ function prefectureEventsHtml(entityId) {
   if (!rows.length && !nameHistory) return "";
   const visible = rows.slice(0, 12);
   const more = rows.length > visible.length ? `<p class="county-history-more">另有 ${rows.length - visible.length} 条地级行政单位记录，见仓库中的地级事件数据。</p>` : "";
-  return `<div class="county-history prefecture-history"><div class="county-history-head"><div class="section-label">规范名沿革与地级行政区划变更</div><span>${rows.length} 条变更记录</span></div>${nameHistory}<p class="county-history-note">变更记录保留来源描述；地级行政单位包括市、地区、自治州、盟等。</p>${rows.length ? `<div class="county-event-list">${visible.map((row) => { const locator = row.source_locator ? ` · ${escapeHtml(row.source_locator)}` : ""; const description = row.description || row.review_note || "暂无描述"; return `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></div><div class="county-event-change"><span>原始描述</span><p>${escapeHtml(description)}</p></div><div class="county-event-foot"><span>${escapeHtml(prefectureSourceLabel(row))}</span>${row.source_url ? `<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">来源 ↗${locator}</a>` : ""}</div></article>`; }).join("")}</div>${more}` : ""}</div>`;
+  return `<div class="county-history prefecture-history"><div class="county-history-head"><div class="section-label">规范名沿革与地级行政区划变更</div><span>${rows.length} 条变更记录</span></div>${nameHistory}<p class="county-history-note">变更记录保留来源描述；地级行政单位包括市、地区、自治州、盟等。</p>${rows.length ? `<div class="county-event-list">${visible.map((row) => { const locator = row.source_locator ? ` · ${escapeHtml(row.source_locator)}` : ""; return `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></div><div class="county-event-change"><span>变更描述</span><p>${escapeHtml(prefectureDescription(row) || "暂无描述")}</p></div><div class="county-event-foot"><span>涉及类型：${escapeHtml(prefectureUnitTypes(row))}</span>${row.source_url ? `<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">对应来源 ↗${locator}</a>` : ""}</div></article>`; }).join("")}</div>${more}` : ""}</div>`;
 }
 
 function countyEventTypeText(type) {
@@ -287,7 +307,7 @@ function renderEvents() {
   const keyword = normalizeName($("#event-keyword").value);
   const rows = state.data.events.filter((row) => (!year || row.year === year) && (!keyword || normalizeName(`${row.province_name}${row.prefecture_names}${row.description}`).includes(keyword))).slice(0, 100);
   if (!rows.length) { $("#event-list").innerHTML = '<div class="empty-table">没有符合条件的事件。</div>'; return; }
-  $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>原始描述</th><th>来源摘要</th></tr></thead><tbody>${rows.map((row) => { const source = [row.approval_date, row.document_number].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(row.description || row.review_note || "")}</td><td>${escapeHtml(source)}<br><small>${escapeHtml(row.review_status || "")}</small></td></tr>`; }).join("")}</tbody></table>`;
+  $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>变更描述</th><th>来源摘要</th></tr></thead><tbody>${rows.map((row) => { const source = [row.approval_date, row.document_number].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(prefectureDescription(row))}</td><td>${escapeHtml(source)}<br><small>${escapeHtml(row.review_status || "")}</small></td></tr>`; }).join("")}</tbody></table>`;
 }
 
 function switchView(view) {
