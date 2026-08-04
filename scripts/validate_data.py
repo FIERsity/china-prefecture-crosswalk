@@ -82,6 +82,7 @@ def main() -> None:
     names_cols, names = read_csv_at(PROCESSED / "entity_names.csv")
     roster_cols, roster = read_csv_at(PROCESSED / "legal_roster_2000_2024.csv")
     _, sources = read_csv_at(PROCESSED / "sources.csv")
+    _, source_registry = read_csv_at(PROCESSED / "source_registry.csv")
     _, events = read_csv_at(PROCESSED / "events_2000_2026.csv")
     _, event_links = read_csv_at(PROCESSED / "event_entity_links.csv")
     _, wiki_audit = read_csv_at(ROOT / "data" / "audit" / "wikipedia_entity_audit.csv")
@@ -103,8 +104,18 @@ def main() -> None:
     _, county_pages = read_csv_at(PROCESSED / "wikipedia_county_change_pages.csv")
     _, county_rows = read_csv_at(PROCESSED / "wikipedia_county_change_rows.csv")
     _, county_events = read_csv_at(PROCESSED / "county_administrative_events_1987_2026.csv")
+    _, early_county_events = read_csv_at(PROCESSED / "county_administrative_events_1983_1986.csv")
+    _, all_county_events = read_csv_at(PROCESSED / "county_administrative_events_1983_2026.csv")
     _, county_type_coverage = read_csv_at(PROCESSED / "county_unit_type_coverage_1987_2026.csv")
     require(len(entities) == 340, "processed entities must contain 340 rows")
+    source_ids = {row["source_id"] for row in source_registry}
+    require(source_ids == {row["source_id"] for row in sources}, "source registry and source table differ")
+    require(len(source_registry) >= 46, "source registry unexpectedly small")
+    require(all(row.get("source_id") in source_ids for row in county_events), "Wikipedia county event has unknown source_id")
+    require(all(row.get("source_id") in source_ids for row in early_county_events), "early county event has unknown source_id")
+    require(all(row.get("source_id") in source_ids for row in unified_events), "unified event has unknown source_id")
+    require(all(row.get("source_ids") for row in entities), "entity provenance is missing")
+    require(all(row.get("source_ids") for row in extended_roster), "extended roster provenance is missing")
     require(len(roster) == 340 * 25, "legal roster must be entity-year complete")
     require(len(events) == 63, "event export must contain 63 rows")
     require(len(event_links) == 63, "every event must have an entity-link audit row")
@@ -183,6 +194,12 @@ def main() -> None:
     require(len(county_pages) == 37, "county Wikipedia page inventory changed")
     require(len(county_rows) >= 1100, "county Wikipedia archive unexpectedly small")
     require(len(county_events) >= 1100, "county event supplement unexpectedly small")
+    require(len(early_county_events) >= 200, "early county event supplement unexpectedly small")
+    require(len(all_county_events) == len(early_county_events) + len(county_events), "combined county event layer is incomplete")
+    require(len({row["event_id"] for row in all_county_events}) == len(all_county_events), "combined county event IDs are not unique")
+    require(min(int(row["year"]) for row in all_county_events) == 1983, "early county coverage does not start in 1983")
+    require(max(int(row["year"]) for row in all_county_events) == 2026, "combined county coverage does not reach 2026")
+    require(any("撤销韩城县" in row["change_description"] and row["prefecture_entity_ids"] == "CNUR-000293" for row in early_county_events), "Hancheng county-to-city event missing")
     required_county_event_fields = {
         "old_county_units", "new_county_units", "change_description", "county_unit_types", "scope",
     }
@@ -208,6 +225,7 @@ def main() -> None:
     print("PASS: all 340 research entities have page-level and level evidence")
     print("PASS: ten audited corrections and all source references are present")
     print("PASS: extended runtime coverage is 363 entities x 40 years (1987-2026)")
+    print(f"PASS: source registry has {len(source_registry)} sources and county events cover 1983-2026")
 
 
 def read_csv_at(path: Path) -> tuple[list[str], list[dict[str, str]]]:

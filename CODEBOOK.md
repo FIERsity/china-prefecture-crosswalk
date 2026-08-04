@@ -22,9 +22,9 @@ Machine-readable export of the 63 core prefecture-level change events in the sou
 
 Audit bridge between all 63 events and stable research entities. The release validator fails if an event is unmatched or ambiguous. Complex merger/split semantics are not represented as one-to-one continuity merely because the source event can be associated with an entity.
 
-## `data/processed/sources.csv`
+## `data/processed/sources.csv` and `data/processed/source_registry.csv`
 
-Source registry. Wikipedia is a secondary source and is explicitly labeled as such.
+Source registry. Each source has a type, coverage, locator, authority, and provenance status. Wikipedia is a revisioned secondary source; the 1983—1986 People's Daily summaries are preserved as contemporaneous primary-text transcriptions. The State Council Gazette archive and annual administrative-division books are registered as verification references, not silently treated as row-level evidence.
 
 ## `data/audit/wikipedia_entity_audit.csv`
 
@@ -45,6 +45,10 @@ Reproducible page-level audit for every entity. It records the resolved page, re
 The current county-level classification follows the eight ordinary county-level administrative types listed in national statistical materials: 市辖区、县级市、县、自治县、旗、自治旗、特区、林区. Historical `工农区` is retained as an additional legacy type when it appears in a source row. `开发区` is retained for provenance but marked outside the ordinary county-level scope; rows such as government-residence changes that do not expose a type are marked `untyped_county_record` rather than being silently discarded. The source archive is the annual Chinese Wikipedia change-list collection, for example the [2024 county-level change tables](https://zh.wikipedia.org/wiki/2024年中华人民共和国县级以上行政区划变更列表); the project does not claim that Wikipedia alone proves a complete official genealogy.
 
 `county_unit_type_coverage_1987_2026.csv` is an explicit coverage audit. It lists all eight ordinary types even when a type has zero change rows in this period, so “no observed event” is not confused with “category omitted from the extractor”.
+
+## `data/processed/county_administrative_events_1983_2026.csv`
+
+This is the browser-facing county event layer. It combines the 1987—2026 Wikipedia-derived records with 231 records parsed from five 1983—1986 People's Daily archive pages. The early importer keeps the full descriptive sentence and only fills `old_county_units`, `new_county_units`, and `prefecture_entity_ids` as search/display hints. `source_id`, `source_locator`, and `source_confidence` make the origin visible; `source_text_parsed_review_required` means the wording came from a source page but has not yet been converted into a strict legal genealogy.
 
 ## `data/processed/unified_events_1987_2026.csv`
 
