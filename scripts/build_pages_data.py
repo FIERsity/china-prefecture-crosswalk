@@ -101,11 +101,11 @@ def build() -> None:
 
     payload = {
         "meta": {
-            "version": "3.3.0",
+            "version": "3.4.0",
             "ruleVersion": "2026.08.1",
             "coverage": "1983—2026",
             "entityCount": len(entities),
-            "note": "CNUR 是项目研究编号，不是官方行政区划代码；市级事件层覆盖1983—2026，年度状态层覆盖1987—2026。",
+            "note": "CNUR 是项目研究编号，不是官方行政区划代码；地级行政单位事件层覆盖1983—2026，年度状态层覆盖1987—2026。",
             "prefectureEventCount": len(events),
         },
         "entities": entities,

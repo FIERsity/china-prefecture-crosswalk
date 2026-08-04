@@ -27,7 +27,7 @@
           <h1>中国城市行政区划沿革<br><em>按名称、年份和省份查询。</em></h1>
           <p class="hero-copy">查询历史名称、年度状态和行政区划变更。</p>
         </div>
-        <div class="hero-note"><span>363</span><small>跨期研究实体<br>1987—2026</small></div>
+        <div class="hero-note"><span>363</span><small>跨期研究实体<br>1983—2026</small></div>
       </section>
 
       <nav class="tabs" aria-label="工具入口">
@@ -41,7 +41,7 @@
           <form id="match-form" class="card query-card">
             <div class="section-label">01 / MATCH ONE NAME</div>
             <h2>查询一个名称</h2>
-            <p class="muted">支持地级和县级名称；填写年份、省份，可缩小范围。</p>
+            <p class="muted">支持地级行政单位和县级名称；填写年份、省份，可缩小范围。</p>
 
             <label for="name-input">行政区名称</label>
             <input id="name-input" autocomplete="off" placeholder="例如：思茅县、思茅市、徽州地区" required>
@@ -78,7 +78,7 @@
 
       <section id="events-view" class="view">
         <div class="card event-toolbar">
-          <div><div class="section-label">02 / TRACE CHANGE</div><h2>查看行政区划变更</h2><p class="muted">按年份和关键词查看改名、升格、合并、拆分等记录。</p></div>
+          <div><div class="section-label">02 / TRACE CHANGE</div><h2>查看行政区划变更</h2><p class="muted">按年份和关键词查看地级行政单位的改名、升格、合并、拆分等记录。</p></div>
           <div class="filter-row"><label>年份<select id="event-year"><option value="">全部</option></select></label><label>关键词<input id="event-keyword" placeholder="城市或省份"></label></div>
         </div>
         <div id="event-list" class="card table-card"></div>
@@ -86,8 +86,8 @@
 
       <section id="about-view" class="view">
         <div class="about-grid">
-          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年度状态、市级/地区级事件和县级变更记录。查询城市时，页面同时显示相关市级和县级事件。市级事件查询窗口为1983—2026，现有记录到2018年；1983—1986 年的记录保留原始描述，年度状态表从1987年开始。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>211</strong><span>市级事件</span></div></div></article>
-          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/prefecture_administrative_events_1983_2026.csv" download>市级/地区级事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1983_2026.csv" download>县级变更记录 CSV <span>↓</span></a><a class="download-link" href="data/source_registry.csv" download>来源登记 CSV <span>↓</span></a></article>
+          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年度状态、地级行政单位变更和县级变更记录。查询城市时，页面同时显示规范名沿革、相关地级行政单位变更和县级变更。事件查询窗口统一从1983年开始，现有地级事件记录到2018年；年度状态表从1987年开始。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>211</strong><span>地级事件</span></div></div></article>
+          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/prefecture_administrative_events_1983_2026.csv" download>地级行政单位事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1983_2026.csv" download>县级变更记录 CSV <span>↓</span></a><a class="download-link" href="data/source_registry.csv" download>来源登记 CSV <span>↓</span></a></article>
         </div>
         <div class="card source-card"><strong>来源与限制</strong><span>主要来源为中文维基百科年度行政区划变更页面，部分记录附有国务院、民政部或地方政府批文号。详见 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
       </section>
