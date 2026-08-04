@@ -1,4 +1,4 @@
-const state = { data: null, namesByNormalized: new Map(), entityMap: new Map() };
+const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map() };
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -76,6 +76,14 @@ function partialSimilarity(query, choice) {
   return 0;
 }
 
+function countySearchNames(row) {
+  return [...new Set([
+    ...(row.old_county_units || "").split("、"),
+    ...(row.new_county_units || "").split("、"),
+    ...(row.county_names || "").split("、"),
+  ].map((name) => name.trim()).filter((name) => name.length >= 2))];
+}
+
 function makeResult(name, year, province) {
   const normalized = normalizeName(name);
   if (!normalized) return { status: "unmatched", method: "none", normalized, risk: "blank_name" };
@@ -108,20 +116,32 @@ function makeResult(name, year, province) {
   }
 
   const candidates = [];
-  for (const [choice, items] of state.namesByNormalized.entries()) {
-    const partialScore = partialSimilarity(normalized, choice);
-    const fuzzyScore = similarity(normalized, choice);
-    const score = Math.max(partialScore, fuzzyScore >= 0.75 ? fuzzyScore : 0);
-    if (!score) continue;
-    const matchType = partialScore >= fuzzyScore ? "partial" : "fuzzy";
-    for (const item of items) {
-      const entity = entityFor(item.entity_id);
-      if (provinceNormalized && normalizeProvince(entity.province_name_zh) !== provinceNormalized) continue;
-      candidates.push({ entity, entityId: item.entity_id, matchedName: item.name, matchType, score: Math.round(score * 1000) / 10 });
+  const searchIndexes = [
+    [state.namesByNormalized, "prefecture"],
+    [state.countyNamesByNormalized, "county"],
+  ];
+  for (const [searchIndex, matchSource] of searchIndexes) {
+    for (const [choice, items] of searchIndex.entries()) {
+      const partialScore = partialSimilarity(normalized, choice);
+      const fuzzyScore = similarity(normalized, choice);
+      const score = Math.max(partialScore, fuzzyScore >= 0.75 ? fuzzyScore : 0);
+      if (!score) continue;
+      const matchType = partialScore > 0 ? "partial" : "fuzzy";
+      for (const item of items) {
+        const entity = entityFor(item.entity_id);
+        if (provinceNormalized && normalizeProvince(entity.province_name_zh) !== provinceNormalized) continue;
+        candidates.push({ entity, entityId: item.entity_id, matchedName: item.name, matchType, matchSource, score: Math.round(score * 1000) / 10 });
+      }
     }
   }
-  const sortedCandidates = candidates.sort((a, b) => b.score - a.score || a.entity.canonical_name_zh.localeCompare(b.entity.canonical_name_zh, "zh-CN"));
-  const deduplicated = [...new Map(sortedCandidates.map((candidate) => [candidate.entityId, candidate])).values()];
+  const bestByEntity = new Map();
+  for (const candidate of candidates) {
+    const current = bestByEntity.get(candidate.entityId);
+    if (!current || candidate.score > current.score || (candidate.score === current.score && candidate.matchSource === "county" && current.matchSource !== "county")) {
+      bestByEntity.set(candidate.entityId, candidate);
+    }
+  }
+  const deduplicated = [...bestByEntity.values()].sort((a, b) => b.score - a.score || a.entity.canonical_name_zh.localeCompare(b.entity.canonical_name_zh, "zh-CN"));
   const method = deduplicated.some((candidate) => candidate.matchType === "partial") ? "partial_candidate" : "fuzzy_candidate";
   const unique = method === "partial_candidate" ? deduplicated : deduplicated.slice(0, 3);
   return { normalized, status: unique.length ? "needs_confirmation" : "unmatched", method: unique.length ? method : "none", confidence: unique[0]?.score ? unique[0].score / 100 : 0, yearStatus: "not_checked", risk: unique.length ? "manual_confirmation_required" : "unrecognized_name", candidates: unique };
@@ -130,6 +150,23 @@ function makeResult(name, year, province) {
 function problemResult(entityId, normalized, year, method, risk) {
   const entity = entityFor(entityId);
   return { entity, entityId, normalized, status: "problem", method, confidence: 1, yearStatus: rosterStatus(entityId, year), risk };
+}
+
+function selectedEntityResult(entityId, name, year) {
+  const risks = relationRisks(entityId, year);
+  const status = rosterStatus(entityId, year);
+  if (status === "not_established") risks.push("pre_establishment");
+  if (status === "abolished") risks.push("post_abolition");
+  return {
+    entity: entityFor(entityId),
+    entityId,
+    normalized: normalizeName(name),
+    status: risks.length ? "problem" : "auto_matched",
+    method: "selected_candidate",
+    confidence: 1,
+    yearStatus: status,
+    risk: [...new Set(risks)].join("|"),
+  };
 }
 
 function statusText(status) {
@@ -184,7 +221,7 @@ function resultHtml(result, name, year, province) {
   }
   if (result.status === "needs_confirmation") {
     const candidateNote = result.method === "partial_candidate" ? `找到 ${result.candidates.length} 个片段候选，按匹配度排列。` : "当前有多个候选，请结合年份、省份和来源判断。";
-    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">候选结果</span></div><p class="result-note">${candidateNote}</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<div class="candidate"><span><strong>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</strong><small>命中名称：${escapeHtml(item.matchedName)} · ${item.matchType === "partial" ? "部分匹配" : "相似匹配"}</small></span><b>${item.score}%</b></div>`).join("")}</div>`;
+    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">候选结果</span></div><p class="result-note">${candidateNote} 点击卡片查看实体详情。</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<button class="candidate" type="button" data-candidate-id="${escapeHtml(item.entityId)}" data-candidate-name="${escapeHtml(item.matchedName)}" title="查看 ${escapeHtml(item.entity.canonical_name_zh)}"><span><strong>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</strong><small>命中名称：${escapeHtml(item.matchedName)} · ${item.matchSource === "county" ? "县级关联" : item.matchType === "partial" ? "部分匹配" : "相似匹配"}</small></span><b>${item.score}%</b></button>`).join("")}</div>`;
   }
   const entity = result.entity;
   const riskMessage = result.risk ? `状态：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "名称、年份和层级匹配。";
@@ -198,6 +235,18 @@ function renderMatch() {
   const province = $("#province-input").value.trim();
   if (!name) return;
   $("#match-result").innerHTML = resultHtml(makeResult(name, year, province), name, year, province);
+  bindCandidateCards();
+}
+
+function bindCandidateCards() {
+  $$("#match-result [data-candidate-id]").forEach((card) => card.addEventListener("click", () => {
+    const name = card.dataset.candidateName || card.dataset.candidateId;
+    const yearValue = $("#year-input").value.trim();
+    const year = yearValue ? number(yearValue) : null;
+    const province = $("#province-input").value.trim();
+    $("#name-input").value = name;
+    $("#match-result").innerHTML = resultHtml(selectedEntityResult(card.dataset.candidateId, name, year), name, year, province);
+  }));
 }
 
 function renderEvents() {
@@ -224,6 +273,17 @@ async function init() {
       const list = state.namesByNormalized.get(item.normalized) || [];
       list.push({ ...item, start: Number(item.start), end: Number(item.end) });
       state.namesByNormalized.set(item.normalized, list);
+    });
+    (state.data.countyEvents || []).forEach((row) => {
+      if (row.scope === "non_county_development_zone") return;
+      const entityIds = String(row.prefecture_entity_ids || "").split("、").filter(Boolean);
+      countySearchNames(row).forEach((name) => {
+        const normalized = normalizeName(name);
+        if (!normalized || !entityIds.length) return;
+        const list = state.countyNamesByNormalized.get(normalized) || [];
+        entityIds.forEach((entityId) => list.push({ entity_id: entityId, name, year: row.year, event_id: row.event_id }));
+        state.countyNamesByNormalized.set(normalized, list);
+      });
     });
     $("#version-pill").textContent = `V${state.data.meta.version}`;
     $("#rule-version").textContent = state.data.meta.ruleVersion;
