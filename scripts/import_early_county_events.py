@@ -109,6 +109,21 @@ PREFECTURE_OVERRIDES = {
     "韩城市": "渭南市",
 }
 
+# The source sentence contains two counted lists.  A counted suffix such as
+# "二县" or "三县" is not part of the preceding county name.  Keep this as a
+# reviewed source-specific override so the original sentence remains intact
+# in change_description while the searchable fields contain canonical names.
+REVIEWED_EVENT_OVERRIDES = {
+    "将渭南地区的临潼、蓝田二县和咸阳地区的户县、周至、高陵三县划归西安市管辖": {
+        "prefecture_names": ["渭南地区", "咸阳地区", "西安市"],
+        "prefecture_entity_ids": ["CNUR-000293", "CNUR-000292", "CNUR-000289"],
+        "county_names": ["临潼县", "蓝田县", "户县", "周至县", "高陵县"],
+        "old_county_units": ["临潼县", "蓝田县", "户县", "周至县", "高陵县"],
+        "new_county_units": ["西安市"],
+        "review_status": "reviewed_manual_override",
+    },
+}
+
 UNIT_SUFFIXES = ("自治县", "自治旗", "县级市", "市", "县", "区", "旗", "林区", "特区")
 PUNCTUATION = "，。、；：,.;:（）()“”‘’　 "
 NUMBERED_ITEM = re.compile(r"(?P<marker>[一二三四五六七八九十百]+、)")
@@ -312,14 +327,23 @@ def build(refresh: bool) -> list[dict[str, str]]:
             parents = prefecture_names(item, units, all_prefecture_names)
             county_units = [unit for unit in units if unit not in parents and not unit.endswith(("地区", "盟", "自治州"))]
             old_units, new_units = field_units(item, event_type, county_units)
+            override = REVIEWED_EVENT_OVERRIDES.get(item)
+            if override:
+                parents = override["prefecture_names"]
+                county_units = override["county_names"]
+                old_units = "、".join(override["old_county_units"])
+                new_units = "、".join(override["new_county_units"])
             county_names = "、".join(county_units)
+            entity_ids = sorted({entity_id for name in parents for entity_id in prefecture_ids.get(name, set())})
+            if override:
+                entity_ids = override["prefecture_entity_ids"]
             rows.append({
                 "event_id": f"{'XZQH' if source.get('parser') == 'xzqh' else 'RMRB'}-COUNTY-{source['source_id'].removeprefix('SRC-RMRB-').removeprefix('SRC-XZQH-')}-{index:03d}",
                 "year": str(source["year"]),
                 "section": f"{province or '国务院批复转录'} / {source['period']}",
                 "event_type": event_type,
                 "prefecture_names": "、".join(parents),
-                "prefecture_entity_ids": "、".join(sorted({entity_id for name in parents for entity_id in prefecture_ids.get(name, set())})),
+                "prefecture_entity_ids": "、".join(entity_ids),
                 "county_names": county_names,
                 "old_county_units": old_units,
                 "new_county_units": new_units,
@@ -333,7 +357,7 @@ def build(refresh: bool) -> list[dict[str, str]]:
                 "source_type": "secondary_transcription" if source.get("parser") == "xzqh" else "people_daily_summary",
                 "source_locator": source["locator"],
                 "source_confidence": "secondary_transcription" if source.get("parser") == "xzqh" else "primary_text",
-                "review_status": "secondary_transcription_review_required" if source.get("parser") == "xzqh" else "source_text_parsed_review_required",
+                "review_status": override["review_status"] if override else ("secondary_transcription_review_required" if source.get("parser") == "xzqh" else "source_text_parsed_review_required"),
             })
     return rows
 

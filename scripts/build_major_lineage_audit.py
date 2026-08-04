@@ -78,7 +78,6 @@ COUNTIES = {
     "MAJOR-1997-WUZHOU-WZ": ["岑溪市","藤县","蒙山县"],
 }
 
-
 def write(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
