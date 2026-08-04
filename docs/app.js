@@ -117,7 +117,7 @@ function problemResult(entityId, normalized, year, method, risk) {
 }
 
 function statusText(status) {
-  return { auto_matched: "自动接受", needs_confirmation: "需要确认", problem: "发现风险", unmatched: "未匹配" }[status] || status;
+  return { auto_matched: "已匹配", needs_confirmation: "候选结果", problem: "需核对", unmatched: "未匹配" }[status] || status;
 }
 
 function canonicalNameHistoryHtml(entityId) {
@@ -159,18 +159,18 @@ function countyEventsHtml(entityId) {
   if (!rows.length) return "";
   const visible = rows.slice(0, 12);
   const more = rows.length > visible.length ? `<p class="county-history-more">另有 ${rows.length - visible.length} 条记录，见仓库中的县级事件数据。</p>` : "";
-  return `<div class="county-history"><div class="county-history-head"><div class="section-label">县级变更记录</div><span>${rows.length} 条相关记录</span></div><p class="county-history-note">这里展示的是县级行政区划的事件记录，包括撤销、设立、合并、改隶、辖区调整和驻地变更；相关地级实体采用宽松文本命中，仅用于提示，不等同完整县级谱系。</p><div class="county-event-list">${visible.map((row) => `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(countyEventTypeText(row.event_type))}</span></div>${countyEventUnitsHtml(row)}<div class="county-event-change"><span>变更描述</span><p>${escapeHtml(row.change_description || row.description)}</p></div><div class="county-event-foot">${row.county_unit_types ? `涉及类型：${escapeHtml(row.county_unit_types)}` : "县级类型未从该行明确提取"}<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">Wikipedia 年度页 ↗</a></div></article>`).join("")}</div>${more}</div>`;
+  return `<div class="county-history"><div class="county-history-head"><div class="section-label">县级变更记录</div><span>${rows.length} 条相关记录</span></div><p class="county-history-note">记录包括撤销、设立、合并、改隶、辖区调整和驻地变更。地级关联按名称匹配，县级谱系请结合原始资料核对。</p><div class="county-event-list">${visible.map((row) => `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(countyEventTypeText(row.event_type))}</span></div>${countyEventUnitsHtml(row)}<div class="county-event-change"><span>变更描述</span><p>${escapeHtml(row.change_description || row.description)}</p></div><div class="county-event-foot">${row.county_unit_types ? `涉及类型：${escapeHtml(row.county_unit_types)}` : "类型未标注"}<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">Wikipedia 年度页 ↗</a></div></article>`).join("")}</div>${more}</div>`;
 }
 
 function resultHtml(result, name, year, province) {
   if (result.status === "unmatched") {
-    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>没有找到确定结果</h2></div><span class="status problem">未匹配</span></div><p class="result-note">“${escapeHtml(name)}”没有达到自动接受条件。可以补充年份、省份，或检查是否存在错别字。</p>`;
+    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>没有找到确定结果</h2></div><span class="status problem">未匹配</span></div><p class="result-note">可补充年份、省份，或检查名称。</p>`;
   }
   if (result.status === "needs_confirmation") {
-    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">需要确认</span></div><p class="result-note">工具找到候选，但没有足够证据自动替你决定。请结合原始资料和官方来源人工确认。</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<div class="candidate"><span>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</span><b>${item.score}%</b></div>`).join("")}</div>`;
+    return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">候选结果</span></div><p class="result-note">当前有多个候选，请结合年份、省份和来源判断。</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<div class="candidate"><span>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</span><b>${item.score}%</b></div>`).join("")}</div>`;
   }
   const entity = result.entity;
-  const riskMessage = result.risk ? `需要注意：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "全国唯一、年份有效且层级一致。可以作为自动匹配结果使用。";
+  const riskMessage = result.risk ? `状态：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "名称、年份和层级匹配。";
   return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}</p>${canonicalNameHistoryHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
 }
 

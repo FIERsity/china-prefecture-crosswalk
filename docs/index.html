@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="中国城市行政实体 Crosswalk：按名称、年份和省份进行保守、可解释的历史匹配。">
+    <meta name="description" content="查询中国城市历史名称、年度状态和行政区划变更。">
     <title>China Urban Crosswalk — 中国城市行政实体匹配</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6e5a'/%3E%3Cpath d='M8 23V9h4v14H8Zm6 0V5h4v18h-4Zm6 0v-9h4v9h-4Z' fill='white'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
@@ -15,7 +15,7 @@
         <span>CHINA URBAN <b>CROSSWALK</b></span>
       </a>
       <div class="top-links">
-        <span id="version-pill" class="version-pill">V3.0</span>
+        <span id="version-pill" class="version-pill">V3.1.0</span>
         <a href="https://github.com/FIERsity/china-prefecture-crosswalk" target="_blank" rel="noreferrer">GitHub ↗</a>
       </div>
     </header>
@@ -24,8 +24,8 @@
       <section class="hero">
         <div>
           <p class="eyebrow">RESEARCH ENTITY CROSSWALK</p>
-          <h1>别只看城市名，<br><em>先确认它是哪一个实体。</em></h1>
-          <p class="hero-copy">把历史名称、年份和省份放在一起核验。结果保守、可解释；遇到合并、拆分或同名冲突时，工具会明确要求人工确认。</p>
+          <h1>中国城市行政区划沿革<br><em>按名称、年份和省份查询。</em></h1>
+          <p class="hero-copy">查询历史名称、年度状态和行政区划变更。</p>
         </div>
         <div class="hero-note"><span>363</span><small>跨期研究实体<br>1987—2026</small></div>
       </section>
@@ -40,8 +40,8 @@
         <div class="match-layout">
           <form id="match-form" class="card query-card">
             <div class="section-label">01 / MATCH ONE NAME</div>
-            <h2>输入一个历史或现代名称</h2>
-            <p class="muted">年份和省份不是必须的，但它们能帮助工具避免把同名实体混在一起。</p>
+            <h2>查询一个名称</h2>
+            <p class="muted">填写年份和省份，可缩小同名范围。</p>
 
             <label for="name-input">行政区名称</label>
             <input id="name-input" autocomplete="off" placeholder="例如：思茅市、徽州地区" required>
@@ -68,17 +68,17 @@
           <section id="match-result" class="card result-card" aria-live="polite">
             <div class="result-empty">
               <div class="result-symbol">↗</div>
-              <h2>结果会显示在这里</h2>
-              <p>先输入一个名称。工具只会自动接受全国唯一、年份有效且层级一致的结果。</p>
+              <h2>输入名称开始查询</h2>
+              <p>查询结果将在这里显示。</p>
             </div>
           </section>
         </div>
-        <p class="disclaimer">CNUR 是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。高要求研究请同时核对官方批文和来源。</p>
+        <p class="disclaimer">CNUR 是本项目的研究编号。研究使用请核对官方批文和来源。</p>
       </section>
 
       <section id="events-view" class="view">
         <div class="card event-toolbar">
-          <div><div class="section-label">02 / TRACE CHANGE</div><h2>查看行政区划变更</h2><p class="muted">筛选改名、升格、合并和拆分事件；每条记录保留来源与审核状态。</p></div>
+          <div><div class="section-label">02 / TRACE CHANGE</div><h2>查看行政区划变更</h2><p class="muted">按年份和关键词查看改名、升格、合并、拆分等记录。</p></div>
           <div class="filter-row"><label>年份<select id="event-year"><option value="">全部</option></select></label><label>关键词<input id="event-keyword" placeholder="城市或省份"></label></div>
         </div>
         <div id="event-list" class="card table-card"></div>
@@ -86,13 +86,13 @@
 
       <section id="about-view" class="view">
         <div class="about-grid">
-          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>这不是一张普通城市表</h2><p>项目把稳定研究实体、年度状态、行政区划事件和县级变更记录分开保存。查询单个城市时，页面会提示相关县级记录，但不会把宽松关联伪装成完整的县级谱系。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>1,149</strong><span>县级记录</span></div></div></article>
-          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载机器可读数据</h2><p class="muted">数据随 GitHub 提交自动构建，页面本身不需要 Python 服务。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/unified_events_1987_2026.csv" download>地级行政区划事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1987_2026.csv" download>县级变更记录 CSV <span>↓</span></a></article>
+          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年度状态、地级事件和县级变更记录。查询城市时，页面同时显示相关县级事件。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>1,149</strong><span>县级记录</span></div></div></article>
+          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/unified_events_1987_2026.csv" download>地级行政区划事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1987_2026.csv" download>县级变更记录 CSV <span>↓</span></a></article>
         </div>
-        <div class="card source-card"><strong>来源与限制</strong><span>当前主要二手信源为中文维基百科年度行政区划变更页面；部分事件同时记录国务院、民政部或地方政府批文号。请查看仓库中的 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
+        <div class="card source-card"><strong>来源与限制</strong><span>主要来源为中文维基百科年度行政区划变更页面，部分记录附有国务院、民政部或地方政府批文号。详见 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
       </section>
 
-      <footer class="footer"><span>RULE VERSION <b id="rule-version">2026.07.1</b></span><span>LOCAL-FIRST · EXPLAINABLE · RESEARCH USE</span></footer>
+      <footer class="footer"><span>RULE VERSION <b id="rule-version">2026.08.1</b></span><span>STATIC DATA · GITHUB PAGES · 1987—2026</span></footer>
     </main>
     <script src="app.js"></script>
   </body>
