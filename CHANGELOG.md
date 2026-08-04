@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.1.0 - 2026-08-04
+
+- Re-collected county-level administrative-change tables from 37 Chinese Wikipedia annual pages.
+- Added 1,158 source rows and 1,149 display-oriented county administrative events for 1987—2026.
+- Added loose links from 1,128 county records to current or historical prefecture research entities.
+- Added descriptive event fields for before/related units, after/destination units, change text, county-level type, and scope.
+- Classified the eight ordinary county-level types, retained historical 工农区, and excluded 开发区 from the ordinary county-level result panel.
+- Displayed related county-level change records beneath single-city lookup results, with source links and an explicit non-genealogical caveat.
+
 ## 3.0.0 - 2026-07-13
 
 - Promoted the complete 1987—2026 entity-year database to the sole current public scope.

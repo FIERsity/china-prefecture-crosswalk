@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="查询中国城市历史名称、年度状态和行政区划变更。">
+    <title>China Urban Crosswalk — 中国城市行政实体匹配</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6e5a'/%3E%3Cpath d='M8 23V9h4v14H8Zm6 0V5h4v18h-4Zm6 0v-9h4v9h-4Z' fill='white'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>CHINA URBAN <b>CROSSWALK</b></span>
+      </a>
+      <div class="top-links">
+        <span id="version-pill" class="version-pill">V3.2.0</span>
+        <a href="https://github.com/FIERsity/china-prefecture-crosswalk" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">RESEARCH ENTITY CROSSWALK</p>
+          <h1>中国城市行政区划沿革<br><em>按名称、年份和省份查询。</em></h1>
+          <p class="hero-copy">查询历史名称、年度状态和行政区划变更。</p>
+        </div>
+        <div class="hero-note"><span>363</span><small>跨期研究实体<br>1987—2026</small></div>
+      </section>
+
+      <nav class="tabs" aria-label="工具入口">
+        <button class="tab active" data-view="match" type="button">单个名称查询</button>
+        <button class="tab" data-view="events" type="button">行政区划事件</button>
+        <button class="tab" data-view="about" type="button">数据与下载</button>
+      </nav>
+
+      <section id="match-view" class="view active-view">
+        <div class="match-layout">
+          <form id="match-form" class="card query-card">
+            <div class="section-label">01 / MATCH ONE NAME</div>
+            <h2>查询一个名称</h2>
+            <p class="muted">支持地级和县级名称；填写年份、省份，可缩小范围。</p>
+
+            <label for="name-input">行政区名称</label>
+            <input id="name-input" autocomplete="off" placeholder="例如：思茅县、思茅市、徽州地区" required>
+            <div class="form-row">
+              <div>
+                <label for="year-input">年份</label>
+                <input id="year-input" inputmode="numeric" type="number" min="1987" max="2026" placeholder="2005">
+              </div>
+              <div>
+                <label for="province-input">省份（可选）</label>
+                <input id="province-input" autocomplete="off" placeholder="云南省">
+              </div>
+            </div>
+            <button class="primary-button" type="submit">开始核验 <span>↗</span></button>
+
+            <div class="examples">
+              <span>试试示例</span>
+              <button type="button" data-example="思茅市|2005|云南省">思茅市 · 2005</button>
+              <button type="button" data-example="徽州地区|1987|安徽省">徽州地区 · 1987</button>
+              <button type="button" data-example="香格里拉市|2010|云南省">同名风险</button>
+            </div>
+          </form>
+
+          <section id="match-result" class="card result-card" aria-live="polite">
+            <div class="result-empty">
+              <div class="result-symbol">↗</div>
+              <h2>输入名称开始查询</h2>
+              <p>查询结果将在这里显示。</p>
+            </div>
+          </section>
+        </div>
+        <p class="disclaimer">CNUR 是本项目的研究编号。研究使用请核对官方批文和来源。</p>
+      </section>
+
+      <section id="events-view" class="view">
+        <div class="card event-toolbar">
+          <div><div class="section-label">02 / TRACE CHANGE</div><h2>查看行政区划变更</h2><p class="muted">按年份和关键词查看改名、升格、合并、拆分等记录。</p></div>
+          <div class="filter-row"><label>年份<select id="event-year"><option value="">全部</option></select></label><label>关键词<input id="event-keyword" placeholder="城市或省份"></label></div>
+        </div>
+        <div id="event-list" class="card table-card"></div>
+      </section>
+
+      <section id="about-view" class="view">
+        <div class="about-grid">
+          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年度状态、地级事件和县级变更记录。查询城市时，页面同时显示相关县级事件。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>1,435</strong><span>县级记录</span></div></div></article>
+          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/unified_events_1987_2026.csv" download>地级行政区划事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1983_2026.csv" download>县级变更记录 CSV <span>↓</span></a><a class="download-link" href="data/source_registry.csv" download>来源登记 CSV <span>↓</span></a></article>
+        </div>
+        <div class="card source-card"><strong>来源与限制</strong><span>主要来源为中文维基百科年度行政区划变更页面，部分记录附有国务院、民政部或地方政府批文号。详见 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
+      </section>
+
+      <footer class="footer"><span>RULE VERSION <b id="rule-version">2026.08.1</b></span><span>STATIC DATA · GITHUB PAGES · 1983—2026</span></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

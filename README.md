@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
 
-[![Web app](https://img.shields.io/badge/use-online_crosswalk-1F6E5A?logo=render&logoColor=white)](https://china-prefecture-crosswalk.onrender.com)
+[![Web app](https://img.shields.io/badge/use-GitHub_Pages-1F6E5A?logo=github&logoColor=white)](https://fiersity.github.io/china-prefecture-crosswalk/)
 [![Download CSV](https://img.shields.io/badge/download-V3.0_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.csv)
 [![Download Excel](https://img.shields.io/badge/download-V3.0_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.xlsx)
 [![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速使用)
@@ -16,18 +16,21 @@
 
 > `CNUR-000001` 等 CNUR 编号是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。
 
-## 在线工具
+## 在线工具（GitHub Pages）
 
-**[打开 China Urban Research Crosswalk](https://china-prefecture-crosswalk.onrender.com)**
+**[打开 China Urban Research Crosswalk](https://fiersity.github.io/china-prefecture-crosswalk/)**
 
-网页提供四个入口：
+静态网页提供三个入口：
 
-- 全量数据库浏览与 V3.0 CSV/Excel 下载；
-- 上传 CSV/XLSX 批量匹配城市名称；
 - 单个名称、年份和省份查询；
-- 1987—2026 行政区划事件与维基原始证据检索。
+- 1987—2026 地级行政区划事件检索，1983—2026 县级变更记录；
+- 机器可读数据下载。
 
-上传文件只在当前会话内存中处理，不持久化。OCR和模糊结果必须人工确认；合并、拆分和代管关系不会自动重算研究变量。
+网页查询在浏览器本地完成，不需要 Python 服务器，也不会上传用户输入。完整的 CSV/XLSX 批量匹配仍可使用 Python API、CLI 或本地 Streamlit 入口。
+
+网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
+
+当前网页数据还包含 V3.2 县级补充层：1987—2026 年重新读取 37 个 Wikipedia 年度页，另补入 1983—1986 年的 286 条县级以上变更记录，其中六个人民日报版面提供主要原文，1983 年第四季度和 1984 年上半年补入区划地名网按国务院批复整理的转录，合计 1,435 条。早期记录保留原文、版次或页面定位和来源 ID；韩城县改韩城市等县改县级市事件已纳入。县级记录只做描述性展示和宽松地级关联，不宣称完成严格的县级谱系重建。
 
 ## V3.0 全量数据概览
 
@@ -41,6 +44,10 @@
 | 事件关系 | 149 |
 | 维基地级原始记录 | 988 |
 | 连续性审计 | 1,285 项，0 错误 |
+| 县级变更原始表格行 | 1,158（1987—2026） |
+| 县级变更事件记录 | 1,435（1983—2026），其中 286 条来自早期补录 |
+| 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
+| 来源登记 | 49 条，含页面修订号、版次定位和来源状态 |
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
 
@@ -56,6 +63,11 @@
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
 | [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
+| [`county_administrative_events_1983_2026.csv`](data/processed/county_administrative_events_1983_2026.csv) | 1983—2026 县级变更事件，合并早期版面、批复转录与 Wikipedia 记录 |
+| [`county_administrative_events_1983_1986.csv`](data/processed/county_administrative_events_1983_1986.csv) | 1983—1986 早期县级以上变更补录，含原文、页面定位和来源 ID |
+| [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
+| [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
+| [`source_registry.csv`](data/processed/source_registry.csv) | 统一来源登记：来源类型、时间范围、定位、权威性和核验状态 |
 | [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
 
 完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
@@ -95,7 +107,7 @@ crosswalk_candidate_count
 crosswalk_rule_version
 ```
 
-### 本地网页
+### 完整本地网页（Streamlit）
 
 ```bash
 python3 -m venv .venv
@@ -151,7 +163,7 @@ cnur events --year 1993 --type split --output events.csv
 6. RapidFuzz模糊候选；
 7. 省份、年份、法定层级、设立和撤销状态复核。
 
-只有全国唯一、年份有效且层级一致的确定性结果会自动接受。OCR与模糊匹配只提供最多3个候选。香格里拉市等县级同名冲突会返回上级地级实体和风险提示，不会直接替用户修改。
+只有全国唯一、年份有效且层级一致的确定性结果会自动接受。部分名称会列出全部对应实体；县级名称会关联到相关地级实体；编辑距离模糊匹配最多显示3个候选。香格里拉市等县级同名冲突会返回上级地级实体和风险提示，不会直接替用户修改。
 
 ## 数据模型
 
@@ -183,7 +195,9 @@ cnur events --year 1993 --type split --output events.csv
 
 ## 信源与限制
 
-- 当前主要二手信源为中文维基百科年度行政区划变更页面，并保存页面URL和修订号；
+- 1987 年以后县级层主要使用中文维基百科年度行政区划变更页面，并保存页面 URL 和修订号；
+- 1983—1986 年早期补录以人民日报历史版面的行政区划变更摘要为主，并用区划地名网按国务院批复整理的 1983 年第四季度、1984 年上半年条目补齐时段，分别保存版次或页面定位、原文和访问链接；
+- 国务院公报历史目录和《中华人民共和国行政区划简册》书目已登记为核验来源，公报扫描件仍需逐页 OCR 或人工复核后，才能替代摘要层；
 - 部分事件同时记录国务院、民政部或地方政府批文号；
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V3.0不声称已经为每条记录完成官方批复原件级核验；
@@ -216,8 +230,10 @@ data/raw/          原始输入快照
 data/processed/    可复现生成的数据层
 data/releases/     面向研究者的版本化发布文件
 data/audit/        实体与连续性审计结果
+docs/              GitHub Pages 静态公共工具
 urban_crosswalk/   独立Python匹配模块
 scripts/           构建、迁移、抓取和验证脚本
+scripts/build_pages_data.py  生成浏览器端数据包
 tests/             回归与网页测试
 app.py             Streamlit网页入口
 ```
