@@ -134,7 +134,10 @@ function canonicalNameHistoryHtml(entityId) {
 function countyEventTypeText(type) {
   return {
     jurisdiction_transfer: "行政隶属调整",
+    merge: "合并",
+    split: "拆分/分设",
     rename: "更名",
+    residence_change: "驻地变更",
     abolish_or_merge: "撤销/合并",
     establish: "设立",
     jurisdiction_adjustment: "辖区调整",
@@ -142,14 +145,21 @@ function countyEventTypeText(type) {
   }[type] || "县级变动";
 }
 
+function countyEventUnitsHtml(row) {
+  const oldUnits = String(row.old_county_units || "").trim();
+  const newUnits = String(row.new_county_units || "").trim();
+  if (!oldUnits && !newUnits) return "";
+  return `<div class="county-event-flow"><div><span>变更前 / 涉及单位</span><strong>${escapeHtml(oldUnits || "—")}</strong></div><b>→</b><div><span>变更后 / 去向单位</span><strong>${escapeHtml(newUnits || "—")}</strong></div></div>`;
+}
+
 function countyEventsHtml(entityId) {
   const rows = (state.data.countyEvents || [])
-    .filter((row) => String(row.prefecture_entity_ids || "").split("、").includes(entityId))
+    .filter((row) => String(row.prefecture_entity_ids || "").split("、").includes(entityId) && row.scope !== "non_county_development_zone")
     .sort((a, b) => Number(b.year) - Number(a.year) || a.event_id.localeCompare(b.event_id));
   if (!rows.length) return "";
   const visible = rows.slice(0, 12);
   const more = rows.length > visible.length ? `<p class="county-history-more">另有 ${rows.length - visible.length} 条记录，见仓库中的县级事件数据。</p>` : "";
-  return `<div class="county-history"><div class="county-history-head"><div class="section-label">县级区划记录</div><span>${rows.length} 条相关记录</span></div><p class="county-history-note">以下记录来自 Wikipedia 年度县级以上行政区划变更表；市级关联采用宽松实体命中，仅用于提示，不等同完整县级谱系。</p><div class="county-event-list">${visible.map((row) => `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(countyEventTypeText(row.event_type))}</span></div><div class="county-event-names">${escapeHtml(row.county_names || "县级行政区划记录")}</div><p>${escapeHtml(row.description)}</p><a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">Wikipedia 年度页 ↗</a></article>`).join("")}</div>${more}</div>`;
+  return `<div class="county-history"><div class="county-history-head"><div class="section-label">县级变更记录</div><span>${rows.length} 条相关记录</span></div><p class="county-history-note">这里展示的是县级行政区划的事件记录，包括撤销、设立、合并、改隶、辖区调整和驻地变更；相关地级实体采用宽松文本命中，仅用于提示，不等同完整县级谱系。</p><div class="county-event-list">${visible.map((row) => `<article class="county-event"><div class="county-event-meta"><strong>${escapeHtml(row.year)}年</strong><span class="event-type">${escapeHtml(countyEventTypeText(row.event_type))}</span></div>${countyEventUnitsHtml(row)}<div class="county-event-change"><span>变更描述</span><p>${escapeHtml(row.change_description || row.description)}</p></div><div class="county-event-foot">${row.county_unit_types ? `涉及类型：${escapeHtml(row.county_unit_types)}` : "县级类型未从该行明确提取"}<a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">Wikipedia 年度页 ↗</a></div></article>`).join("")}</div>${more}</div>`;
 }
 
 function resultHtml(result, name, year, province) {

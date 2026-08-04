@@ -16,7 +16,7 @@ FILES = [
     "entity_names_1987_2026.csv", "legal_roster_1987_2026.csv",
     "major_lineage_relations.csv", "county_affiliation_transitions.csv",
     "wikipedia_county_change_pages.csv", "wikipedia_county_change_rows.csv",
-    "county_administrative_events_1987_2026.csv",
+    "county_administrative_events_1987_2026.csv", "county_unit_type_coverage_1987_2026.csv",
 ]
 
 DEST.mkdir(parents=True, exist_ok=True)

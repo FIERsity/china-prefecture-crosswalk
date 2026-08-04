@@ -81,6 +81,11 @@ def build() -> None:
         "prefecture_names": row.get("prefecture_names", ""),
         "prefecture_entity_ids": row.get("prefecture_entity_ids", ""),
         "county_names": row.get("county_names", ""),
+        "old_county_units": row.get("old_county_units", ""),
+        "new_county_units": row.get("new_county_units", ""),
+        "change_description": row.get("change_description", ""),
+        "county_unit_types": row.get("county_unit_types", ""),
+        "scope": row.get("scope", ""),
         "description": row.get("description", ""),
         "source_title": row.get("source_title", ""),
         "source_url": row.get("source_url", ""),
@@ -113,6 +118,7 @@ def build() -> None:
         "legal_roster_1987_2026.csv",
         "unified_events_1987_2026.csv",
         "county_administrative_events_1987_2026.csv",
+        "county_unit_type_coverage_1987_2026.csv",
     ):
         shutil.copyfile(SOURCE / filename, OUTPUT / filename)
 
