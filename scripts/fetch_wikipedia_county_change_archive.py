@@ -225,7 +225,11 @@ def parse_table(table: str) -> tuple[list[str], list[dict[str, object]]]:
         next_carry = [(remaining - 1, text) for remaining, text in carry if remaining > 1]
         for value, rowspan, _colspan, _kind in row:
             if rowspan > 1:
-                next_carry.append((rowspan, clean_wikitext(value)))
+                # The current row consumes one of the rows covered by rowspan.
+                # Keeping the original span here made rowspan="2" leak into
+                # the following *two* rows, attaching one record's prefecture
+                # to the next record.
+                next_carry.append((rowspan - 1, clean_wikitext(value)))
         carry = next_carry
     return headers, output
 
