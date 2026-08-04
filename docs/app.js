@@ -120,6 +120,17 @@ function statusText(status) {
   return { auto_matched: "自动接受", needs_confirmation: "需要确认", problem: "发现风险", unmatched: "未匹配" }[status] || status;
 }
 
+function canonicalNameHistoryHtml(entityId) {
+  const rows = state.data.names
+    .filter((item) => item.entity_id === entityId && item.method === "official_or_historical")
+    .map((item) => ({ name: item.name, start: Number(item.start), end: Number(item.end) }))
+    .sort((a, b) => a.start - b.start || a.end - b.end || a.name.localeCompare(b.name, "zh-CN"));
+  const unique = [...new Map(rows.map((row) => [`${row.name}|${row.start}|${row.end}`, row])).values()];
+  if (!unique.length) return "";
+  const sequence = unique.map((row) => `${escapeHtml(row.name)}（${row.start}年——${row.end}年）`).join("→");
+  return `<div class="canonical-history"><div class="section-label">规范名沿革</div><p class="canonical-history-line">${sequence}</p></div>`;
+}
+
 function resultHtml(result, name, year, province) {
   if (result.status === "unmatched") {
     return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>没有找到确定结果</h2></div><span class="status problem">未匹配</span></div><p class="result-note">“${escapeHtml(name)}”没有达到自动接受条件。可以补充年份、省份，或检查是否存在错别字。</p>`;
@@ -129,7 +140,7 @@ function resultHtml(result, name, year, province) {
   }
   const entity = result.entity;
   const riskMessage = result.risk ? `需要注意：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "全国唯一、年份有效且层级一致。可以作为自动匹配结果使用。";
-  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}</p><p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
+  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}</p>${canonicalNameHistoryHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
 }
 
 function renderMatch() {
