@@ -20,8 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO_DATA = ROOT / "data" / "processed"
 PACKAGED_DATA = Path(__file__).resolve().parent / "data"
 DATA = REPO_DATA if (REPO_DATA / "entities.csv").exists() else PACKAGED_DATA
-RULE_VERSION = "2026.07.1"
-MIN_YEAR = 1987
+RULE_VERSION = "2026.08.1"
+MIN_YEAR = 1983
+ROSTER_MIN_YEAR = 1987
 MAX_YEAR = 2026
 PUNCT = re.compile(r"[\s\u200b-\u200f\u2060\ufeff·•,，。.;；:：()（）\[\]【】_-]+")
 
@@ -90,7 +91,11 @@ class CrosswalkMatcher:
         self.wikipedia_pages = pd.read_csv(data_dir / "wikipedia_change_pages.csv", dtype=str).fillna("")
         self.wikipedia_rows = pd.read_csv(data_dir / "wikipedia_prefecture_change_rows.csv", dtype=str).fillna("")
         self.wikipedia_normalized_events = pd.read_csv(data_dir / "wikipedia_normalized_events_1987_1999.csv", dtype=str).fillna("")
-        self.unified_events = pd.read_csv(data_dir / "unified_events_1987_2026.csv", dtype=str).fillna("")
+        prefecture_events = data_dir / "prefecture_administrative_events_1983_2026.csv"
+        self.unified_events = pd.read_csv(
+            prefecture_events if prefecture_events.exists() else data_dir / "unified_events_1987_2026.csv",
+            dtype=str,
+        ).fillna("")
         self.historical_entities = pd.read_csv(data_dir / "historical_entities.csv", dtype=str).fillna("")
         self.unified_relations = pd.read_csv(data_dir / "unified_event_relations.csv", dtype=str).fillna("")
         self.major_lineage_relations = pd.read_csv(data_dir / "major_lineage_relations.csv", dtype=str).fillna("")
@@ -119,6 +124,8 @@ class CrosswalkMatcher:
             return "not_checked"
         if not MIN_YEAR <= year <= MAX_YEAR:
             return "unsupported_year"
+        if year < ROSTER_MIN_YEAR:
+            return "early_event_only"
         rows = self.roster[(self.roster.entity_id == entity_id) & (self.roster.year == year)]
         return str(rows.iloc[0].status) if len(rows) else "unknown"
 
@@ -178,11 +185,11 @@ class CrosswalkMatcher:
                 entity_id = raw_matches[0]["entity_id"]
                 entity = self.entity_map[entity_id]
                 return MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "province_conflict", 1.0, self._year_status(entity_id, year), "prefecture", "province_mismatch", 1)
-        if year is not None and MIN_YEAR <= year <= MAX_YEAR:
+        if year is not None and ROSTER_MIN_YEAR <= year <= MAX_YEAR:
             valid = [m for m in matches if m["start"] <= year <= m["end"]]
         else:
             valid = matches
-        if not valid and matches and year is not None and MIN_YEAR <= year <= MAX_YEAR:
+        if not valid and matches and year is not None and ROSTER_MIN_YEAR <= year <= MAX_YEAR:
             all_ids = sorted({m["entity_id"] for m in matches})
             if len(all_ids) == 1:
                 entity_id = all_ids[0]
@@ -236,7 +243,11 @@ class CrosswalkMatcher:
 
     def query_events(self, entity_id: str | None = None, province: str | None = None, year: int | None = None, event_type: str | None = None) -> pd.DataFrame:
         df = self.unified_events.copy()
-        if entity_id: df = df[df.entity_id == entity_id]
+        if entity_id:
+            if "entity_ids" in df:
+                df = df[df.entity_id.eq(entity_id) | df.entity_ids.str.split("、").map(lambda values: entity_id in values)]
+            else:
+                df = df[df.entity_id == entity_id]
         if province: df = df[df.province_name.map(normalize_province) == normalize_province(province)]
         if year: df = df[df.year.astype(int) == int(year)]
         if event_type: df = df[df.event_type == event_type]

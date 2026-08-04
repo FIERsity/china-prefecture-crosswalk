@@ -61,7 +61,7 @@ def test_year_and_level_risks():
     assert "post_abolition" in m.match_name("伊犁地区", 2005, "新疆").risk_codes
     assert "county_level_conflict" in m.match_name("香格里拉市", 2020, "云南").risk_codes
     assert "province_mismatch" in m.match_name("普洱市", 2010, "安徽").risk_codes
-    assert "unsupported_year" in m.match_name("普洱市", 1986).risk_codes
+    assert m.match_name("普洱市", 1986).year_status == "early_event_only"
     assert "unsupported_year" in m.match_name("普洱市", 2027).risk_codes
 
 
@@ -100,3 +100,11 @@ def test_event_queries_and_complex_relations():
     assert any(normalized.event_id == "WIKI-1988-017")
     unified = m.query_events(entity_id="CNUR-000113")
     assert set(unified.year) >= {"1988", "2000"}
+
+
+def test_early_prefecture_events_are_queryable():
+    m = CrosswalkMatcher()
+    rows = m.query_events(entity_id="CNUR-000018", year=1985)
+    assert len(rows) == 1
+    assert rows.iloc[0].new_prefecture_name == "晋城市"
+    assert rows.iloc[0].source_id == "SRC-RMRB-1985-09-12"

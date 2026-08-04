@@ -52,7 +52,9 @@ This is the browser-facing county event layer. It combines the 1987—2026 Wikip
 
 ## `data/processed/unified_events_1987_2026.csv`
 
-The single public event interface. It combines all normalized events into one schema and one review-status vocabulary. There is no methodological split at 2000; older and newer events share the same event types, continuity rules, entity links, risk flags, and source requirements.
+The reviewed 1987—2026 prefecture event table. `prefecture_administrative_events_1983_2026.csv` is the browser/package event interface: it preserves this table and appends the 67 early descriptive records from `prefecture_events_early_1983_1986.csv`. Its `entity_ids` and `prefecture_entity_ids` fields support related-card display; early rows deliberately set `automatic_continuity=false` and retain the full source wording in `description`. The 1983—1986 rows are event evidence, not a reconstructed annual legal roster.
+
+The combined event layer uses one event-type vocabulary and one provenance structure across the periods. The query window is 1983—2026; the current source records end in 2018, while the annual status layer continues through 2026.
 
 Historical units needed for complete lineage are registered in `historical_entities.csv`. Non-1:1 outcomes are represented in `unified_event_relations.csv`; in particular, Yanbei splits to Datong and Shuozhou, while the 1996 Chongqing transition links Wanxian, Fuling, and Qianjiang without permitting automatic value conversion.
 

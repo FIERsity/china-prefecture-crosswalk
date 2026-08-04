@@ -26,8 +26,9 @@ jobs:
           python-version: "3.12"
       - name: Build browser data bundle
         run: |
-          python scripts/build_source_registry.py
           python scripts/build_county_events.py
+          python scripts/build_prefecture_events.py
+          python scripts/build_source_registry.py
           python scripts/sync_package_data.py
           python scripts/build_pages_data.py
       - name: Setup Pages
