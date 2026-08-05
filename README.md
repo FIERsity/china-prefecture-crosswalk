@@ -6,8 +6,9 @@
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-blue.svg)](LICENSE-DATA)
 
 [![Web app](https://img.shields.io/badge/use-GitHub_Pages-1F6E5A?logo=github&logoColor=white)](https://fiersity.github.io/china-prefecture-crosswalk/)
-[![Download CSV](https://img.shields.io/badge/download-V3.0_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.csv)
-[![Download Excel](https://img.shields.io/badge/download-V3.0_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.0.0/data/releases/v3.0/china_city_entity_master_V3.0.xlsx)
+[![Download CSV](https://img.shields.io/badge/download-V3.4.1_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_city_entity_master_V3.4.1.csv)
+[![Download Excel](https://img.shields.io/badge/download-V3.4.1_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_city_entity_master_V3.4.1.xlsx)
+[![Download Data bundle](https://img.shields.io/badge/download-V3.4.1_Data-888?logo=zip&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_prefecture_crosswalk_data_v3.4.1.zip)
 [![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速使用)
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
@@ -56,8 +57,9 @@
 
 | 文件 | 用途 |
 |---|---|
-| [`china_city_entity_master_V3.0.csv`](data/releases/v3.0/china_city_entity_master_V3.0.csv) | 机器读取、R/Python合并 |
-| [`china_city_entity_master_V3.0.xlsx`](data/releases/v3.0/china_city_entity_master_V3.0.xlsx) | 人工浏览、筛选和核查 |
+| [`china_city_entity_master_V3.4.1.csv`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.csv) | 机器读取、R/Python合并 |
+| [`china_city_entity_master_V3.4.1.xlsx`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.xlsx) | 人工浏览、筛选和核查 |
+| [`china_prefecture_crosswalk_data_v3.4.1.zip`](data/releases/v3.4.1/china_prefecture_crosswalk_data_v3.4.1.zip) | 最新全量 processed 数据快照（29 个 CSV） |
 | [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
 | [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
 | [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 363实体 × 40年的年度状态长表 |
