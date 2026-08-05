@@ -101,7 +101,7 @@ def build() -> None:
 
     payload = {
         "meta": {
-            "version": "3.4.0",
+            "version": "3.4.1",
             "ruleVersion": "2026.08.1",
             "coverage": "1983—2026",
             "entityCount": len(entities),

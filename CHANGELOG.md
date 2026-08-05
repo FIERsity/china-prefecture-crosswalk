@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.4.1 - 2026-08-05
+
+- 修复 Wikipedia 县级变更年度表格 `rowspan` 解析错误：原实现多延续一行，导致部分县级记录被错误串入相邻地级单位（如茂港区被错误归入上海市）。
+- 重新抓取并重建县级事件层：110 条县级记录纠正地级关联，移除 4 条误识别的省份标记事件；新增回归测试覆盖 rowspan 延续逻辑。
+- 发布 v3.4.1 release：打包最新全量 `data/processed` 数据（29 个 CSV）为 ZIP 快照，连同 master 实体 CSV/XLSX 作为发布资产；master 实体表内容与 V3.0 一致。
+- 网页、Streamlit 下载入口与 README 下载徽章同步指向 v3.4.1。
+
 ## 3.4.0 - 2026-08-04
 
 - Unified the public query window at 1983—2026 across the web app, Streamlit entry, CLI audit report, and repository descriptions.

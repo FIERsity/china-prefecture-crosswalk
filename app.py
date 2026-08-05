@@ -39,9 +39,9 @@ page = st.sidebar.radio("入口", ["数据库浏览与下载", "批量检查", "
 m = matcher()
 
 if page == "数据库浏览与下载":
-    release_dir = Path(__file__).resolve().parent / "data" / "releases" / "v3.0"
-    master = pd.read_csv(release_dir / "china_city_entity_master_V3.0.csv", encoding="utf-8-sig", dtype=str).fillna("")
-    st.header("中国地级行政实体全量数据库 V3.0")
+    release_dir = Path(__file__).resolve().parent / "data" / "releases" / "v3.4.1"
+    master = pd.read_csv(release_dir / "china_city_entity_master_V3.4.1.csv", encoding="utf-8-sig", dtype=str).fillna("")
+    st.header("中国地级行政实体全量数据库 V3.4.1")
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("研究实体", len(master))
     c2.metric("持续追踪实体", int((master.entity_scope == "research_entity").sum()))
@@ -61,8 +61,8 @@ if page == "数据库浏览与下载":
             shown = shown[shown.apply(lambda row: needle in row.entity_id.lower() or needle in row.canonical_name_zh.lower() or needle in row.legacy_entity_id.lower(), axis=1)]
         st.dataframe(shown, use_container_width=True, hide_index=True)
         d1, d2 = st.columns(2)
-        d1.download_button("下载 V3.0 CSV", (release_dir / "china_city_entity_master_V3.0.csv").read_bytes(), "china_city_entity_master_V3.0.csv", "text/csv")
-        d2.download_button("下载 V3.0 Excel", (release_dir / "china_city_entity_master_V3.0.xlsx").read_bytes(), "china_city_entity_master_V3.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        d1.download_button("下载 V3.4.1 CSV", (release_dir / "china_city_entity_master_V3.4.1.csv").read_bytes(), "china_city_entity_master_V3.4.1.csv", "text/csv")
+        d2.download_button("下载 V3.4.1 Excel", (release_dir / "china_city_entity_master_V3.4.1.xlsx").read_bytes(), "china_city_entity_master_V3.4.1.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     with annual_tab:
         a1, a2 = st.columns(2)
         selected_year = a1.selectbox("选择年份", list(range(1987, 2027)), index=39)
