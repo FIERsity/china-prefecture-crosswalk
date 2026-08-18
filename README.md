@@ -9,7 +9,7 @@
 [![Download CSV](https://img.shields.io/badge/download-V3.4.1_CSV-2F81F7?logo=files&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_city_entity_master_V3.4.1.csv)
 [![Download Excel](https://img.shields.io/badge/download-V3.4.1_Excel-217346?logo=microsoftexcel&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_city_entity_master_V3.4.1.xlsx)
 [![Download Data bundle](https://img.shields.io/badge/download-V3.4.1_Data-888?logo=zip&logoColor=white)](https://raw.githubusercontent.com/FIERsity/china-prefecture-crosswalk/v3.4.1/data/releases/v3.4.1/china_prefecture_crosswalk_data_v3.4.1.zip)
-[![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速使用)
+[![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速开始)
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
 
@@ -17,8 +17,7 @@
 
 > `CNUR-000001` 等 CNUR 编号是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。
 
-## 在线工具（GitHub Pages）
-
+## 在线工具
 **[打开 China Urban Research Crosswalk](https://fiersity.github.io/china-prefecture-crosswalk/)**
 
 静态网页提供三个入口：
@@ -33,51 +32,8 @@
 
 当前网页数据还包含 V3.4 地级行政单位事件层：保留原有 144 条结构化事件，另从 1983—1986 年早期材料中抽取 67 条市、地区、自治州和盟等地级行政单位变化，合计 211 条。查询窗口统一从 1983 年开始，现有事件记录到 2018 年；早期记录保留原文、版次或页面定位和来源 ID，主要来源为人民日报历史版面及区划地名网根据国务院批复整理的转录。城市结果把规范名沿革和地级行政单位变更放在同一区块，变更记录显示来源描述，不再依赖未充分清洗的前后单位字段。年度法定状态表仍按现有资料从1987年开始。县级补充层共 1,435 条，韩城县改韩城市等县改县级市事件已纳入。县级记录只做描述性展示和宽松地级关联，不宣称完成严格的县级谱系重建。
 
-## V3.0 全量数据概览
 
-| 内容 | 数量/范围 |
-|---|---:|
-| 永久 CNUR 实体 | 363 |
-| 持续追踪研究实体 | 340 |
-| 历史实体 | 23 |
-| 实体—年度状态 | 14,520（1987—2026） |
-| 统一地级变更事件 | 144 |
-| 地级行政单位事件层 | 211 条（查询窗口 1983—2026，现有记录到 2018），其中 67 条来自早期材料 |
-| 事件关系 | 149 |
-| 维基地级原始记录 | 988 |
-| 连续性审计 | 1,285 项，0 错误 |
-| 县级变更原始表格行 | 1,158（1987—2026） |
-| 县级变更事件记录 | 1,435（1983—2026），其中 286 条来自早期补录 |
-| 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
-| 来源登记 | 49 条，含页面修订号、版次定位和来源状态 |
-
-直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
-
-## 推荐下载
-
-| 文件 | 用途 |
-|---|---|
-| [`china_city_entity_master_V3.4.1.csv`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.csv) | 机器读取、R/Python合并 |
-| [`china_city_entity_master_V3.4.1.xlsx`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.xlsx) | 人工浏览、筛选和核查 |
-| [`china_prefecture_crosswalk_data_v3.4.1.zip`](data/releases/v3.4.1/china_prefecture_crosswalk_data_v3.4.1.zip) | 最新全量 processed 数据快照（29 个 CSV） |
-| [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
-| [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
-| [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 363实体 × 40年的年度状态长表 |
-| [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
-| [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
-| [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
-| [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
-| [`county_administrative_events_1983_2026.csv`](data/processed/county_administrative_events_1983_2026.csv) | 1983—2026 县级变更事件，合并早期版面、批复转录与 Wikipedia 记录 |
-| [`county_administrative_events_1983_1986.csv`](data/processed/county_administrative_events_1983_1986.csv) | 1983—1986 早期县级以上变更补录，含原文、页面定位和来源 ID |
-| [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
-| [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
-| [`source_registry.csv`](data/processed/source_registry.csv) | 统一来源登记：来源类型、时间范围、定位、权威性和核验状态 |
-| [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
-
-完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
-
-## 快速使用
-
+## 快速开始
 ### Python
 
 ```python
@@ -155,8 +111,51 @@ cnur events --year 1993 --type split --output events.csv
 
 默认情况下，命令成功执行即返回退出码0；加上 `--fail-on-review` 后，只要存在非自动接受记录就返回退出码2，便于接入数据流水线。
 
-## 匹配原则
 
+## 数据概览
+| 内容 | 数量/范围 |
+|---|---:|
+| 永久 CNUR 实体 | 363 |
+| 持续追踪研究实体 | 340 |
+| 历史实体 | 23 |
+| 实体—年度状态 | 14,520（1987—2026） |
+| 统一地级变更事件 | 144 |
+| 地级行政单位事件层 | 211 条（查询窗口 1983—2026，现有记录到 2018），其中 67 条来自早期材料 |
+| 事件关系 | 149 |
+| 维基地级原始记录 | 988 |
+| 连续性审计 | 1,285 项，0 错误 |
+| 县级变更原始表格行 | 1,158（1987—2026） |
+| 县级变更事件记录 | 1,435（1983—2026），其中 286 条来自早期补录 |
+| 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
+| 来源登记 | 49 条，含页面修订号、版次定位和来源状态 |
+
+直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
+
+
+## 下载
+| 文件 | 用途 |
+|---|---|
+| [`china_city_entity_master_V3.4.1.csv`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.csv) | 机器读取、R/Python合并 |
+| [`china_city_entity_master_V3.4.1.xlsx`](data/releases/v3.4.1/china_city_entity_master_V3.4.1.xlsx) | 人工浏览、筛选和核查 |
+| [`china_prefecture_crosswalk_data_v3.4.1.zip`](data/releases/v3.4.1/china_prefecture_crosswalk_data_v3.4.1.zip) | 最新全量 processed 数据快照（29 个 CSV） |
+| [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
+| [`entity_names_1987_2026.csv`](data/processed/entity_names_1987_2026.csv) | 1987—2026正式名和历史名有效区间 |
+| [`legal_roster_1987_2026.csv`](data/processed/legal_roster_1987_2026.csv) | 363实体 × 40年的年度状态长表 |
+| [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
+| [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
+| [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
+| [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
+| [`county_administrative_events_1983_2026.csv`](data/processed/county_administrative_events_1983_2026.csv) | 1983—2026 县级变更事件，合并早期版面、批复转录与 Wikipedia 记录 |
+| [`county_administrative_events_1983_1986.csv`](data/processed/county_administrative_events_1983_1986.csv) | 1983—1986 早期县级以上变更补录，含原文、页面定位和来源 ID |
+| [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
+| [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
+| [`source_registry.csv`](data/processed/source_registry.csv) | 统一来源登记：来源类型、时间范围、定位、权威性和核验状态 |
+| [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
+
+完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
+
+
+## 匹配原则
 匹配按以下顺序执行：
 
 1. Unicode NFKC、繁简、全半角、不可见字符和标点标准化；
@@ -169,8 +168,8 @@ cnur events --year 1993 --type split --output events.csv
 
 只有全国唯一、年份有效且层级一致的确定性结果会自动接受。部分名称会列出全部对应实体；县级名称会关联到相关地级实体；编辑距离模糊匹配最多显示3个候选。香格里拉市等县级同名冲突会返回上级地级实体和风险提示，不会直接替用户修改。
 
-## 数据模型
 
+## 数据模型
 本项目严格区分：
 
 - **研究实体**：稳定CNUR编号，用于跨期追踪；
@@ -181,8 +180,8 @@ cnur events --year 1993 --type split --output events.csv
 
 例如雁北地区撤销后分别关联大同和朔州，因此被记录为一对多 `split`，不能自动把历史统计值分配给任一城市。
 
-## 质量控制
 
+## 质量控制
 每次提交都会在 GitHub Actions 中自动执行：
 
 - processed 数据可重复构建；
@@ -197,8 +196,8 @@ cnur events --year 1993 --type split --output events.csv
 
 审计结果见 [`data/audit/unified_continuity_audit.csv`](data/audit/unified_continuity_audit.csv)。
 
-## 信源与限制
 
+## 信源与限制
 - 1987 年以后县级层主要使用中文维基百科年度行政区划变更页面，并保存页面 URL 和修订号；
 - 1983—1986 年早期补录以人民日报历史版面的行政区划变更摘要为主，并用区划地名网按国务院批复整理的 1983 年第四季度、1984 年上半年条目补齐时段，分别保存版次或页面定位、原文和访问链接；
 - 国务院公报历史目录和《中华人民共和国行政区划简册》书目已登记为核验来源，公报扫描件仍需逐页 OCR 或人工复核后，才能替代摘要层；
@@ -208,8 +207,8 @@ cnur events --year 1993 --type split --output events.csv
 - 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
 - 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
 
-## 引用
 
+## 引用
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 
 ```text
@@ -219,16 +218,16 @@ https://github.com/FIERsity/china-prefecture-crosswalk
 
 仓库包含 [`CITATION.cff`](CITATION.cff)，GitHub页面右侧可直接导出引用格式。
 
-## 许可与贡献
 
+## 许可与贡献
 - 代码：MIT License；
 - processed与release数据：CC BY 4.0；
 - 第三方来源内容仍受原来源条款约束。
 
 欢迎通过 GitHub Issues 提交别名、OCR错误、年份冲突和来源补充。涉及新别名或历史修订时，请同时提供名称、年份、省份、预期实体和来源链接。
 
-## 仓库结构
 
+## 仓库结构
 ```text
 data/raw/          原始输入快照
 data/processed/    可复现生成的数据层
@@ -241,3 +240,4 @@ scripts/build_pages_data.py  生成浏览器端数据包
 tests/             回归与网页测试
 app.py             Streamlit网页入口
 ```
+
