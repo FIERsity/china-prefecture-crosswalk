@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import json
 from pathlib import Path
 
 from county_unit_normalization import is_counted_unit_phrase
@@ -218,6 +219,15 @@ def main() -> None:
     require(all(row["geometry_status"] == "valid" for row in ctamap_links), "CTAmap contains invalid linked geometry")
     require(all(row["source_year_verified"] == "true" for row in ctamap_links), "CTAmap feature year mismatch")
     require({row["issue_type"] for row in ctamap_issues} <= {"source_name_differs_from_year_end", "year_end_entity_missing_from_snapshot"}, "CTAmap audit contains unexpected issues")
+    map_manifest_path = ROOT / "docs" / "data" / "maps" / "manifest.json"
+    map_manifest = json.loads(map_manifest_path.read_text(encoding="utf-8"))
+    require(len(map_manifest["years"]) == 25, "web map manifest must contain 25 snapshots")
+    require(all(row["feature_count"] == row["linked_feature_count"] + row["context_feature_count"] for row in map_manifest["years"]), "web map feature classification is incomplete")
+    require(all(row["context_feature_count"] > 0 for row in map_manifest["years"]), "web map is missing context regions")
+    require(all((map_manifest_path.parent / "prefecture" / row["file"]).exists() for row in map_manifest["years"]), "web map file missing")
+    latest_map = json.loads((map_manifest_path.parent / "prefecture" / "2024.geojson").read_text(encoding="utf-8"))
+    require(len(latest_map["features"]) == 372, "2024 web map must contain linked and context features")
+    require(any(feature["properties"]["link_status"] == "context_only" for feature in latest_map["features"]), "2024 web map context classification missing")
     require(any(row["entity_id"] == "CNUR-000121" and row["name_zh"] == "建阳地区" and row["start_year"] == "1987" for row in extended_names), "pre-2000 name chain missing")
     require(any(row["entity_id"] == "CNUR-000272" and row["name_zh"] == "普洱市" and row["end_year"] == "2026" for row in extended_names), "post-2024 name extension missing")
     require(all(row["automatic_continuity"] == "false" for row in unified_events if row["event_type"] in {"merge", "split", "abolish"}), "complex unified event cannot imply continuity")

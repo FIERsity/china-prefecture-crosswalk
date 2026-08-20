@@ -33,15 +33,18 @@ def main() -> None:
         shp = next((SOURCE / str(year) / "地级").glob("*.shp"))
         reader = shapefile.Reader(str(shp), encoding="utf-8")
         features = []
+        linked_count = 0
+        context_count = 0
         for index, shape_record in enumerate(reader.iterShapeRecords()):
             link = by_year[year].get(index)
-            if not link:
-                continue
-            geom = shapely_shape(shape_record.shape.__geo_interface__).simplify(TOLERANCE_DEGREES, preserve_topology=True)
-            features.append({
-                "type": "Feature",
-                "id": link["source_feature_id"],
-                "properties": {
+            record = shape_record.record.as_dict()
+            source_name = str(record.get("地名", "") or "")
+            source_code = str(record.get("区划码", "") or record.get("code", "") or "")
+            prefecture_type = str(record.get("地级类", "") or "")
+            province_name = str(record.get("省级", "") or "")
+            if link:
+                linked_count += 1
+                properties = {
                     "entity_id": link["entity_id"],
                     "source_name": link["source_name"],
                     "year_end_name": link["year_end_name"],
@@ -50,13 +53,36 @@ def main() -> None:
                     "province_name": link["province_name"],
                     "snapshot_year": year,
                     "panel_year": year - 1,
-                },
+                    "link_status": "linked",
+                    "context_kind": "prefecture_or_municipality",
+                }
+                feature_id = link["source_feature_id"]
+            else:
+                context_count += 1
+                properties = {
+                    "entity_id": "",
+                    "source_name": source_name,
+                    "year_end_name": "",
+                    "source_code": source_code,
+                    "prefecture_type": prefecture_type or "不统计",
+                    "province_name": province_name,
+                    "snapshot_year": year,
+                    "panel_year": year - 1,
+                    "link_status": "context_only",
+                    "context_kind": "out_of_scope_province" if province_name in {"香港特别行政区", "澳门特别行政区", "台湾省"} else "province_direct_admin_county_level",
+                }
+                feature_id = f"CTAMAP-{year}-CONTEXT-{index:04d}"
+            geom = shapely_shape(shape_record.shape.__geo_interface__).simplify(TOLERANCE_DEGREES, preserve_topology=True)
+            features.append({
+                "type": "Feature",
+                "id": feature_id,
+                "properties": properties,
                 "geometry": mapping(geom),
             })
         payload = {"type": "FeatureCollection", "features": features}
         path = OUTPUT / f"{year}.geojson"
         path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        manifest.append({"snapshot_year": year, "panel_year": year - 1, "feature_count": len(features), "file": path.name, "size_bytes": path.stat().st_size})
+        manifest.append({"snapshot_year": year, "panel_year": year - 1, "feature_count": len(features), "linked_feature_count": linked_count, "context_feature_count": context_count, "file": path.name, "size_bytes": path.stat().st_size})
     (OUTPUT.parent / "manifest.json").write_text(json.dumps({"source": "CTAmap 1.30", "snapshot_basis": "year_start", "panel_mapping": "snapshot_year - 1", "format": "simplified GeoJSON", "simplification_tolerance_degrees": TOLERANCE_DEGREES, "years": manifest}, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"years={len(manifest)} features={sum(row['feature_count'] for row in manifest)} size_mb={sum(row['size_bytes'] for row in manifest)/1024/1024:.1f}")
 

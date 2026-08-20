@@ -1,6 +1,8 @@
 const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map() };
 let historyMap = null;
 let historyLayer = null;
+let mapLayerById = new Map();
+let currentMapGeojson = null;
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -322,6 +324,45 @@ function renderEvents() {
   $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>变更描述</th><th>来源摘要</th></tr></thead><tbody>${rows.map((row) => { const source = [row.approval_date, row.document_number].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(prefectureDescription(row))}</td><td>${escapeHtml(source)}<br><small>${escapeHtml(row.review_status || "")}</small></td></tr>`; }).join("")}</tbody></table>`;
 }
 
+function mapEntityHistoryHtml(properties) {
+  if (!properties.entity_id) {
+    const label = properties.context_kind === "out_of_scope_province" ? "当前项目范围外" : "省直辖县级行政区域";
+    return `<div class="map-entity-card context"><span>区域类型</span><strong>${label}</strong><span>CNUR 状态</span><strong>不分配地级研究实体编号</strong></div><p class="county-history-note">该区域用于补全地图背景，因此不再显示为空洞；它不属于当前地级 CNUR 面板范围。</p>`;
+  }
+  const names = (state.data.yearEndNames || []).filter((row) => row.entity_id === properties.entity_id).sort((a, b) => Number(a.start) - Number(b.start));
+  const events = (state.data.events || []).filter((row) => `${row.entity_id || ""}、${row.entity_ids || ""}、${row.prefecture_entity_ids || ""}`.includes(properties.entity_id)).sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 6);
+  const nameHistory = names.length ? `<div class="map-history"><span>年末名称沿革</span><p>${names.map((row) => `${escapeHtml(row.name)}（${row.start}—${row.end}）`).join(" → ")}</p></div>` : "";
+  const eventHistory = events.length ? `<div class="map-history"><span>相关地级事件</span>${events.map((row) => `<button type="button" data-map-event-year="${escapeHtml(row.year)}"><b>${escapeHtml(row.year)} · ${escapeHtml(prefectureEventTypeText(row.event_type))}</b><small>${escapeHtml(prefectureDescription(row))}</small></button>`).join("")}</div>` : "";
+  return `<div class="map-entity-card"><span>CNUR 实体</span><strong>${escapeHtml(properties.entity_id)}</strong><span>${properties.panel_year} 年末名称</span><strong>${escapeHtml(properties.year_end_name || "—")}</strong></div>${nameHistory}${eventHistory}`;
+}
+
+function showMapFeature(featureId, zoom = false) {
+  const item = mapLayerById.get(featureId);
+  if (!item) return;
+  const { feature, layer } = item;
+  const p = feature.properties;
+  if (zoom) historyMap.fitBounds(layer.getBounds(), { padding: [35, 35], maxZoom: 7 });
+  historyMap.closeTooltip();
+  layer.openTooltip();
+  $("#map-detail").innerHTML = `<div class="section-label">${p.snapshot_year}年初 / ${p.panel_year}年末</div><h2>${escapeHtml(p.source_name)}</h2><p class="muted">${escapeHtml(p.province_name)} · ${escapeHtml(p.prefecture_type)} · ${escapeHtml(p.source_code)}</p>${mapEntityHistoryHtml(p)}<p class="map-source-links"><a href="https://github.com/ruiduobao/shengshixian.com" target="_blank" rel="noreferrer">CTAmap 数据源 ↗</a><a href="https://github.com/ruiduobao/china-divisions-map" target="_blank" rel="noreferrer">原可视化项目 ↗</a></p>`;
+  $$('[data-map-event-year]').forEach((button) => button.addEventListener("click", () => { $("#event-year").value = button.dataset.mapEventYear; $("#event-keyword").value = p.source_name; switchView("events"); }));
+}
+
+function searchHistoryMap() {
+  const query = normalizeName($("#map-search-input").value);
+  if (!query || !currentMapGeojson) return;
+  const historicalEntityIds = new Set((state.data.names || []).filter((row) => normalizeName(`${row.name}${row.normalized}`).includes(query)).map((row) => row.entity_id));
+  const matches = currentMapGeojson.features.filter((feature) => {
+    const p = feature.properties;
+    return historicalEntityIds.has(p.entity_id) || [p.source_name, p.year_end_name, p.source_code, p.entity_id, p.province_name].some((value) => normalizeName(value).includes(query));
+  });
+  const exact = matches.find((feature) => [feature.properties.source_name, feature.properties.year_end_name, feature.properties.source_code, feature.properties.entity_id].some((value) => normalizeName(value) === query));
+  if (exact) { showMapFeature(exact.id, true); return; }
+  if (matches.length === 1) { showMapFeature(matches[0].id, true); return; }
+  $("#map-detail").innerHTML = matches.length ? `<div class="section-label">SEARCH RESULT</div><h2>找到 ${matches.length} 个区域</h2><div class="map-search-results">${matches.slice(0, 20).map((feature) => `<button type="button" data-map-feature-id="${escapeHtml(feature.id)}"><strong>${escapeHtml(feature.properties.source_name)}</strong><span>${escapeHtml(feature.properties.province_name)} · ${escapeHtml(feature.properties.source_code)}</span></button>`).join("")}</div>` : `<p class="result-note">当前地图没有找到“${escapeHtml($("#map-search-input").value)}”。可尝试历史名称、六位区划码或 CNUR 编号。</p>`;
+  $$('[data-map-feature-id]').forEach((button) => button.addEventListener("click", () => showMapFeature(button.dataset.mapFeatureId, true)));
+}
+
 async function renderHistoryMap() {
   const panelYear = Number($("#map-panel-year").value || 2023);
   const snapshotYear = panelYear + 1;
@@ -332,24 +373,26 @@ async function renderHistoryMap() {
   const response = await fetch(`data/maps/prefecture/${snapshotYear}.geojson`);
   if (!response.ok) throw new Error(`map ${response.status}`);
   const geojson = await response.json();
+  currentMapGeojson = geojson;
+  mapLayerById = new Map();
   if (historyLayer) historyLayer.remove();
   historyLayer = L.geoJSON(geojson, {
-    style: { color: "#ffffff", weight: .65, fillColor: "#78b999", fillOpacity: .78 },
+    style(feature) { return feature.properties.link_status === "linked" ? { color: "#ffffff", weight: .65, fillColor: "#78b999", fillOpacity: .78 } : { color: "#ffffff", weight: .55, fillColor: "#d8ddd8", fillOpacity: .82 }; },
     onEachFeature(feature, layer) {
       const p = feature.properties;
+      mapLayerById.set(feature.id, { feature, layer });
       layer.bindTooltip(`${p.source_name} · ${p.province_name}`, { sticky: true });
       layer.on({
         mouseover: () => layer.setStyle({ fillColor: "#f28b50", fillOpacity: .9, weight: 1.2 }),
         mouseout: () => historyLayer.resetStyle(layer),
-        click: () => {
-          $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初 / ${panelYear}年末</div><h2>${escapeHtml(p.source_name)}</h2><p class="muted">${escapeHtml(p.province_name)} · ${escapeHtml(p.prefecture_type)} · ${escapeHtml(p.source_code)}</p><div class="map-entity-card"><span>CNUR 实体</span><strong>${escapeHtml(p.entity_id)}</strong><span>${panelYear} 年末名称</span><strong>${escapeHtml(p.year_end_name || "—")}</strong></div><p class="map-source-links"><a href="https://github.com/ruiduobao/shengshixian.com" target="_blank" rel="noreferrer">CTAmap 数据源 ↗</a><a href="https://github.com/ruiduobao/china-divisions-map" target="_blank" rel="noreferrer">原可视化项目 ↗</a></p>`;
-        },
+        click: () => showMapFeature(feature.id),
       });
     },
   }).addTo(historyMap);
   historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
   setTimeout(() => historyMap.invalidateSize(), 0);
-  $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初地图</div><h2>${panelYear} 年经济面板</h2><p class="muted">共 ${geojson.features.length} 个地级及直辖市等价要素。点击区域查看 CTAmap 名称、CNUR 与年末名称。</p>`;
+  const linked = geojson.features.filter((feature) => feature.properties.link_status === "linked").length;
+  $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初地图</div><h2>${panelYear} 年经济面板</h2><p class="muted">${linked} 个地级/CNUR 要素，另有 ${geojson.features.length - linked} 个背景区域补全地图。可点击地图或使用名称、代码、CNUR 查询。</p>`;
 }
 
 function switchView(view) {
@@ -389,6 +432,7 @@ async function init() {
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);
     $("#map-panel-year").addEventListener("change", () => renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }));
+    $("#map-search-form").addEventListener("submit", (event) => { event.preventDefault(); searchHistoryMap(); });
     $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; renderMatch(); }));
     $$("[data-view]").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
   } catch (error) {

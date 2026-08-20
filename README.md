@@ -13,24 +13,25 @@
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
 
-项目提供稳定研究实体编号、年末名称与状态、行政区划变更事件、CTAmap 地级空间桥接和可解释的批量匹配工具，帮助研究者处理统计年鉴、城市面板、OCR资料和跨期名称变化。
+项目提供稳定研究实体编号、12 月 31 日年末名称与状态、行政区划变更事件、CTAmap 历史地图桥接和可解释的批量匹配工具，面向需要处理统计年鉴、城市面板、OCR 资料和跨期名称变化的研究者。
 
 > `CNUR-000001` 等 CNUR 编号是本项目的永久研究编号，不是民政部、国家统计局或任何年份的官方行政区划代码。
 
 ## 在线工具
 **[打开 China Urban Research Crosswalk](https://fiersity.github.io/china-prefecture-crosswalk/)**
 
-静态网页提供三个入口：
+静态网页提供四个入口：
 
 - 单个名称和可选省份查询；
 - 1983—2026 地级行政单位变更检索，1983—2026 县级变更记录；
+- 1999—2023 面板年份对应的 2000—2024 年初历史地图，可按名称、代码和 CNUR 查询；
 - 机器可读数据下载。
 
 网页查询在浏览器本地完成，不需要 Python 服务器，也不会上传用户输入。完整的 CSV/XLSX 批量匹配仍可使用 Python API、CLI 或本地 Streamlit 入口。
 
 网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
 
-V4.0 将年度状态统一定义为每年 12 月 31 日。连续改名发生当年，新旧名称都可匹配同一 CNUR，输出统一返回年末名称；复杂合并、拆分和撤销仍禁止自动映射后继实体。CTAmap 1.30 的 2000—2024 年初快照已完成审计，仓库保留 25 个按年懒加载的简化地级 GeoJSON；2.5 GB 原始 Shapefile 不重新发布。
+V4.0 将年度状态统一定义为每年 12 月 31 日。连续改名发生当年，新旧名称都可匹配同一 CNUR，输出统一返回年末名称；复杂合并、拆分和撤销仍禁止自动映射后继实体。CTAmap 1.30 的 2000—2024 年初快照已完成审计。仓库保留 25 个按年懒加载的简化 GeoJSON（约 40 MB）；绿色区域连接地级 CNUR，浅灰色区域补绘省直辖县级单位和范围外背景，避免视觉空洞。2.5 GB 原始 Shapefile 不重新发布。
 
 
 ## 快速开始
@@ -129,9 +130,10 @@ cnur events --year 1993 --type split --output events.csv
 | 维基地级原始记录 | 988 |
 | 连续性审计 | 1,285 项，0 错误 |
 | 县级变更原始表格行 | 1,158（1987—2026） |
-| 县级变更事件记录 | 1,435（1983—2026），其中 286 条来自早期补录 |
+| 县级变更事件记录 | 1,431（1983—2026），其中 286 条来自早期补录 |
 | 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
 | CTAmap 地级快照桥接 | 8,423 个地级要素，25 个年初快照 |
+| 网页地图背景区域 | 776 个跨年要素，用于补绘省直辖县级和范围外区域 |
 | 来源登记 | 50 条，含页面修订号、版次定位和来源状态 |
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
@@ -148,6 +150,8 @@ cnur events --year 1993 --type split --output events.csv
 | [`entity_name_match_ranges_1987_2026.csv`](data/processed/entity_name_match_ranges_1987_2026.csv) | 自然年内曾正式有效的名称区间 |
 | [`legal_roster_year_end_1987_2026.csv`](data/processed/legal_roster_year_end_1987_2026.csv) | 363实体 × 40年的年末状态长表 |
 | [`ctamap_prefecture_links.csv`](data/processed/ctamap_prefecture_links.csv) | CTAmap 地级要素与 CNUR 桥接 |
+| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 25 个网页 GeoJSON 的年份、要素数和文件大小清单 |
+| [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | CTAmap 简化几何的来源、引用和独立许可说明 |
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
@@ -161,17 +165,49 @@ cnur events --year 1993 --type split --output events.csv
 
 完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
 
+## 开发与部署
+
+安装运行时、测试和可选 GIS 依赖：
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt -r requirements-geo.txt pytest
+.venv/bin/pip install -e . --no-deps
+```
+
+运行数据校验和测试：
+
+```bash
+.venv/bin/python scripts/validate_data.py
+.venv/bin/pytest -q
+```
+
+如本地存在 `data/raw/CTAmap1.30版本_2000-2024_2025.04.25/`，可重新审计和生成网页地图：
+
+```bash
+.venv/bin/python scripts/audit_ctamap_prefecture.py
+.venv/bin/python scripts/build_ctamap_web_maps.py
+```
+
+本地预览静态网站：
+
+```bash
+python3 -m http.server 8765 --directory docs
+```
+
+推送 `main` 会触发 `.github/workflows/validate.yml` 和 `.github/workflows/pages.yml`；前者重建并验证数据，后者发布 `docs/` 到 GitHub Pages。原始 CTAmap Shapefile 被精确忽略，CI 使用仓库中已提交的简化 GeoJSON。
+
 
 ## 匹配原则
 匹配按以下顺序执行：
 
 1. Unicode NFKC、繁简、全半角、不可见字符和标点标准化；
-2. 正式名称与历史名称精确匹配；
+2. 年末正式名称和自然年内曾有效名称精确匹配；
 3. 常用简称和已审核别名；
 4. 用户补充映射；
 5. 有限OCR候选；
 6. RapidFuzz模糊候选；
-7. 省份、年份、法定层级、设立和撤销状态复核。
+7. 省份、年末状态、法定层级、设立和撤销状态复核。
 
 只有全国唯一、年份有效且层级一致的确定性结果会自动接受。部分名称会列出全部对应实体；县级名称会关联到相关地级实体；编辑距离模糊匹配最多显示3个候选。香格里拉市等县级同名冲突会返回上级地级实体和风险提示，不会直接替用户修改。
 
@@ -180,7 +216,8 @@ cnur events --year 1993 --type split --output events.csv
 本项目严格区分：
 
 - **研究实体**：稳定CNUR编号，用于跨期追踪；
-- **年度状态**：某实体在1987—2026各年是否存在、名称、层级及推导依据；
+- **年末状态**：某实体截至1987—2026各年12月31日是否存在、名称、层级及推导依据；
+- **年内名称匹配**：某自然年内曾正式使用的名称，与该年年末标准名称分开维护；
 - **行政区划事件**：改名、撤地设市、新设、撤销、合并、拆分和代管；
 - **事件关系**：事件来源和目标实体，以及是否允许自动连续；
 - **历史实体**：覆盖期内已撤销、合并，或为解释跨期关系所必需的地级实体。
@@ -199,6 +236,7 @@ cnur events --year 1993 --type split --output events.csv
 - 改名链与撤地设市链连续；
 - 合并、拆分、撤销和代管禁止自动映射；
 - 1,285项统一连续性审计；
+- 25 年地图、8,423 个地级桥接要素无未匹配或无效几何；
 - Python匹配回归测试与Streamlit启动测试。
 
 审计结果见 [`data/audit/unified_continuity_audit.csv`](data/audit/unified_continuity_audit.csv)。
@@ -212,6 +250,7 @@ cnur events --year 1993 --type split --output events.csv
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V4.0不声称已经为每条记录完成官方批复原件级核验；仅有批准日而无实施日的事件以推定口径并标注时间置信度；
 - CTAmap 简化地级 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；
+- 历史地图覆盖 2000—2024 年初，对应 1999—2023 经济面板年份；浅灰色背景区域不分配地级 CNUR，并不表示地图数据缺失；
 - 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
 - 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
 
@@ -242,9 +281,11 @@ data/processed/    可复现生成的数据层
 data/releases/     面向研究者的版本化发布文件
 data/audit/        实体与连续性审计结果
 docs/              GitHub Pages 静态公共工具
+docs/data/maps/     25 年简化 GeoJSON、地图清单和 CTAmap NOTICE
 urban_crosswalk/   独立Python匹配模块
 scripts/           构建、迁移、抓取和验证脚本
 scripts/build_pages_data.py  生成浏览器端数据包
+scripts/build_ctamap_web_maps.py  从本地 CTAmap Shapefile 重建网页地图
 tests/             回归与网页测试
 app.py             Streamlit网页入口
 ```

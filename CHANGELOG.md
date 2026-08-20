@@ -9,7 +9,9 @@
 - Added four public match columns: year-end name, year basis, name validity, and transition event IDs.
 - Audited CTAmap 1.30 province/prefecture Shapefiles for 2000—2024: 50 layer snapshots and 8,423 counted prefecture features, with zero unresolved entity links and zero invalid linked geometries.
 - Added CTAmap snapshot/link tables and retained two explicit cross-source timing differences for 那曲 and 莱芜; original third-party geometry is not redistributed.
-- Added a GitHub Pages historical-map tab backed by 25 lazy-loaded, simplified prefecture GeoJSON files (36 MB total), with panel-year selection, CNUR details, and upstream source links.
+- Added a GitHub Pages historical-map tab backed by 25 lazy-loaded, simplified prefecture GeoJSON files (about 40 MB total), with panel-year selection, CNUR details, and upstream source links.
+- Filled former map holes with 776 context features across the 25 snapshots (province-direct county-level units plus Hong Kong, Macao and Taiwan background), styled separately and never assigned CNUR IDs.
+- Added map search by current or historical name, six-digit source code and CNUR ID; linked map details now show year-end name history and open related event queries.
 - Published V4.0 CSV, Excel, and full data bundle outputs and switched Python, CLI, Streamlit, and GitHub Pages metadata to the year-end rule.
 
 ## 3.4.1 - 2026-08-05
