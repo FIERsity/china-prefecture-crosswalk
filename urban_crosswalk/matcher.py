@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO_DATA = ROOT / "data" / "processed"
 PACKAGED_DATA = Path(__file__).resolve().parent / "data"
 DATA = REPO_DATA if (REPO_DATA / "entities.csv").exists() else PACKAGED_DATA
-RULE_VERSION = "2026.08.1"
+RULE_VERSION = "2026.08.2-year-end"
 MIN_YEAR = 1983
 ROSTER_MIN_YEAR = 1987
 MAX_YEAR = 2026
@@ -35,6 +35,10 @@ def normalize_name(value: Any) -> str:
         text = _converter.convert(text)
     text = text.replace("巿", "市")
     return PUNCT.sub("", text).strip()
+
+
+def clean_text(value: Any) -> str:
+    return "" if value is None or pd.isna(value) else str(value)
 
 
 def normalize_province(value: Any) -> str:
@@ -60,6 +64,10 @@ class MatchResult:
     candidates: list[dict[str, Any]] | None = None
     rule_version: str = RULE_VERSION
     builtin_entity_id: str = ""
+    year_end_name: str = ""
+    year_basis: str = ""
+    name_validity: str = "not_checked"
+    transition_event_ids: str = ""
 
     def output_columns(self) -> dict[str, Any]:
         return {
@@ -74,6 +82,10 @@ class MatchResult:
             "crosswalk_risk_codes": self.risk_codes,
             "crosswalk_candidate_count": self.candidate_count,
             "crosswalk_rule_version": self.rule_version,
+            "crosswalk_year_end_name": self.year_end_name,
+            "crosswalk_year_basis": self.year_basis,
+            "crosswalk_name_validity": self.name_validity,
+            "crosswalk_transition_event_ids": self.transition_event_ids,
         }
 
 
@@ -81,8 +93,12 @@ class CrosswalkMatcher:
     def __init__(self, data_dir: Path | str = DATA):
         data_dir = Path(data_dir)
         self.entities = pd.read_csv(data_dir / "entities.csv", dtype=str).fillna("")
-        self.names = pd.read_csv(data_dir / "entity_names_1987_2026.csv", dtype={"entity_id": str})
-        self.roster = pd.read_csv(data_dir / "legal_roster_1987_2026.csv", dtype={"entity_id": str})
+        year_end_names = data_dir / "entity_names_year_end_1987_2026.csv"
+        year_end_roster = data_dir / "legal_roster_year_end_1987_2026.csv"
+        match_ranges = data_dir / "entity_name_match_ranges_1987_2026.csv"
+        self.names = pd.read_csv(year_end_names if year_end_names.exists() else data_dir / "entity_names_1987_2026.csv", dtype={"entity_id": str})
+        self.match_names = pd.read_csv(match_ranges if match_ranges.exists() else year_end_names, dtype={"entity_id": str})
+        self.roster = pd.read_csv(year_end_roster if year_end_roster.exists() else data_dir / "legal_roster_1987_2026.csv", dtype={"entity_id": str})
         self.aliases = pd.read_csv(data_dir / "aliases.csv", dtype={"entity_id": str})
         self.exclusions = pd.read_csv(data_dir / "name_exclusions.csv", dtype=str).fillna("")
         self.events = pd.read_csv(data_dir / "events_2000_2026.csv", dtype=str).fillna("")
@@ -109,15 +125,50 @@ class CrosswalkMatcher:
                 "entity_level": "prefecture",
             }
         self.index: dict[str, list[dict[str, Any]]] = {}
-        for _, r in self.names.iterrows():
-            if r["name_zh"] and r["legal_status"] == "active":
-                self._add(r["name_zh"], r["entity_id"], "official_or_historical", int(r["start_year"]), int(r["end_year"]))
+        for _, r in self.match_names.iterrows():
+            if r["name_zh"] and ("legal_status" not in r or r.get("legal_status", "active") == "active"):
+                self._add(
+                    r["name_zh"], r["entity_id"], "official_name_valid_during_year",
+                    int(r["start_year"]), int(r["end_year"]), clean_text(r.get("transition_event_ids", "")),
+                )
         for _, r in self.aliases.iterrows():
             self._add(r["alias"], r["entity_id"], r["alias_type"], int(r["start_year"]), int(r["end_year"]))
         self.choices = list(self.index)
 
-    def _add(self, name: str, entity_id: str, method: str, start: int, end: int) -> None:
-        self.index.setdefault(normalize_name(name), []).append({"entity_id": entity_id, "method": method, "start": start, "end": end})
+    def _add(self, name: str, entity_id: str, method: str, start: int, end: int, transition_event_ids: str = "") -> None:
+        self.index.setdefault(normalize_name(name), []).append({
+            "entity_id": entity_id, "method": method, "start": start, "end": end,
+            "source_name": name, "transition_event_ids": transition_event_ids,
+        })
+
+    def _year_row(self, entity_id: str, year: int | None) -> dict[str, Any]:
+        if year is None or not ROSTER_MIN_YEAR <= year <= MAX_YEAR:
+            return {}
+        rows = self.roster[(self.roster.entity_id == entity_id) & (self.roster.year == year)]
+        return rows.iloc[0].to_dict() if len(rows) else {}
+
+    def _apply_temporal(
+        self,
+        result: MatchResult,
+        entity_id: str,
+        normalized_input: str,
+        year: int | None,
+        match_item: dict[str, Any] | None = None,
+    ) -> MatchResult:
+        row = self._year_row(entity_id, year)
+        result.year_end_name = clean_text(row.get("legal_name_zh", ""))
+        result.year_basis = clean_text(row.get("year_basis", "year_end" if row else ""))
+        if year is None:
+            result.name_validity = "not_checked"
+        elif match_item and match_item["start"] <= year <= match_item["end"]:
+            result.name_validity = (
+                "year_end_name" if normalize_name(result.year_end_name) == normalized_input
+                else "valid_during_year"
+            )
+            result.transition_event_ids = clean_text(match_item.get("transition_event_ids", ""))
+        else:
+            result.name_validity = "outside_year"
+        return result
 
     def _year_status(self, entity_id: str, year: int | None) -> str:
         if year is None:
@@ -126,8 +177,8 @@ class CrosswalkMatcher:
             return "unsupported_year"
         if year < ROSTER_MIN_YEAR:
             return "early_event_only"
-        rows = self.roster[(self.roster.entity_id == entity_id) & (self.roster.year == year)]
-        return str(rows.iloc[0].status) if len(rows) else "unknown"
+        row = self._year_row(entity_id, year)
+        return str(row.get("status", "unknown"))
 
     def _relation_risks(self, entity_id: str, year: int | None) -> list[str]:
         if year is None:
@@ -159,7 +210,7 @@ class CrosswalkMatcher:
         if custom:
             entity = self.entity_map.get(custom, {})
             risks = "custom_override_warning" if builtin and builtin.entity_id != custom else ""
-            return MatchResult(custom, entity.get("canonical_name_zh", ""), norm, "auto_matched", "custom_rule", 1.0, self._year_status(custom, year), "prefecture", risks, 1, None, builtin_entity_id=builtin.entity_id if builtin else "")
+            return self._apply_temporal(MatchResult(custom, entity.get("canonical_name_zh", ""), norm, "auto_matched", "custom_rule", 1.0, self._year_status(custom, year), "prefecture", risks, 1, None, builtin_entity_id=builtin.entity_id if builtin else ""), custom, norm, year)
         if builtin:
             return builtin
 
@@ -184,7 +235,7 @@ class CrosswalkMatcher:
             if not matches and len({m["entity_id"] for m in raw_matches}) == 1:
                 entity_id = raw_matches[0]["entity_id"]
                 entity = self.entity_map[entity_id]
-                return MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "province_conflict", 1.0, self._year_status(entity_id, year), "prefecture", "province_mismatch", 1)
+                return self._apply_temporal(MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "province_conflict", 1.0, self._year_status(entity_id, year), "prefecture", "province_mismatch", 1), entity_id, norm, year)
         if year is not None and ROSTER_MIN_YEAR <= year <= MAX_YEAR:
             valid = [m for m in matches if m["start"] <= year <= m["end"]]
         else:
@@ -196,7 +247,7 @@ class CrosswalkMatcher:
                 entity = self.entity_map[entity_id]
                 status = self._year_status(entity_id, year)
                 risks = ["pre_establishment" if status == "not_established" else "post_abolition" if status == "abolished" else "name_year_mismatch", *self._relation_risks(entity_id, year)]
-                return MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "name_outside_valid_year", 1.0, status, "prefecture", "|".join(risks), 1)
+                return self._apply_temporal(MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem", "name_outside_valid_year", 1.0, status, "prefecture", "|".join(risks), 1), entity_id, norm, year)
         ids = sorted({m["entity_id"] for m in valid})
         if len(ids) != 1:
             return None
@@ -212,9 +263,12 @@ class CrosswalkMatcher:
         method = valid[0]["method"]
         if method == "ocr_variant":
             entity = self.entity_map[entity_id]
-            return MatchResult(entity_id, entity["canonical_name_zh"], norm, "needs_confirmation", "ocr_candidate", .95, status, "prefecture", "manual_confirmation_required", 1, [{"entity_id": entity_id, "canonical_name": entity["canonical_name_zh"], "score": 95}])
+            return self._apply_temporal(MatchResult(entity_id, entity["canonical_name_zh"], norm, "needs_confirmation", "ocr_candidate", .95, status, "prefecture", "manual_confirmation_required", 1, [{"entity_id": entity_id, "canonical_name": entity["canonical_name_zh"], "score": 95}]), entity_id, norm, year, valid[0])
         entity = self.entity_map[entity_id]
-        return MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem" if risks else "auto_matched", method, 1.0, status, "prefecture", "|".join(risks), 1)
+        result = self._apply_temporal(MatchResult(entity_id, entity["canonical_name_zh"], norm, "problem" if risks else "auto_matched", method, 1.0, status, "prefecture", "|".join(risks), 1), entity_id, norm, year, valid[0])
+        if result.name_validity == "valid_during_year":
+            result.risk_codes = "|".join(filter(None, [result.risk_codes, "name_changed_during_year"]))
+        return result
 
     @staticmethod
     def _custom(norm: str, rules: pd.DataFrame | None) -> str:
@@ -284,4 +338,4 @@ def query_events(entity_id=None, province=None, year=None, event_type=None): ret
 def audit_report(results: list[MatchResult], config: dict[str, Any]) -> str:
     counts: dict[str, int] = {}
     for result in results: counts[result.match_status] = counts.get(result.match_status, 0) + 1
-    return json.dumps({"data_version": "3.4.1", "coverage": "1983-2026", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)
+    return json.dumps({"data_version": "4.0.0", "coverage": "1983-2026", "year_basis": "year_end", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)

@@ -4,8 +4,10 @@ __pycache__/
 .venv/
 outputs/*
 !outputs/.gitkeep
+.playwright-cli/
 tmp/
 data/raw/early_admin_change_sources/
+data/raw/CTAmap1.30版本_2000-2024_2025.04.25/
 *.egg-info/
 build/
 dist/

@@ -12,6 +12,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install build and test dependencies
+        run: |
+          pip install -r requirements.txt -r requirements-geo.txt pytest
+          pip install -e . --no-deps
       - name: Rebuild processed tables
         run: |
           python scripts/build_release.py
@@ -25,14 +29,12 @@ jobs:
           python scripts/build_prefecture_events.py
           python scripts/build_source_registry.py
           python scripts/sync_package_data.py
+          python scripts/build_pages_data.py
+          python scripts/export_city_master_v4.py
       - name: Verify generated files are committed
         run: git diff --exit-code
       - name: Validate data
         run: python scripts/validate_data.py
-      - name: Install application dependencies
-        run: |
-          pip install -r requirements.txt pytest
-          pip install -e . --no-deps
       - name: Run matcher tests
         run: pytest -q
       - name: Streamlit smoke test

@@ -24,6 +24,7 @@ def main() -> None:
     current = {row["entity_id"]: row for row in read("entities.csv")}
     historical = {row["historical_entity_id"]: row for row in read("historical_entities.csv")}
     roster = {(row["entity_id"], int(row["year"])): row for row in read("legal_roster_1987_2026.csv")}
+    timing = {row["event_id"]: row for row in read("event_timing_reviews.csv")}
     event_ids = {row["event_id"] for row in events}
     entity_ids = set(current) | set(historical)
     findings: list[dict[str, str]] = []
@@ -48,10 +49,11 @@ def main() -> None:
         if eid in current and event["province_name"] != current[eid]["province_name_zh"]:
             allowed = "historical_province_differs_from_current_entity" in event["risk_flags"]
             add("province_continuity", "pass" if allowed else "error", event["event_id"], f"event={event['province_name']} entity={current[eid]['province_name_zh']}")
-        if 1987 <= year <= 2026:
-            annual = roster[(eid, year)]
+        effective_year = int(timing[event["event_id"]]["annual_effective_year"])
+        if 1987 <= effective_year <= 2026:
+            annual = roster[(eid, effective_year)]
             if event["event_type"] in {"rename", "upgrade", "establish"} and event["new_prefecture_name"]:
-                add("event_roster_name", "pass" if annual["legal_name_zh"] == event["new_prefecture_name"] else "error", event["event_id"], f"event={event['new_prefecture_name']} roster={annual['legal_name_zh']}")
+                add("event_roster_name", "pass" if annual["legal_name_zh"] == event["new_prefecture_name"] else "error", event["event_id"], f"effective_year={effective_year} event={event['new_prefecture_name']} roster={annual['legal_name_zh']}")
 
     by_entity: dict[str, list[dict[str, str]]] = {}
     for event in events: by_entity.setdefault(event["entity_id"], []).append(event)

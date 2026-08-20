@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="查询中国城市历史名称、年度状态和行政区划变更。">
+    <meta name="description" content="查询中国城市历史名称、年末状态和行政区划变更。">
     <title>China Urban Crosswalk — 中国城市行政实体匹配</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6e5a'/%3E%3Cpath d='M8 23V9h4v14H8Zm6 0V5h4v18h-4Zm6 0v-9h4v9h-4Z' fill='white'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -15,7 +17,7 @@
         <span>CHINA URBAN <b>CROSSWALK</b></span>
       </a>
       <div class="top-links">
-        <span id="version-pill" class="version-pill">V3.4.1</span>
+        <span id="version-pill" class="version-pill">V4.0.0</span>
         <a href="https://github.com/FIERsity/china-prefecture-crosswalk" target="_blank" rel="noreferrer">GitHub ↗</a>
       </div>
     </header>
@@ -25,7 +27,7 @@
         <div>
           <p class="eyebrow">RESEARCH ENTITY CROSSWALK</p>
           <h1>中国城市行政区划沿革<br><em>按名称查询。</em></h1>
-          <p class="hero-copy">查询历史名称、年度状态和行政区划变更。</p>
+          <p class="hero-copy">查询历史名称、12月31日年末状态和行政区划变更。</p>
         </div>
         <div class="hero-note"><span>363</span><small>跨期研究实体<br>1983—2026</small></div>
       </section>
@@ -33,6 +35,7 @@
       <nav class="tabs" aria-label="工具入口">
         <button class="tab active" data-view="match" type="button">单个名称查询</button>
         <button class="tab" data-view="events" type="button">行政区划事件</button>
+        <button class="tab" data-view="map" type="button">历史地图</button>
         <button class="tab" data-view="about" type="button">数据与下载</button>
       </nav>
 
@@ -41,12 +44,14 @@
           <form id="match-form" class="card query-card">
             <div class="section-label">01 / MATCH ONE NAME</div>
             <h2>查询一个名称</h2>
-            <p class="muted">支持地级行政单位和县级名称；省份可选。</p>
+            <p class="muted">支持地级行政单位和县级名称；年份按12月31日年末口径核验。</p>
 
             <label for="name-input">行政区名称</label>
             <input id="name-input" autocomplete="off" placeholder="例如：思茅县、思茅市、徽州地区" required>
             <label for="province-input">省份（可选）</label>
             <input id="province-input" autocomplete="off" placeholder="云南省">
+            <label for="year-input">年份（可选，年末口径）</label>
+            <input id="year-input" type="number" min="1983" max="2026" inputmode="numeric" placeholder="例如：2010">
             <button class="primary-button" type="submit">开始核验 <span>↗</span></button>
 
             <div class="examples">
@@ -76,12 +81,18 @@
         <div id="event-list" class="card table-card"></div>
       </section>
 
+      <section id="map-view" class="view">
+        <div class="card map-toolbar"><div><div class="section-label">03 / MAP SNAPSHOTS</div><h2>地级行政区划历史地图</h2><p class="muted">选择经济面板年份；自动加载下一年年初 CTAmap 快照。</p></div><label>面板年份<select id="map-panel-year"></select></label></div>
+        <div class="map-layout"><div id="history-map" class="card history-map" aria-label="中国地级行政区划历史地图"></div><aside id="map-detail" class="card map-detail"><div class="section-label">MAP DETAIL</div><h2>点击地图查看地级实体</h2><p class="muted">保留 CTAmap 原始名称，同时显示对应 CNUR 和年末名称。</p></aside></div>
+        <p class="disclaimer">几何来源：CTAmap 1.30，简化后仅用于非商业历史可视化；不属于本项目 CC BY 4.0 数据。</p>
+      </section>
+
       <section id="about-view" class="view">
         <div class="about-grid">
-          <article class="card about-card"><div class="section-label">03 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年度状态、地级行政单位变更和县级变更记录。查询城市时，页面同时显示规范名沿革、相关地级行政单位变更和县级变更。事件查询窗口统一从1983年开始，现有地级事件记录到2018年；年度状态表从1987年开始。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年度状态</span></div><div><strong>211</strong><span>地级事件</span></div></div></article>
-          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_1987_2026.csv" download>历史名称区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_1987_2026.csv" download>年度状态 CSV <span>↓</span></a><a class="download-link" href="data/prefecture_administrative_events_1983_2026.csv" download>地级行政单位事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1983_2026.csv" download>县级变更记录 CSV <span>↓</span></a><a class="download-link" href="data/source_registry.csv" download>来源登记 CSV <span>↓</span></a></article>
+          <article class="card about-card"><div class="section-label">04 / DATA NOTES</div><h2>数据说明</h2><p>数据分为研究实体、年末状态、年内名称匹配、地级行政单位变更和县级变更记录。查询年份统一表示当年12月31日；连续改名当年的新旧名称均可匹配，结果返回年末名称。事件查询窗口从1983年开始，年末状态表从1987年开始。</p><div class="stat-row"><div><strong>363</strong><span>研究实体</span></div><div><strong>14,520</strong><span>年末状态</span></div><div><strong>8,423</strong><span>地图桥接</span></div></div></article>
+          <article class="card download-card"><div class="section-label">DOWNLOAD</div><h2>下载数据</h2><p class="muted">数据由 GitHub Actions 构建并发布到 GitHub Pages。</p><a class="download-link" href="data/entities.csv" download>实体总表 CSV <span>↓</span></a><a class="download-link" href="data/entity_names_year_end_1987_2026.csv" download>年末名称区间 CSV <span>↓</span></a><a class="download-link" href="data/entity_name_match_ranges_1987_2026.csv" download>年内名称匹配区间 CSV <span>↓</span></a><a class="download-link" href="data/legal_roster_year_end_1987_2026.csv" download>年末状态 CSV <span>↓</span></a><a class="download-link" href="data/ctamap_prefecture_links.csv" download>CTAmap 地级桥接 CSV <span>↓</span></a><a class="download-link" href="data/prefecture_administrative_events_1983_2026.csv" download>地级行政单位事件 CSV <span>↓</span></a><a class="download-link" href="data/county_administrative_events_1983_2026.csv" download>县级变更记录 CSV <span>↓</span></a><a class="download-link" href="data/source_registry.csv" download>来源登记 CSV <span>↓</span></a></article>
         </div>
-        <div class="card source-card"><strong>来源与限制</strong><span>主要来源为中文维基百科年度行政区划变更页面，部分记录附有国务院、民政部或地方政府批文号。详见 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
+        <div class="card source-card"><strong>来源与限制</strong><span>事件资料主要来自修订版固定的 Wikipedia 年度页和早期报刊转录；历史地图来自 <a href="https://github.com/ruiduobao/shengshixian.com" target="_blank" rel="noreferrer">CTAmap 1.30</a>，简化几何按独立 NOTICE 与非商业条件提供。详见 CODEBOOK、CHANGELOG 和 CITATION.cff。</span></div>
       </section>
 
       <footer class="footer"><span>RULE VERSION <b id="rule-version">2026.08.1</b></span><span>STATIC DATA · GITHUB PAGES · 1983—2026</span></footer>

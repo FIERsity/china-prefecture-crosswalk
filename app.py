@@ -33,21 +33,21 @@ def xlsx_bytes(df):
     return buffer.getvalue()
 
 st.title("中国城市面板匹配工具")
-st.caption("保守、可解释的中国地级行政实体名称与年份核验 · 查询覆盖 1983—2026")
+st.caption("保守、可解释的中国地级行政实体名称与年末状态核验 · 查询覆盖 1983—2026")
 st.info("上传文件只在当前会话内存中处理，不会持久化。请勿上传包含敏感信息的数据。")
 page = st.sidebar.radio("入口", ["数据库浏览与下载", "批量检查", "单个名称查询", "行政区划变更查询"])
 m = matcher()
 
 if page == "数据库浏览与下载":
-    release_dir = Path(__file__).resolve().parent / "data" / "releases" / "v3.4.1"
-    master = pd.read_csv(release_dir / "china_city_entity_master_V3.4.1.csv", encoding="utf-8-sig", dtype=str).fillna("")
-    st.header("中国地级行政实体全量数据库 V3.4.1")
+    release_dir = Path(__file__).resolve().parent / "data" / "releases" / "v4.0"
+    master = pd.read_csv(release_dir / "china_city_entity_master_V4.0.csv", encoding="utf-8-sig", dtype=str).fillna("")
+    st.header("中国地级行政实体全量数据库 V4.0 · 年末制")
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("研究实体", len(master))
     c2.metric("持续追踪实体", int((master.entity_scope == "research_entity").sum()))
     c3.metric("历史实体", int((master.entity_scope == "historical_entity").sum()))
     c4.metric("统一事件", len(m.unified_events))
-    master_tab, annual_tab = st.tabs(["实体总表", "1987—2026 年度状态"])
+    master_tab, annual_tab = st.tabs(["实体总表", "1987—2026 年末状态"])
     with master_tab:
         f1, f2, f3 = st.columns(3)
         province = f1.selectbox("省份", ["全部"] + sorted(master.province_name_zh.unique()), key="master_province")
@@ -61,11 +61,11 @@ if page == "数据库浏览与下载":
             shown = shown[shown.apply(lambda row: needle in row.entity_id.lower() or needle in row.canonical_name_zh.lower() or needle in row.legacy_entity_id.lower(), axis=1)]
         st.dataframe(shown, use_container_width=True, hide_index=True)
         d1, d2 = st.columns(2)
-        d1.download_button("下载 V3.4.1 CSV", (release_dir / "china_city_entity_master_V3.4.1.csv").read_bytes(), "china_city_entity_master_V3.4.1.csv", "text/csv")
-        d2.download_button("下载 V3.4.1 Excel", (release_dir / "china_city_entity_master_V3.4.1.xlsx").read_bytes(), "china_city_entity_master_V3.4.1.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        d1.download_button("下载 V4.0 CSV", (release_dir / "china_city_entity_master_V4.0.csv").read_bytes(), "china_city_entity_master_V4.0.csv", "text/csv")
+        d2.download_button("下载 V4.0 Excel", (release_dir / "china_city_entity_master_V4.0.xlsx").read_bytes(), "china_city_entity_master_V4.0.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     with annual_tab:
         a1, a2 = st.columns(2)
-        selected_year = a1.selectbox("选择年份", list(range(1987, 2027)), index=39)
+        selected_year = a1.selectbox("选择年份（截至12月31日）", list(range(1987, 2027)), index=39)
         annual_province = a2.selectbox("省份", ["全部"] + sorted(m.roster.province_name_zh.unique()), key="annual_province")
         annual = m.roster[m.roster.year.astype(int) == selected_year].copy()
         if annual_province != "全部": annual = annual[annual.province_name_zh == annual_province]
@@ -76,9 +76,9 @@ if page == "数据库浏览与下载":
         s3.metric("已撤销", int((annual.status == "abolished").sum()))
         st.dataframe(annual, use_container_width=True, hide_index=True)
         e1, e2 = st.columns(2)
-        e1.download_button("下载完整年度状态表", csv_bytes(m.roster), "legal_roster_1987_2026.csv", "text/csv")
-        e2.download_button("下载历史名称区间表", csv_bytes(m.names), "entity_names_1987_2026.csv", "text/csv")
-    st.caption("运行时年度状态覆盖 1987—2026。CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
+        e1.download_button("下载完整年末状态表", csv_bytes(m.roster), "legal_roster_year_end_1987_2026.csv", "text/csv")
+        e2.download_button("下载年末名称区间表", csv_bytes(m.names), "entity_names_year_end_1987_2026.csv", "text/csv")
+    st.caption("运行时年末状态覆盖 1987—2026，统一表示每年12月31日。CNUR 是项目永久研究编号，不是官方行政区划代码。合并、拆分和代管关系不会自动换算研究变量。")
 
 elif page == "批量检查":
     upload = st.file_uploader("上传 CSV 或 XLSX", type=["csv", "xlsx"])
@@ -143,8 +143,9 @@ elif page == "批量检查":
 elif page == "单个名称查询":
     name = st.text_input("行政区名称")
     province = st.text_input("省份（可选）")
+    year = st.number_input("年份（0 表示不核验；其他年份按12月31日）", min_value=0, max_value=2026, value=0)
     if name:
-        result = m.match_name(name, None, province or None)
+        result = m.match_name(name, year or None, province or None)
         st.json(result.output_columns())
         if result.candidates: st.dataframe(result.candidates, use_container_width=True)
         if result.entity_id:

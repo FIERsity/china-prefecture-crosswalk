@@ -1,0 +1,5 @@
+entity_id,start_year,end_year,legal_name_zh,status,annual_effective_basis,temporal_confidence,review_status,source_ids,review_note
+CNUR-000273,1987,2002,临沧地区,active,reviewed_legacy_name_span,high,reviewed,SRC-WIKI-2003,临沧撤地设市事件尚未进入统一事件表，保留已审核的2003年前名称区间。
+CNUR-000273,2003,2026,临沧市,active,reviewed_legacy_name_span,high,reviewed,SRC-WIKI-2003,临沧市从2003年末起作为年末名称。
+CNUR-000284,1987,2013,昌都地区,active,reviewed_legacy_name_span,high,reviewed,SRC-WIKI-2014,昌都撤地设市事件尚未进入统一事件表，保留已审核的2014年前名称区间。
+CNUR-000284,2014,2026,昌都市,active,reviewed_legacy_name_span,high,reviewed,SRC-WIKI-2014,昌都市从2014年末起作为年末名称。

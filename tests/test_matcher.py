@@ -19,6 +19,38 @@ def test_historical_names_and_suffix_aliases():
     assert m.match_name("惠阳地区", 1987).entity_id == "CNUR-000347"
 
 
+def test_year_end_names_accept_within_year_transitions():
+    m = CrosswalkMatcher()
+    old = m.match_name("襄樊市", 2010, "湖北")
+    new = m.match_name("襄阳市", 2010, "湖北")
+    assert old.entity_id == new.entity_id == "CNUR-000173"
+    assert old.match_status == new.match_status == "auto_matched"
+    assert old.year_end_name == new.year_end_name == "襄阳市"
+    assert old.name_validity == "valid_during_year"
+    assert new.name_validity == "year_end_name"
+    assert "name_changed_during_year" in old.risk_codes
+    assert old.transition_event_ids == "PL-2010-001"
+
+
+def test_cross_year_implementation_controls_year_end_name():
+    m = CrosswalkMatcher()
+    assert m.match_name("那曲地区", 2017, "西藏").year_end_name == "那曲地区"
+    assert m.match_name("那曲市", 2017, "西藏").name_validity == "outside_year"
+    old = m.match_name("那曲地区", 2018, "西藏")
+    new = m.match_name("那曲市", 2018, "西藏")
+    assert old.match_status == new.match_status == "auto_matched"
+    assert old.year_end_name == new.year_end_name == "那曲市"
+
+
+def test_year_end_establishment_corrections():
+    m = CrosswalkMatcher()
+    for name, province in (("亳州市", "安徽"), ("随州市", "湖北")):
+        assert m.match_name(name, 1999, province).year_status == "not_established"
+        assert m.match_name(name, 2000, province).year_status == "active"
+    assert m.match_name("儋州市", 1999, "海南").year_status == "not_prefecture_level"
+    assert m.match_name("儋州市", 2015, "海南").year_status == "active"
+
+
 def test_split_predecessors_do_not_leak_into_successor_identity():
     m = CrosswalkMatcher()
     assert m.match_name("崇左市", 2001).year_status == "not_established"

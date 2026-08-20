@@ -1,0 +1,3 @@
+snapshot_year,panel_year,issue_type,source_name,source_code,entity_id,detail
+2018,2017,source_name_differs_from_year_end,那曲市,540600,CNUR-000287,year_end_name=那曲地区; match_method=historical_name_outside_panel_year
+2019,2018,year_end_entity_missing_from_snapshot,,,CNUR-000146,莱芜市

@@ -1,4 +1,6 @@
 const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map() };
+let historyMap = null;
+let historyLayer = null;
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -41,6 +43,11 @@ function rosterStatus(entityId, year) {
   if (year < 1983 || year > 2026) return "unsupported_year";
   if (year < 1987) return "early_event_only";
   return state.data.rosterStatus[entityId]?.[String(year)] || "unknown";
+}
+
+function rosterYearEndName(entityId, year) {
+  if (year === null || year < 1987 || year > 2026) return "";
+  return state.data.rosterYearEndName?.[entityId]?.[String(year)] || "";
 }
 
 function relationRisks(entityId, year) {
@@ -110,10 +117,14 @@ function makeResult(name, year, province) {
   if (normalized.length >= 2 && ids.length === 1 && (year !== null || new Set(rawMatches.map((item) => item.entity_id)).size === 1)) {
     const entity = entityFor(ids[0]);
     const status = rosterStatus(ids[0], year);
-    const risks = relationRisks(ids[0], year);
-    if (status === "not_established") risks.push("pre_establishment");
-    if (status === "abolished") risks.push("post_abolition");
-    return { entity, entityId: ids[0], normalized, status: risks.length ? "problem" : "auto_matched", method: matches[0]?.method || "exact", confidence: 1, yearStatus: status, risk: [...new Set(risks)].join("|") };
+    const blockingRisks = relationRisks(ids[0], year);
+    if (status === "not_established" || status === "not_prefecture_level") blockingRisks.push("pre_establishment");
+    if (status === "abolished") blockingRisks.push("post_abolition");
+    const yearEndName = rosterYearEndName(ids[0], year);
+    const nameValidity = year === null ? "not_checked" : normalizeName(yearEndName) === normalized ? "year_end_name" : "valid_during_year";
+    const informationalRisks = nameValidity === "valid_during_year" ? ["name_changed_during_year"] : [];
+    const risks = [...new Set([...blockingRisks, ...informationalRisks])];
+    return { entity, entityId: ids[0], normalized, status: blockingRisks.length ? "problem" : "auto_matched", method: matches[0]?.method || "exact", confidence: 1, yearStatus: status, yearEndName, yearBasis: year === null ? "" : "year_end", nameValidity, transitionEventIds: matches[0]?.transitionEventIds || "", risk: risks.join("|") };
   }
 
   const candidates = [];
@@ -150,7 +161,7 @@ function makeResult(name, year, province) {
 
 function problemResult(entityId, normalized, year, method, risk) {
   const entity = entityFor(entityId);
-  return { entity, entityId, normalized, status: "problem", method, confidence: 1, yearStatus: rosterStatus(entityId, year), risk };
+  return { entity, entityId, normalized, status: "problem", method, confidence: 1, yearStatus: rosterStatus(entityId, year), yearEndName: rosterYearEndName(entityId, year), yearBasis: year === null ? "" : "year_end", nameValidity: "outside_year", risk };
 }
 
 function selectedEntityResult(entityId, name, year) {
@@ -166,6 +177,9 @@ function selectedEntityResult(entityId, name, year) {
     method: "selected_candidate",
     confidence: 1,
     yearStatus: status,
+    yearEndName: rosterYearEndName(entityId, year),
+    yearBasis: year === null ? "" : "year_end",
+    nameValidity: "selected_candidate",
     risk: [...new Set(risks)].join("|"),
   };
 }
@@ -175,14 +189,14 @@ function statusText(status) {
 }
 
 function canonicalNameHistoryHtml(entityId) {
-  const rows = state.data.names
-    .filter((item) => item.entity_id === entityId && item.method === "official_or_historical")
+  const rows = (state.data.yearEndNames || [])
+    .filter((item) => item.entity_id === entityId)
     .map((item) => ({ name: item.name, start: Number(item.start), end: Number(item.end) }))
     .sort((a, b) => a.start - b.start || a.end - b.end || a.name.localeCompare(b.name, "zh-CN"));
   const unique = [...new Map(rows.map((row) => [`${row.name}|${row.start}|${row.end}`, row])).values()];
   if (!unique.length) return "";
   const sequence = unique.map((row) => `${escapeHtml(row.name)}（${row.start}年——${row.end}年）`).join("→");
-  return `<div class="prefecture-name-block"><span>规范名沿革</span><p class="canonical-history-line">${sequence}</p></div>`;
+  return `<div class="prefecture-name-block"><span>年末规范名沿革</span><p class="canonical-history-line">${sequence}</p></div>`;
 }
 
 function prefectureEventTypeText(type) {
@@ -277,15 +291,16 @@ function resultHtml(result, name, year, province) {
   }
   const entity = result.entity;
   const riskMessage = result.risk ? `状态：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "名称、年份和层级匹配。";
-  const yearNote = result.yearStatus === "early_event_only" ? "该年份展示地级行政单位和县级事件记录；年度状态表从1987年开始。" : "";
-  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : result.yearStatus === "early_event_only" ? "早期事件层" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年度状态" : `${year} 年状态`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}${yearNote ? ` ${yearNote}` : ""}</p>${prefectureEventsHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
+  const yearNote = result.yearStatus === "early_event_only" ? "该年份展示地级行政单位和县级事件记录；年末状态表从1987年开始。" : "";
+  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : result.yearStatus === "early_event_only" ? "早期事件层" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年末状态" : `${year} 年末状态`}</span></div><div class="result-stat"><strong>${escapeHtml(result.yearEndName || "—")}</strong><span>${year === null ? "年末名称" : `${year} 年末名称`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}${yearNote ? ` ${yearNote}` : ""}</p>${prefectureEventsHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${year !== null ? ` · 口径：${year}-12-31` : ""}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
 }
 
 function renderMatch() {
   const name = $("#name-input").value.trim();
   const province = $("#province-input").value.trim();
+  const year = number($("#year-input").value);
   if (!name) return;
-  $("#match-result").innerHTML = resultHtml(makeResult(name, null, province), name, null, province);
+  $("#match-result").innerHTML = resultHtml(makeResult(name, year, province), name, year, province);
   bindCandidateCards();
 }
 
@@ -294,7 +309,8 @@ function bindCandidateCards() {
     const name = card.dataset.candidateName || card.dataset.candidateId;
     const province = $("#province-input").value.trim();
     $("#name-input").value = name;
-    $("#match-result").innerHTML = resultHtml(selectedEntityResult(card.dataset.candidateId, name, null), name, null, province);
+    const year = number($("#year-input").value);
+    $("#match-result").innerHTML = resultHtml(selectedEntityResult(card.dataset.candidateId, name, year), name, year, province);
   }));
 }
 
@@ -306,10 +322,41 @@ function renderEvents() {
   $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>变更描述</th><th>来源摘要</th></tr></thead><tbody>${rows.map((row) => { const source = [row.approval_date, row.document_number].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(prefectureDescription(row))}</td><td>${escapeHtml(source)}<br><small>${escapeHtml(row.review_status || "")}</small></td></tr>`; }).join("")}</tbody></table>`;
 }
 
+async function renderHistoryMap() {
+  const panelYear = Number($("#map-panel-year").value || 2023);
+  const snapshotYear = panelYear + 1;
+  if (!window.L) { $("#map-detail").innerHTML = '<p class="result-note">地图组件加载失败，请刷新页面。</p>'; return; }
+  if (!historyMap) {
+    historyMap = L.map("history-map", { zoomControl: true, attributionControl: false, minZoom: 3, maxZoom: 9 });
+  }
+  const response = await fetch(`data/maps/prefecture/${snapshotYear}.geojson`);
+  if (!response.ok) throw new Error(`map ${response.status}`);
+  const geojson = await response.json();
+  if (historyLayer) historyLayer.remove();
+  historyLayer = L.geoJSON(geojson, {
+    style: { color: "#ffffff", weight: .65, fillColor: "#78b999", fillOpacity: .78 },
+    onEachFeature(feature, layer) {
+      const p = feature.properties;
+      layer.bindTooltip(`${p.source_name} · ${p.province_name}`, { sticky: true });
+      layer.on({
+        mouseover: () => layer.setStyle({ fillColor: "#f28b50", fillOpacity: .9, weight: 1.2 }),
+        mouseout: () => historyLayer.resetStyle(layer),
+        click: () => {
+          $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初 / ${panelYear}年末</div><h2>${escapeHtml(p.source_name)}</h2><p class="muted">${escapeHtml(p.province_name)} · ${escapeHtml(p.prefecture_type)} · ${escapeHtml(p.source_code)}</p><div class="map-entity-card"><span>CNUR 实体</span><strong>${escapeHtml(p.entity_id)}</strong><span>${panelYear} 年末名称</span><strong>${escapeHtml(p.year_end_name || "—")}</strong></div><p class="map-source-links"><a href="https://github.com/ruiduobao/shengshixian.com" target="_blank" rel="noreferrer">CTAmap 数据源 ↗</a><a href="https://github.com/ruiduobao/china-divisions-map" target="_blank" rel="noreferrer">原可视化项目 ↗</a></p>`;
+        },
+      });
+    },
+  }).addTo(historyMap);
+  historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
+  setTimeout(() => historyMap.invalidateSize(), 0);
+  $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初地图</div><h2>${panelYear} 年经济面板</h2><p class="muted">共 ${geojson.features.length} 个地级及直辖市等价要素。点击区域查看 CTAmap 名称、CNUR 与年末名称。</p>`;
+}
+
 function switchView(view) {
   $$(".tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === view));
   $$(".view").forEach((panel) => panel.classList.toggle("active-view", panel.id === `${view}-view`));
   if (view === "events") renderEvents();
+  if (view === "map") renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; });
 }
 
 async function init() {
@@ -337,9 +384,11 @@ async function init() {
     $("#version-pill").textContent = `V${state.data.meta.version}`;
     $("#rule-version").textContent = state.data.meta.ruleVersion;
     for (let year = 1983; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
+    for (let year = 1999; year <= 2023; year += 1) $("#map-panel-year").insertAdjacentHTML("beforeend", `<option value="${year}"${year === 2023 ? " selected" : ""}>${year}（${year + 1}年初地图）</option>`);
     $("#match-form").addEventListener("submit", (event) => { event.preventDefault(); renderMatch(); });
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);
+    $("#map-panel-year").addEventListener("change", () => renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }));
     $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; renderMatch(); }));
     $$("[data-view]").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
   } catch (error) {

@@ -1,0 +1,184 @@
+{
+  "source": "CTAmap 1.30",
+  "snapshot_basis": "year_start",
+  "panel_mapping": "snapshot_year - 1",
+  "format": "simplified GeoJSON",
+  "simplification_tolerance_degrees": 0.02,
+  "years": [
+    {
+      "snapshot_year": 2000,
+      "panel_year": 1999,
+      "feature_count": 335,
+      "file": "2000.geojson",
+      "size_bytes": 1483985
+    },
+    {
+      "snapshot_year": 2001,
+      "panel_year": 2000,
+      "feature_count": 337,
+      "file": "2001.geojson",
+      "size_bytes": 1487380
+    },
+    {
+      "snapshot_year": 2002,
+      "panel_year": 2001,
+      "feature_count": 336,
+      "file": "2002.geojson",
+      "size_bytes": 1487068
+    },
+    {
+      "snapshot_year": 2003,
+      "panel_year": 2002,
+      "feature_count": 336,
+      "file": "2003.geojson",
+      "size_bytes": 1484182
+    },
+    {
+      "snapshot_year": 2004,
+      "panel_year": 2003,
+      "feature_count": 337,
+      "file": "2004.geojson",
+      "size_bytes": 1486691
+    },
+    {
+      "snapshot_year": 2005,
+      "panel_year": 2004,
+      "feature_count": 337,
+      "file": "2005.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2006,
+      "panel_year": 2005,
+      "feature_count": 337,
+      "file": "2006.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2007,
+      "panel_year": 2006,
+      "feature_count": 337,
+      "file": "2007.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2008,
+      "panel_year": 2007,
+      "feature_count": 337,
+      "file": "2008.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2009,
+      "panel_year": 2008,
+      "feature_count": 337,
+      "file": "2009.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2010,
+      "panel_year": 2009,
+      "feature_count": 337,
+      "file": "2010.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2011,
+      "panel_year": 2010,
+      "feature_count": 337,
+      "file": "2011.geojson",
+      "size_bytes": 1486688
+    },
+    {
+      "snapshot_year": 2012,
+      "panel_year": 2011,
+      "feature_count": 336,
+      "file": "2012.geojson",
+      "size_bytes": 1486820
+    },
+    {
+      "snapshot_year": 2013,
+      "panel_year": 2012,
+      "feature_count": 337,
+      "file": "2013.geojson",
+      "size_bytes": 1529938
+    },
+    {
+      "snapshot_year": 2014,
+      "panel_year": 2013,
+      "feature_count": 337,
+      "file": "2014.geojson",
+      "size_bytes": 1529935
+    },
+    {
+      "snapshot_year": 2015,
+      "panel_year": 2014,
+      "feature_count": 337,
+      "file": "2015.geojson",
+      "size_bytes": 1531229
+    },
+    {
+      "snapshot_year": 2016,
+      "panel_year": 2015,
+      "feature_count": 338,
+      "file": "2016.geojson",
+      "size_bytes": 1534859
+    },
+    {
+      "snapshot_year": 2017,
+      "panel_year": 2016,
+      "feature_count": 338,
+      "file": "2017.geojson",
+      "size_bytes": 1537604
+    },
+    {
+      "snapshot_year": 2018,
+      "panel_year": 2017,
+      "feature_count": 338,
+      "file": "2018.geojson",
+      "size_bytes": 1537306
+    },
+    {
+      "snapshot_year": 2019,
+      "panel_year": 2018,
+      "feature_count": 337,
+      "file": "2019.geojson",
+      "size_bytes": 1536874
+    },
+    {
+      "snapshot_year": 2020,
+      "panel_year": 2019,
+      "feature_count": 337,
+      "file": "2020.geojson",
+      "size_bytes": 1536874
+    },
+    {
+      "snapshot_year": 2021,
+      "panel_year": 2020,
+      "feature_count": 337,
+      "file": "2021.geojson",
+      "size_bytes": 1540578
+    },
+    {
+      "snapshot_year": 2022,
+      "panel_year": 2021,
+      "feature_count": 337,
+      "file": "2022.geojson",
+      "size_bytes": 1541613
+    },
+    {
+      "snapshot_year": 2023,
+      "panel_year": 2022,
+      "feature_count": 337,
+      "file": "2023.geojson",
+      "size_bytes": 1541956
+    },
+    {
+      "snapshot_year": 2024,
+      "panel_year": 2023,
+      "feature_count": 337,
+      "file": "2024.geojson",
+      "size_bytes": 1543538
+    }
+  ]
+}

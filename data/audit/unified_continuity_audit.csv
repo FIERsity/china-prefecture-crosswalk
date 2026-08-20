@@ -3,49 +3,49 @@ unique_event_id,pass,all_events,duplicates=0
 unique_event_signature,pass,all_events,events=144
 entity_reference,pass,WIKI-1987-001,CNUR-000106
 automatic_continuity,pass,WIKI-1987-001,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1987-001,event=黄山市 roster=黄山市
+event_roster_name,pass,WIKI-1987-001,effective_year=1987 event=黄山市 roster=黄山市
 entity_reference,pass,WIKI-1987-002,CNUR-000095
 automatic_continuity,pass,WIKI-1987-002,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1987-002,event=舟山市 roster=舟山市
+event_roster_name,pass,WIKI-1987-002,effective_year=1987 event=舟山市 roster=舟山市
 entity_reference,pass,WIKI-1987-003,CNUR-000341
 automatic_continuity,pass,WIKI-1987-003,type=abolish automatic=False
 historical_lifespan,pass,WIKI-1987-003,event=1987 lifespan=1955-1987
 entity_reference,pass,WIKI-1987-004,CNUR-000238
 automatic_continuity,pass,WIKI-1987-004,type=rename automatic=True
-event_roster_name,pass,WIKI-1987-004,event=攀枝花市 roster=攀枝花市
+event_roster_name,pass,WIKI-1987-004,effective_year=1987 event=攀枝花市 roster=攀枝花市
 entity_reference,pass,WIKI-1987-005,CNUR-000254
 automatic_continuity,pass,WIKI-1987-005,type=rename automatic=True
-event_roster_name,pass,WIKI-1987-005,event=阿坝藏族羌族自治州 roster=阿坝藏族羌族自治州
+event_roster_name,pass,WIKI-1987-005,effective_year=1987 event=阿坝藏族羌族自治州 roster=阿坝藏族羌族自治州
 entity_reference,pass,WIKI-1988-006,CNUR-000012
 automatic_continuity,pass,WIKI-1988-006,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-006,event=廊坊市 roster=廊坊市
+event_roster_name,pass,WIKI-1988-006,effective_year=1988 event=廊坊市 roster=廊坊市
 entity_reference,pass,WIKI-1988-007,CNUR-000019
 automatic_continuity,pass,WIKI-1988-007,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-007,event=朔州市 roster=朔州市
+event_roster_name,pass,WIKI-1988-007,effective_year=1988 event=朔州市 roster=朔州市
 entity_reference,pass,WIKI-1988-008,CNUR-000188
 automatic_continuity,pass,WIKI-1988-008,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-008,event=常德市 roster=常德市
+event_roster_name,pass,WIKI-1988-008,effective_year=1988 event=常德市 roster=常德市
 entity_reference,pass,WIKI-1988-009,CNUR-000205
 automatic_continuity,pass,WIKI-1988-009,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-009,event=肇庆市 roster=肇庆市
+event_roster_name,pass,WIKI-1988-009,effective_year=1988 event=肇庆市 roster=肇庆市
 entity_reference,pass,WIKI-1988-010,CNUR-000347
 automatic_continuity,pass,WIKI-1988-010,type=split automatic=False
 historical_lifespan,pass,WIKI-1988-010,event=1988 lifespan=1970-1988
 entity_reference,pass,WIKI-1988-011,CNUR-000208
 automatic_continuity,pass,WIKI-1988-011,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-011,event=汕尾市 roster=汕尾市
+event_roster_name,pass,WIKI-1988-011,effective_year=1988 event=汕尾市 roster=汕尾市
 entity_reference,pass,WIKI-1988-012,CNUR-000209
 automatic_continuity,pass,WIKI-1988-012,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-012,event=河源市 roster=河源市
+event_roster_name,pass,WIKI-1988-012,effective_year=1988 event=河源市 roster=河源市
 entity_reference,pass,WIKI-1988-013,CNUR-000207
 automatic_continuity,pass,WIKI-1988-013,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-013,event=梅州市 roster=梅州市
+event_roster_name,pass,WIKI-1988-013,effective_year=1988 event=梅州市 roster=梅州市
 entity_reference,pass,WIKI-1988-014,CNUR-000210
 automatic_continuity,pass,WIKI-1988-014,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-014,event=阳江市 roster=阳江市
+event_roster_name,pass,WIKI-1988-014,effective_year=1988 event=阳江市 roster=阳江市
 entity_reference,pass,WIKI-1988-015,CNUR-000211
 automatic_continuity,pass,WIKI-1988-015,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-015,event=清远市 roster=清远市
+event_roster_name,pass,WIKI-1988-015,effective_year=1988 event=清远市 roster=清远市
 entity_reference,pass,WIKI-1988-016,CNUR-000348
 automatic_continuity,pass,WIKI-1988-016,type=merge automatic=False
 historical_lifespan,pass,WIKI-1988-016,event=1988 lifespan=1987-1988
@@ -53,35 +53,35 @@ entity_reference,pass,WIKI-1988-017,CNUR-000113
 automatic_continuity,pass,WIKI-1988-017,type=establish_prefecture automatic=False
 entity_reference,pass,WIKI-1988-018,CNUR-000121
 automatic_continuity,pass,WIKI-1988-018,type=rename automatic=True
-event_roster_name,pass,WIKI-1988-018,event=南平地区 roster=南平地区
+event_roster_name,pass,WIKI-1988-018,effective_year=1988 event=南平地区 roster=南平地区
 entity_reference,pass,WIKI-1992-019,CNUR-000107
 automatic_continuity,pass,WIKI-1992-019,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1992-019,event=滁州市 roster=滁州市
+event_roster_name,pass,WIKI-1992-019,effective_year=1992 event=滁州市 roster=滁州市
 entity_reference,pass,WIKI-1992-020,CNUR-000342
 automatic_continuity,pass,WIKI-1992-020,type=upgrade automatic=True
 historical_lifespan,pass,WIKI-1992-020,event=1992 lifespan=1992-1997
-event_roster_name,pass,WIKI-1992-020,event=万县市 roster=万县市
+event_roster_name,pass,WIKI-1992-020,effective_year=1992 event=万县市 roster=万县市
 entity_reference,pass,WIKI-1992-021,CNUR-000349
 automatic_continuity,pass,WIKI-1992-021,type=abolish automatic=False
 historical_lifespan,pass,WIKI-1992-021,event=1992 lifespan=1987-1992
 entity_reference,pass,WIKI-1992-022,CNUR-000057
 automatic_continuity,pass,WIKI-1992-022,type=establish automatic=False
-event_roster_name,pass,WIKI-1992-022,event=松原市 roster=松原市
+event_roster_name,pass,WIKI-1992-022,effective_year=1992 event=松原市 roster=松原市
 entity_reference,pass,WIKI-1992-023,CNUR-000150
 automatic_continuity,pass,WIKI-1992-023,type=rename automatic=True
-event_roster_name,pass,WIKI-1992-023,event=滨州地区 roster=滨州地区
+event_roster_name,pass,WIKI-1992-023,effective_year=1992 event=滨州地区 roster=滨州地区
 entity_reference,pass,WIKI-1993-024,CNUR-000058
 automatic_continuity,pass,WIKI-1993-024,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-024,event=白城市 roster=白城市
+event_roster_name,pass,WIKI-1993-024,effective_year=1993 event=白城市 roster=白城市
 entity_reference,pass,WIKI-1993-025,CNUR-000070
 automatic_continuity,pass,WIKI-1993-025,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-025,event=黑河市 roster=黑河市
+event_roster_name,pass,WIKI-1993-025,effective_year=1993 event=黑河市 roster=黑河市
 entity_reference,pass,WIKI-1993-026,CNUR-000176
 automatic_continuity,pass,WIKI-1993-026,type=establish automatic=False
-event_roster_name,pass,WIKI-1993-026,event=孝感市 roster=孝感市
+event_roster_name,pass,WIKI-1993-026,effective_year=1993 event=孝感市 roster=孝感市
 entity_reference,pass,WIKI-1993-027,CNUR-000246
 automatic_continuity,pass,WIKI-1993-027,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-027,event=南充市 roster=南充市
+event_roster_name,pass,WIKI-1993-027,effective_year=1993 event=南充市 roster=南充市
 entity_reference,pass,WIKI-1993-028,CNUR-000350
 automatic_continuity,pass,WIKI-1993-028,type=merge automatic=False
 historical_lifespan,pass,WIKI-1993-028,event=1993 lifespan=1987-1993
@@ -90,37 +90,37 @@ automatic_continuity,pass,WIKI-1993-029,type=abolish automatic=False
 historical_lifespan,pass,WIKI-1993-029,event=1993 lifespan=1970-1993
 entity_reference,pass,WIKI-1993-030,CNUR-000222
 automatic_continuity,pass,WIKI-1993-030,type=establish automatic=False
-event_roster_name,pass,WIKI-1993-030,event=防城港市 roster=防城港市
+event_roster_name,pass,WIKI-1993-030,effective_year=1993 event=防城港市 roster=防城港市
 entity_reference,pass,WIKI-1993-031,CNUR-000181
 automatic_continuity,pass,WIKI-1993-031,type=rename automatic=True
-event_roster_name,pass,WIKI-1993-031,event=恩施土家族苗族自治州 roster=恩施土家族苗族自治州
+event_roster_name,pass,WIKI-1993-031,effective_year=1993 event=恩施土家族苗族自治州 roster=恩施土家族苗族自治州
 entity_reference,pass,WIKI-1994-032,CNUR-000096
 automatic_continuity,pass,WIKI-1994-032,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-032,event=台州市 roster=台州市
+event_roster_name,pass,WIKI-1994-032,effective_year=1994 event=台州市 roster=台州市
 entity_reference,pass,WIKI-1994-033,CNUR-000121
 automatic_continuity,pass,WIKI-1994-033,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-033,event=南平市 roster=南平市
+event_roster_name,pass,WIKI-1994-033,effective_year=1994 event=南平市 roster=南平市
 entity_reference,pass,WIKI-1994-034,CNUR-000147
 automatic_continuity,pass,WIKI-1994-034,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-034,event=临沂市 roster=临沂市
+event_roster_name,pass,WIKI-1994-034,effective_year=1994 event=临沂市 roster=临沂市
 entity_reference,pass,WIKI-1994-035,CNUR-000148
 automatic_continuity,pass,WIKI-1994-035,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-035,event=德州市 roster=德州市
+event_roster_name,pass,WIKI-1994-035,effective_year=1994 event=德州市 roster=德州市
 entity_reference,pass,WIKI-1994-036,CNUR-000164
 automatic_continuity,pass,WIKI-1994-036,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-036,event=南阳市 roster=南阳市
+event_roster_name,pass,WIKI-1994-036,effective_year=1994 event=南阳市 roster=南阳市
 entity_reference,pass,WIKI-1994-037,CNUR-000190
 automatic_continuity,pass,WIKI-1994-037,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-037,event=益阳市 roster=益阳市
+event_roster_name,pass,WIKI-1994-037,effective_year=1994 event=益阳市 roster=益阳市
 entity_reference,pass,WIKI-1994-038,CNUR-000191
 automatic_continuity,pass,WIKI-1994-038,type=establish automatic=False
-event_roster_name,pass,WIKI-1994-038,event=郴州市 roster=郴州市
+event_roster_name,pass,WIKI-1994-038,effective_year=1994 event=郴州市 roster=郴州市
 entity_reference,pass,WIKI-1994-039,CNUR-000223
 automatic_continuity,pass,WIKI-1994-039,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-039,event=钦州市 roster=钦州市
+event_roster_name,pass,WIKI-1994-039,effective_year=1994 event=钦州市 roster=钦州市
 entity_reference,pass,WIKI-1994-040,CNUR-000293
 automatic_continuity,pass,WIKI-1994-040,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-040,event=渭南市 roster=渭南市
+event_roster_name,pass,WIKI-1994-040,effective_year=1994 event=渭南市 roster=渭南市
 entity_reference,pass,WIKI-1994-041,CNUR-000357
 automatic_continuity,pass,WIKI-1994-041,type=merge automatic=False
 historical_lifespan,pass,WIKI-1994-041,event=1994 lifespan=1987-1994
@@ -129,68 +129,68 @@ automatic_continuity,pass,WIKI-1994-042,type=merge automatic=False
 historical_lifespan,pass,WIKI-1994-042,event=1994 lifespan=1987-1994
 entity_reference,pass,WIKI-1994-043,CNUR-000050
 automatic_continuity,pass,WIKI-1994-043,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-043,event=葫芦岛市 roster=葫芦岛市
+event_roster_name,pass,WIKI-1994-043,effective_year=1994 event=葫芦岛市 roster=葫芦岛市
 entity_reference,pass,WIKI-1994-044,CNUR-000056
 automatic_continuity,pass,WIKI-1994-044,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-044,event=白山市 roster=白山市
+event_roster_name,pass,WIKI-1994-044,effective_year=1994 event=白山市 roster=白山市
 entity_reference,pass,WIKI-1994-045,CNUR-000189
 automatic_continuity,pass,WIKI-1994-045,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-045,event=张家界市 roster=张家界市
+event_roster_name,pass,WIKI-1994-045,effective_year=1994 event=张家界市 roster=张家界市
 entity_reference,pass,WIKI-1995-046,CNUR-000178
 automatic_continuity,pass,WIKI-1995-046,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1995-046,event=黄冈市 roster=黄冈市
+event_roster_name,pass,WIKI-1995-046,effective_year=1995 event=黄冈市 roster=黄冈市
 entity_reference,pass,WIKI-1995-047,CNUR-000192
 automatic_continuity,pass,WIKI-1995-047,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1995-047,event=永州市 roster=永州市
+event_roster_name,pass,WIKI-1995-047,effective_year=1995 event=永州市 roster=永州市
 entity_reference,pass,WIKI-1995-048,CNUR-000344
 automatic_continuity,pass,WIKI-1995-048,type=upgrade automatic=True
 historical_lifespan,pass,WIKI-1995-048,event=1995 lifespan=1995-1997
-event_roster_name,pass,WIKI-1995-048,event=涪陵市 roster=涪陵市
+event_roster_name,pass,WIKI-1995-048,effective_year=1995 event=涪陵市 roster=涪陵市
 entity_reference,pass,WIKI-1996-049,CNUR-000013
 automatic_continuity,pass,WIKI-1996-049,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-049,event=衡水市 roster=衡水市
+event_roster_name,pass,WIKI-1996-049,effective_year=1996 event=衡水市 roster=衡水市
 entity_reference,pass,WIKI-1996-050,CNUR-000108
 automatic_continuity,pass,WIKI-1996-050,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-050,event=阜阳市 roster=阜阳市
+event_roster_name,pass,WIKI-1996-050,effective_year=1996 event=阜阳市 roster=阜阳市
 entity_reference,pass,WIKI-1996-051,CNUR-000122
 automatic_continuity,pass,WIKI-1996-051,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-051,event=龙岩市 roster=龙岩市
+event_roster_name,pass,WIKI-1996-051,effective_year=1996 event=龙岩市 roster=龙岩市
 entity_reference,pass,WIKI-1996-052,CNUR-000248
 automatic_continuity,pass,WIKI-1996-052,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-052,event=宜宾市 roster=宜宾市
+event_roster_name,pass,WIKI-1996-052,effective_year=1996 event=宜宾市 roster=宜宾市
 entity_reference,pass,WIKI-1996-053,CNUR-000295
 automatic_continuity,pass,WIKI-1996-053,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-053,event=汉中市 roster=汉中市
+event_roster_name,pass,WIKI-1996-053,effective_year=1996 event=汉中市 roster=汉中市
 entity_reference,pass,WIKI-1996-054,CNUR-000294
 automatic_continuity,pass,WIKI-1996-054,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-054,event=延安市 roster=延安市
+event_roster_name,pass,WIKI-1996-054,effective_year=1996 event=延安市 roster=延安市
 entity_reference,pass,WIKI-1996-055,CNUR-000177
 automatic_continuity,pass,WIKI-1996-055,type=rename automatic=True
-event_roster_name,pass,WIKI-1996-055,event=荆州市 roster=荆州市
+event_roster_name,pass,WIKI-1996-055,effective_year=1996 event=荆州市 roster=荆州市
 entity_reference,pass,WIKI-1996-056,CNUR-000345
 automatic_continuity,pass,WIKI-1996-056,type=jurisdiction_transfer automatic=False
 historical_lifespan,pass,WIKI-1996-056,event=1996 lifespan=1988-1997
 entity_reference,pass,WIKI-1997-057,CNUR-000149
 automatic_continuity,pass,WIKI-1997-057,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-057,event=聊城市 roster=聊城市
+event_roster_name,pass,WIKI-1997-057,effective_year=1997 event=聊城市 roster=聊城市
 entity_reference,pass,WIKI-1997-058,CNUR-000165
 automatic_continuity,pass,WIKI-1997-058,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-058,event=商丘市 roster=商丘市
+event_roster_name,pass,WIKI-1997-058,effective_year=1997 event=商丘市 roster=商丘市
 entity_reference,pass,WIKI-1997-059,CNUR-000193
 automatic_continuity,pass,WIKI-1997-059,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-059,event=怀化市 roster=怀化市
+event_roster_name,pass,WIKI-1997-059,effective_year=1997 event=怀化市 roster=怀化市
 entity_reference,pass,WIKI-1997-060,CNUR-000225
 automatic_continuity,pass,WIKI-1997-060,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-060,event=玉林市 roster=玉林市
+event_roster_name,pass,WIKI-1997-060,effective_year=1997 event=玉林市 roster=玉林市
 entity_reference,pass,WIKI-1997-061,CNUR-000259
 automatic_continuity,pass,WIKI-1997-061,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-061,event=遵义市 roster=遵义市
+event_roster_name,pass,WIKI-1997-061,effective_year=1997 event=遵义市 roster=遵义市
 entity_reference,pass,WIKI-1997-062,CNUR-000267
 automatic_continuity,pass,WIKI-1997-062,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-062,event=曲靖市 roster=曲靖市
+event_roster_name,pass,WIKI-1997-062,effective_year=1997 event=曲靖市 roster=曲靖市
 entity_reference,pass,WIKI-1997-063,CNUR-000268
 automatic_continuity,pass,WIKI-1997-063,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-063,event=玉溪市 roster=玉溪市
+event_roster_name,pass,WIKI-1997-063,effective_year=1997 event=玉溪市 roster=玉溪市
 entity_reference,pass,WIKI-1997-064,CNUR-000363
 automatic_continuity,pass,WIKI-1997-064,type=split automatic=False
 historical_lifespan,pass,WIKI-1997-064,event=1997 lifespan=1987-1997
@@ -198,164 +198,164 @@ entity_reference,pass,WIKI-1997-065,CNUR-000247
 automatic_continuity,pass,WIKI-1997-065,type=establish_prefecture automatic=False
 entity_reference,pass,WIKI-1998-066,CNUR-000109
 automatic_continuity,pass,WIKI-1998-066,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-066,event=宿州市 roster=宿州市
+event_roster_name,pass,WIKI-1998-066,effective_year=1998 event=宿州市 roster=宿州市
 entity_reference,pass,WIKI-1998-067,CNUR-000130
 automatic_continuity,pass,WIKI-1998-067,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-067,event=赣州市 roster=赣州市
+event_roster_name,pass,WIKI-1998-067,effective_year=1998 event=赣州市 roster=赣州市
 entity_reference,pass,WIKI-1998-068,CNUR-000166
 automatic_continuity,pass,WIKI-1998-068,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-068,event=信阳市 roster=信阳市
+event_roster_name,pass,WIKI-1998-068,effective_year=1998 event=信阳市 roster=信阳市
 entity_reference,pass,WIKI-1998-069,CNUR-000179
 automatic_continuity,pass,WIKI-1998-069,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-069,event=咸宁市 roster=咸宁市
+event_roster_name,pass,WIKI-1998-069,effective_year=1998 event=咸宁市 roster=咸宁市
 entity_reference,pass,WIKI-1998-070,CNUR-000249
 automatic_continuity,pass,WIKI-1998-070,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-070,event=广安市 roster=广安市
+event_roster_name,pass,WIKI-1998-070,effective_year=1998 event=广安市 roster=广安市
 entity_reference,pass,WIKI-1998-071,CNUR-000323
 automatic_continuity,pass,WIKI-1998-071,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-071,event=吴忠市 roster=吴忠市
+event_roster_name,pass,WIKI-1998-071,effective_year=1998 event=吴忠市 roster=吴忠市
 entity_reference,pass,WIKI-1998-072,CNUR-000253
 automatic_continuity,pass,WIKI-1998-072,type=establish_prefecture automatic=False
 entity_reference,pass,WIKI-1999-073,CNUR-000020
 automatic_continuity,pass,WIKI-1999-073,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-073,event=晋中市 roster=晋中市
+event_roster_name,pass,WIKI-1999-073,effective_year=1999 event=晋中市 roster=晋中市
 entity_reference,pass,WIKI-1999-074,CNUR-000071
 automatic_continuity,pass,WIKI-1999-074,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-074,event=绥化市 roster=绥化市
+event_roster_name,pass,WIKI-1999-074,effective_year=1999 event=绥化市 roster=绥化市
 entity_reference,pass,WIKI-1999-075,CNUR-000110
 automatic_continuity,pass,WIKI-1999-075,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-075,event=巢湖市 roster=巢湖市
+event_roster_name,pass,WIKI-1999-075,effective_year=1999 event=巢湖市 roster=巢湖市
 entity_reference,pass,WIKI-1999-076,CNUR-000111
 automatic_continuity,pass,WIKI-1999-076,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-076,event=六安市 roster=六安市
+event_roster_name,pass,WIKI-1999-076,effective_year=1999 event=六安市 roster=六安市
 entity_reference,pass,WIKI-1999-077,CNUR-000123
 automatic_continuity,pass,WIKI-1999-077,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-077,event=宁德市 roster=宁德市
+event_roster_name,pass,WIKI-1999-077,effective_year=1999 event=宁德市 roster=宁德市
 entity_reference,pass,WIKI-1999-078,CNUR-000194
 automatic_continuity,pass,WIKI-1999-078,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-078,event=娄底市 roster=娄底市
+event_roster_name,pass,WIKI-1999-078,effective_year=1999 event=娄底市 roster=娄底市
 entity_reference,pass,WIKI-1999-079,CNUR-000250
 automatic_continuity,pass,WIKI-1999-079,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-079,event=达州市 roster=达州市
+event_roster_name,pass,WIKI-1999-079,effective_year=1999 event=达州市 roster=达州市
 entity_reference,pass,WIKI-1999-080,CNUR-000296
 automatic_continuity,pass,WIKI-1999-080,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-080,event=榆林市 roster=榆林市
+event_roster_name,pass,WIKI-1999-080,effective_year=1999 event=榆林市 roster=榆林市
 entity_reference,pass,WIKI-1999-081,CNUR-000029
 automatic_continuity,pass,WIKI-1999-081,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-081,event=通辽市 roster=通辽市
+event_roster_name,pass,WIKI-1999-081,effective_year=1999 event=通辽市 roster=通辽市
 entity_reference,pass,PL-2000-001,CNUR-000131
 automatic_continuity,pass,PL-2000-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-001,event=吉安市 roster=吉安市
+event_roster_name,pass,PL-2000-001,effective_year=2000 event=吉安市 roster=吉安市
 entity_reference,pass,PL-2000-002,CNUR-000097
 automatic_continuity,pass,PL-2000-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-002,event=丽水市 roster=丽水市
+event_roster_name,pass,PL-2000-002,effective_year=2000 event=丽水市 roster=丽水市
 entity_reference,pass,PL-2000-003,CNUR-000132
 automatic_continuity,pass,PL-2000-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-003,event=宜春市 roster=宜春市
+event_roster_name,pass,PL-2000-003,effective_year=2000 event=宜春市 roster=宜春市
 entity_reference,pass,PL-2000-004,CNUR-000167
 automatic_continuity,pass,PL-2000-004,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-004,event=周口市 roster=周口市
+event_roster_name,pass,PL-2000-004,effective_year=2000 event=周口市 roster=周口市
 entity_reference,pass,PL-2000-005,CNUR-000168
 automatic_continuity,pass,PL-2000-005,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-005,event=驻马店市 roster=驻马店市
+event_roster_name,pass,PL-2000-005,effective_year=2000 event=驻马店市 roster=驻马店市
 entity_reference,pass,PL-2000-006,CNUR-000150
 automatic_continuity,pass,PL-2000-006,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-006,event=滨州市 roster=滨州市
+event_roster_name,pass,PL-2000-006,effective_year=2000 event=滨州市 roster=滨州市
 entity_reference,pass,PL-2000-007,CNUR-000247
 automatic_continuity,pass,PL-2000-007,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-007,event=眉山市 roster=眉山市
+event_roster_name,pass,PL-2000-007,effective_year=2000 event=眉山市 roster=眉山市
 entity_reference,pass,PL-2000-008,CNUR-000251
 automatic_continuity,pass,PL-2000-008,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-008,event=雅安市 roster=雅安市
+event_roster_name,pass,PL-2000-008,effective_year=2000 event=雅安市 roster=雅安市
 entity_reference,pass,PL-2000-009,CNUR-000252
 automatic_continuity,pass,PL-2000-009,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-009,event=巴中市 roster=巴中市
+event_roster_name,pass,PL-2000-009,effective_year=2000 event=巴中市 roster=巴中市
 entity_reference,pass,PL-2000-010,CNUR-000253
 automatic_continuity,pass,PL-2000-010,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-010,event=资阳市 roster=资阳市
+event_roster_name,pass,PL-2000-010,effective_year=2000 event=资阳市 roster=资阳市
 entity_reference,pass,PL-2000-011,CNUR-000021
 automatic_continuity,pass,PL-2000-011,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-011,event=运城市 roster=运城市
+event_roster_name,pass,PL-2000-011,effective_year=2000 event=运城市 roster=运城市
 entity_reference,pass,PL-2000-012,CNUR-000022
 automatic_continuity,pass,PL-2000-012,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-012,event=忻州市 roster=忻州市
+event_roster_name,pass,PL-2000-012,effective_year=2000 event=忻州市 roster=忻州市
 entity_reference,pass,PL-2000-013,CNUR-000023
 automatic_continuity,pass,PL-2000-013,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-013,event=临汾市 roster=临汾市
+event_roster_name,pass,PL-2000-013,effective_year=2000 event=临汾市 roster=临汾市
 entity_reference,pass,PL-2000-014,CNUR-000260
 automatic_continuity,pass,PL-2000-014,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-014,event=安顺市 roster=安顺市
+event_roster_name,pass,PL-2000-014,effective_year=2000 event=安顺市 roster=安顺市
 entity_reference,pass,PL-2000-015,CNUR-000297
 automatic_continuity,pass,PL-2000-015,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-015,event=安康市 roster=安康市
+event_roster_name,pass,PL-2000-015,effective_year=2000 event=安康市 roster=安康市
 entity_reference,pass,PL-2000-016,CNUR-000133
 automatic_continuity,pass,PL-2000-016,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-016,event=抚州市 roster=抚州市
+event_roster_name,pass,PL-2000-016,effective_year=2000 event=抚州市 roster=抚州市
 entity_reference,pass,PL-2000-017,CNUR-000134
 automatic_continuity,pass,PL-2000-017,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-017,event=上饶市 roster=上饶市
+event_roster_name,pass,PL-2000-017,effective_year=2000 event=上饶市 roster=上饶市
 entity_reference,pass,PL-2000-018,CNUR-000151
 automatic_continuity,pass,PL-2000-018,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-018,event=菏泽市 roster=菏泽市
+event_roster_name,pass,PL-2000-018,effective_year=2000 event=菏泽市 roster=菏泽市
 entity_reference,pass,PL-2000-019,CNUR-000113
 automatic_continuity,pass,PL-2000-019,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-019,event=池州市 roster=池州市
+event_roster_name,pass,PL-2000-019,effective_year=2000 event=池州市 roster=池州市
 entity_reference,pass,PL-2000-020,CNUR-000114
 automatic_continuity,pass,PL-2000-020,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-020,event=宣城市 roster=宣城市
+event_roster_name,pass,PL-2000-020,effective_year=2000 event=宣城市 roster=宣城市
 entity_reference,pass,PL-2000-021,CNUR-000269
 automatic_continuity,pass,PL-2000-021,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-021,event=保山市 roster=保山市
+event_roster_name,pass,PL-2000-021,effective_year=2000 event=保山市 roster=保山市
 entity_reference,pass,PL-2000-022,CNUR-000112
 automatic_continuity,pass,PL-2000-022,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-022,event=亳州市 roster=亳州市
+event_roster_name,pass,PL-2000-022,effective_year=2000 event=亳州市 roster=亳州市
 entity_reference,pass,PL-2000-023,CNUR-000180
 automatic_continuity,pass,PL-2000-023,type=upgrade automatic=True
-event_roster_name,pass,PL-2000-023,event=随州市 roster=随州市
+event_roster_name,pass,PL-2000-023,effective_year=2000 event=随州市 roster=随州市
 entity_reference,pass,PL-2000-024,CNUR-000081
 automatic_continuity,pass,PL-2000-024,type=rename automatic=True
-event_roster_name,pass,PL-2000-024,event=淮安市 roster=淮安市
+event_roster_name,pass,PL-2000-024,effective_year=2000 event=淮安市 roster=淮安市
 entity_reference,pass,PL-2001-001,CNUR-000270
 automatic_continuity,pass,PL-2001-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-001,event=昭通市 roster=昭通市
+event_roster_name,pass,PL-2001-001,effective_year=2001 event=昭通市 roster=昭通市
 entity_reference,pass,PL-2001-002,CNUR-000030
 automatic_continuity,pass,PL-2001-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-002,event=鄂尔多斯市 roster=鄂尔多斯市
+event_roster_name,pass,PL-2001-002,effective_year=2001 event=鄂尔多斯市 roster=鄂尔多斯市
 entity_reference,pass,PL-2001-003,CNUR-000304
 automatic_continuity,pass,PL-2001-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-003,event=武威市 roster=武威市
+event_roster_name,pass,PL-2001-003,effective_year=2001 event=武威市 roster=武威市
 entity_reference,pass,PL-2001-004,CNUR-000324
 automatic_continuity,pass,PL-2001-004,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-004,event=固原市 roster=固原市
+event_roster_name,pass,PL-2001-004,effective_year=2001 event=固原市 roster=固原市
 entity_reference,pass,PL-2001-005,CNUR-000298
 automatic_continuity,pass,PL-2001-005,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-005,event=商洛市 roster=商洛市
+event_roster_name,pass,PL-2001-005,effective_year=2001 event=商洛市 roster=商洛市
 entity_reference,pass,PL-2001-006,CNUR-000031
 automatic_continuity,pass,PL-2001-006,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-006,event=呼伦贝尔市 roster=呼伦贝尔市
+event_roster_name,pass,PL-2001-006,effective_year=2001 event=呼伦贝尔市 roster=呼伦贝尔市
 entity_reference,pass,PL-2001-007,CNUR-000338
 automatic_continuity,pass,PL-2001-007,type=abolish automatic=False
 entity_reference,pass,PL-2002-001,CNUR-000305
 automatic_continuity,pass,PL-2002-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-001,event=张掖市 roster=张掖市
+event_roster_name,pass,PL-2002-001,effective_year=2002 event=张掖市 roster=张掖市
 entity_reference,pass,PL-2002-002,CNUR-000226
 automatic_continuity,pass,PL-2002-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-002,event=百色市 roster=百色市
+event_roster_name,pass,PL-2002-002,effective_year=2002 event=百色市 roster=百色市
 entity_reference,pass,PL-2002-003,CNUR-000306
 automatic_continuity,pass,PL-2002-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-003,event=平凉市 roster=平凉市
+event_roster_name,pass,PL-2002-003,effective_year=2002 event=平凉市 roster=平凉市
 entity_reference,pass,PL-2002-004,CNUR-000227
 automatic_continuity,pass,PL-2002-004,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-004,event=贺州市 roster=贺州市
+event_roster_name,pass,PL-2002-004,effective_year=2002 event=贺州市 roster=贺州市
 entity_reference,pass,PL-2002-005,CNUR-000228
 automatic_continuity,pass,PL-2002-005,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-005,event=河池市 roster=河池市
+event_roster_name,pass,PL-2002-005,effective_year=2002 event=河池市 roster=河池市
 entity_reference,pass,PL-2002-006,CNUR-000307
 automatic_continuity,pass,PL-2002-006,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-006,event=酒泉市 roster=酒泉市
+event_roster_name,pass,PL-2002-006,effective_year=2002 event=酒泉市 roster=酒泉市
 entity_reference,pass,PL-2002-007,CNUR-000308
 automatic_continuity,pass,PL-2002-007,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-007,event=庆阳市 roster=庆阳市
+event_roster_name,pass,PL-2002-007,effective_year=2002 event=庆阳市 roster=庆阳市
 entity_reference,pass,PL-2002-008,CNUR-000362
 automatic_continuity,pass,PL-2002-008,type=split automatic=False
 historical_lifespan,pass,PL-2002-008,event=2002 lifespan=1987-2002
@@ -364,69 +364,69 @@ automatic_continuity,pass,PL-2002-009,type=split automatic=False
 historical_lifespan,pass,PL-2002-009,event=2002 lifespan=1971-2002
 entity_reference,pass,PL-2002-010,CNUR-000271
 automatic_continuity,pass,PL-2002-010,type=upgrade automatic=True
-event_roster_name,pass,PL-2002-010,event=丽江市 roster=丽江市
+event_roster_name,pass,PL-2002-010,effective_year=2002 event=丽江市 roster=丽江市
 entity_reference,pass,PL-2003-001,CNUR-000309
 automatic_continuity,pass,PL-2003-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2003-001,event=定西市 roster=定西市
+event_roster_name,pass,PL-2003-001,effective_year=2003 event=定西市 roster=定西市
 entity_reference,pass,PL-2003-002,CNUR-000024
 automatic_continuity,pass,PL-2003-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2003-002,event=吕梁市 roster=吕梁市
+event_roster_name,pass,PL-2003-002,effective_year=2003 event=吕梁市 roster=吕梁市
 entity_reference,pass,PL-2003-003,CNUR-000272
 automatic_continuity,pass,PL-2003-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2003-003,event=思茅市 roster=思茅市
+event_roster_name,pass,PL-2003-003,effective_year=2003 event=思茅市 roster=思茅市
 entity_reference,pass,PL-2003-004,CNUR-000032
 automatic_continuity,pass,PL-2003-004,type=upgrade automatic=True
-event_roster_name,pass,PL-2003-004,event=巴彦淖尔市 roster=巴彦淖尔市
+event_roster_name,pass,PL-2003-004,effective_year=2003 event=巴彦淖尔市 roster=巴彦淖尔市
 entity_reference,pass,PL-2003-005,CNUR-000033
 automatic_continuity,pass,PL-2003-005,type=upgrade automatic=True
-event_roster_name,pass,PL-2003-005,event=乌兰察布市 roster=乌兰察布市
+event_roster_name,pass,PL-2003-005,effective_year=2003 event=乌兰察布市 roster=乌兰察布市
 entity_reference,pass,PL-2003-006,CNUR-000325
 automatic_continuity,pass,PL-2003-006,type=establish automatic=False
-event_roster_name,pass,PL-2003-006,event=中卫市 roster=中卫市
+event_roster_name,pass,PL-2003-006,effective_year=2003 event=中卫市 roster=中卫市
 entity_reference,pass,PL-2004-001,CNUR-000310
 automatic_continuity,pass,PL-2004-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2004-001,event=陇南市 roster=陇南市
+event_roster_name,pass,PL-2004-001,effective_year=2004 event=陇南市 roster=陇南市
 entity_reference,pass,PL-2007-001,CNUR-000272
 automatic_continuity,pass,PL-2007-001,type=rename automatic=True
-event_roster_name,pass,PL-2007-001,event=普洱市 roster=普洱市
+event_roster_name,pass,PL-2007-001,effective_year=2007 event=普洱市 roster=普洱市
 entity_reference,pass,PL-2010-001,CNUR-000173
 automatic_continuity,pass,PL-2010-001,type=rename automatic=True
-event_roster_name,pass,PL-2010-001,event=襄阳市 roster=襄阳市
+event_roster_name,pass,PL-2010-001,effective_year=2010 event=襄阳市 roster=襄阳市
 entity_reference,pass,PL-2011-001,CNUR-000110
 automatic_continuity,pass,PL-2011-001,type=split automatic=False
 entity_reference,pass,PL-2011-002,CNUR-000261
 automatic_continuity,pass,PL-2011-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2011-002,event=毕节市 roster=毕节市
+event_roster_name,pass,PL-2011-002,effective_year=2011 event=毕节市 roster=毕节市
 entity_reference,pass,PL-2011-003,CNUR-000262
 automatic_continuity,pass,PL-2011-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2011-003,event=铜仁市 roster=铜仁市
+event_roster_name,pass,PL-2011-003,effective_year=2011 event=铜仁市 roster=铜仁市
 entity_reference,pass,PL-2012-001,CNUR-000233
 automatic_continuity,pass,PL-2012-001,type=establish automatic=False
-event_roster_name,pass,PL-2012-001,event=三沙市 roster=三沙市
+event_roster_name,pass,PL-2012-001,effective_year=2012 event=三沙市 roster=三沙市
 entity_reference,pass,PL-2013-001,CNUR-000314
 automatic_continuity,pass,PL-2013-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2013-001,event=海东市 roster=海东市
+event_roster_name,pass,PL-2013-001,effective_year=2013 event=海东市 roster=海东市
 entity_reference,pass,PL-2014-001,CNUR-000283
 automatic_continuity,pass,PL-2014-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2014-001,event=日喀则市 roster=日喀则市
+event_roster_name,pass,PL-2014-001,effective_year=2014 event=日喀则市 roster=日喀则市
 entity_reference,pass,PL-2015-001,CNUR-000234
 automatic_continuity,pass,PL-2015-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2015-001,event=儋州市 roster=儋州市
+event_roster_name,pass,PL-2015-001,effective_year=2015 event=儋州市 roster=儋州市
 entity_reference,pass,PL-2015-002,CNUR-000285
 automatic_continuity,pass,PL-2015-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2015-002,event=林芝市 roster=林芝市
+event_roster_name,pass,PL-2015-002,effective_year=2015 event=林芝市 roster=林芝市
 entity_reference,pass,PL-2015-003,CNUR-000328
 automatic_continuity,pass,PL-2015-003,type=upgrade automatic=True
-event_roster_name,pass,PL-2015-003,event=吐鲁番市 roster=吐鲁番市
+event_roster_name,pass,PL-2015-003,effective_year=2015 event=吐鲁番市 roster=吐鲁番市
 entity_reference,pass,PL-2016-001,CNUR-000286
 automatic_continuity,pass,PL-2016-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2016-001,event=山南市 roster=山南市
+event_roster_name,pass,PL-2016-001,effective_year=2016 event=山南市 roster=山南市
 entity_reference,pass,PL-2016-002,CNUR-000329
 automatic_continuity,pass,PL-2016-002,type=upgrade automatic=True
-event_roster_name,pass,PL-2016-002,event=哈密市 roster=哈密市
+event_roster_name,pass,PL-2016-002,effective_year=2016 event=哈密市 roster=哈密市
 entity_reference,pass,PL-2017-001,CNUR-000287
 automatic_continuity,pass,PL-2017-001,type=upgrade automatic=True
-event_roster_name,pass,PL-2017-001,event=那曲市 roster=那曲市
+event_roster_name,pass,PL-2017-001,effective_year=2018 event=那曲市 roster=那曲市
 entity_reference,pass,PL-2018-001,CNUR-000146
 automatic_continuity,pass,PL-2018-001,type=merge automatic=False
 chronological_order,pass,CNUR-000106,1987

@@ -114,6 +114,20 @@ def build_registry() -> tuple[dict[str, dict[str, str]], dict[str, str]]:
         url_to_id[source["url"]] = source["source_id"]
 
     add_source(registry, {
+        "source_id": "SRC-CTAMAP-1.30",
+        "source_type": "annual_vector_snapshot",
+        "title": "CTAmap 1.30：2000—2024年初省市县行政区划矢量数据",
+        "url": "https://github.com/ruiduobao/shengshixian.com",
+        "accessed_date": "2026-08-20",
+        "coverage_start": "2000",
+        "coverage_end": "2024",
+        "source_locator": "CTAmap1.30版本_2000-2024_2025.04.25 local snapshot",
+        "authority": "CTAmap project",
+        "scope": "province_and_prefecture_year_start_geometry_crosscheck",
+        "provenance_status": "reviewed_external_snapshot_redistribution_pending",
+        "notes": "Annual year-start Shapefiles are used for spatial alignment and cross-checking; they do not override reviewed CNUR year-end legal status.",
+    })
+    add_source(registry, {
         "source_id": "SRC-STATE-COUNCIL-GAZETTE-ARCHIVE",
         "source_type": "state_council_gazette_archive",
         "title": "中国政府网：国务院公报历史期号目录",
@@ -185,13 +199,22 @@ def enrich_derived(url_to_id: dict[str, str]) -> None:
         if event.get("entity_id"):
             sources_by_entity[event["entity_id"]].add(source_id)
 
-    for name, key in (("entity_names_1987_2026.csv", "entity_id"), ("legal_roster_1987_2026.csv", "entity_id"), ("entities.csv", "entity_id")):
+    for name, key in (
+        ("entity_names_1987_2026.csv", "entity_id"),
+        ("entity_names_year_end_1987_2026.csv", "entity_id"),
+        ("entity_name_match_ranges_1987_2026.csv", "entity_id"),
+        ("legal_roster_1987_2026.csv", "entity_id"),
+        ("legal_roster_year_end_1987_2026.csv", "entity_id"),
+        ("entities.csv", "entity_id"),
+    ):
         path = PROCESSED / name
+        if not path.exists():
+            continue
         fields, rows = read_csv(path)
         for row in rows:
             ids = sorted(sources_by_entity.get(row.get(key, ""), {"SRC-LEGACY-SNAPSHOT"}))
-            row["source_ids"] = "、".join(ids)
-            row["provenance_kind"] = "derived_from_event_chain"
+            row["source_ids"] = row.get("source_ids") or "、".join(ids)
+            row["provenance_kind"] = row.get("provenance_kind") or "derived_from_event_chain"
         write_csv(path, fields + [field for field in ("source_ids", "provenance_kind") if field not in fields], rows)
 
 

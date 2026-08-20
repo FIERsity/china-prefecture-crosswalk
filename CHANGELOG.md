@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.0 - 2026-08-20
+
+- Unified every annual entity/name status on a December 31 year-end basis and added an explicit `status_as_of`/`year_basis` contract.
+- Added 144 event timing reviews with implementation/effective-date overrides for cross-year cases; 2017 year-end now retains 那曲地区 and 2018 year-end uses 那曲市.
+- Corrected premature prefecture status for 亳州、随州 and 儋州, restored early 临沧地区/昌都地区 names, and removed stale names from abolished rows.
+- Added calendar-year name ranges so old and new names in a continuous within-year rename both match the same CNUR while returning the year-end name.
+- Added four public match columns: year-end name, year basis, name validity, and transition event IDs.
+- Audited CTAmap 1.30 province/prefecture Shapefiles for 2000—2024: 50 layer snapshots and 8,423 counted prefecture features, with zero unresolved entity links and zero invalid linked geometries.
+- Added CTAmap snapshot/link tables and retained two explicit cross-source timing differences for 那曲 and 莱芜; original third-party geometry is not redistributed.
+- Added a GitHub Pages historical-map tab backed by 25 lazy-loaded, simplified prefecture GeoJSON files (36 MB total), with panel-year selection, CNUR details, and upstream source links.
+- Published V4.0 CSV, Excel, and full data bundle outputs and switched Python, CLI, Streamlit, and GitHub Pages metadata to the year-end rule.
+
 ## 3.4.1 - 2026-08-05
 
 - 修复 Wikipedia 县级变更年度表格 `rowspan` 解析错误：原实现多延续一行，导致部分县级记录被错误串入相邻地级单位（如茂港区被错误归入上海市）。

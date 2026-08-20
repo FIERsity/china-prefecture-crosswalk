@@ -43,15 +43,16 @@ def build() -> None:
             })
 
     names: list[dict[str, str | int]] = []
-    for row in read_csv("entity_names_1987_2026.csv"):
-        if row.get("name_zh") and row.get("legal_status") == "active":
+    for row in read_csv("entity_name_match_ranges_1987_2026.csv"):
+        if row.get("name_zh"):
             names.append({
                 "normalized": normalize_name(row["name_zh"]),
                 "name": row["name_zh"],
                 "entity_id": row["entity_id"],
-                "method": "official_or_historical",
+                "method": "official_name_valid_during_year",
                 "start": int(row["start_year"]),
                 "end": int(row["end_year"]),
+                "transitionEventIds": row.get("transition_event_ids", ""),
             })
     for row in read_csv("aliases.csv"):
         if row.get("alias") and row.get("entity_id"):
@@ -64,9 +65,19 @@ def build() -> None:
                 "end": int(row["end_year"]),
             })
 
+    year_end_names = [{
+        "entity_id": row["entity_id"],
+        "name": row.get("name_zh", ""),
+        "start": int(row["start_year"]),
+        "end": int(row["end_year"]),
+        "status": row.get("legal_status", ""),
+    } for row in read_csv("entity_names_year_end_1987_2026.csv") if row.get("name_zh")]
+
     roster_status: dict[str, dict[str, str]] = {}
-    for row in read_csv("legal_roster_1987_2026.csv"):
+    roster_year_end_name: dict[str, dict[str, str]] = {}
+    for row in read_csv("legal_roster_year_end_1987_2026.csv"):
         roster_status.setdefault(row["entity_id"], {})[row["year"]] = row["status"]
+        roster_year_end_name.setdefault(row["entity_id"], {})[row["year"]] = row.get("legal_name_zh", "")
     event_fields = (
         "event_id", "year", "province_name", "event_type", "entity_id", "entity_ids",
         "prefecture_names", "prefecture_entity_ids", "old_prefecture_name",
@@ -101,16 +112,19 @@ def build() -> None:
 
     payload = {
         "meta": {
-            "version": "3.4.1",
-            "ruleVersion": "2026.08.1",
+            "version": "4.0.0",
+            "ruleVersion": "2026.08.2-year-end",
             "coverage": "1983—2026",
+            "yearBasis": "year_end",
             "entityCount": len(entities),
-            "note": "CNUR 是项目研究编号，不是官方行政区划代码；地级行政单位事件层覆盖1983—2026，年度状态层覆盖1987—2026。",
+            "note": "CNUR 是项目研究编号，不是官方行政区划代码；年度状态和年度名称统一表示每年12月31日，年内曾正式使用的名称仍可匹配。",
             "prefectureEventCount": len(events),
         },
         "entities": entities,
         "names": names,
+        "yearEndNames": year_end_names,
         "rosterStatus": roster_status,
+        "rosterYearEndName": roster_year_end_name,
         "events": events,
         "countyEvents": county_events,
         "relations": read_csv("event_relations.csv"),
@@ -124,7 +138,13 @@ def build() -> None:
     for filename in (
         "entities.csv",
         "entity_names_1987_2026.csv",
+        "entity_names_year_end_1987_2026.csv",
+        "entity_name_match_ranges_1987_2026.csv",
         "legal_roster_1987_2026.csv",
+        "legal_roster_year_end_1987_2026.csv",
+        "event_timing_reviews.csv",
+        "ctamap_snapshots.csv",
+        "ctamap_prefecture_links.csv",
         "unified_events_1987_2026.csv",
         "prefecture_administrative_events_1983_2026.csv",
         "county_administrative_events_1983_2026.csv",

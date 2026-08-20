@@ -1,6 +1,6 @@
 # Data dictionary
 
-This repository separates legal annual status from stable research entities. `entity_id` uses the permanent `CNUR-000001` namespace and is never an official administrative division code. Legacy identifiers remain available only through `entity_id_crosswalk.csv`.
+This repository separates year-end legal status from stable research entities. `entity_id` uses the permanent `CNUR-000001` namespace and is never an official administrative division code. Legacy identifiers remain available only through `entity_id_crosswalk.csv`.
 
 ## `data/processed/entities.csv`
 
@@ -10,13 +10,23 @@ One row per stable research entity. `verification_status` reports whether this f
 
 Temporal name/status spans. Blank `name_zh` values are intentional when the research entity was not an active legal prefecture. Spans are closed intervals.
 
-## Annual status layer: 1987—2026
+## Year-end status layer: 1987—2026
 
-`legal_roster_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Annual legal-status records are reconciled against reviewed establishment years and event chains; reconstructed observations are explicitly marked `inferred`. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year. `entity_names_1987_2026.csv` compresses the same annual state into closed temporal spans. These two files are the runtime source for the website, Python API, and CLI.
+`legal_roster_year_end_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Every row has `status_as_of=YYYY-12-31` and `year_basis=year_end`. Event transitions use explicit effective/implementation dates when available and otherwise retain a labelled approval-date or event-year inference. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year.
+
+`entity_names_year_end_1987_2026.csv` compresses that year-end state into closed year spans. `entity_name_match_ranges_1987_2026.csv` is deliberately broader: it records names that were valid at any time during a calendar year, so a continuous rename can accept both the old and new name while returning one year-end standard name. `legal_roster_1987_2026.csv` and `entity_names_1987_2026.csv` are V4 compatibility copies with the same year-end semantics.
+
+`event_timing_reviews.csv` provides one timing record for every unified event. `annual_effective_basis` distinguishes explicit implementation evidence from approval-date and event-year inference; `temporal_confidence` prevents an inferred year from being presented as an exact implementation date.
 
 ## `data/processed/events_2000_2026.csv`
 
-Machine-readable export of the 63 core prefecture-level change events in the source workbook. Event dates follow the workbook's approval-date convention. The source workbook remains the archival input.
+Machine-readable export of the 63 core prefecture-level change events in the source workbook. `approval_date` follows the workbook's approval-date convention; year-end transitions are taken from `event_timing_reviews.csv`, not from the event year alone. The source workbook remains the archival input.
+
+## CTAmap 1.30 spatial bridge
+
+`ctamap_snapshots.csv` inventories the 2000—2024 year-start province and prefecture Shapefiles, including checksums, CRS and record counts. A snapshot labelled `S年初` is aligned to panel year `S-1`; the files do not contain feature-level effective dates.
+
+`ctamap_prefecture_links.csv` links 8,423 counted prefecture features to CNUR entities. Ordinary prefecture types are 地级市、地区、自治州、盟; the four municipalities are treated as prefecture-equivalent, while other `不统计` directly administered county-level units remain outside the bridge. Source codes are retained as temporal attributes and never replace CNUR IDs. `docs/data/maps/prefecture/` contains per-year simplified GeoJSON for the non-commercial static visualization; the original Shapefiles are not redistributed and the derived geometry follows its own NOTICE rather than this project's CC BY 4.0 license.
 
 ## `data/processed/event_entity_links.csv`
 
