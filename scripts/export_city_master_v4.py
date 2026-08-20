@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import csv
+import re
 import zipfile
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -15,11 +17,36 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
 AUDIT = ROOT / "data" / "audit"
 OUTPUT = ROOT / "data" / "releases" / "v4.0"
+FIXED_DATETIME = datetime(2026, 8, 20, tzinfo=timezone.utc)
+FIXED_ZIP_TIME = (2026, 8, 20, 0, 0, 0)
 
 
 def read(name: str) -> list[dict[str, str]]:
     with (DATA / name).open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def deterministic_zip_info(name: str) -> zipfile.ZipInfo:
+    info = zipfile.ZipInfo(name, FIXED_ZIP_TIME)
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = 0o644 << 16
+    return info
+
+
+def normalize_zip(path: Path) -> None:
+    with zipfile.ZipFile(path) as source:
+        members = [(name, source.read(name)) for name in sorted(source.namelist())]
+    temporary = path.with_suffix(path.suffix + ".deterministic")
+    with zipfile.ZipFile(temporary, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as output:
+        for name, payload in members:
+            if name == "docProps/core.xml":
+                payload = re.sub(
+                    rb"<dcterms:modified[^>]*>.*?</dcterms:modified>",
+                    b'<dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-20T00:00:00Z</dcterms:modified>',
+                    payload,
+                )
+            output.writestr(deterministic_zip_info(name), payload)
+    temporary.replace(path)
 
 
 def main() -> None:
@@ -85,16 +112,20 @@ def main() -> None:
     csv_path = OUTPUT / "china_city_entity_master_V4.0.csv"
     xlsx_path = OUTPUT / "china_city_entity_master_V4.0.xlsx"
     pd.DataFrame(rows).to_csv(csv_path, index=False, encoding="utf-8-sig")
-    pd.DataFrame(rows).to_excel(xlsx_path, index=False, sheet_name="entities")
+    with pd.ExcelWriter(xlsx_path, engine="openpyxl") as writer:
+        pd.DataFrame(rows).to_excel(writer, index=False, sheet_name="entities")
+        writer.book.properties.created = FIXED_DATETIME
+        writer.book.properties.modified = FIXED_DATETIME
+    normalize_zip(xlsx_path)
 
     bundle_path = OUTPUT / "china_prefecture_crosswalk_data_v4.0.zip"
     with zipfile.ZipFile(bundle_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for path in sorted(DATA.glob("*.csv")):
-            archive.write(path, path.name)
+            archive.writestr(deterministic_zip_info(path.name), path.read_bytes())
         for name in ("year_end_roster_diff_v3_v4.csv", "ctamap_alignment_issues.csv", "unified_continuity_audit.csv"):
             path = AUDIT / name
             if path.exists():
-                archive.write(path, f"audit/{path.name}")
+                archive.writestr(deterministic_zip_info(f"audit/{path.name}"), path.read_bytes())
     print(f"rows={len(rows)} csv={csv_path} xlsx={xlsx_path} bundle={bundle_path}")
 
 
