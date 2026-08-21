@@ -24,14 +24,14 @@
 
 - 单个名称和可选省份查询；
 - 1983—2026 地级行政单位变更检索，1983—2026 县级变更记录；
-- 1999—2023 面板年份对应的 2000—2024 年初历史地图，可按名称、代码和 CNUR 查询；
+- 1999—2023 面板年份对应的 2000—2024 年初省、地、县三级历史地图，可按名称、代码和 CNUR 查询；
 - 机器可读数据下载。
 
 网页查询在浏览器本地完成，不需要 Python 服务器，也不会上传用户输入。完整的 CSV/XLSX 批量匹配仍可使用 Python API、CLI 或本地 Streamlit 入口。
 
 网页数据由 GitHub Actions 从仓库数据自动构建并发布到 GitHub Pages；页面版本和规则版本会显示在页脚，避免网页与数据版本脱节。
 
-V4.0 将年度状态统一定义为每年 12 月 31 日。连续改名发生当年，新旧名称都可匹配同一 CNUR，输出统一返回年末名称；复杂合并、拆分和撤销仍禁止自动映射后继实体。CTAmap 1.30 的 2000—2024 年初快照已完成审计。仓库保留 25 个按年懒加载的简化 GeoJSON（约 40 MB）；绿色区域连接地级 CNUR，浅灰色区域补绘省直辖县级单位和范围外背景，避免视觉空洞。2.5 GB 原始 Shapefile 不重新发布。
+V4.0 将年度状态统一定义为每年 12 月 31 日。连续改名发生当年，新旧名称都可匹配同一 CNUR，输出统一返回年末名称；复杂合并、拆分和撤销仍禁止自动映射后继实体。CTAmap 1.30 的 2000—2024 年初快照已完成审计。仓库保留约 146 MB 简化网页几何：省级和地级按年份加载，县级按“年份 × 省份”分片加载。2.5 GB 原始 Shapefile 不重新发布。
 
 
 ## 快速开始
@@ -134,6 +134,8 @@ cnur events --year 1993 --type split --output events.csv
 | 县级事件宽松关联 | 1983—2026 统一进入网页展示层 |
 | CTAmap 地级快照桥接 | 8,423 个地级要素，25 个年初快照 |
 | 网页地图背景区域 | 776 个跨年要素，用于补绘省直辖县级和范围外区域 |
+| 省级网页地图 | 850 个跨年要素（34 × 25） |
+| 县级网页地图 | 71,610 个跨年要素，按年份和省份分片 |
 | 来源登记 | 50 条，含页面修订号、版次定位和来源状态 |
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
@@ -150,7 +152,7 @@ cnur events --year 1993 --type split --output events.csv
 | [`entity_name_match_ranges_1987_2026.csv`](data/processed/entity_name_match_ranges_1987_2026.csv) | 自然年内曾正式有效的名称区间 |
 | [`legal_roster_year_end_1987_2026.csv`](data/processed/legal_roster_year_end_1987_2026.csv) | 363实体 × 40年的年末状态长表 |
 | [`ctamap_prefecture_links.csv`](data/processed/ctamap_prefecture_links.csv) | CTAmap 地级要素与 CNUR 桥接 |
-| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 25 个网页 GeoJSON 的年份、要素数和文件大小清单 |
+| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 省、地、县三级网页 GeoJSON 的年份、分片、要素数和文件大小清单 |
 | [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | CTAmap 简化几何的来源、引用和独立许可说明 |
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
@@ -236,7 +238,7 @@ python3 -m http.server 8765 --directory docs
 - 改名链与撤地设市链连续；
 - 合并、拆分、撤销和代管禁止自动映射；
 - 1,285项统一连续性审计；
-- 25 年地图、8,423 个地级桥接要素无未匹配或无效几何；
+- 25 年省、地、县三级网页地图完整，8,423 个地级桥接要素无未匹配或无效几何；
 - Python匹配回归测试与Streamlit启动测试。
 
 审计结果见 [`data/audit/unified_continuity_audit.csv`](data/audit/unified_continuity_audit.csv)。
@@ -250,7 +252,7 @@ python3 -m http.server 8765 --directory docs
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V4.0不声称已经为每条记录完成官方批复原件级核验；仅有批准日而无实施日的事件以推定口径并标注时间置信度；
 - CTAmap 简化地级 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；
-- 历史地图覆盖 2000—2024 年初，对应 1999—2023 经济面板年份；浅灰色背景区域不分配地级 CNUR，并不表示地图数据缺失；
+- 历史地图覆盖 2000—2024 年初，对应 1999—2023 经济面板年份；县级地图按省份加载，县级要素只连接其上级地级 CNUR，不冒充地级研究实体；
 - 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
 - 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
 
@@ -281,7 +283,7 @@ data/processed/    可复现生成的数据层
 data/releases/     面向研究者的版本化发布文件
 data/audit/        实体与连续性审计结果
 docs/              GitHub Pages 静态公共工具
-docs/data/maps/     25 年简化 GeoJSON、地图清单和 CTAmap NOTICE
+docs/data/maps/     25 年省、地、县三级简化 GeoJSON、地图清单和 CTAmap NOTICE
 urban_crosswalk/   独立Python匹配模块
 scripts/           构建、迁移、抓取和验证脚本
 scripts/build_pages_data.py  生成浏览器端数据包

@@ -1,6 +1,6 @@
 # CTAmap derived web geometry
 
-The simplified GeoJSON files in `prefecture/` are derived from **CTAmap 1.30 (2000—2024)** by Rui Cheng / 锐多宝 and are provided only for this project's non-commercial historical visualization.
+The simplified GeoJSON files in `province/`, `prefecture/`, and `county/` are derived from **CTAmap 1.30 (2000—2024)** by Rui Cheng / 锐多宝 and are provided only for this project's non-commercial historical visualization. County files are partitioned by snapshot year and province code for lazy loading.
 
 - Source and downloads: https://github.com/ruiduobao/shengshixian.com
 - Visualization project: https://github.com/ruiduobao/china-divisions-map

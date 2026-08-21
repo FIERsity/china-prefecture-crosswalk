@@ -12,6 +12,8 @@
 - Added a GitHub Pages historical-map tab backed by 25 lazy-loaded, simplified prefecture GeoJSON files (about 40 MB total), with panel-year selection, CNUR details, and upstream source links.
 - Filled former map holes with 776 context features across the 25 snapshots (province-direct county-level units plus Hong Kong, Macao and Taiwan background), styled separately and never assigned CNUR IDs.
 - Added map search by current or historical name, six-digit source code and CNUR ID; linked map details now show year-end name history and open related event queries.
+- Added 25 annual province maps (850 features) and 25 years of county maps (71,610 features) partitioned by province for lazy loading; 2000—2010 county Web Mercator sources are normalized to WGS84 before simplification.
+- Added province/prefecture/county level selection, county province selection, county type and parent-prefecture CNUR display, and related county-event lookup in the historical map UI.
 - Published V4.0 CSV, Excel, and full data bundle outputs and switched Python, CLI, Streamlit, and GitHub Pages metadata to the year-end rule.
 
 ## 3.4.1 - 2026-08-05

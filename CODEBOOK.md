@@ -26,7 +26,9 @@ Machine-readable export of the 63 core prefecture-level change events in the sou
 
 `ctamap_snapshots.csv` inventories the 2000—2024 year-start province and prefecture Shapefiles, including checksums, CRS and record counts. A snapshot labelled `S年初` is aligned to panel year `S-1`; the files do not contain feature-level effective dates.
 
-`ctamap_prefecture_links.csv` links 8,423 counted prefecture features to CNUR entities. Ordinary prefecture types are 地级市、地区、自治州、盟; the four municipalities are treated as prefecture-equivalent, while other `不统计` directly administered county-level units remain outside the bridge. Source codes are retained as temporal attributes and never replace CNUR IDs. `docs/data/maps/prefecture/` contains per-year simplified GeoJSON for the non-commercial static visualization; the original Shapefiles are not redistributed and the derived geometry follows its own NOTICE rather than this project's CC BY 4.0 license.
+`ctamap_prefecture_links.csv` links 8,423 counted prefecture features to CNUR entities. Ordinary prefecture types are 地级市、地区、自治州、盟; the four municipalities are treated as prefecture-equivalent, while other `不统计` directly administered county-level units remain outside the bridge. Source codes are retained as temporal attributes and never replace CNUR IDs.
+
+`docs/data/maps/` contains per-year province and prefecture GeoJSON plus county GeoJSON partitioned by snapshot year and province code. County features retain their source county type, prefecture/province name and code, and a nullable parent prefecture CNUR; they are not promoted to CNUR entities. County sources from 2000—2010 are transformed from Web Mercator to WGS84 before simplification, while 2011—2024 sources are already WGS84. The original Shapefiles are not redistributed and all derived geometry follows its own NOTICE rather than this project's CC BY 4.0 license.
 
 ## `data/processed/event_entity_links.csv`
 
