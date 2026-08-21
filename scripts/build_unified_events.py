@@ -10,6 +10,30 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
 OUTPUT = DATA / "unified_events_1987_2026.csv"
 RELATIONS_OUTPUT = DATA / "unified_event_relations.csv"
+import re
+
+# Supplemental events use URLs that the year-based SRC-WIKI-{year} derivation
+# cannot resolve (wikisource / government reprints). Keep the same ids as
+# build_source_registry so provenance is identical whether enrich runs here
+# or later.
+SUPPLEMENTAL_SOURCE_ID = {
+    "https://zh.wikisource.org/wiki/中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复": "SRC-WIKISOURCE-CQ-WFL-1997",
+    "https://zh.wikipedia.org/wiki/重庆直辖市": "SRC-WIKI-CHONGQING-1997",
+    "https://zh.wikisource.org/wiki/国务院关于山东省日照市升为地级市的批复": "SRC-GUOHAN-1989-43",
+    "http://www.jieyang.gov.cn/zwgk/jcxxgk/zfgb/1992nian/jyzbdyq/zz/content/post_725314.html": "SRC-GUOHAN-1991-84",
+}
+WIKI_YEAR_RE = re.compile(r"/(?:wiki/)?((?:19|20)\d{2})年")
+
+
+def derive_source_id(url: str, year: str) -> str:
+    if not url:
+        return ""
+    if url in SUPPLEMENTAL_SOURCE_ID:
+        return SUPPLEMENTAL_SOURCE_ID[url]
+    match = WIKI_YEAR_RE.search(url)
+    return f"SRC-WIKI-{match.group(1)}" if match else f"SRC-WIKI-{year}"
+
+
 TYPE_MAP = {
     "地区改设地级市": "upgrade", "盟改设地级市": "upgrade",
     "县级市升格为地级市": "upgrade", "地级市更名": "rename",
@@ -42,6 +66,7 @@ def main() -> None:
             "description": row["description"], "review_note": row["review_note"],
             "source_url": row["source_url"], "source_revision_id": row["revision_id"],
             "source_locator": f"row:{row['source_row_number']}", "source_layer": "wikipedia_semantic_normalization",
+            "source_id": derive_source_id(row["source_url"], str(row["year"])),
         })
     for row in current:
         entity_id = links[row["事件ID"]]
@@ -64,6 +89,7 @@ def main() -> None:
             "description": row["处理凭证（释义）"], "review_note": row["判定备注"],
             "source_url": row["来源URL"], "source_revision_id": "",
             "source_locator": row["网页行号凭证"], "source_layer": "reviewed_event_workbook",
+            "source_id": derive_source_id(row["来源URL"], str(row["年份"])),
         })
     rows.sort(key=lambda item: (int(item["year"]), item["event_id"]))
     # Reconcile province from the linked entity, preserving explicit historical scope in notes.
