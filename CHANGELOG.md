@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.1 - 2026-08-21
+
+- Filled the 1989—1991 event-layer gap (no Wikipedia annual pages exist for these years) with three reviewed events sourced from official texts: 日照 upgraded to prefecture-level (1989-06-12, 国函〔1989〕43号), 潮州 upgraded (1991-12-07, 国函〔1991〕84号), and 揭阳 established after abolishing 揭阳县 (1991-12-07, 国函〔1991〕84号). Unified events 144 → 157, prefecture event layer 211 → 224, source registry 50 → 54.
+- Added the missing event layer entries for the 1993 Hebei region merges (张家口/沧州/邯郸/邢台/承德, 国函〔1993〕89号), 1994 保定 (国函〔1994〕133号), 1996 松花江 (国函〔1996〕64号), 1998 桂林 (国函〔1998〕73号), 1997 重庆 municipality upgrade, and the 1997-12 万县/涪陵/黔江 adjustment (中办厅字〔1997〕34号).
+- Completed successor relations for every merge/split/abolish (沙市/郧阳/惠阳/梧州/柳州/南宁 2002/巢湖 2011/莱芜 2018) and added 2015 枞阳/寿县, 2016 简阳, 2020 公主岭 transfers to `county_affiliation_transitions.csv` (90 → 94, all references resolvable). Event relations 149 → 190.
+- Renamed `from_entity_key` to `from_entity_id` in `major_lineage_relations.csv` and `county_affiliation_transitions.csv` so all relation tables share one field vocabulary.
+- Fixed "柳州" alias misrouting to 来宾市 (2000—2001), the 鞍山市 substring match inside 马鞍山市 county rows, and dropped shadowed suffix-omitted aliases.
+- Hardened the release chain: `docs/data` byte-consistency assertion in validate, `shasum -c` in CI, rebuilt SHA256SUMS, bare-filename analysis checksum, pages deploy repaired, version/stat numbers injected from bundle meta, and a documented `build_external_current.py` generator.
+
 ## 4.0.0 - 2026-08-20
 
 - Unified every annual entity/name status on a December 31 year-end basis and added an explicit `status_as_of`/`year_basis` contract.

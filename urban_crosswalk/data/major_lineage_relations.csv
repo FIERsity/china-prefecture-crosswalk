@@ -1,4 +1,4 @@
-case_id,year,from_name,from_entity_key,to_name,to_entity_id,relation_type,county_unit_count,materiality,source_event_id,source_url,automatic_mapping,review_status
+case_id,year,from_name,from_entity_id,to_name,to_entity_id,relation_type,county_unit_count,materiality,source_event_id,source_url,automatic_mapping,review_status
 MAJOR-1987-WEIHAI,1987,烟台市,CNUR-000140,威海市,CNUR-000144,carve_out,4,major,WIKI-RAW-1987:14-18,https://zh.wikipedia.org/wiki/1987年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1988-HUIYANG-HZ,1988,惠阳地区,CNUR-000347,惠州市,CNUR-000206,split_successor,4,major,WIKI-1988-010,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition
 MAJOR-1988-HUIYANG-SW,1988,惠阳地区,CNUR-000347,汕尾市,CNUR-000208,split_successor,3,major,WIKI-1988-010,https://zh.wikipedia.org/wiki/1988年中华人民共和国县级以上行政区划变更列表,false,reviewed_county_composition

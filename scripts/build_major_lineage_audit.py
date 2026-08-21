@@ -94,7 +94,7 @@ def write(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
 
 
 def main() -> None:
-    fields = ["case_id","year","from_name","from_entity_key","to_name","to_entity_id","relation_type","county_unit_count","materiality","source_event_id","source_url","automatic_mapping","review_status"]
+    fields = ["case_id","year","from_name","from_entity_id","to_name","to_entity_id","relation_type","county_unit_count","materiality","source_event_id","source_url","automatic_mapping","review_status"]
     relations = [dict(zip(fields[:-2], case)) | {"automatic_mapping":"false","review_status":"reviewed_county_composition"} for case in CASES]
     # Re-anchor legacy normalized event ids (WIKI-YYYY-NNN) to their current ids.
     # Event ids shift whenever earlier rows are added; (year, name) matching keeps
@@ -126,7 +126,7 @@ def main() -> None:
     for case_id, names in COUNTIES.items():
         case = by_id[case_id]
         for name in names:
-            county_rows.append({"case_id":case_id,"year":case["year"],"county_name_at_event":name,"from_prefecture_name":case["from_name"],"from_entity_key":case["from_entity_key"],"to_prefecture_name":case["to_name"],"to_entity_id":case["to_entity_id"],"source_event_id":case["source_event_id"],"source_url":case["source_url"],"review_status":"reviewed_county_composition"})
+            county_rows.append({"case_id":case_id,"year":case["year"],"county_name_at_event":name,"from_prefecture_name":case["from_name"],"from_entity_id":case["from_entity_id"],"to_prefecture_name":case["to_name"],"to_entity_id":case["to_entity_id"],"source_event_id":case["source_event_id"],"source_url":case["source_url"],"review_status":"reviewed_county_composition"})
     write(OUT / "major_lineage_relations.csv", fields, relations)
     write(OUT / "county_affiliation_transitions.csv", list(county_rows[0]), county_rows)
     print(f"major_relations={len(relations)} county_transitions={len(county_rows)}")

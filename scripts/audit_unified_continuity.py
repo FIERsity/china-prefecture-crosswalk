@@ -78,7 +78,7 @@ def main() -> None:
     for row in county_transitions: county_counts[row["case_id"]] = county_counts.get(row["case_id"], 0) + 1
     for relation in major_relations:
         case_id = relation["case_id"]
-        add("major_relation_from_entity", "pass" if relation["from_entity_key"] in entity_ids else "error", case_id, relation["from_entity_key"])
+        add("major_relation_from_entity", "pass" if relation["from_entity_id"] in entity_ids else "error", case_id, relation["from_entity_id"])
         add("major_relation_to_entity", "pass" if relation["to_entity_id"] in entity_ids else "error", case_id, relation["to_entity_id"])
         add("major_relation_no_auto_mapping", "pass" if relation["automatic_mapping"] == "false" else "error", case_id, relation["automatic_mapping"])
         expected = int(relation["county_unit_count"])

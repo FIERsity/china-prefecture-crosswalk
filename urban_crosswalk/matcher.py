@@ -190,7 +190,7 @@ class CrosswalkMatcher:
             return []
         rows = self.relations[(self.relations.entity_id == entity_id) & (self.relations.relation_type.isin(["merge", "split"]))]
         risks = [f"{row.relation_type}_event" for _, row in rows.iterrows() if year >= int(row.year)]
-        material = self.major_lineage_relations[self.major_lineage_relations.from_entity_key == entity_id]
+        material = self.major_lineage_relations[self.major_lineage_relations.from_entity_id == entity_id]
         if any(year >= int(row.year) for _, row in material.iterrows()): risks.append("material_lineage_change")
         return sorted(set(risks))
 
@@ -295,7 +295,7 @@ class CrosswalkMatcher:
             rows = self.historical_entities[self.historical_entities.historical_entity_id == entity_id]
             entity = rows.iloc[0].to_dict() if len(rows) else None
         lineage = self.major_lineage_relations[
-            (self.major_lineage_relations.from_entity_key == entity_id) |
+            (self.major_lineage_relations.from_entity_id == entity_id) |
             (self.major_lineage_relations.to_entity_id == entity_id)
         ]
         return {"entity": entity, "names": self.names[self.names.entity_id == entity_id].to_dict("records"), "events": self.query_events(entity_id=entity_id).to_dict("records"), "major_lineage": lineage.to_dict("records")}
@@ -343,4 +343,4 @@ def query_events(entity_id=None, province=None, year=None, event_type=None): ret
 def audit_report(results: list[MatchResult], config: dict[str, Any]) -> str:
     counts: dict[str, int] = {}
     for result in results: counts[result.match_status] = counts.get(result.match_status, 0) + 1
-    return json.dumps({"data_version": "4.0.0", "coverage": "1983-2026", "year_basis": "year_end", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)
+    return json.dumps({"data_version": "4.0.1", "coverage": "1983-2026", "year_basis": "year_end", "rule_version": RULE_VERSION, "configuration": config, "counts": counts, "unresolved": sum(v for k, v in counts.items() if k != "auto_matched")}, ensure_ascii=False, indent=2)

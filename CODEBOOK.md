@@ -81,3 +81,31 @@ Historical units needed for complete lineage are registered in `historical_entit
 `major_lineage_relations.csv` is the reviewed material-lineage layer built from county-level composition. `county_affiliation_transitions.csv` records the county-level units supporting each relation. It focuses on changes that materially alter the main territorial composition of a prefecture entity; incidental transfers of one or two peripheral counties are normally omitted. Every relation in this layer has `automatic_mapping=false`.
 
 `data/audit/unified_continuity_audit.csv` is generated from the complete unified model. It checks event uniqueness, entity references, historical lifespans, province continuity, annual-roster names, chronological name chains, relation references, and the prohibition on automatic mapping for complex events.
+
+## Relation tables: field vocabulary
+
+Three relation tables share one vocabulary; the table name indicates the layer, the fields are aligned:
+
+| Field | Meaning | Used in |
+|---|---|---|
+| `from_entity_id` | The event's primary entity (the unit the event acts on) | `unified_event_relations.csv`, `major_lineage_relations.csv`, `county_affiliation_transitions.csv` |
+| `to_entity_id` | The successor / target entity of the relation | same three tables |
+| `entity_id` | Legacy alias of `from_entity_id` used by the old `event_relations.csv` (kept for the browser relations payload; do not mix) | `event_relations.csv` |
+| `automatic_continuity` | Event-layer flag: does the entity survive the event unchanged in identity (rename / upgrade = `true`) | `unified_events_1987_2026.csv` |
+| `automatic_mapping` | Relation-layer flag: is it safe to automatically map historical statistics onto the successor (complex events = `false`) | all three relation tables |
+
+The two flags are deliberately different layers: a 撤地设市 upgrade keeps the entity continuous (`automatic_continuity=true`) and its statistics transferable, while a merge/split/abolish/cross-prefecture transfer has a valid event record but is never auto-mapped (`automatic_mapping=false`) — the researcher decides how to treat the successor (aggregation vs event dummy).
+
+`event_relations.csv` and `event_entity_links.csv` are the legacy 1:1 payloads shipped in the browser bundle and the matcher; `unified_event_relations.csv` is the complete reviewed graph (157 events, 190 relations) and the recommended source for lineage research.
+
+## Source types
+
+`source_registry.csv` groups every row-level provenance into nine `source_type` values:
+
+- **Official text (highest authority)**: `wikisource_official_text` (维基文库全文), `government_web_reprint` (政府网站转发件), `state_council_gazette_archive` (国务院公报历史期号目录), `annual_administrative_division_book` (《行政区划简册》书目线索);
+- **Contemporaneous summaries**: `people_daily_summary` (人民日报版面摘要), `secondary_transcription` (区划地名网按国务院批复整理的转录);
+- **Encyclopedic archive**: `wikipedia` (维基百科年度页, revision-pinned);
+- **Spatial reference**: `annual_vector_snapshot` (CTAmap 年度矢量快照);
+- **Project provenance**: `project_snapshot` (项目早期快照).
+
+Rows cite `source_id`, `source_url`, `source_locator`, `source_confidence` and `provenance_status`; treat official-text rows as the verification target and summary/wikipedia rows as evidence pending original-document review.
