@@ -32,8 +32,71 @@ function normalizeProvince(value) {
 }
 
 function number(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
+}
+
+function coverageYears() {
+  const meta = state.data?.meta || {};
+  return {
+    eventStart: Number(meta.eventStartYear || 1983),
+    eventEnd: Number(meta.eventEndYear || 2026),
+    statusStart: Number(meta.statusStartYear || 1987),
+    statusEnd: Number(meta.statusEndYear || 2026),
+  };
+}
+
+function yearStatusText(status) {
+  return {
+    not_checked: "未选择年份",
+    early_event_only: "早期事件层（无年末状态）",
+    unsupported_year: "年份超出项目覆盖范围",
+    invalid_year: "年份格式无效",
+    active: "年末存在",
+    abolished: "年末已撤销",
+    not_established: "年末尚未设立",
+    not_prefecture_level: "年末非地级层级",
+    unknown: "年末状态未核定",
+  }[status] || status || "未核验";
+}
+
+function riskText(value) {
+  const labels = {
+    province_conflict: "省份与实体记录不一致",
+    name_outside_valid_year: "名称不在所选年份的有效区间",
+    pre_establishment: "所选年份早于地级实体设立",
+    post_abolition: "所选年份晚于实体撤销",
+    merge_event: "涉及合并事件，不能自动延续统计值",
+    split_event: "涉及拆分事件，不能自动延续统计值",
+    name_changed_during_year: "名称在该自然年内发生变化，结果按年末名称返回",
+    unsupported_year: "年份超出项目覆盖范围",
+    invalid_year: "年份必须是完整的四位整数",
+    early_event_only: "该年份只有事件证据，尚无完整年末状态表",
+  };
+  return String(value || "").split("|").filter(Boolean).map((item) => labels[item] || item).join("、");
+}
+
+function methodText(method) {
+  return {
+    exact: "精确名称匹配",
+    official_name_valid_during_year: "年内正式名称匹配",
+    selected_candidate: "已选择候选实体",
+    name_outside_valid_year: "名称年份冲突",
+    province_conflict: "省份冲突",
+  }[method] || method || "—";
+}
+
+function reviewStatusText(status) {
+  return {
+    accepted_reviewed: "已复核",
+    accepted_rule_extraction: "规则提取后已接受",
+    accepted_manual_review: "人工复核后已接受",
+    early_source_text_parsed: "早期资料解析记录",
+    inferred: "推定时间口径",
+    reviewed: "时间口径已复核",
+    review_required: "仍需复核",
+  }[status] || "";
 }
 
 function entityFor(id) {
@@ -42,13 +105,16 @@ function entityFor(id) {
 
 function rosterStatus(entityId, year) {
   if (year === null) return "not_checked";
-  if (year < 1983 || year > 2026) return "unsupported_year";
-  if (year < 1987) return "early_event_only";
+  const years = coverageYears();
+  if (!Number.isInteger(year)) return "invalid_year";
+  if (year < years.eventStart || year > years.eventEnd) return "unsupported_year";
+  if (year < years.statusStart) return "early_event_only";
   return state.data.rosterStatus[entityId]?.[String(year)] || "unknown";
 }
 
 function rosterYearEndName(entityId, year) {
-  if (year === null || year < 1987 || year > 2026) return "";
+  const years = coverageYears();
+  if (year === null || year < years.statusStart || year > years.statusEnd) return "";
   return state.data.rosterYearEndName?.[entityId]?.[String(year)] || "";
 }
 
@@ -108,7 +174,8 @@ function makeResult(name, year, province) {
     const unique = [...new Set(rawMatches.map((item) => item.entity_id))];
     if (unique.length === 1) return problemResult(unique[0], normalized, year, "province_conflict", "省份与实体记录不一致");
   }
-  if (exactEnabled && year !== null && year >= 1987 && year <= 2026) {
+  const years = coverageYears();
+  if (exactEnabled && year !== null && year >= years.statusStart && year <= years.statusEnd) {
     const valid = matches.filter((item) => item.start <= year && year <= item.end);
     if (valid.length) matches = valid;
     else if (matches.length && new Set(matches.map((item) => item.entity_id)).size === 1) {
@@ -120,11 +187,12 @@ function makeResult(name, year, province) {
     const entity = entityFor(ids[0]);
     const status = rosterStatus(ids[0], year);
     const blockingRisks = relationRisks(ids[0], year);
+    if (["unsupported_year", "invalid_year"].includes(status)) blockingRisks.push(status);
     if (status === "not_established" || status === "not_prefecture_level") blockingRisks.push("pre_establishment");
     if (status === "abolished") blockingRisks.push("post_abolition");
     const yearEndName = rosterYearEndName(ids[0], year);
-    const nameValidity = year === null ? "not_checked" : normalizeName(yearEndName) === normalized ? "year_end_name" : "valid_during_year";
-    const informationalRisks = nameValidity === "valid_during_year" ? ["name_changed_during_year"] : [];
+    const nameValidity = year === null ? "not_checked" : status === "early_event_only" ? "not_reconstructed" : normalizeName(yearEndName) === normalized ? "year_end_name" : "valid_during_year";
+    const informationalRisks = nameValidity === "valid_during_year" ? ["name_changed_during_year"] : status === "early_event_only" ? ["early_event_only"] : [];
     const risks = [...new Set([...blockingRisks, ...informationalRisks])];
     return { entity, entityId: ids[0], normalized, status: blockingRisks.length ? "problem" : "auto_matched", method: matches[0]?.method || "exact", confidence: 1, yearStatus: status, yearEndName, yearBasis: year === null ? "" : "year_end", nameValidity, transitionEventIds: matches[0]?.transitionEventIds || "", risk: risks.join("|") };
   }
@@ -169,6 +237,7 @@ function problemResult(entityId, normalized, year, method, risk) {
 function selectedEntityResult(entityId, name, year) {
   const risks = relationRisks(entityId, year);
   const status = rosterStatus(entityId, year);
+  if (["unsupported_year", "invalid_year"].includes(status)) risks.push(status);
   if (status === "not_established") risks.push("pre_establishment");
   if (status === "abolished") risks.push("post_abolition");
   return {
@@ -197,8 +266,17 @@ function canonicalNameHistoryHtml(entityId) {
     .sort((a, b) => a.start - b.start || a.end - b.end || a.name.localeCompare(b.name, "zh-CN"));
   const unique = [...new Map(rows.map((row) => [`${row.name}|${row.start}|${row.end}`, row])).values()];
   if (!unique.length) return "";
-  const sequence = unique.map((row) => `${escapeHtml(row.name)}（${row.start}年——${row.end}年）`).join("→");
-  return `<div class="prefecture-name-block"><span>年末规范名沿革</span><p class="canonical-history-line">${sequence}</p><p class="county-history-note">项目年末名称状态覆盖：1987—2026；事件查询覆盖：1983—2026。1983 和 2026 是项目数据覆盖边界，不表示名称在这两个年份自然生效或终止。</p></div>`;
+  const years = coverageYears();
+  const sequence = unique.map((row) => `${escapeHtml(row.name)}（${escapeHtml(nameSpanText(row, years))}）`).join("→");
+  return `<div class="prefecture-name-block"><span>年末规范名沿革</span><p class="canonical-history-line">${sequence}</p><p class="county-history-note">项目年末名称状态覆盖：${years.statusStart}—${years.statusEnd}；事件查询覆盖：${years.eventStart}—${years.eventEnd}。覆盖边界不表示名称在边界年份自然生效或终止。</p></div>`;
+}
+
+function nameSpanText(row, years = coverageYears()) {
+  if (Number(row.start) === years.statusStart && Number(row.end) === years.statusEnd) return "覆盖期内持续使用";
+  if (Number(row.start) === years.statusStart) return `覆盖起点时已使用；至${row.end}年末`;
+  if (Number(row.end) === years.statusEnd) return `自${row.start}年末；持续至数据终点`;
+  if (Number(row.start) === Number(row.end)) return `${row.start}年末`;
+  return `${row.start}—${row.end}年末`;
 }
 
 function prefectureEventTypeText(type) {
@@ -314,9 +392,13 @@ function resultHtml(result, name, year, province) {
     return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(name)}</h2></div><span class="status warn">候选结果</span></div><p class="result-note">${candidateNote} 点击卡片查看实体详情。</p><div class="candidate-list"><h3>候选实体</h3>${result.candidates.map((item) => `<button class="candidate" type="button" data-candidate-id="${escapeHtml(item.entityId)}" data-candidate-name="${escapeHtml(item.matchedName)}" title="查看 ${escapeHtml(item.entity.canonical_name_zh)}"><span><strong>${escapeHtml(item.entity.canonical_name_zh)} · ${escapeHtml(item.entityId)}</strong><small>命中名称：${escapeHtml(item.matchedName)} · ${item.matchSource === "county" ? "县级关联" : item.matchType === "partial" ? "部分匹配" : "相似匹配"}</small></span><b>${item.score}%</b></button>`).join("")}</div>`;
   }
   const entity = result.entity;
-  const riskMessage = result.risk ? `状态：${escapeHtml(result.risk.replaceAll("|", "、"))}` : "名称、年份和层级匹配。";
-  const yearNote = result.yearStatus === "early_event_only" ? "该年份展示地级行政单位和县级事件记录；年末状态表从1987年开始。" : "";
-  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${result.yearStatus === "not_checked" ? "未核验" : result.yearStatus === "early_event_only" ? "早期事件层" : escapeHtml(result.yearStatus)}</strong><span>${year === null ? "年末状态" : `${year} 年末状态`}</span></div><div class="result-stat"><strong>${escapeHtml(result.yearEndName || "—")}</strong><span>${year === null ? "年末名称" : `${year} 年末名称`}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}${yearNote ? ` ${yearNote}` : ""}</p>${prefectureEventsHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(result.method)}${year !== null ? ` · 口径：${year}-12-31` : ""}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
+  const years = coverageYears();
+  const riskMessage = result.risk ? `状态：${escapeHtml(riskText(result.risk))}` : "名称、年份和层级匹配。";
+  const yearNote = result.yearStatus === "early_event_only" ? `该年份（${year}）仅能查看事件证据；年末状态和名称层从${years.statusStart}年开始。` : result.yearStatus === "unsupported_year" ? `请输入${years.eventStart}—${years.eventEnd}范围内的年份。` : "";
+  const statusNote = yearStatusText(result.yearStatus);
+  const nameValue = year === null ? entity.canonical_name_zh : result.yearStatus === "early_event_only" ? "未重建" : result.yearStatus === "unsupported_year" || result.yearStatus === "invalid_year" ? "不适用" : result.yearEndName || "未记录";
+  const nameLabel = year === null ? "当前规范名称" : `${year} 年末名称`;
+  return `<div class="result-head"><div><div class="section-label">MATCH RESULT</div><h2>${escapeHtml(entity.canonical_name_zh || result.entityId)}</h2><p class="muted">${escapeHtml(result.entityId)} · ${escapeHtml(entity.province_name_zh)}</p></div><span class="status ${result.status === "problem" ? "problem" : "ok"}">${statusText(result.status)}</span></div><div class="result-grid"><div class="result-stat"><strong>${escapeHtml(result.entityId)}</strong><span>研究实体编号</span></div><div class="result-stat"><strong>${escapeHtml(statusNote)}</strong><span>${year === null ? "年份状态" : `${year} 年末状态`}</span></div><div class="result-stat"><strong>${escapeHtml(nameValue)}</strong><span>${escapeHtml(nameLabel)}</span></div><div class="result-stat"><strong>${Math.round(result.confidence * 100)}%</strong><span>匹配置信度</span></div></div><p class="result-note">${riskMessage}${yearNote ? ` ${yearNote}` : ""}</p>${prefectureEventsHtml(result.entityId)}${countyEventsHtml(result.entityId)}<p class="result-source">输入：${escapeHtml(name)} · 规范化：${escapeHtml(result.normalized)} · 方法：${escapeHtml(methodText(result.method))}${year !== null ? ` · 口径：${year}-12-31` : ""}${province ? ` · 省份：${escapeHtml(province)}` : ""}</p>`;
 }
 
 function renderMatch() {
@@ -343,7 +425,7 @@ function renderEvents() {
   const keyword = normalizeName($("#event-keyword").value);
   const rows = state.data.events.filter((row) => (!year || row.year === year) && (!keyword || normalizeName(`${row.province_name}${row.prefecture_names}${row.description}`).includes(keyword))).slice(0, 100);
   if (!rows.length) { $("#event-list").innerHTML = '<div class="empty-table">没有符合条件的事件。</div>'; return; }
-  $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>变更描述</th><th>时间口径</th><th>来源</th></tr></thead><tbody>${rows.map((row) => { const source = [row.document_number, row.source_locator].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(prefectureDescription(row))}</td><td>${escapeHtml(eventTimingText(row))}</td><td>${escapeHtml(source)}<br><small>${escapeHtml(row.review_status || "")}</small></td></tr>`; }).join("")}</tbody></table>`;
+  $("#event-list").innerHTML = `<table class="event-table"><thead><tr><th>年份</th><th>省份</th><th>类型</th><th>变更描述</th><th>时间口径</th><th>来源</th></tr></thead><tbody>${rows.map((row) => { const source = [row.document_number, row.source_locator].filter(Boolean).join(" · ") || "年度变更记录"; return `<tr><td>${escapeHtml(row.year)}</td><td>${escapeHtml(row.province_name)}</td><td><span class="event-type">${escapeHtml(prefectureEventTypeText(row.event_type))}</span></td><td>${escapeHtml(prefectureDescription(row))}</td><td>${escapeHtml(eventTimingText(row))}</td><td>${escapeHtml(source)}${reviewStatusText(row.review_status) ? `<br><small>${escapeHtml(reviewStatusText(row.review_status))}</small>` : ""}</td></tr>`; }).join("")}</tbody></table>`;
 }
 
 function mapEntityHistoryHtml(properties) {
@@ -365,7 +447,8 @@ function mapEntityHistoryHtml(properties) {
   }
   const names = (state.data.yearEndNames || []).filter((row) => row.entity_id === properties.entity_id).sort((a, b) => Number(a.start) - Number(b.start));
   const events = (state.data.events || []).filter((row) => `${row.entity_id || ""}、${row.entity_ids || ""}、${row.prefecture_entity_ids || ""}`.includes(properties.entity_id)).sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 6);
-  const nameHistory = names.length ? `<div class="map-history"><span>年末名称沿革</span><p>${names.map((row) => `${escapeHtml(row.name)}（${row.start}—${row.end}）`).join(" → ")}</p><small>项目年末名称状态覆盖：1987—2026；事件查询覆盖：1983—2026。1983 和 2026 是数据覆盖边界，不表示名称真实生效或终止。</small></div>` : "";
+  const years = coverageYears();
+  const nameHistory = names.length ? `<div class="map-history"><span>年末名称沿革</span><p>${names.map((row) => `${escapeHtml(row.name)}（${escapeHtml(nameSpanText(row, years))}）`).join(" → ")}</p><small>项目年末名称状态覆盖：${years.statusStart}—${years.statusEnd}；事件查询覆盖：${years.eventStart}—${years.eventEnd}。覆盖边界不表示名称真实生效或终止。</small></div>` : "";
   const eventHistory = events.length ? `<div class="map-history"><span>相关地级事件</span>${events.map((row) => `<button type="button" data-map-event-year="${escapeHtml(row.year)}"><b>${escapeHtml(row.year)} · ${escapeHtml(prefectureEventTypeText(row.event_type))}</b><small>${escapeHtml(prefectureDescription(row))}</small><small>${escapeHtml(eventTimingText(row))}</small></button>`).join("")}</div>` : "";
   return `<div class="map-entity-card"><span>CNUR 实体</span><strong>${escapeHtml(properties.entity_id)}</strong><span>${properties.panel_year} 年末名称</span><strong>${escapeHtml(properties.year_end_name || "—")}</strong></div>${nameHistory}${eventHistory}`;
 }
