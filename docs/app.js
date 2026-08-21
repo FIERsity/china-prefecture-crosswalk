@@ -613,7 +613,7 @@ async function init() {
     if (themeToggle) {
         const syncToggle = () => {
             const theme = document.documentElement.getAttribute("data-theme") || "light";
-            themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+            themeToggle.setAttribute("aria-checked", theme === "dark" ? "true" : "false");
             themeToggle.setAttribute("aria-label", theme === "dark" ? "切换亮色模式" : "切换夜间模式");
         };
         themeToggle.addEventListener("click", () => {
