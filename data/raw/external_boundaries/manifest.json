@@ -13,6 +13,24 @@
       "data_license_status": "dataset_specific_review_required"
     },
     {
+      "region": "Hong Kong",
+      "repository": "Paulkit/HKMap",
+      "repository_url": "https://github.com/Paulkit/HKMap",
+      "files": ["hongkong_github_18districts/*.json"],
+      "snapshot_date": "2018-06-03",
+      "coordinate_system": "CRS84 / WGS84 longitude-latitude",
+      "coverage": "18 Hong Kong districts",
+      "license_status": "no_license_declared_review_only"
+    },
+    {
+      "region": "Hong Kong",
+      "repository": "bmkor/hk_osm_map",
+      "repository_url": "https://github.com/bmkor/hk_osm_map",
+      "files": ["hongkong_github_18districts/Hong_Kong.geojson", "hongkong_github_18districts/Hong_Kong_18Districts.geobuf", "hongkong_github_18districts/LICENSE"],
+      "coverage": "Hong Kong boundary and 18-district map assets",
+      "license_status": "repository_license_and_source_attribution_review_required"
+    },
+    {
       "region": "Macau",
       "repository": "justinelliotmeyers/Macau_Boundary_Line_04282017",
       "repository_url": "https://github.com/justinelliotmeyers/Macau_Boundary_Line_04282017",
