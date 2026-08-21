@@ -16,7 +16,6 @@ concurrency:
 
 jobs:
   build:
-    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
