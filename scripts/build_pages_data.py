@@ -139,6 +139,8 @@ def build() -> None:
             "entityCount": len(entities),
             "note": "CNUR 是项目研究编号，不是官方行政区划代码；事件查询覆盖1983—2026，年末状态和名称层覆盖1987—2026，年度状态和年度名称统一表示每年12月31日。1983与2026是数据覆盖边界，不表示名称真实生效或终止。",
             "prefectureEventCount": len(events),
+            "rosterCount": sum(len(status) for status in roster_status.values()),
+            "ctamapLinkCount": len(read_csv("ctamap_prefecture_links.csv")),
         },
         "entities": entities,
         "names": names,

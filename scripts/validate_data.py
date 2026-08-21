@@ -341,6 +341,14 @@ def main() -> None:
     print("PASS: ten audited corrections and all source references are present")
     print("PASS: extended runtime coverage is 363 entities x 40 years (1987-2026)")
     print(f"PASS: source registry has {len(source_registry)} sources and county events cover 1983-2026")
+    # Province-level external display boundary must exist with the expected schema.
+    repo_root = Path(__file__).resolve().parents[1]
+    external_path = repo_root / "docs" / "data" / "maps" / "external" / "external_current.geojson"
+    require(external_path.exists(), "external_current.geojson missing (run scripts/build_external_current.py)")
+    external_payload = json.loads(external_path.read_text(encoding="utf-8"))
+    require({feature["id"] for feature in external_payload["features"]} == {"EXTERNAL-HKG", "EXTERNAL-MAC", "EXTERNAL-TWN"}, "external_current feature ids changed")
+    require(all(feature["properties"].get("map_level") == "province" for feature in external_payload["features"]), "external_current map_level must be province")
+
     # Website data bundle must never drift from the processed layer.
     repo_root = Path(__file__).resolve().parents[1]
     docs_data = repo_root / "docs" / "data"

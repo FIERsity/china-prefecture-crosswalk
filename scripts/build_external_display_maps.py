@@ -10,6 +10,7 @@ verified.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 from opencc import OpenCC
@@ -99,8 +100,14 @@ def build_hongkong() -> list[dict]:
 
 
 def build_macau() -> list[dict]:
-    current = read_json(OUT / "external_current.geojson")
-    feature = next(item for item in current["features"] if item["properties"].get("display_name_zh") == "澳门特别行政区")
+    current_path = OUT / "external_current.geojson"
+    if not current_path.exists():
+        sys.exit("external_current.geojson missing: run scripts/build_external_current.py or restore the committed snapshot before building external county maps")
+    current = read_json(current_path)
+    matches = [item for item in current["features"] if item["properties"].get("display_name_zh") == "澳门特别行政区"]
+    if not matches:
+        sys.exit("external_current.geojson lacks the 澳门特别行政区 feature; check scripts/build_external_current.py")
+    feature = matches[0]
     return [external_feature(feature, name="澳门特别行政区", level="county", group="macau", source="current Macau external display boundary", county_type="外部展示区（未拆分）")]
 
 

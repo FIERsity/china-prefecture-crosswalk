@@ -611,6 +611,11 @@ async function init() {
     });
     $("#version-pill").textContent = `V${state.data.meta.version}`;
     $("#rule-version").textContent = state.data.meta.ruleVersion;
+    const fmt = (value) => Number(value || 0).toLocaleString("en-US");
+    for (const [id, value] of [["stat-entities", state.data.meta.entityCount], ["stat-entities2", state.data.meta.entityCount], ["stat-roster", state.data.meta.rosterCount], ["stat-bridge", state.data.meta.ctamapLinkCount]]) {
+        const element = document.getElementById(id);
+        if (element && value != null) element.textContent = fmt(value);
+    }
     for (let year = 1983; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
     for (let year = 1999; year <= 2023; year += 1) $("#map-panel-year").insertAdjacentHTML("beforeend", `<option value="${year}"${year === 2023 ? " selected" : ""}>${year}（${year + 1}年初地图）</option>`);
     (state.mapManifest.provinces || []).forEach((province) => { const label = { "710000": "台湾省", "810000": "香港特别行政区", "820000": "澳门特别行政区" }[province.province_code] || province.province_name; $("#map-province").insertAdjacentHTML("beforeend", `<option value="${escapeHtml(province.province_code)}"${province.province_code === "420000" ? " selected" : ""}>${escapeHtml(label)}</option>`); });
