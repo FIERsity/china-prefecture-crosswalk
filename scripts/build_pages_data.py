@@ -128,7 +128,7 @@ def build() -> None:
 
     payload = {
         "meta": {
-            "version": "4.0.1",
+            "version": "4.0.2",
             "ruleVersion": "2026.08.2-year-end",
             "coverage": "1983—2026",
             "eventStartYear": 1983,

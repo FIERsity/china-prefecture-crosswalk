@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.2 - 2026-08-21
+
+- Full-coverage sweep captured 10 prefecture upgrades that existed in the
+  Wikipedia row archive but were never extracted: 威海/三亚 (1987), 东莞/
+  中山/大庸 (1988), 莱芜 (1992), 云浮 (1994), 贵港 (1995), 泰州/宿迁
+  (1996). The extractor's patterns missed "升格为地级市" and
+  "设立地级X市" sentence forms. Same-name county-level → prefecture
+  upgrades are now classified as upgrade (continuous). Unified events
+  157 → 167, prefecture event layer 224 → 234, relations 190 → 200.
+
 ## 4.0.1 - 2026-08-21
 
 - Filled the 1989—1991 event-layer gap (no Wikipedia annual pages exist for these years) with three reviewed events sourced from official texts: 日照 upgraded to prefecture-level (1989-06-12, 国函〔1989〕43号), 潮州 upgraded (1991-12-07, 国函〔1991〕84号), and 揭阳 established after abolishing 揭阳县 (1991-12-07, 国函〔1991〕84号). Unified events 144 → 157, prefecture event layer 211 → 224, source registry 50 → 54.

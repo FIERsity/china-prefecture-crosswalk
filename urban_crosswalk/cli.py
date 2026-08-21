@@ -9,7 +9,7 @@ import pandas as pd
 
 from .matcher import CrosswalkMatcher, audit_report
 
-VERSION = "4.0.1"
+VERSION = "4.0.2"
 
 
 def emit(value) -> None:

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this dataset, please cite the repository release."
 title: "China Urban Research Entity Crosswalk"
 type: dataset
-version: 4.0.1
+version: 4.0.2
 date-released: 2026-08-20
 abstract: "A research-oriented database and matching tool for stable Chinese prefecture-equivalent entities, calendar-year name matching, December 31 year-end status, administrative change events, and a CTAmap prefecture bridge."
 license: CC-BY-4.0

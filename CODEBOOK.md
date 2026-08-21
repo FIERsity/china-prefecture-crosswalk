@@ -96,7 +96,7 @@ Three relation tables share one vocabulary; the table name indicates the layer, 
 
 The two flags are deliberately different layers: a 撤地设市 upgrade keeps the entity continuous (`automatic_continuity=true`) and its statistics transferable, while a merge/split/abolish/cross-prefecture transfer has a valid event record but is never auto-mapped (`automatic_mapping=false`) — the researcher decides how to treat the successor (aggregation vs event dummy).
 
-`event_relations.csv` and `event_entity_links.csv` are the legacy 1:1 payloads shipped in the browser bundle and the matcher; `unified_event_relations.csv` is the complete reviewed graph (157 events, 190 relations) and the recommended source for lineage research.
+`event_relations.csv` and `event_entity_links.csv` are the legacy 1:1 payloads shipped in the browser bundle and the matcher; `unified_event_relations.csv` is the complete reviewed graph (167 events, 200 relations) and the recommended source for lineage research.
 
 ## Source types
 

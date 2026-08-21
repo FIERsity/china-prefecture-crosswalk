@@ -126,8 +126,8 @@ cnur events --year 1993 --type split --output events.csv
 | 持续追踪研究实体 | 340 |
 | 历史实体 | 23 |
 | 实体—年度状态 | 14,520（1987—2026） |
-| 统一地级变更事件 | 157 |
-| 地级行政单位事件层 | 224 条（查询窗口 1983—2026，现有记录到 2018），其中 67 条来自早期材料 |
+| 统一地级变更事件 | 167 |
+| 地级行政单位事件层 | 234 条（查询窗口 1983—2026，现有记录到 2018），其中 67 条来自早期材料 |
 | 事件关系 | 190 |
 | 维基地级原始记录 | 988 |
 | 连续性审计 | 1,506 项，0 错误 |
@@ -235,7 +235,7 @@ python3 -m http.server 8765 --directory docs
 - processed 数据可重复构建；
 - 363个CNUR编号唯一且连续；
 - 名称长表可还原年度面板；
-- 157条事件无重复签名；
+- 167条事件无重复签名；
 - 当前和历史实体引用完整；
 - 改名链与撤地设市链连续；
 - 合并、拆分、撤销和代管禁止自动映射；
@@ -279,7 +279,7 @@ python3 -m http.server 8765 --directory docs
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 
 ```text
-China Urban Research Entity Crosswalk, Version 4.0.1.
+China Urban Research Entity Crosswalk, Version 4.0.2.
 https://github.com/FIERsity/china-prefecture-crosswalk
 ```
 
