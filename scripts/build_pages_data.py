@@ -86,7 +86,23 @@ def build() -> None:
         "review_note", "source_url", "source_revision_id", "source_locator",
         "source_layer", "source_id", "source_type", "source_confidence",
     )
-    events = [{key: row.get(key, "") for key in event_fields} for row in read_csv("prefecture_administrative_events_1983_2026.csv")]
+    timing_by_event = {
+        row["event_id"]: row
+        for row in read_csv("event_timing_reviews.csv")
+        if row.get("event_id")
+    }
+    timing_fields = (
+        "announcement_date", "effective_date", "implementation_date",
+        "annual_effective_year", "annual_effective_basis", "date_precision",
+        "temporal_confidence", "review_status", "review_note",
+    )
+    events = []
+    for source_row in read_csv("prefecture_administrative_events_1983_2026.csv"):
+        event = {key: source_row.get(key, "") for key in event_fields}
+        timing = timing_by_event.get(source_row.get("event_id", ""), {})
+        for field in timing_fields:
+            event[f"timing_{field}" if field in {"review_status", "review_note"} else field] = timing.get(field, "")
+        events.append(event)
     county_events = [{
         "event_id": row.get("event_id", ""),
         "year": row.get("year", ""),
@@ -117,7 +133,7 @@ def build() -> None:
             "coverage": "1983—2026",
             "yearBasis": "year_end",
             "entityCount": len(entities),
-            "note": "CNUR 是项目研究编号，不是官方行政区划代码；年度状态和年度名称统一表示每年12月31日，年内曾正式使用的名称仍可匹配。",
+            "note": "CNUR 是项目研究编号，不是官方行政区划代码；事件查询覆盖1983—2026，年末状态和名称层覆盖1987—2026，年度状态和年度名称统一表示每年12月31日。1983与2026是数据覆盖边界，不表示名称真实生效或终止。",
             "prefectureEventCount": len(events),
         },
         "entities": entities,

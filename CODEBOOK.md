@@ -10,6 +10,12 @@ One row per stable research entity. `verification_status` reports whether this f
 
 Temporal name/status spans. Blank `name_zh` values are intentional when the research entity was not an active legal prefecture. Spans are closed intervals.
 
+## Coverage and year-end semantics
+
+The browser event query covers **1983—2026**. The annual legal roster and year-end canonical-name layer cover **1987—2026**, with every status interpreted at `YYYY-12-31`. The 1983—1986 records are event evidence and do not imply that a complete annual legal roster has been reconstructed for those years. Likewise, 2026 is the current data endpoint, not a claim that a displayed name ended in 2026. A displayed name span is therefore a project coverage interval, not a complete day-level legal validity interval.
+
+The browser surfaces approval, announcement, effective, and implementation dates separately when available. `annual_effective_basis` labels whether the year-end transition is based on explicit publication/implementation evidence, approval-date inference, or event-year inference; inferred dates must not be read as exact implementation dates.
+
 ## Year-end status layer: 1987—2026
 
 `legal_roster_year_end_1987_2026.csv` contains all 363 current and historical entities for every year from 1987 through 2026. Every row has `status_as_of=YYYY-12-31` and `year_basis=year_end`. Event transitions use explicit effective/implementation dates when available and otherwise retain a labelled approval-date or event-year inference. A name ending in `市` is never sufficient to establish prefecture-level status: county-level cities enter the roster only from their reviewed prefecture-level establishment year.
