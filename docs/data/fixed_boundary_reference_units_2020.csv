@@ -208,11 +208,11 @@ CNUR-000208,汕尾市,广东省,split_successor,,0,break_flag_only
 CNUR-000209,河源市,广东省,split_successor,,0,break_flag_only
 CNUR-000210,阳江市,广东省,new_established,,0,break_flag_only
 CNUR-000211,清远市,广东省,new_established,,0,break_flag_only
-CNUR-000212,东莞市,广东省,stable,,0,aggregate_safe
-CNUR-000213,中山市,广东省,stable,,0,aggregate_safe
+CNUR-000212,东莞市,广东省,continuous_upgrade,,0,aggregate_safe
+CNUR-000213,中山市,广东省,continuous_upgrade,,0,aggregate_safe
 CNUR-000214,潮州市,广东省,continuous_upgrade,,0,aggregate_safe
 CNUR-000215,揭阳市,广东省,new_established,,0,break_flag_only
-CNUR-000216,云浮市,广东省,stable,,0,aggregate_safe
+CNUR-000216,云浮市,广东省,continuous_upgrade,,0,aggregate_safe
 CNUR-000217,南宁市,广西壮族自治区,split_successor,2002,0,break_flag_only
 CNUR-000218,柳州市,广西壮族自治区,split_successor,2002,0,break_flag_only
 CNUR-000219,桂林市,广西壮族自治区,merge_successor,,0,break_flag_only
@@ -220,7 +220,7 @@ CNUR-000220,梧州市,广西壮族自治区,split_successor,,0,break_flag_only
 CNUR-000221,北海市,广西壮族自治区,stable,,0,aggregate_safe
 CNUR-000222,防城港市,广西壮族自治区,new_established,,0,break_flag_only
 CNUR-000223,钦州市,广西壮族自治区,continuous_upgrade,,0,aggregate_safe
-CNUR-000224,贵港市,广西壮族自治区,stable,,0,aggregate_safe
+CNUR-000224,贵港市,广西壮族自治区,continuous_upgrade,,0,aggregate_safe
 CNUR-000225,玉林市,广西壮族自治区,continuous_upgrade,,0,aggregate_safe
 CNUR-000226,百色市,广西壮族自治区,continuous_upgrade,,0,aggregate_safe
 CNUR-000227,贺州市,广西壮族自治区,split_successor,,0,break_flag_only
@@ -228,7 +228,7 @@ CNUR-000228,河池市,广西壮族自治区,continuous_upgrade,,0,aggregate_safe
 CNUR-000229,来宾市,广西壮族自治区,split_successor,2002,2002,break_flag_only
 CNUR-000230,崇左市,广西壮族自治区,split_successor,2002,2002,break_flag_only
 CNUR-000231,海口市,海南省,stable,,0,aggregate_safe
-CNUR-000232,三亚市,海南省,stable,,0,aggregate_safe
+CNUR-000232,三亚市,海南省,continuous_upgrade,,0,aggregate_safe
 CNUR-000233,三沙市,海南省,new_established,,2012,break_flag_only
 CNUR-000234,儋州市,海南省,continuous_upgrade,,2015,aggregate_safe
 CNUR-000235,重庆市,重庆市,transfer_in,,0,break_flag_only

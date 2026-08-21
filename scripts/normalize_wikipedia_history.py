@@ -96,6 +96,7 @@ MANUAL_ENTITY_LINKS = {
     (1988, "安庆地区"): ("CNUR-000348", "安庆地区与既有安庆市合并并析设池州地区"),
     (1988, "池州地区"): ("E341700", "池州地区 later continued as the Chizhou research entity"),
     (1988, "建阳地区"): ("E350700", "建阳地区 renamed 南平地区 and later became 南平市"),
+    (1988, "大庸市"): ("CNUR-000189", "大庸市升格为地级市；1994 年更名为张家界市"),
     (1992, "宜昌地区"): ("CNUR-000349", "宜昌地区 merged into the existing 宜昌市"),
     (1992, "惠民地区"): ("E371600", "惠民地区 renamed 滨州地区 and later became 滨州市"),
     (1993, "石家庄地区"): ("CNUR-000350", "石家庄地区 merged into 石家庄市"),
@@ -154,10 +155,12 @@ def event_type(section: str, text: str) -> str:
         return "merge"
     if "撤销地级市" in text and "设立市辖区" in text:
         return "abolish"
-    if re.search(r"(?:升为|设立).{0,12}(?:地级市|市（地级）)", text):
+    if re.search(r"(?:升为|升格为|设立).{0,16}(?:地级市|地级[^。，]{1,8}市|市（地级）)", text):
         return "establish"
     if "撤销" in text and re.search(r"(?:自治州|地区|地级市)", text):
         return "abolish"
+    if re.search(r"撤销县级[^。，]{0,10}市[，,、]{0,2}设立地级[^。，]{0,8}市", text):
+        return "upgrade"
     if "地区的增设" in section and "设立" in text and "地区" in text:
         return "establish_prefecture"
     if "驻地" in section and ("迁" in text or "更名" in text):
@@ -189,6 +192,21 @@ def extract_names(kind: str, text: str) -> tuple[str, str]:
         if match: old = match.group(1).removeprefix("地级")
         match = re.search(r"设立(?:地级)?([\u4e00-\u9fff·]{2,12}市)(?:（地级）)?", text)
         if match: new = match.group(1)
+        if not new:
+            match = re.search(r"(?:升格为|升为)(?:地级)?((?!地级)[一-鿿·]{2,12}市)", text)
+            if match: new = match.group(1)
+        if not old:
+            match = re.search(r"(?:将)?([一-鿿·]{2,12}市)(?:升格为|升为)", text)
+            if match: old = match.group(1)
+        if not old:
+            match = re.search(r"撤销县级([一-鿿·]{2,12}市)", text)
+            if match: old = match.group(1)
+        if not new:
+            match = re.search(r"设立地级([一-鿿·]{2,12}市)", text)
+            if match: new = match.group(1)
+
+        if not new and old and ("升格为" in text or "升为" in text):
+            new = old
         if kind == "establish_prefecture":
             match = re.search(r"设立([\u4e00-\u9fff·]{2,16}地区)", text)
             if match: new = match.group(1)
@@ -235,6 +253,8 @@ def main() -> None:
             if manual_year == year and fragment in text:
                 old_name, new_name = old_fix, new_fix
         if old_name and new_name and kind in {"establish", "abolish"} and old_name.endswith(("地区", "盟")):
+            kind = "upgrade"
+        if old_name and new_name and old_name == new_name and kind == "establish":
             kind = "upgrade"
         # Require a prefecture-level semantic payload, not a subordinate county row.
         if not (old_name or new_name or kind in {"seat_or_name_change", "jurisdiction_transfer"}) or (kind == "abolish" and not old_name):

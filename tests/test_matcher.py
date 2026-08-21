@@ -129,7 +129,7 @@ def test_event_queries_and_complex_relations():
     assert len(historical) >= 1
     assert historical.iloc[0].source_url.startswith("https://zh.wikipedia.org/wiki/")
     normalized = m.query_historical_events(entity_id="CNUR-000113", accepted_only=True)
-    assert any(normalized.event_id == "WIKI-1988-017")
+    assert any("池州地区" in row["description"] for row in normalized.to_dict("records"))
     unified = m.query_events(entity_id="CNUR-000113")
     assert set(unified.year) >= {"1988", "2000"}
 

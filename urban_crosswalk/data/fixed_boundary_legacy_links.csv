@@ -1,19 +1,24 @@
 from_entity_id,from_name,to_entity_id,to_name,relation_type,year,automatic_continuity,mapping_quality,treatment_hint,review_note
 CNUR-000106,黄山市,CNUR-000106,黄山市,upgrade,0,true,exact,continuous_identity,
+CNUR-000144,威海市,CNUR-000144,威海市,upgrade,0,true,exact,continuous_identity,
 CNUR-000095,舟山市,CNUR-000095,舟山市,upgrade,0,true,exact,continuous_identity,
 CNUR-000341,海南黎族苗族自治州,,,abolish,0,false,event_only,break_flag_only,abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control
+CNUR-000232,三亚市,CNUR-000232,三亚市,upgrade,0,true,exact,continuous_identity,
 CNUR-000238,攀枝花市,CNUR-000238,攀枝花市,rename,0,true,exact,continuous_identity,
 CNUR-000254,阿坝藏族羌族自治州,CNUR-000254,阿坝藏族羌族自治州,rename,0,true,exact,continuous_identity,
 CNUR-000012,廊坊市,CNUR-000012,廊坊市,upgrade,0,true,exact,continuous_identity,
 CNUR-000019,朔州市,,,establish,0,false,event_only,break_flag_only,朔州市 was explicitly established as a prefecture-level city
 CNUR-000188,常德市,CNUR-000188,常德市,upgrade,0,true,exact,continuous_identity,
+CNUR-000189,张家界市,CNUR-000189,张家界市,upgrade,0,true,exact,continuous_identity,大庸市升格为地级市；1994 年更名为张家界市
 CNUR-000205,肇庆市,CNUR-000205,肇庆市,upgrade,0,true,exact,continuous_identity,
 CNUR-000347,惠阳地区,,,split,0,false,event_only,break_flag_only,惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体
 CNUR-000208,汕尾市,,,establish,0,false,event_only,break_flag_only,汕尾市 was explicitly established as a prefecture-level city
 CNUR-000209,河源市,,,establish,0,false,event_only,break_flag_only,河源市 was explicitly established as a prefecture-level city
+CNUR-000212,东莞市,CNUR-000212,东莞市,upgrade,0,true,exact,continuous_identity,
 CNUR-000207,梅州市,CNUR-000207,梅州市,upgrade,0,true,exact,continuous_identity,
 CNUR-000210,阳江市,,,establish,0,false,event_only,break_flag_only,阳江市 was explicitly established as a prefecture-level city
 CNUR-000211,清远市,,,establish,0,false,event_only,break_flag_only,清远市 was explicitly established as a prefecture-level city
+CNUR-000213,中山市,CNUR-000213,中山市,upgrade,0,true,exact,continuous_identity,
 CNUR-000348,安庆地区,,,merge,0,false,event_only,break_flag_only,安庆地区 and the existing city were merged into the unified 安庆市
 CNUR-000113,池州市,,,establish_prefecture,0,false,event_only,break_flag_only,池州地区 later continued as the Chizhou research entity
 CNUR-000121,南平市,CNUR-000121,南平市,rename,0,true,exact,continuous_identity,建阳地区 renamed 南平地区 and later became 南平市
@@ -24,6 +29,7 @@ CNUR-000107,滁州市,CNUR-000107,滁州市,upgrade,0,true,exact,continuous_iden
 CNUR-000342,万县市,CNUR-000342,万县市,upgrade,0,true,exact,continuous_identity,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
 CNUR-000349,宜昌地区,,,abolish,0,false,event_only,break_flag_only,宜昌地区 merged into the existing 宜昌市
 CNUR-000057,松原市,,,establish,0,false,event_only,break_flag_only,松原市 was explicitly established as a prefecture-level city
+CNUR-000146,莱芜市,CNUR-000146,莱芜市,upgrade,0,true,exact,continuous_identity,
 CNUR-000150,滨州市,CNUR-000150,滨州市,rename,0,true,exact,continuous_identity,惠民地区 renamed 滨州地区 and later became 滨州市
 CNUR-000058,白城市,CNUR-000058,白城市,upgrade,0,true,exact,continuous_identity,
 CNUR-000070,黑河市,CNUR-000070,黑河市,upgrade,0,true,exact,continuous_identity,
@@ -50,12 +56,14 @@ CNUR-000293,渭南市,CNUR-000293,渭南市,upgrade,0,true,exact,continuous_iden
 CNUR-000356,保定地区,,,merge,0,false,event_only,break_flag_only,1994年保定地市合并：保定地区与保定市合并组建新的地级保定市（国函〔1994〕133号）
 CNUR-000357,郧阳地区,,,merge,0,false,event_only,break_flag_only,郧阳地区 merged into 十堰市
 CNUR-000358,荆州地区,,,merge,0,false,event_only,break_flag_only,荆州地区与原地级沙市市共同组建新的荆沙市
+CNUR-000216,云浮市,CNUR-000216,云浮市,upgrade,0,true,exact,continuous_identity,
 CNUR-000050,葫芦岛市,CNUR-000050,葫芦岛市,rename,0,true,exact,continuous_identity,
 CNUR-000056,白山市,CNUR-000056,白山市,rename,0,true,exact,continuous_identity,
 CNUR-000189,张家界市,CNUR-000189,张家界市,rename,0,true,exact,continuous_identity,
 CNUR-000178,黄冈市,CNUR-000178,黄冈市,upgrade,0,true,exact,continuous_identity,
 CNUR-000192,永州市,CNUR-000192,永州市,upgrade,0,true,exact,continuous_identity,
 CNUR-000344,涪陵市,CNUR-000344,涪陵市,upgrade,0,true,exact,continuous_identity,Fuling Prefecture continued as historical prefecture-level Fuling City until 1997
+CNUR-000224,贵港市,CNUR-000224,贵港市,upgrade,0,true,exact,continuous_identity,
 CNUR-000013,衡水市,CNUR-000013,衡水市,upgrade,0,true,exact,continuous_identity,
 CNUR-000108,阜阳市,CNUR-000108,阜阳市,upgrade,0,true,exact,continuous_identity,
 CNUR-000122,龙岩市,CNUR-000122,龙岩市,upgrade,0,true,exact,continuous_identity,
@@ -63,6 +71,8 @@ CNUR-000248,宜宾市,CNUR-000248,宜宾市,upgrade,0,true,exact,continuous_iden
 CNUR-000295,汉中市,CNUR-000295,汉中市,upgrade,0,true,exact,continuous_identity,
 CNUR-000294,延安市,CNUR-000294,延安市,upgrade,0,true,exact,continuous_identity,
 CNUR-000360,松花江地区,,,merge,0,false,event_only,break_flag_only,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
+CNUR-000085,泰州市,CNUR-000085,泰州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000086,宿迁市,CNUR-000086,宿迁市,upgrade,0,true,exact,continuous_identity,
 CNUR-000177,荆州市,CNUR-000177,荆州市,rename,0,true,exact,continuous_identity,
 CNUR-000345,黔江地区,,,jurisdiction_transfer,0,false,event_only,transfer_aggregate_safe,"multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"
 CNUR-000149,聊城市,CNUR-000149,聊城市,upgrade,0,true,exact,continuous_identity,

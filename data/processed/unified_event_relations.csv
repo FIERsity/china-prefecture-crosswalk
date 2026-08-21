@@ -1,98 +1,108 @@
 event_id,from_entity_id,to_entity_id,relation_type,mapping_quality,automatic_mapping,review_note
 WIKI-1987-001,CNUR-000106,CNUR-000106,upgrade,exact,true,
-WIKI-1987-002,CNUR-000095,CNUR-000095,upgrade,exact,true,
-WIKI-1987-003,CNUR-000341,,abolish,event_only,false,abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control
-WIKI-1987-004,CNUR-000238,CNUR-000238,rename,exact,true,
-WIKI-1987-005,CNUR-000254,CNUR-000254,rename,exact,true,
-WIKI-1988-006,CNUR-000012,CNUR-000012,upgrade,exact,true,
-WIKI-1988-007,CNUR-000019,,establish,event_only,false,朔州市 was explicitly established as a prefecture-level city
-WIKI-1988-008,CNUR-000188,CNUR-000188,upgrade,exact,true,
-WIKI-1988-009,CNUR-000205,CNUR-000205,upgrade,exact,true,
-WIKI-1988-010,CNUR-000347,,split,event_only,false,惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体
-WIKI-1988-011,CNUR-000208,,establish,event_only,false,汕尾市 was explicitly established as a prefecture-level city
-WIKI-1988-012,CNUR-000209,,establish,event_only,false,河源市 was explicitly established as a prefecture-level city
-WIKI-1988-013,CNUR-000207,CNUR-000207,upgrade,exact,true,
-WIKI-1988-014,CNUR-000210,,establish,event_only,false,阳江市 was explicitly established as a prefecture-level city
-WIKI-1988-015,CNUR-000211,,establish,event_only,false,清远市 was explicitly established as a prefecture-level city
-WIKI-1988-016,CNUR-000348,,merge,event_only,false,安庆地区 and the existing city were merged into the unified 安庆市
-WIKI-1988-017,CNUR-000113,,establish_prefecture,event_only,false,池州地区 later continued as the Chizhou research entity
-WIKI-1988-018,CNUR-000121,CNUR-000121,rename,exact,true,建阳地区 renamed 南平地区 and later became 南平市
+WIKI-1987-002,CNUR-000144,CNUR-000144,upgrade,exact,true,
+WIKI-1987-003,CNUR-000095,CNUR-000095,upgrade,exact,true,
+WIKI-1987-004,CNUR-000341,,abolish,event_only,false,abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control
+WIKI-1987-005,CNUR-000232,CNUR-000232,upgrade,exact,true,
+WIKI-1987-006,CNUR-000238,CNUR-000238,rename,exact,true,
+WIKI-1987-007,CNUR-000254,CNUR-000254,rename,exact,true,
+WIKI-1988-008,CNUR-000012,CNUR-000012,upgrade,exact,true,
+WIKI-1988-009,CNUR-000019,,establish,event_only,false,朔州市 was explicitly established as a prefecture-level city
+WIKI-1988-010,CNUR-000188,CNUR-000188,upgrade,exact,true,
+WIKI-1988-011,CNUR-000189,CNUR-000189,upgrade,exact,true,大庸市升格为地级市；1994 年更名为张家界市
+WIKI-1988-012,CNUR-000205,CNUR-000205,upgrade,exact,true,
+WIKI-1988-013,CNUR-000347,,split,event_only,false,惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体
+WIKI-1988-014,CNUR-000208,,establish,event_only,false,汕尾市 was explicitly established as a prefecture-level city
+WIKI-1988-015,CNUR-000209,,establish,event_only,false,河源市 was explicitly established as a prefecture-level city
+WIKI-1988-016,CNUR-000212,CNUR-000212,upgrade,exact,true,
+WIKI-1988-017,CNUR-000207,CNUR-000207,upgrade,exact,true,
+WIKI-1988-018,CNUR-000210,,establish,event_only,false,阳江市 was explicitly established as a prefecture-level city
+WIKI-1988-019,CNUR-000211,,establish,event_only,false,清远市 was explicitly established as a prefecture-level city
+WIKI-1988-020,CNUR-000213,CNUR-000213,upgrade,exact,true,
+WIKI-1988-021,CNUR-000348,,merge,event_only,false,安庆地区 and the existing city were merged into the unified 安庆市
+WIKI-1988-022,CNUR-000113,,establish_prefecture,event_only,false,池州地区 later continued as the Chizhou research entity
+WIKI-1988-023,CNUR-000121,CNUR-000121,rename,exact,true,建阳地区 renamed 南平地区 and later became 南平市
 WIKI-1989-001,CNUR-000145,CNUR-000145,upgrade,exact,true,1989-06-12 国务院批复日照市由县级市升为地级市（国函〔1989〕43号），行政区域、人员编制不变；1989-11-05 正式对外办公。日照县撤县设市为1985年（85国函字43号，县级）。
 WIKI-1991-001,CNUR-000214,CNUR-000214,upgrade,exact,true,1991-12-07 国务院批复调整汕头、潮州两市行政区划（国函〔1991〕84号）：潮州市升格为地级市，设立潮州市湘桥区、潮安县，将潮安县和原汕头市的饶平县划归潮州市管辖。
 WIKI-1991-002,CNUR-000215,,establish,event_only,false,1991-12-07 国务院批复（国函〔1991〕84号）：撤销揭阳县，设立揭阳市（地级），设立揭阳市榕城区、揭东县，将揭东县和原汕头市的揭西、普宁、惠来四县划归揭阳市管辖。
-WIKI-1992-019,CNUR-000107,CNUR-000107,upgrade,exact,true,
-WIKI-1992-020,CNUR-000342,CNUR-000342,upgrade,exact,true,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
-WIKI-1992-021,CNUR-000349,,abolish,event_only,false,宜昌地区 merged into the existing 宜昌市
-WIKI-1992-022,CNUR-000057,,establish,event_only,false,松原市 was explicitly established as a prefecture-level city
-WIKI-1992-023,CNUR-000150,CNUR-000150,rename,exact,true,惠民地区 renamed 滨州地区 and later became 滨州市
-WIKI-1993-024,CNUR-000058,CNUR-000058,upgrade,exact,true,
-WIKI-1993-025,CNUR-000070,CNUR-000070,upgrade,exact,true,
-WIKI-1993-026,CNUR-000176,,establish,event_only,false,孝感市 was explicitly established as a prefecture-level city
-WIKI-1993-027,CNUR-000246,CNUR-000246,upgrade,exact,true,
-WIKI-1993-028,CNUR-000350,,merge,event_only,false,石家庄地区 merged into 石家庄市
-WIKI-1993-029,CNUR-000351,,merge,event_only,false,1993年河北地市合并：撤销张家口地区并入张家口市（国函〔1993〕89号）
-WIKI-1993-030,CNUR-000352,,merge,event_only,false,1993年河北地市合并：撤销沧州地区并入沧州市（国函〔1993〕89号）
-WIKI-1993-031,CNUR-000353,,merge,event_only,false,1993年河北地市合并：撤销邯郸地区并入邯郸市（国函〔1993〕89号）
-WIKI-1993-032,CNUR-000354,,merge,event_only,false,1993年河北地市合并：撤销邢台地区并入邢台市（国函〔1993〕89号）
-WIKI-1993-033,CNUR-000355,,merge,event_only,false,1993年河北地市合并：撤销承德地区并入承德市（国函〔1993〕89号）
-WIKI-1993-034,CNUR-000343,,abolish,event_only,false,Yanbei was abolished and split between Datong and Shuozhou
-WIKI-1993-035,CNUR-000222,,establish,event_only,false,防城港市 was explicitly established as a prefecture-level city
-WIKI-1993-036,CNUR-000181,CNUR-000181,rename,exact,true,
-WIKI-1994-037,CNUR-000096,CNUR-000096,upgrade,exact,true,
-WIKI-1994-038,CNUR-000121,CNUR-000121,upgrade,exact,true,
-WIKI-1994-039,CNUR-000147,CNUR-000147,upgrade,exact,true,
-WIKI-1994-040,CNUR-000148,CNUR-000148,upgrade,exact,true,
-WIKI-1994-041,CNUR-000164,CNUR-000164,upgrade,exact,true,
-WIKI-1994-042,CNUR-000190,CNUR-000190,upgrade,exact,true,
-WIKI-1994-043,CNUR-000191,,establish,event_only,false,郴州市 was explicitly established as a prefecture-level city
-WIKI-1994-044,CNUR-000223,CNUR-000223,upgrade,exact,true,
-WIKI-1994-045,CNUR-000293,CNUR-000293,upgrade,exact,true,
-WIKI-1994-046,CNUR-000356,,merge,event_only,false,1994年保定地市合并：保定地区与保定市合并组建新的地级保定市（国函〔1994〕133号）
-WIKI-1994-047,CNUR-000357,,merge,event_only,false,郧阳地区 merged into 十堰市
-WIKI-1994-048,CNUR-000358,,merge,event_only,false,荆州地区与原地级沙市市共同组建新的荆沙市
-WIKI-1994-049,CNUR-000050,CNUR-000050,rename,exact,true,
-WIKI-1994-050,CNUR-000056,CNUR-000056,rename,exact,true,
-WIKI-1994-051,CNUR-000189,CNUR-000189,rename,exact,true,
-WIKI-1995-052,CNUR-000178,CNUR-000178,upgrade,exact,true,
-WIKI-1995-053,CNUR-000192,CNUR-000192,upgrade,exact,true,
-WIKI-1995-054,CNUR-000344,CNUR-000344,upgrade,exact,true,Fuling Prefecture continued as historical prefecture-level Fuling City until 1997
-WIKI-1996-055,CNUR-000013,CNUR-000013,upgrade,exact,true,
-WIKI-1996-056,CNUR-000108,CNUR-000108,upgrade,exact,true,
-WIKI-1996-057,CNUR-000122,CNUR-000122,upgrade,exact,true,
-WIKI-1996-058,CNUR-000248,CNUR-000248,upgrade,exact,true,
-WIKI-1996-059,CNUR-000295,CNUR-000295,upgrade,exact,true,
-WIKI-1996-060,CNUR-000294,CNUR-000294,upgrade,exact,true,
-WIKI-1996-061,CNUR-000360,,merge,event_only,false,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
-WIKI-1996-062,CNUR-000177,CNUR-000177,rename,exact,true,
-WIKI-1996-063,CNUR-000345,,jurisdiction_transfer,event_only,false,"multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"
-WIKI-1997-064,CNUR-000149,CNUR-000149,upgrade,exact,true,
-WIKI-1997-065,CNUR-000165,CNUR-000165,upgrade,exact,true,
-WIKI-1997-066,CNUR-000193,CNUR-000193,upgrade,exact,true,
-WIKI-1997-067,CNUR-000225,CNUR-000225,upgrade,exact,true,
-WIKI-1997-068,CNUR-000259,CNUR-000259,upgrade,exact,true,
-WIKI-1997-069,CNUR-000267,CNUR-000267,upgrade,exact,true,
-WIKI-1997-070,CNUR-000268,CNUR-000268,upgrade,exact,true,
-WIKI-1997-071,CNUR-000363,,split,event_only,false,梧州地区主要分为贺州地区并将三县市划归既有梧州市
-WIKI-1997-072,CNUR-000247,,establish_prefecture,event_only,false,眉山地区 later became 眉山市
-WIKI-1997-073,CNUR-000345,,abolish,event_only,false,中办厅字〔1997〕34号批复（1997-12-20）：撤销万县市设立重庆市万县区（1998年5月更名万州区）、撤销涪陵市设立涪陵区、撤销黔江地区设立黔江开发区（2000年6月改设黔江区）。1996年三地已由重庆市代管（见1996年划转事件）。
-WIKI-1997-074,CNUR-000235,CNUR-000235,upgrade,exact,true,1997年3月14日八届全国人大五次会议批准设立重庆直辖市，1997年6月18日挂牌。重庆市由四川省辖计划单列市升格为直辖市，研究实体连续；万县市、涪陵市、黔江地区于1996年划归重庆代管（见1996年划转事件）。
-WIKI-1998-073,CNUR-000109,CNUR-000109,upgrade,exact,true,
-WIKI-1998-074,CNUR-000130,CNUR-000130,upgrade,exact,true,
-WIKI-1998-075,CNUR-000166,CNUR-000166,upgrade,exact,true,
-WIKI-1998-076,CNUR-000179,CNUR-000179,upgrade,exact,true,
-WIKI-1998-077,CNUR-000249,CNUR-000249,upgrade,exact,true,
-WIKI-1998-078,CNUR-000323,CNUR-000323,upgrade,exact,true,
-WIKI-1998-079,CNUR-000361,,merge,event_only,false,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
-WIKI-1998-080,CNUR-000253,,establish_prefecture,event_only,false,资阳地区 later became 资阳市
-WIKI-1999-081,CNUR-000020,CNUR-000020,upgrade,exact,true,
-WIKI-1999-082,CNUR-000071,CNUR-000071,upgrade,exact,true,
-WIKI-1999-083,CNUR-000110,CNUR-000110,upgrade,exact,true,
-WIKI-1999-084,CNUR-000111,CNUR-000111,upgrade,exact,true,
-WIKI-1999-085,CNUR-000123,CNUR-000123,upgrade,exact,true,
-WIKI-1999-086,CNUR-000194,CNUR-000194,upgrade,exact,true,
-WIKI-1999-087,CNUR-000250,CNUR-000250,upgrade,exact,true,
-WIKI-1999-088,CNUR-000296,CNUR-000296,upgrade,exact,true,
-WIKI-1999-089,CNUR-000029,CNUR-000029,upgrade,exact,true,
+WIKI-1992-024,CNUR-000107,CNUR-000107,upgrade,exact,true,
+WIKI-1992-025,CNUR-000342,CNUR-000342,upgrade,exact,true,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
+WIKI-1992-026,CNUR-000349,,abolish,event_only,false,宜昌地区 merged into the existing 宜昌市
+WIKI-1992-027,CNUR-000057,,establish,event_only,false,松原市 was explicitly established as a prefecture-level city
+WIKI-1992-028,CNUR-000146,CNUR-000146,upgrade,exact,true,
+WIKI-1992-029,CNUR-000150,CNUR-000150,rename,exact,true,惠民地区 renamed 滨州地区 and later became 滨州市
+WIKI-1993-030,CNUR-000058,CNUR-000058,upgrade,exact,true,
+WIKI-1993-031,CNUR-000070,CNUR-000070,upgrade,exact,true,
+WIKI-1993-032,CNUR-000176,,establish,event_only,false,孝感市 was explicitly established as a prefecture-level city
+WIKI-1993-033,CNUR-000246,CNUR-000246,upgrade,exact,true,
+WIKI-1993-034,CNUR-000350,,merge,event_only,false,石家庄地区 merged into 石家庄市
+WIKI-1993-035,CNUR-000351,,merge,event_only,false,1993年河北地市合并：撤销张家口地区并入张家口市（国函〔1993〕89号）
+WIKI-1993-036,CNUR-000352,,merge,event_only,false,1993年河北地市合并：撤销沧州地区并入沧州市（国函〔1993〕89号）
+WIKI-1993-037,CNUR-000353,,merge,event_only,false,1993年河北地市合并：撤销邯郸地区并入邯郸市（国函〔1993〕89号）
+WIKI-1993-038,CNUR-000354,,merge,event_only,false,1993年河北地市合并：撤销邢台地区并入邢台市（国函〔1993〕89号）
+WIKI-1993-039,CNUR-000355,,merge,event_only,false,1993年河北地市合并：撤销承德地区并入承德市（国函〔1993〕89号）
+WIKI-1993-040,CNUR-000343,,abolish,event_only,false,Yanbei was abolished and split between Datong and Shuozhou
+WIKI-1993-041,CNUR-000222,,establish,event_only,false,防城港市 was explicitly established as a prefecture-level city
+WIKI-1993-042,CNUR-000181,CNUR-000181,rename,exact,true,
+WIKI-1994-043,CNUR-000096,CNUR-000096,upgrade,exact,true,
+WIKI-1994-044,CNUR-000121,CNUR-000121,upgrade,exact,true,
+WIKI-1994-045,CNUR-000147,CNUR-000147,upgrade,exact,true,
+WIKI-1994-046,CNUR-000148,CNUR-000148,upgrade,exact,true,
+WIKI-1994-047,CNUR-000164,CNUR-000164,upgrade,exact,true,
+WIKI-1994-048,CNUR-000190,CNUR-000190,upgrade,exact,true,
+WIKI-1994-049,CNUR-000191,,establish,event_only,false,郴州市 was explicitly established as a prefecture-level city
+WIKI-1994-050,CNUR-000223,CNUR-000223,upgrade,exact,true,
+WIKI-1994-051,CNUR-000293,CNUR-000293,upgrade,exact,true,
+WIKI-1994-052,CNUR-000356,,merge,event_only,false,1994年保定地市合并：保定地区与保定市合并组建新的地级保定市（国函〔1994〕133号）
+WIKI-1994-053,CNUR-000357,,merge,event_only,false,郧阳地区 merged into 十堰市
+WIKI-1994-054,CNUR-000358,,merge,event_only,false,荆州地区与原地级沙市市共同组建新的荆沙市
+WIKI-1994-055,CNUR-000216,CNUR-000216,upgrade,exact,true,
+WIKI-1994-056,CNUR-000050,CNUR-000050,rename,exact,true,
+WIKI-1994-057,CNUR-000056,CNUR-000056,rename,exact,true,
+WIKI-1994-058,CNUR-000189,CNUR-000189,rename,exact,true,
+WIKI-1995-059,CNUR-000178,CNUR-000178,upgrade,exact,true,
+WIKI-1995-060,CNUR-000192,CNUR-000192,upgrade,exact,true,
+WIKI-1995-061,CNUR-000344,CNUR-000344,upgrade,exact,true,Fuling Prefecture continued as historical prefecture-level Fuling City until 1997
+WIKI-1995-062,CNUR-000224,CNUR-000224,upgrade,exact,true,
+WIKI-1996-063,CNUR-000013,CNUR-000013,upgrade,exact,true,
+WIKI-1996-064,CNUR-000108,CNUR-000108,upgrade,exact,true,
+WIKI-1996-065,CNUR-000122,CNUR-000122,upgrade,exact,true,
+WIKI-1996-066,CNUR-000248,CNUR-000248,upgrade,exact,true,
+WIKI-1996-067,CNUR-000295,CNUR-000295,upgrade,exact,true,
+WIKI-1996-068,CNUR-000294,CNUR-000294,upgrade,exact,true,
+WIKI-1996-069,CNUR-000360,,merge,event_only,false,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
+WIKI-1996-070,CNUR-000085,CNUR-000085,upgrade,exact,true,
+WIKI-1996-071,CNUR-000086,CNUR-000086,upgrade,exact,true,
+WIKI-1996-072,CNUR-000177,CNUR-000177,rename,exact,true,
+WIKI-1996-073,CNUR-000345,,jurisdiction_transfer,event_only,false,"multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"
+WIKI-1997-074,CNUR-000149,CNUR-000149,upgrade,exact,true,
+WIKI-1997-075,CNUR-000165,CNUR-000165,upgrade,exact,true,
+WIKI-1997-076,CNUR-000193,CNUR-000193,upgrade,exact,true,
+WIKI-1997-077,CNUR-000225,CNUR-000225,upgrade,exact,true,
+WIKI-1997-078,CNUR-000259,CNUR-000259,upgrade,exact,true,
+WIKI-1997-079,CNUR-000267,CNUR-000267,upgrade,exact,true,
+WIKI-1997-080,CNUR-000268,CNUR-000268,upgrade,exact,true,
+WIKI-1997-081,CNUR-000363,,split,event_only,false,梧州地区主要分为贺州地区并将三县市划归既有梧州市
+WIKI-1997-082,CNUR-000247,,establish_prefecture,event_only,false,眉山地区 later became 眉山市
+WIKI-1997-083,CNUR-000345,,abolish,event_only,false,中办厅字〔1997〕34号批复（1997-12-20）：撤销万县市设立重庆市万县区（1998年5月更名万州区）、撤销涪陵市设立涪陵区、撤销黔江地区设立黔江开发区（2000年6月改设黔江区）。1996年三地已由重庆市代管（见1996年划转事件）。
+WIKI-1997-084,CNUR-000235,CNUR-000235,upgrade,exact,true,1997年3月14日八届全国人大五次会议批准设立重庆直辖市，1997年6月18日挂牌。重庆市由四川省辖计划单列市升格为直辖市，研究实体连续；万县市、涪陵市、黔江地区于1996年划归重庆代管（见1996年划转事件）。
+WIKI-1998-083,CNUR-000109,CNUR-000109,upgrade,exact,true,
+WIKI-1998-084,CNUR-000130,CNUR-000130,upgrade,exact,true,
+WIKI-1998-085,CNUR-000166,CNUR-000166,upgrade,exact,true,
+WIKI-1998-086,CNUR-000179,CNUR-000179,upgrade,exact,true,
+WIKI-1998-087,CNUR-000249,CNUR-000249,upgrade,exact,true,
+WIKI-1998-088,CNUR-000323,CNUR-000323,upgrade,exact,true,
+WIKI-1998-089,CNUR-000361,,merge,event_only,false,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
+WIKI-1998-090,CNUR-000253,,establish_prefecture,event_only,false,资阳地区 later became 资阳市
+WIKI-1999-091,CNUR-000020,CNUR-000020,upgrade,exact,true,
+WIKI-1999-092,CNUR-000071,CNUR-000071,upgrade,exact,true,
+WIKI-1999-093,CNUR-000110,CNUR-000110,upgrade,exact,true,
+WIKI-1999-094,CNUR-000111,CNUR-000111,upgrade,exact,true,
+WIKI-1999-095,CNUR-000123,CNUR-000123,upgrade,exact,true,
+WIKI-1999-096,CNUR-000194,CNUR-000194,upgrade,exact,true,
+WIKI-1999-097,CNUR-000250,CNUR-000250,upgrade,exact,true,
+WIKI-1999-098,CNUR-000296,CNUR-000296,upgrade,exact,true,
+WIKI-1999-099,CNUR-000029,CNUR-000029,upgrade,exact,true,
 PL-2000-001,CNUR-000131,CNUR-000131,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
 PL-2000-002,CNUR-000097,CNUR-000097,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
 PL-2000-003,CNUR-000132,CNUR-000132,upgrade,exact,true,地级市数量增加1；全部地级单位净变化0。
@@ -156,31 +166,31 @@ PL-2016-001,CNUR-000286,CNUR-000286,upgrade,exact,true,按批准日期归入2016
 PL-2016-002,CNUR-000329,CNUR-000329,upgrade,exact,true,同名县级市终止不计地级撤销。
 PL-2017-001,CNUR-000287,CNUR-000287,upgrade,exact,true,按批准年份归入2017年；公布实施发生于2018年。
 PL-2018-001,CNUR-000146,,merge,event_only,false,按批准年份归入2018年；济南市为既存地级市，不计新增。
-WIKI-1993-034,CNUR-000343,CNUR-000015,split,disaggregate,false,seven former Yanbei counties transferred to Datong
-WIKI-1993-034,CNUR-000343,CNUR-000019,split,disaggregate,false,"Huairen, Youyu, and Ying counties transferred to Shuozhou"
-WIKI-1993-029,CNUR-000351,CNUR-000009,merge,aggregate,false,1993年河北地市合并：张家口地区并入张家口市（国函〔1993〕89号）
-WIKI-1993-030,CNUR-000352,CNUR-000011,merge,aggregate,false,1993年河北地市合并：沧州地区并入沧州市（国函〔1993〕89号）
-WIKI-1993-031,CNUR-000353,CNUR-000006,merge,aggregate,false,1993年河北地市合并：邯郸地区并入邯郸市（国函〔1993〕89号）
-WIKI-1993-032,CNUR-000354,CNUR-000007,merge,aggregate,false,1993年河北地市合并：邢台地区并入邢台市（国函〔1993〕89号）
-WIKI-1993-033,CNUR-000355,CNUR-000010,merge,aggregate,false,1993年河北地市合并：承德地区并入承德市（国函〔1993〕89号）
-WIKI-1993-028,CNUR-000350,CNUR-000003,merge,aggregate,false,1993年河北地市合并：石家庄地区并入石家庄市（国函〔1993〕89号）
-WIKI-1994-046,CNUR-000356,CNUR-000008,merge,aggregate,false,1994年保定地市合并（国函〔1994〕133号）：保定地区并入保定市
-WIKI-1994-047,CNUR-000357,CNUR-000171,merge,aggregate,false,郧阳地区 merged into 十堰市
-WIKI-1994-048,CNUR-000358,CNUR-000177,merge,aggregate,false,荆州地区与原地级沙市市共同组建新的荆沙市（后更名荆州市）
-WIKI-1994-048,CNUR-000359,CNUR-000177,merge,aggregate,false,原地级沙市市与荆州地区共同组建新的荆沙市
-WIKI-1988-010,CNUR-000347,CNUR-000206,split,disaggregate,false,惠阳地区撤销，惠州城区及部分县设立地级惠州市
-WIKI-1988-010,CNUR-000347,CNUR-000208,split,disaggregate,false,惠阳地区析出海丰、陆丰设立汕尾市
-WIKI-1988-010,CNUR-000347,CNUR-000209,split,disaggregate,false,惠阳地区析出河源县等设立河源市
-WIKI-1997-071,CNUR-000363,CNUR-000220,split,disaggregate,false,梧州地区撤销，岑溪等县市划归梧州市
-WIKI-1997-071,CNUR-000363,CNUR-000227,split,disaggregate,false,梧州地区主体更名为贺州地区（1997年）
-WIKI-1996-061,CNUR-000360,CNUR-000060,merge,aggregate,false,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
-WIKI-1998-079,CNUR-000361,CNUR-000219,merge,aggregate,false,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
-WIKI-1996-063,CNUR-000342,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
-WIKI-1996-063,CNUR-000344,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
-WIKI-1996-063,CNUR-000345,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
-WIKI-1997-073,CNUR-000342,CNUR-000235,abolish,aggregate,false,1997年12月撤销万县市设立重庆市万县区（1998年5月更名万州区）
-WIKI-1997-073,CNUR-000344,CNUR-000235,abolish,aggregate,false,1997年12月撤销涪陵市设立重庆市涪陵区
-WIKI-1997-073,CNUR-000345,CNUR-000235,abolish,aggregate,false,1997年12月撤销黔江地区设立重庆市黔江开发区（2000年6月改设黔江区）
+WIKI-1993-040,CNUR-000343,CNUR-000015,split,disaggregate,false,seven former Yanbei counties transferred to Datong
+WIKI-1993-040,CNUR-000343,CNUR-000019,split,disaggregate,false,"Huairen, Youyu, and Ying counties transferred to Shuozhou"
+WIKI-1993-035,CNUR-000351,CNUR-000009,merge,aggregate,false,1993年河北地市合并：张家口地区并入张家口市（国函〔1993〕89号）
+WIKI-1993-036,CNUR-000352,CNUR-000011,merge,aggregate,false,1993年河北地市合并：沧州地区并入沧州市（国函〔1993〕89号）
+WIKI-1993-037,CNUR-000353,CNUR-000006,merge,aggregate,false,1993年河北地市合并：邯郸地区并入邯郸市（国函〔1993〕89号）
+WIKI-1993-038,CNUR-000354,CNUR-000007,merge,aggregate,false,1993年河北地市合并：邢台地区并入邢台市（国函〔1993〕89号）
+WIKI-1993-039,CNUR-000355,CNUR-000010,merge,aggregate,false,1993年河北地市合并：承德地区并入承德市（国函〔1993〕89号）
+WIKI-1993-034,CNUR-000350,CNUR-000003,merge,aggregate,false,1993年河北地市合并：石家庄地区并入石家庄市（国函〔1993〕89号）
+WIKI-1994-052,CNUR-000356,CNUR-000008,merge,aggregate,false,1994年保定地市合并（国函〔1994〕133号）：保定地区并入保定市
+WIKI-1994-053,CNUR-000357,CNUR-000171,merge,aggregate,false,郧阳地区 merged into 十堰市
+WIKI-1994-054,CNUR-000358,CNUR-000177,merge,aggregate,false,荆州地区与原地级沙市市共同组建新的荆沙市（后更名荆州市）
+WIKI-1994-054,CNUR-000359,CNUR-000177,merge,aggregate,false,原地级沙市市与荆州地区共同组建新的荆沙市
+WIKI-1988-013,CNUR-000347,CNUR-000206,split,disaggregate,false,惠阳地区撤销，惠州城区及部分县设立地级惠州市
+WIKI-1988-013,CNUR-000347,CNUR-000208,split,disaggregate,false,惠阳地区析出海丰、陆丰设立汕尾市
+WIKI-1988-013,CNUR-000347,CNUR-000209,split,disaggregate,false,惠阳地区析出河源县等设立河源市
+WIKI-1997-081,CNUR-000363,CNUR-000220,split,disaggregate,false,梧州地区撤销，岑溪等县市划归梧州市
+WIKI-1997-081,CNUR-000363,CNUR-000227,split,disaggregate,false,梧州地区主体更名为贺州地区（1997年）
+WIKI-1996-069,CNUR-000360,CNUR-000060,merge,aggregate,false,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
+WIKI-1998-089,CNUR-000361,CNUR-000219,merge,aggregate,false,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
+WIKI-1996-073,CNUR-000342,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
+WIKI-1996-073,CNUR-000344,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
+WIKI-1996-073,CNUR-000345,CNUR-000235,jurisdiction_transfer,aggregate,false,entrusted to Chongqing administration in 1996
+WIKI-1997-083,CNUR-000342,CNUR-000235,abolish,aggregate,false,1997年12月撤销万县市设立重庆市万县区（1998年5月更名万州区）
+WIKI-1997-083,CNUR-000344,CNUR-000235,abolish,aggregate,false,1997年12月撤销涪陵市设立重庆市涪陵区
+WIKI-1997-083,CNUR-000345,CNUR-000235,abolish,aggregate,false,1997年12月撤销黔江地区设立重庆市黔江开发区（2000年6月改设黔江区）
 PL-2002-008,CNUR-000362,CNUR-000218,split,disaggregate,false,柳州地区撤销，柳江等县划归柳州市
 PL-2002-008,CNUR-000362,CNUR-000229,split,disaggregate,false,柳州地区析设地级来宾市
 PL-2002-009,CNUR-000346,CNUR-000217,split,disaggregate,false,南宁地区撤销，部分县划归南宁市

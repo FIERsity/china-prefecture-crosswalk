@@ -1,59 +1,74 @@
 check,status,subject,detail
 unique_event_id,pass,all_events,duplicates=0
-unique_event_signature,pass,all_events,events=157
+unique_event_signature,pass,all_events,events=167
 entity_reference,pass,WIKI-1987-001,CNUR-000106
 automatic_continuity,pass,WIKI-1987-001,type=upgrade automatic=True
 event_roster_name,pass,WIKI-1987-001,effective_year=1987 event=黄山市 roster=黄山市
-entity_reference,pass,WIKI-1987-002,CNUR-000095
+entity_reference,pass,WIKI-1987-002,CNUR-000144
 automatic_continuity,pass,WIKI-1987-002,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1987-002,effective_year=1987 event=舟山市 roster=舟山市
-entity_reference,pass,WIKI-1987-003,CNUR-000341
-automatic_continuity,pass,WIKI-1987-003,type=abolish automatic=False
-historical_lifespan,pass,WIKI-1987-003,event=1987 lifespan=1955-1987
-entity_reference,pass,WIKI-1987-004,CNUR-000238
-automatic_continuity,pass,WIKI-1987-004,type=rename automatic=True
-event_roster_name,pass,WIKI-1987-004,effective_year=1987 event=攀枝花市 roster=攀枝花市
-entity_reference,pass,WIKI-1987-005,CNUR-000254
-automatic_continuity,pass,WIKI-1987-005,type=rename automatic=True
-event_roster_name,pass,WIKI-1987-005,effective_year=1987 event=阿坝藏族羌族自治州 roster=阿坝藏族羌族自治州
-entity_reference,pass,WIKI-1988-006,CNUR-000012
-automatic_continuity,pass,WIKI-1988-006,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-006,effective_year=1988 event=廊坊市 roster=廊坊市
-entity_reference,pass,WIKI-1988-007,CNUR-000019
-automatic_continuity,pass,WIKI-1988-007,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-007,effective_year=1988 event=朔州市 roster=朔州市
-entity_reference,pass,WIKI-1988-008,CNUR-000188
+event_roster_name,pass,WIKI-1987-002,effective_year=1987 event=威海市 roster=威海市
+entity_reference,pass,WIKI-1987-003,CNUR-000095
+automatic_continuity,pass,WIKI-1987-003,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1987-003,effective_year=1987 event=舟山市 roster=舟山市
+entity_reference,pass,WIKI-1987-004,CNUR-000341
+automatic_continuity,pass,WIKI-1987-004,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1987-004,event=1987 lifespan=1955-1987
+entity_reference,pass,WIKI-1987-005,CNUR-000232
+automatic_continuity,pass,WIKI-1987-005,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1987-005,effective_year=1987 event=三亚市 roster=三亚市
+entity_reference,pass,WIKI-1987-006,CNUR-000238
+automatic_continuity,pass,WIKI-1987-006,type=rename automatic=True
+event_roster_name,pass,WIKI-1987-006,effective_year=1987 event=攀枝花市 roster=攀枝花市
+entity_reference,pass,WIKI-1987-007,CNUR-000254
+automatic_continuity,pass,WIKI-1987-007,type=rename automatic=True
+event_roster_name,pass,WIKI-1987-007,effective_year=1987 event=阿坝藏族羌族自治州 roster=阿坝藏族羌族自治州
+entity_reference,pass,WIKI-1988-008,CNUR-000012
 automatic_continuity,pass,WIKI-1988-008,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-008,effective_year=1988 event=常德市 roster=常德市
-entity_reference,pass,WIKI-1988-009,CNUR-000205
-automatic_continuity,pass,WIKI-1988-009,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-009,effective_year=1988 event=肇庆市 roster=肇庆市
-entity_reference,pass,WIKI-1988-010,CNUR-000347
-automatic_continuity,pass,WIKI-1988-010,type=split automatic=False
-historical_lifespan,pass,WIKI-1988-010,event=1988 lifespan=1970-1988
-entity_reference,pass,WIKI-1988-011,CNUR-000208
-automatic_continuity,pass,WIKI-1988-011,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-011,effective_year=1988 event=汕尾市 roster=汕尾市
-entity_reference,pass,WIKI-1988-012,CNUR-000209
-automatic_continuity,pass,WIKI-1988-012,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-012,effective_year=1988 event=河源市 roster=河源市
-entity_reference,pass,WIKI-1988-013,CNUR-000207
-automatic_continuity,pass,WIKI-1988-013,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1988-013,effective_year=1988 event=梅州市 roster=梅州市
-entity_reference,pass,WIKI-1988-014,CNUR-000210
+event_roster_name,pass,WIKI-1988-008,effective_year=1988 event=廊坊市 roster=廊坊市
+entity_reference,pass,WIKI-1988-009,CNUR-000019
+automatic_continuity,pass,WIKI-1988-009,type=establish automatic=False
+event_roster_name,pass,WIKI-1988-009,effective_year=1988 event=朔州市 roster=朔州市
+entity_reference,pass,WIKI-1988-010,CNUR-000188
+automatic_continuity,pass,WIKI-1988-010,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-010,effective_year=1988 event=常德市 roster=常德市
+entity_reference,pass,WIKI-1988-011,CNUR-000189
+automatic_continuity,pass,WIKI-1988-011,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-011,effective_year=1988 event=大庸市 roster=大庸市
+entity_reference,pass,WIKI-1988-012,CNUR-000205
+automatic_continuity,pass,WIKI-1988-012,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-012,effective_year=1988 event=肇庆市 roster=肇庆市
+entity_reference,pass,WIKI-1988-013,CNUR-000347
+automatic_continuity,pass,WIKI-1988-013,type=split automatic=False
+historical_lifespan,pass,WIKI-1988-013,event=1988 lifespan=1970-1988
+entity_reference,pass,WIKI-1988-014,CNUR-000208
 automatic_continuity,pass,WIKI-1988-014,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-014,effective_year=1988 event=阳江市 roster=阳江市
-entity_reference,pass,WIKI-1988-015,CNUR-000211
+event_roster_name,pass,WIKI-1988-014,effective_year=1988 event=汕尾市 roster=汕尾市
+entity_reference,pass,WIKI-1988-015,CNUR-000209
 automatic_continuity,pass,WIKI-1988-015,type=establish automatic=False
-event_roster_name,pass,WIKI-1988-015,effective_year=1988 event=清远市 roster=清远市
-entity_reference,pass,WIKI-1988-016,CNUR-000348
-automatic_continuity,pass,WIKI-1988-016,type=merge automatic=False
-historical_lifespan,pass,WIKI-1988-016,event=1988 lifespan=1987-1988
-entity_reference,pass,WIKI-1988-017,CNUR-000113
-automatic_continuity,pass,WIKI-1988-017,type=establish_prefecture automatic=False
-entity_reference,pass,WIKI-1988-018,CNUR-000121
-automatic_continuity,pass,WIKI-1988-018,type=rename automatic=True
-event_roster_name,pass,WIKI-1988-018,effective_year=1988 event=南平地区 roster=南平地区
+event_roster_name,pass,WIKI-1988-015,effective_year=1988 event=河源市 roster=河源市
+entity_reference,pass,WIKI-1988-016,CNUR-000212
+automatic_continuity,pass,WIKI-1988-016,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-016,effective_year=1988 event=东莞市 roster=东莞市
+entity_reference,pass,WIKI-1988-017,CNUR-000207
+automatic_continuity,pass,WIKI-1988-017,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-017,effective_year=1988 event=梅州市 roster=梅州市
+entity_reference,pass,WIKI-1988-018,CNUR-000210
+automatic_continuity,pass,WIKI-1988-018,type=establish automatic=False
+event_roster_name,pass,WIKI-1988-018,effective_year=1988 event=阳江市 roster=阳江市
+entity_reference,pass,WIKI-1988-019,CNUR-000211
+automatic_continuity,pass,WIKI-1988-019,type=establish automatic=False
+event_roster_name,pass,WIKI-1988-019,effective_year=1988 event=清远市 roster=清远市
+entity_reference,pass,WIKI-1988-020,CNUR-000213
+automatic_continuity,pass,WIKI-1988-020,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1988-020,effective_year=1988 event=中山市 roster=中山市
+entity_reference,pass,WIKI-1988-021,CNUR-000348
+automatic_continuity,pass,WIKI-1988-021,type=merge automatic=False
+historical_lifespan,pass,WIKI-1988-021,event=1988 lifespan=1987-1988
+entity_reference,pass,WIKI-1988-022,CNUR-000113
+automatic_continuity,pass,WIKI-1988-022,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1988-023,CNUR-000121
+automatic_continuity,pass,WIKI-1988-023,type=rename automatic=True
+event_roster_name,pass,WIKI-1988-023,effective_year=1988 event=南平地区 roster=南平地区
 entity_reference,pass,WIKI-1989-001,CNUR-000145
 automatic_continuity,pass,WIKI-1989-001,type=upgrade automatic=True
 event_roster_name,pass,WIKI-1989-001,effective_year=1989 event=日照市 roster=日照市
@@ -63,225 +78,240 @@ event_roster_name,pass,WIKI-1991-001,effective_year=1991 event=潮州市 roster=
 entity_reference,pass,WIKI-1991-002,CNUR-000215
 automatic_continuity,pass,WIKI-1991-002,type=establish automatic=False
 event_roster_name,pass,WIKI-1991-002,effective_year=1991 event=揭阳市 roster=揭阳市
-entity_reference,pass,WIKI-1992-019,CNUR-000107
-automatic_continuity,pass,WIKI-1992-019,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1992-019,effective_year=1992 event=滁州市 roster=滁州市
-entity_reference,pass,WIKI-1992-020,CNUR-000342
-automatic_continuity,pass,WIKI-1992-020,type=upgrade automatic=True
-historical_lifespan,pass,WIKI-1992-020,event=1992 lifespan=1992-1997
-event_roster_name,pass,WIKI-1992-020,effective_year=1992 event=万县市 roster=万县市
-entity_reference,pass,WIKI-1992-021,CNUR-000349
-automatic_continuity,pass,WIKI-1992-021,type=abolish automatic=False
-historical_lifespan,pass,WIKI-1992-021,event=1992 lifespan=1987-1992
-entity_reference,pass,WIKI-1992-022,CNUR-000057
-automatic_continuity,pass,WIKI-1992-022,type=establish automatic=False
-event_roster_name,pass,WIKI-1992-022,effective_year=1992 event=松原市 roster=松原市
-entity_reference,pass,WIKI-1992-023,CNUR-000150
-automatic_continuity,pass,WIKI-1992-023,type=rename automatic=True
-event_roster_name,pass,WIKI-1992-023,effective_year=1992 event=滨州地区 roster=滨州地区
-entity_reference,pass,WIKI-1993-024,CNUR-000058
-automatic_continuity,pass,WIKI-1993-024,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-024,effective_year=1993 event=白城市 roster=白城市
-entity_reference,pass,WIKI-1993-025,CNUR-000070
-automatic_continuity,pass,WIKI-1993-025,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-025,effective_year=1993 event=黑河市 roster=黑河市
-entity_reference,pass,WIKI-1993-026,CNUR-000176
-automatic_continuity,pass,WIKI-1993-026,type=establish automatic=False
-event_roster_name,pass,WIKI-1993-026,effective_year=1993 event=孝感市 roster=孝感市
-entity_reference,pass,WIKI-1993-027,CNUR-000246
-automatic_continuity,pass,WIKI-1993-027,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1993-027,effective_year=1993 event=南充市 roster=南充市
-entity_reference,pass,WIKI-1993-028,CNUR-000350
-automatic_continuity,pass,WIKI-1993-028,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-028,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-029,CNUR-000351
-automatic_continuity,pass,WIKI-1993-029,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-029,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-030,CNUR-000352
-automatic_continuity,pass,WIKI-1993-030,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-030,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-031,CNUR-000353
-automatic_continuity,pass,WIKI-1993-031,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-031,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-032,CNUR-000354
-automatic_continuity,pass,WIKI-1993-032,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-032,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-033,CNUR-000355
-automatic_continuity,pass,WIKI-1993-033,type=merge automatic=False
-historical_lifespan,pass,WIKI-1993-033,event=1993 lifespan=1987-1993
-entity_reference,pass,WIKI-1993-034,CNUR-000343
-automatic_continuity,pass,WIKI-1993-034,type=abolish automatic=False
-historical_lifespan,pass,WIKI-1993-034,event=1993 lifespan=1970-1993
-entity_reference,pass,WIKI-1993-035,CNUR-000222
-automatic_continuity,pass,WIKI-1993-035,type=establish automatic=False
-event_roster_name,pass,WIKI-1993-035,effective_year=1993 event=防城港市 roster=防城港市
-entity_reference,pass,WIKI-1993-036,CNUR-000181
-automatic_continuity,pass,WIKI-1993-036,type=rename automatic=True
-event_roster_name,pass,WIKI-1993-036,effective_year=1993 event=恩施土家族苗族自治州 roster=恩施土家族苗族自治州
-entity_reference,pass,WIKI-1994-037,CNUR-000096
-automatic_continuity,pass,WIKI-1994-037,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-037,effective_year=1994 event=台州市 roster=台州市
-entity_reference,pass,WIKI-1994-038,CNUR-000121
-automatic_continuity,pass,WIKI-1994-038,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-038,effective_year=1994 event=南平市 roster=南平市
-entity_reference,pass,WIKI-1994-039,CNUR-000147
-automatic_continuity,pass,WIKI-1994-039,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-039,effective_year=1994 event=临沂市 roster=临沂市
-entity_reference,pass,WIKI-1994-040,CNUR-000148
-automatic_continuity,pass,WIKI-1994-040,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-040,effective_year=1994 event=德州市 roster=德州市
-entity_reference,pass,WIKI-1994-041,CNUR-000164
-automatic_continuity,pass,WIKI-1994-041,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-041,effective_year=1994 event=南阳市 roster=南阳市
-entity_reference,pass,WIKI-1994-042,CNUR-000190
-automatic_continuity,pass,WIKI-1994-042,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-042,effective_year=1994 event=益阳市 roster=益阳市
-entity_reference,pass,WIKI-1994-043,CNUR-000191
-automatic_continuity,pass,WIKI-1994-043,type=establish automatic=False
-event_roster_name,pass,WIKI-1994-043,effective_year=1994 event=郴州市 roster=郴州市
-entity_reference,pass,WIKI-1994-044,CNUR-000223
+entity_reference,pass,WIKI-1992-024,CNUR-000107
+automatic_continuity,pass,WIKI-1992-024,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1992-024,effective_year=1992 event=滁州市 roster=滁州市
+entity_reference,pass,WIKI-1992-025,CNUR-000342
+automatic_continuity,pass,WIKI-1992-025,type=upgrade automatic=True
+historical_lifespan,pass,WIKI-1992-025,event=1992 lifespan=1992-1997
+event_roster_name,pass,WIKI-1992-025,effective_year=1992 event=万县市 roster=万县市
+entity_reference,pass,WIKI-1992-026,CNUR-000349
+automatic_continuity,pass,WIKI-1992-026,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1992-026,event=1992 lifespan=1987-1992
+entity_reference,pass,WIKI-1992-027,CNUR-000057
+automatic_continuity,pass,WIKI-1992-027,type=establish automatic=False
+event_roster_name,pass,WIKI-1992-027,effective_year=1992 event=松原市 roster=松原市
+entity_reference,pass,WIKI-1992-028,CNUR-000146
+automatic_continuity,pass,WIKI-1992-028,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1992-028,effective_year=1992 event=莱芜市 roster=莱芜市
+entity_reference,pass,WIKI-1992-029,CNUR-000150
+automatic_continuity,pass,WIKI-1992-029,type=rename automatic=True
+event_roster_name,pass,WIKI-1992-029,effective_year=1992 event=滨州地区 roster=滨州地区
+entity_reference,pass,WIKI-1993-030,CNUR-000058
+automatic_continuity,pass,WIKI-1993-030,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1993-030,effective_year=1993 event=白城市 roster=白城市
+entity_reference,pass,WIKI-1993-031,CNUR-000070
+automatic_continuity,pass,WIKI-1993-031,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1993-031,effective_year=1993 event=黑河市 roster=黑河市
+entity_reference,pass,WIKI-1993-032,CNUR-000176
+automatic_continuity,pass,WIKI-1993-032,type=establish automatic=False
+event_roster_name,pass,WIKI-1993-032,effective_year=1993 event=孝感市 roster=孝感市
+entity_reference,pass,WIKI-1993-033,CNUR-000246
+automatic_continuity,pass,WIKI-1993-033,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1993-033,effective_year=1993 event=南充市 roster=南充市
+entity_reference,pass,WIKI-1993-034,CNUR-000350
+automatic_continuity,pass,WIKI-1993-034,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-034,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-035,CNUR-000351
+automatic_continuity,pass,WIKI-1993-035,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-035,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-036,CNUR-000352
+automatic_continuity,pass,WIKI-1993-036,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-036,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-037,CNUR-000353
+automatic_continuity,pass,WIKI-1993-037,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-037,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-038,CNUR-000354
+automatic_continuity,pass,WIKI-1993-038,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-038,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-039,CNUR-000355
+automatic_continuity,pass,WIKI-1993-039,type=merge automatic=False
+historical_lifespan,pass,WIKI-1993-039,event=1993 lifespan=1987-1993
+entity_reference,pass,WIKI-1993-040,CNUR-000343
+automatic_continuity,pass,WIKI-1993-040,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1993-040,event=1993 lifespan=1970-1993
+entity_reference,pass,WIKI-1993-041,CNUR-000222
+automatic_continuity,pass,WIKI-1993-041,type=establish automatic=False
+event_roster_name,pass,WIKI-1993-041,effective_year=1993 event=防城港市 roster=防城港市
+entity_reference,pass,WIKI-1993-042,CNUR-000181
+automatic_continuity,pass,WIKI-1993-042,type=rename automatic=True
+event_roster_name,pass,WIKI-1993-042,effective_year=1993 event=恩施土家族苗族自治州 roster=恩施土家族苗族自治州
+entity_reference,pass,WIKI-1994-043,CNUR-000096
+automatic_continuity,pass,WIKI-1994-043,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-043,effective_year=1994 event=台州市 roster=台州市
+entity_reference,pass,WIKI-1994-044,CNUR-000121
 automatic_continuity,pass,WIKI-1994-044,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-044,effective_year=1994 event=钦州市 roster=钦州市
-entity_reference,pass,WIKI-1994-045,CNUR-000293
+event_roster_name,pass,WIKI-1994-044,effective_year=1994 event=南平市 roster=南平市
+entity_reference,pass,WIKI-1994-045,CNUR-000147
 automatic_continuity,pass,WIKI-1994-045,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1994-045,effective_year=1994 event=渭南市 roster=渭南市
-entity_reference,pass,WIKI-1994-046,CNUR-000356
-automatic_continuity,pass,WIKI-1994-046,type=merge automatic=False
-historical_lifespan,pass,WIKI-1994-046,event=1994 lifespan=1987-1994
-entity_reference,pass,WIKI-1994-047,CNUR-000357
-automatic_continuity,pass,WIKI-1994-047,type=merge automatic=False
-historical_lifespan,pass,WIKI-1994-047,event=1994 lifespan=1987-1994
-entity_reference,pass,WIKI-1994-048,CNUR-000358
-automatic_continuity,pass,WIKI-1994-048,type=merge automatic=False
-historical_lifespan,pass,WIKI-1994-048,event=1994 lifespan=1987-1994
-entity_reference,pass,WIKI-1994-049,CNUR-000050
-automatic_continuity,pass,WIKI-1994-049,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-049,effective_year=1994 event=葫芦岛市 roster=葫芦岛市
-entity_reference,pass,WIKI-1994-050,CNUR-000056
-automatic_continuity,pass,WIKI-1994-050,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-050,effective_year=1994 event=白山市 roster=白山市
-entity_reference,pass,WIKI-1994-051,CNUR-000189
-automatic_continuity,pass,WIKI-1994-051,type=rename automatic=True
-event_roster_name,pass,WIKI-1994-051,effective_year=1994 event=张家界市 roster=张家界市
-entity_reference,pass,WIKI-1995-052,CNUR-000178
-automatic_continuity,pass,WIKI-1995-052,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1995-052,effective_year=1995 event=黄冈市 roster=黄冈市
-entity_reference,pass,WIKI-1995-053,CNUR-000192
-automatic_continuity,pass,WIKI-1995-053,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1995-053,effective_year=1995 event=永州市 roster=永州市
-entity_reference,pass,WIKI-1995-054,CNUR-000344
-automatic_continuity,pass,WIKI-1995-054,type=upgrade automatic=True
-historical_lifespan,pass,WIKI-1995-054,event=1995 lifespan=1995-1997
-event_roster_name,pass,WIKI-1995-054,effective_year=1995 event=涪陵市 roster=涪陵市
-entity_reference,pass,WIKI-1996-055,CNUR-000013
-automatic_continuity,pass,WIKI-1996-055,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-055,effective_year=1996 event=衡水市 roster=衡水市
-entity_reference,pass,WIKI-1996-056,CNUR-000108
-automatic_continuity,pass,WIKI-1996-056,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-056,effective_year=1996 event=阜阳市 roster=阜阳市
-entity_reference,pass,WIKI-1996-057,CNUR-000122
-automatic_continuity,pass,WIKI-1996-057,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-057,effective_year=1996 event=龙岩市 roster=龙岩市
-entity_reference,pass,WIKI-1996-058,CNUR-000248
-automatic_continuity,pass,WIKI-1996-058,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-058,effective_year=1996 event=宜宾市 roster=宜宾市
-entity_reference,pass,WIKI-1996-059,CNUR-000295
-automatic_continuity,pass,WIKI-1996-059,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-059,effective_year=1996 event=汉中市 roster=汉中市
-entity_reference,pass,WIKI-1996-060,CNUR-000294
-automatic_continuity,pass,WIKI-1996-060,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1996-060,effective_year=1996 event=延安市 roster=延安市
-entity_reference,pass,WIKI-1996-061,CNUR-000360
-automatic_continuity,pass,WIKI-1996-061,type=merge automatic=False
-historical_lifespan,pass,WIKI-1996-061,event=1996 lifespan=1987-1996
-entity_reference,pass,WIKI-1996-062,CNUR-000177
-automatic_continuity,pass,WIKI-1996-062,type=rename automatic=True
-event_roster_name,pass,WIKI-1996-062,effective_year=1996 event=荆州市 roster=荆州市
-entity_reference,pass,WIKI-1996-063,CNUR-000345
-automatic_continuity,pass,WIKI-1996-063,type=jurisdiction_transfer automatic=False
-historical_lifespan,pass,WIKI-1996-063,event=1996 lifespan=1988-1997
-entity_reference,pass,WIKI-1997-064,CNUR-000149
-automatic_continuity,pass,WIKI-1997-064,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-064,effective_year=1997 event=聊城市 roster=聊城市
-entity_reference,pass,WIKI-1997-065,CNUR-000165
-automatic_continuity,pass,WIKI-1997-065,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-065,effective_year=1997 event=商丘市 roster=商丘市
-entity_reference,pass,WIKI-1997-066,CNUR-000193
-automatic_continuity,pass,WIKI-1997-066,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-066,effective_year=1997 event=怀化市 roster=怀化市
-entity_reference,pass,WIKI-1997-067,CNUR-000225
-automatic_continuity,pass,WIKI-1997-067,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-067,effective_year=1997 event=玉林市 roster=玉林市
-entity_reference,pass,WIKI-1997-068,CNUR-000259
-automatic_continuity,pass,WIKI-1997-068,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-068,effective_year=1997 event=遵义市 roster=遵义市
-entity_reference,pass,WIKI-1997-069,CNUR-000267
-automatic_continuity,pass,WIKI-1997-069,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-069,effective_year=1997 event=曲靖市 roster=曲靖市
-entity_reference,pass,WIKI-1997-070,CNUR-000268
-automatic_continuity,pass,WIKI-1997-070,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-070,effective_year=1997 event=玉溪市 roster=玉溪市
-entity_reference,pass,WIKI-1997-071,CNUR-000363
-automatic_continuity,pass,WIKI-1997-071,type=split automatic=False
-historical_lifespan,pass,WIKI-1997-071,event=1997 lifespan=1987-1997
-entity_reference,pass,WIKI-1997-072,CNUR-000247
-automatic_continuity,pass,WIKI-1997-072,type=establish_prefecture automatic=False
-entity_reference,pass,WIKI-1997-073,CNUR-000345
-automatic_continuity,pass,WIKI-1997-073,type=abolish automatic=False
-historical_lifespan,pass,WIKI-1997-073,event=1997 lifespan=1988-1997
-entity_reference,pass,WIKI-1997-074,CNUR-000235
+event_roster_name,pass,WIKI-1994-045,effective_year=1994 event=临沂市 roster=临沂市
+entity_reference,pass,WIKI-1994-046,CNUR-000148
+automatic_continuity,pass,WIKI-1994-046,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-046,effective_year=1994 event=德州市 roster=德州市
+entity_reference,pass,WIKI-1994-047,CNUR-000164
+automatic_continuity,pass,WIKI-1994-047,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-047,effective_year=1994 event=南阳市 roster=南阳市
+entity_reference,pass,WIKI-1994-048,CNUR-000190
+automatic_continuity,pass,WIKI-1994-048,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-048,effective_year=1994 event=益阳市 roster=益阳市
+entity_reference,pass,WIKI-1994-049,CNUR-000191
+automatic_continuity,pass,WIKI-1994-049,type=establish automatic=False
+event_roster_name,pass,WIKI-1994-049,effective_year=1994 event=郴州市 roster=郴州市
+entity_reference,pass,WIKI-1994-050,CNUR-000223
+automatic_continuity,pass,WIKI-1994-050,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-050,effective_year=1994 event=钦州市 roster=钦州市
+entity_reference,pass,WIKI-1994-051,CNUR-000293
+automatic_continuity,pass,WIKI-1994-051,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-051,effective_year=1994 event=渭南市 roster=渭南市
+entity_reference,pass,WIKI-1994-052,CNUR-000356
+automatic_continuity,pass,WIKI-1994-052,type=merge automatic=False
+historical_lifespan,pass,WIKI-1994-052,event=1994 lifespan=1987-1994
+entity_reference,pass,WIKI-1994-053,CNUR-000357
+automatic_continuity,pass,WIKI-1994-053,type=merge automatic=False
+historical_lifespan,pass,WIKI-1994-053,event=1994 lifespan=1987-1994
+entity_reference,pass,WIKI-1994-054,CNUR-000358
+automatic_continuity,pass,WIKI-1994-054,type=merge automatic=False
+historical_lifespan,pass,WIKI-1994-054,event=1994 lifespan=1987-1994
+entity_reference,pass,WIKI-1994-055,CNUR-000216
+automatic_continuity,pass,WIKI-1994-055,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1994-055,effective_year=1994 event=云浮市 roster=云浮市
+entity_reference,pass,WIKI-1994-056,CNUR-000050
+automatic_continuity,pass,WIKI-1994-056,type=rename automatic=True
+event_roster_name,pass,WIKI-1994-056,effective_year=1994 event=葫芦岛市 roster=葫芦岛市
+entity_reference,pass,WIKI-1994-057,CNUR-000056
+automatic_continuity,pass,WIKI-1994-057,type=rename automatic=True
+event_roster_name,pass,WIKI-1994-057,effective_year=1994 event=白山市 roster=白山市
+entity_reference,pass,WIKI-1994-058,CNUR-000189
+automatic_continuity,pass,WIKI-1994-058,type=rename automatic=True
+event_roster_name,pass,WIKI-1994-058,effective_year=1994 event=张家界市 roster=张家界市
+entity_reference,pass,WIKI-1995-059,CNUR-000178
+automatic_continuity,pass,WIKI-1995-059,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1995-059,effective_year=1995 event=黄冈市 roster=黄冈市
+entity_reference,pass,WIKI-1995-060,CNUR-000192
+automatic_continuity,pass,WIKI-1995-060,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1995-060,effective_year=1995 event=永州市 roster=永州市
+entity_reference,pass,WIKI-1995-061,CNUR-000344
+automatic_continuity,pass,WIKI-1995-061,type=upgrade automatic=True
+historical_lifespan,pass,WIKI-1995-061,event=1995 lifespan=1995-1997
+event_roster_name,pass,WIKI-1995-061,effective_year=1995 event=涪陵市 roster=涪陵市
+entity_reference,pass,WIKI-1995-062,CNUR-000224
+automatic_continuity,pass,WIKI-1995-062,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1995-062,effective_year=1995 event=贵港市 roster=贵港市
+entity_reference,pass,WIKI-1996-063,CNUR-000013
+automatic_continuity,pass,WIKI-1996-063,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-063,effective_year=1996 event=衡水市 roster=衡水市
+entity_reference,pass,WIKI-1996-064,CNUR-000108
+automatic_continuity,pass,WIKI-1996-064,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-064,effective_year=1996 event=阜阳市 roster=阜阳市
+entity_reference,pass,WIKI-1996-065,CNUR-000122
+automatic_continuity,pass,WIKI-1996-065,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-065,effective_year=1996 event=龙岩市 roster=龙岩市
+entity_reference,pass,WIKI-1996-066,CNUR-000248
+automatic_continuity,pass,WIKI-1996-066,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-066,effective_year=1996 event=宜宾市 roster=宜宾市
+entity_reference,pass,WIKI-1996-067,CNUR-000295
+automatic_continuity,pass,WIKI-1996-067,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-067,effective_year=1996 event=汉中市 roster=汉中市
+entity_reference,pass,WIKI-1996-068,CNUR-000294
+automatic_continuity,pass,WIKI-1996-068,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-068,effective_year=1996 event=延安市 roster=延安市
+entity_reference,pass,WIKI-1996-069,CNUR-000360
+automatic_continuity,pass,WIKI-1996-069,type=merge automatic=False
+historical_lifespan,pass,WIKI-1996-069,event=1996 lifespan=1987-1996
+entity_reference,pass,WIKI-1996-070,CNUR-000085
+automatic_continuity,pass,WIKI-1996-070,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-070,effective_year=1996 event=泰州市 roster=泰州市
+entity_reference,pass,WIKI-1996-071,CNUR-000086
+automatic_continuity,pass,WIKI-1996-071,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1996-071,effective_year=1996 event=宿迁市 roster=宿迁市
+entity_reference,pass,WIKI-1996-072,CNUR-000177
+automatic_continuity,pass,WIKI-1996-072,type=rename automatic=True
+event_roster_name,pass,WIKI-1996-072,effective_year=1996 event=荆州市 roster=荆州市
+entity_reference,pass,WIKI-1996-073,CNUR-000345
+automatic_continuity,pass,WIKI-1996-073,type=jurisdiction_transfer automatic=False
+historical_lifespan,pass,WIKI-1996-073,event=1996 lifespan=1988-1997
+entity_reference,pass,WIKI-1997-074,CNUR-000149
 automatic_continuity,pass,WIKI-1997-074,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1997-074,effective_year=1997 event=重庆市 roster=重庆市
-entity_reference,pass,WIKI-1998-073,CNUR-000109
-automatic_continuity,pass,WIKI-1998-073,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-073,effective_year=1998 event=宿州市 roster=宿州市
-entity_reference,pass,WIKI-1998-074,CNUR-000130
-automatic_continuity,pass,WIKI-1998-074,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-074,effective_year=1998 event=赣州市 roster=赣州市
-entity_reference,pass,WIKI-1998-075,CNUR-000166
-automatic_continuity,pass,WIKI-1998-075,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-075,effective_year=1998 event=信阳市 roster=信阳市
-entity_reference,pass,WIKI-1998-076,CNUR-000179
-automatic_continuity,pass,WIKI-1998-076,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-076,effective_year=1998 event=咸宁市 roster=咸宁市
-entity_reference,pass,WIKI-1998-077,CNUR-000249
-automatic_continuity,pass,WIKI-1998-077,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-077,effective_year=1998 event=广安市 roster=广安市
-entity_reference,pass,WIKI-1998-078,CNUR-000323
-automatic_continuity,pass,WIKI-1998-078,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1998-078,effective_year=1998 event=吴忠市 roster=吴忠市
-entity_reference,pass,WIKI-1998-079,CNUR-000361
-automatic_continuity,pass,WIKI-1998-079,type=merge automatic=False
-historical_lifespan,pass,WIKI-1998-079,event=1998 lifespan=1987-1998
-entity_reference,pass,WIKI-1998-080,CNUR-000253
-automatic_continuity,pass,WIKI-1998-080,type=establish_prefecture automatic=False
-entity_reference,pass,WIKI-1999-081,CNUR-000020
-automatic_continuity,pass,WIKI-1999-081,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-081,effective_year=1999 event=晋中市 roster=晋中市
-entity_reference,pass,WIKI-1999-082,CNUR-000071
-automatic_continuity,pass,WIKI-1999-082,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-082,effective_year=1999 event=绥化市 roster=绥化市
-entity_reference,pass,WIKI-1999-083,CNUR-000110
-automatic_continuity,pass,WIKI-1999-083,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-083,effective_year=1999 event=巢湖市 roster=巢湖市
-entity_reference,pass,WIKI-1999-084,CNUR-000111
-automatic_continuity,pass,WIKI-1999-084,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-084,effective_year=1999 event=六安市 roster=六安市
-entity_reference,pass,WIKI-1999-085,CNUR-000123
-automatic_continuity,pass,WIKI-1999-085,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-085,effective_year=1999 event=宁德市 roster=宁德市
-entity_reference,pass,WIKI-1999-086,CNUR-000194
-automatic_continuity,pass,WIKI-1999-086,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-086,effective_year=1999 event=娄底市 roster=娄底市
-entity_reference,pass,WIKI-1999-087,CNUR-000250
-automatic_continuity,pass,WIKI-1999-087,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-087,effective_year=1999 event=达州市 roster=达州市
-entity_reference,pass,WIKI-1999-088,CNUR-000296
-automatic_continuity,pass,WIKI-1999-088,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-088,effective_year=1999 event=榆林市 roster=榆林市
-entity_reference,pass,WIKI-1999-089,CNUR-000029
-automatic_continuity,pass,WIKI-1999-089,type=upgrade automatic=True
-event_roster_name,pass,WIKI-1999-089,effective_year=1999 event=通辽市 roster=通辽市
+event_roster_name,pass,WIKI-1997-074,effective_year=1997 event=聊城市 roster=聊城市
+entity_reference,pass,WIKI-1997-075,CNUR-000165
+automatic_continuity,pass,WIKI-1997-075,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-075,effective_year=1997 event=商丘市 roster=商丘市
+entity_reference,pass,WIKI-1997-076,CNUR-000193
+automatic_continuity,pass,WIKI-1997-076,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-076,effective_year=1997 event=怀化市 roster=怀化市
+entity_reference,pass,WIKI-1997-077,CNUR-000225
+automatic_continuity,pass,WIKI-1997-077,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-077,effective_year=1997 event=玉林市 roster=玉林市
+entity_reference,pass,WIKI-1997-078,CNUR-000259
+automatic_continuity,pass,WIKI-1997-078,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-078,effective_year=1997 event=遵义市 roster=遵义市
+entity_reference,pass,WIKI-1997-079,CNUR-000267
+automatic_continuity,pass,WIKI-1997-079,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-079,effective_year=1997 event=曲靖市 roster=曲靖市
+entity_reference,pass,WIKI-1997-080,CNUR-000268
+automatic_continuity,pass,WIKI-1997-080,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-080,effective_year=1997 event=玉溪市 roster=玉溪市
+entity_reference,pass,WIKI-1997-081,CNUR-000363
+automatic_continuity,pass,WIKI-1997-081,type=split automatic=False
+historical_lifespan,pass,WIKI-1997-081,event=1997 lifespan=1987-1997
+entity_reference,pass,WIKI-1997-082,CNUR-000247
+automatic_continuity,pass,WIKI-1997-082,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1997-083,CNUR-000345
+automatic_continuity,pass,WIKI-1997-083,type=abolish automatic=False
+historical_lifespan,pass,WIKI-1997-083,event=1997 lifespan=1988-1997
+entity_reference,pass,WIKI-1997-084,CNUR-000235
+automatic_continuity,pass,WIKI-1997-084,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1997-084,effective_year=1997 event=重庆市 roster=重庆市
+entity_reference,pass,WIKI-1998-083,CNUR-000109
+automatic_continuity,pass,WIKI-1998-083,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-083,effective_year=1998 event=宿州市 roster=宿州市
+entity_reference,pass,WIKI-1998-084,CNUR-000130
+automatic_continuity,pass,WIKI-1998-084,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-084,effective_year=1998 event=赣州市 roster=赣州市
+entity_reference,pass,WIKI-1998-085,CNUR-000166
+automatic_continuity,pass,WIKI-1998-085,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-085,effective_year=1998 event=信阳市 roster=信阳市
+entity_reference,pass,WIKI-1998-086,CNUR-000179
+automatic_continuity,pass,WIKI-1998-086,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-086,effective_year=1998 event=咸宁市 roster=咸宁市
+entity_reference,pass,WIKI-1998-087,CNUR-000249
+automatic_continuity,pass,WIKI-1998-087,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-087,effective_year=1998 event=广安市 roster=广安市
+entity_reference,pass,WIKI-1998-088,CNUR-000323
+automatic_continuity,pass,WIKI-1998-088,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1998-088,effective_year=1998 event=吴忠市 roster=吴忠市
+entity_reference,pass,WIKI-1998-089,CNUR-000361
+automatic_continuity,pass,WIKI-1998-089,type=merge automatic=False
+historical_lifespan,pass,WIKI-1998-089,event=1998 lifespan=1987-1998
+entity_reference,pass,WIKI-1998-090,CNUR-000253
+automatic_continuity,pass,WIKI-1998-090,type=establish_prefecture automatic=False
+entity_reference,pass,WIKI-1999-091,CNUR-000020
+automatic_continuity,pass,WIKI-1999-091,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-091,effective_year=1999 event=晋中市 roster=晋中市
+entity_reference,pass,WIKI-1999-092,CNUR-000071
+automatic_continuity,pass,WIKI-1999-092,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-092,effective_year=1999 event=绥化市 roster=绥化市
+entity_reference,pass,WIKI-1999-093,CNUR-000110
+automatic_continuity,pass,WIKI-1999-093,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-093,effective_year=1999 event=巢湖市 roster=巢湖市
+entity_reference,pass,WIKI-1999-094,CNUR-000111
+automatic_continuity,pass,WIKI-1999-094,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-094,effective_year=1999 event=六安市 roster=六安市
+entity_reference,pass,WIKI-1999-095,CNUR-000123
+automatic_continuity,pass,WIKI-1999-095,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-095,effective_year=1999 event=宁德市 roster=宁德市
+entity_reference,pass,WIKI-1999-096,CNUR-000194
+automatic_continuity,pass,WIKI-1999-096,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-096,effective_year=1999 event=娄底市 roster=娄底市
+entity_reference,pass,WIKI-1999-097,CNUR-000250
+automatic_continuity,pass,WIKI-1999-097,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-097,effective_year=1999 event=达州市 roster=达州市
+entity_reference,pass,WIKI-1999-098,CNUR-000296
+automatic_continuity,pass,WIKI-1999-098,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-098,effective_year=1999 event=榆林市 roster=榆林市
+entity_reference,pass,WIKI-1999-099,CNUR-000029
+automatic_continuity,pass,WIKI-1999-099,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1999-099,effective_year=1999 event=通辽市 roster=通辽市
 entity_reference,pass,PL-2000-001,CNUR-000131
 automatic_continuity,pass,PL-2000-001,type=upgrade automatic=True
 event_roster_name,pass,PL-2000-001,effective_year=2000 event=吉安市 roster=吉安市
@@ -469,23 +499,29 @@ event_roster_name,pass,PL-2017-001,effective_year=2018 event=那曲市 roster=�
 entity_reference,pass,PL-2018-001,CNUR-000146
 automatic_continuity,pass,PL-2018-001,type=merge automatic=False
 chronological_order,pass,CNUR-000106,1987
+chronological_order,pass,CNUR-000144,1987
 chronological_order,pass,CNUR-000095,1987
 chronological_order,pass,CNUR-000341,1987
+chronological_order,pass,CNUR-000232,1987
 chronological_order,pass,CNUR-000238,1987
 chronological_order,pass,CNUR-000254,1987
 chronological_order,pass,CNUR-000012,1988
 chronological_order,pass,CNUR-000019,1988
 chronological_order,pass,CNUR-000188,1988
+name_chain,pass,CNUR-000189,WIKI-1988-011:大庸市 -> WIKI-1994-058:大庸市
+chronological_order,pass,CNUR-000189,"1988,1994"
 chronological_order,pass,CNUR-000205,1988
 chronological_order,pass,CNUR-000347,1988
 chronological_order,pass,CNUR-000208,1988
 chronological_order,pass,CNUR-000209,1988
+chronological_order,pass,CNUR-000212,1988
 chronological_order,pass,CNUR-000207,1988
 chronological_order,pass,CNUR-000210,1988
 chronological_order,pass,CNUR-000211,1988
+chronological_order,pass,CNUR-000213,1988
 chronological_order,pass,CNUR-000348,1988
 chronological_order,pass,CNUR-000113,"1988,2000"
-name_chain,pass,CNUR-000121,WIKI-1988-018:南平地区 -> WIKI-1994-038:南平地区
+name_chain,pass,CNUR-000121,WIKI-1988-023:南平地区 -> WIKI-1994-044:南平地区
 chronological_order,pass,CNUR-000121,"1988,1994"
 chronological_order,pass,CNUR-000145,1989
 chronological_order,pass,CNUR-000214,1991
@@ -494,7 +530,8 @@ chronological_order,pass,CNUR-000107,1992
 chronological_order,pass,CNUR-000342,1992
 chronological_order,pass,CNUR-000349,1992
 chronological_order,pass,CNUR-000057,1992
-name_chain,pass,CNUR-000150,WIKI-1992-023:滨州地区 -> PL-2000-006:滨州地区
+chronological_order,pass,CNUR-000146,"1992,2018"
+name_chain,pass,CNUR-000150,WIKI-1992-029:滨州地区 -> PL-2000-006:滨州地区
 chronological_order,pass,CNUR-000150,"1992,2000"
 chronological_order,pass,CNUR-000058,1993
 chronological_order,pass,CNUR-000070,1993
@@ -520,12 +557,13 @@ chronological_order,pass,CNUR-000293,1994
 chronological_order,pass,CNUR-000356,1994
 chronological_order,pass,CNUR-000357,1994
 chronological_order,pass,CNUR-000358,1994
+chronological_order,pass,CNUR-000216,1994
 chronological_order,pass,CNUR-000050,1994
 chronological_order,pass,CNUR-000056,1994
-chronological_order,pass,CNUR-000189,1994
 chronological_order,pass,CNUR-000178,1995
 chronological_order,pass,CNUR-000192,1995
 chronological_order,pass,CNUR-000344,1995
+chronological_order,pass,CNUR-000224,1995
 chronological_order,pass,CNUR-000013,1996
 chronological_order,pass,CNUR-000108,1996
 chronological_order,pass,CNUR-000122,1996
@@ -533,6 +571,8 @@ chronological_order,pass,CNUR-000248,1996
 chronological_order,pass,CNUR-000295,1996
 chronological_order,pass,CNUR-000294,1996
 chronological_order,pass,CNUR-000360,1996
+chronological_order,pass,CNUR-000085,1996
+chronological_order,pass,CNUR-000086,1996
 chronological_order,pass,CNUR-000177,1996
 chronological_order,pass,CNUR-000345,"1996,1997"
 chronological_order,pass,CNUR-000149,1997
@@ -619,70 +659,89 @@ chronological_order,pass,CNUR-000328,2015
 chronological_order,pass,CNUR-000286,2016
 chronological_order,pass,CNUR-000329,2016
 chronological_order,pass,CNUR-000287,2017
-chronological_order,pass,CNUR-000146,2018
 relation_event_reference,pass,WIKI-1987-001,upgrade
 relation_from_entity,pass,WIKI-1987-001,CNUR-000106
 relation_to_entity,pass,WIKI-1987-001,CNUR-000106
 complex_relation_mapping,pass,WIKI-1987-001,upgrade automatic=true
 relation_event_reference,pass,WIKI-1987-002,upgrade
-relation_from_entity,pass,WIKI-1987-002,CNUR-000095
-relation_to_entity,pass,WIKI-1987-002,CNUR-000095
+relation_from_entity,pass,WIKI-1987-002,CNUR-000144
+relation_to_entity,pass,WIKI-1987-002,CNUR-000144
 complex_relation_mapping,pass,WIKI-1987-002,upgrade automatic=true
-relation_event_reference,pass,WIKI-1987-003,abolish
-relation_from_entity,pass,WIKI-1987-003,CNUR-000341
-complex_relation_mapping,pass,WIKI-1987-003,abolish automatic=false
-relation_event_reference,pass,WIKI-1987-004,rename
-relation_from_entity,pass,WIKI-1987-004,CNUR-000238
-relation_to_entity,pass,WIKI-1987-004,CNUR-000238
-complex_relation_mapping,pass,WIKI-1987-004,rename automatic=true
-relation_event_reference,pass,WIKI-1987-005,rename
-relation_from_entity,pass,WIKI-1987-005,CNUR-000254
-relation_to_entity,pass,WIKI-1987-005,CNUR-000254
-complex_relation_mapping,pass,WIKI-1987-005,rename automatic=true
-relation_event_reference,pass,WIKI-1988-006,upgrade
-relation_from_entity,pass,WIKI-1988-006,CNUR-000012
-relation_to_entity,pass,WIKI-1988-006,CNUR-000012
-complex_relation_mapping,pass,WIKI-1988-006,upgrade automatic=true
-relation_event_reference,pass,WIKI-1988-007,establish
-relation_from_entity,pass,WIKI-1988-007,CNUR-000019
-complex_relation_mapping,pass,WIKI-1988-007,establish automatic=false
+relation_event_reference,pass,WIKI-1987-003,upgrade
+relation_from_entity,pass,WIKI-1987-003,CNUR-000095
+relation_to_entity,pass,WIKI-1987-003,CNUR-000095
+complex_relation_mapping,pass,WIKI-1987-003,upgrade automatic=true
+relation_event_reference,pass,WIKI-1987-004,abolish
+relation_from_entity,pass,WIKI-1987-004,CNUR-000341
+complex_relation_mapping,pass,WIKI-1987-004,abolish automatic=false
+relation_event_reference,pass,WIKI-1987-005,upgrade
+relation_from_entity,pass,WIKI-1987-005,CNUR-000232
+relation_to_entity,pass,WIKI-1987-005,CNUR-000232
+complex_relation_mapping,pass,WIKI-1987-005,upgrade automatic=true
+relation_event_reference,pass,WIKI-1987-006,rename
+relation_from_entity,pass,WIKI-1987-006,CNUR-000238
+relation_to_entity,pass,WIKI-1987-006,CNUR-000238
+complex_relation_mapping,pass,WIKI-1987-006,rename automatic=true
+relation_event_reference,pass,WIKI-1987-007,rename
+relation_from_entity,pass,WIKI-1987-007,CNUR-000254
+relation_to_entity,pass,WIKI-1987-007,CNUR-000254
+complex_relation_mapping,pass,WIKI-1987-007,rename automatic=true
 relation_event_reference,pass,WIKI-1988-008,upgrade
-relation_from_entity,pass,WIKI-1988-008,CNUR-000188
-relation_to_entity,pass,WIKI-1988-008,CNUR-000188
+relation_from_entity,pass,WIKI-1988-008,CNUR-000012
+relation_to_entity,pass,WIKI-1988-008,CNUR-000012
 complex_relation_mapping,pass,WIKI-1988-008,upgrade automatic=true
-relation_event_reference,pass,WIKI-1988-009,upgrade
-relation_from_entity,pass,WIKI-1988-009,CNUR-000205
-relation_to_entity,pass,WIKI-1988-009,CNUR-000205
-complex_relation_mapping,pass,WIKI-1988-009,upgrade automatic=true
-relation_event_reference,pass,WIKI-1988-010,split
-relation_from_entity,pass,WIKI-1988-010,CNUR-000347
-complex_relation_mapping,pass,WIKI-1988-010,split automatic=false
-relation_event_reference,pass,WIKI-1988-011,establish
-relation_from_entity,pass,WIKI-1988-011,CNUR-000208
-complex_relation_mapping,pass,WIKI-1988-011,establish automatic=false
-relation_event_reference,pass,WIKI-1988-012,establish
-relation_from_entity,pass,WIKI-1988-012,CNUR-000209
-complex_relation_mapping,pass,WIKI-1988-012,establish automatic=false
-relation_event_reference,pass,WIKI-1988-013,upgrade
-relation_from_entity,pass,WIKI-1988-013,CNUR-000207
-relation_to_entity,pass,WIKI-1988-013,CNUR-000207
-complex_relation_mapping,pass,WIKI-1988-013,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-009,establish
+relation_from_entity,pass,WIKI-1988-009,CNUR-000019
+complex_relation_mapping,pass,WIKI-1988-009,establish automatic=false
+relation_event_reference,pass,WIKI-1988-010,upgrade
+relation_from_entity,pass,WIKI-1988-010,CNUR-000188
+relation_to_entity,pass,WIKI-1988-010,CNUR-000188
+complex_relation_mapping,pass,WIKI-1988-010,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-011,upgrade
+relation_from_entity,pass,WIKI-1988-011,CNUR-000189
+relation_to_entity,pass,WIKI-1988-011,CNUR-000189
+complex_relation_mapping,pass,WIKI-1988-011,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-012,upgrade
+relation_from_entity,pass,WIKI-1988-012,CNUR-000205
+relation_to_entity,pass,WIKI-1988-012,CNUR-000205
+complex_relation_mapping,pass,WIKI-1988-012,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-013,split
+relation_from_entity,pass,WIKI-1988-013,CNUR-000347
+complex_relation_mapping,pass,WIKI-1988-013,split automatic=false
 relation_event_reference,pass,WIKI-1988-014,establish
-relation_from_entity,pass,WIKI-1988-014,CNUR-000210
+relation_from_entity,pass,WIKI-1988-014,CNUR-000208
 complex_relation_mapping,pass,WIKI-1988-014,establish automatic=false
 relation_event_reference,pass,WIKI-1988-015,establish
-relation_from_entity,pass,WIKI-1988-015,CNUR-000211
+relation_from_entity,pass,WIKI-1988-015,CNUR-000209
 complex_relation_mapping,pass,WIKI-1988-015,establish automatic=false
-relation_event_reference,pass,WIKI-1988-016,merge
-relation_from_entity,pass,WIKI-1988-016,CNUR-000348
-complex_relation_mapping,pass,WIKI-1988-016,merge automatic=false
-relation_event_reference,pass,WIKI-1988-017,establish_prefecture
-relation_from_entity,pass,WIKI-1988-017,CNUR-000113
-complex_relation_mapping,pass,WIKI-1988-017,establish_prefecture automatic=false
-relation_event_reference,pass,WIKI-1988-018,rename
-relation_from_entity,pass,WIKI-1988-018,CNUR-000121
-relation_to_entity,pass,WIKI-1988-018,CNUR-000121
-complex_relation_mapping,pass,WIKI-1988-018,rename automatic=true
+relation_event_reference,pass,WIKI-1988-016,upgrade
+relation_from_entity,pass,WIKI-1988-016,CNUR-000212
+relation_to_entity,pass,WIKI-1988-016,CNUR-000212
+complex_relation_mapping,pass,WIKI-1988-016,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-017,upgrade
+relation_from_entity,pass,WIKI-1988-017,CNUR-000207
+relation_to_entity,pass,WIKI-1988-017,CNUR-000207
+complex_relation_mapping,pass,WIKI-1988-017,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-018,establish
+relation_from_entity,pass,WIKI-1988-018,CNUR-000210
+complex_relation_mapping,pass,WIKI-1988-018,establish automatic=false
+relation_event_reference,pass,WIKI-1988-019,establish
+relation_from_entity,pass,WIKI-1988-019,CNUR-000211
+complex_relation_mapping,pass,WIKI-1988-019,establish automatic=false
+relation_event_reference,pass,WIKI-1988-020,upgrade
+relation_from_entity,pass,WIKI-1988-020,CNUR-000213
+relation_to_entity,pass,WIKI-1988-020,CNUR-000213
+complex_relation_mapping,pass,WIKI-1988-020,upgrade automatic=true
+relation_event_reference,pass,WIKI-1988-021,merge
+relation_from_entity,pass,WIKI-1988-021,CNUR-000348
+complex_relation_mapping,pass,WIKI-1988-021,merge automatic=false
+relation_event_reference,pass,WIKI-1988-022,establish_prefecture
+relation_from_entity,pass,WIKI-1988-022,CNUR-000113
+complex_relation_mapping,pass,WIKI-1988-022,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1988-023,rename
+relation_from_entity,pass,WIKI-1988-023,CNUR-000121
+relation_to_entity,pass,WIKI-1988-023,CNUR-000121
+complex_relation_mapping,pass,WIKI-1988-023,rename automatic=true
 relation_event_reference,pass,WIKI-1989-001,upgrade
 relation_from_entity,pass,WIKI-1989-001,CNUR-000145
 relation_to_entity,pass,WIKI-1989-001,CNUR-000145
@@ -694,276 +753,296 @@ complex_relation_mapping,pass,WIKI-1991-001,upgrade automatic=true
 relation_event_reference,pass,WIKI-1991-002,establish
 relation_from_entity,pass,WIKI-1991-002,CNUR-000215
 complex_relation_mapping,pass,WIKI-1991-002,establish automatic=false
-relation_event_reference,pass,WIKI-1992-019,upgrade
-relation_from_entity,pass,WIKI-1992-019,CNUR-000107
-relation_to_entity,pass,WIKI-1992-019,CNUR-000107
-complex_relation_mapping,pass,WIKI-1992-019,upgrade automatic=true
-relation_event_reference,pass,WIKI-1992-020,upgrade
-relation_from_entity,pass,WIKI-1992-020,CNUR-000342
-relation_to_entity,pass,WIKI-1992-020,CNUR-000342
-complex_relation_mapping,pass,WIKI-1992-020,upgrade automatic=true
-relation_event_reference,pass,WIKI-1992-021,abolish
-relation_from_entity,pass,WIKI-1992-021,CNUR-000349
-complex_relation_mapping,pass,WIKI-1992-021,abolish automatic=false
-relation_event_reference,pass,WIKI-1992-022,establish
-relation_from_entity,pass,WIKI-1992-022,CNUR-000057
-complex_relation_mapping,pass,WIKI-1992-022,establish automatic=false
-relation_event_reference,pass,WIKI-1992-023,rename
-relation_from_entity,pass,WIKI-1992-023,CNUR-000150
-relation_to_entity,pass,WIKI-1992-023,CNUR-000150
-complex_relation_mapping,pass,WIKI-1992-023,rename automatic=true
-relation_event_reference,pass,WIKI-1993-024,upgrade
-relation_from_entity,pass,WIKI-1993-024,CNUR-000058
-relation_to_entity,pass,WIKI-1993-024,CNUR-000058
-complex_relation_mapping,pass,WIKI-1993-024,upgrade automatic=true
-relation_event_reference,pass,WIKI-1993-025,upgrade
-relation_from_entity,pass,WIKI-1993-025,CNUR-000070
-relation_to_entity,pass,WIKI-1993-025,CNUR-000070
-complex_relation_mapping,pass,WIKI-1993-025,upgrade automatic=true
-relation_event_reference,pass,WIKI-1993-026,establish
-relation_from_entity,pass,WIKI-1993-026,CNUR-000176
-complex_relation_mapping,pass,WIKI-1993-026,establish automatic=false
-relation_event_reference,pass,WIKI-1993-027,upgrade
-relation_from_entity,pass,WIKI-1993-027,CNUR-000246
-relation_to_entity,pass,WIKI-1993-027,CNUR-000246
-complex_relation_mapping,pass,WIKI-1993-027,upgrade automatic=true
-relation_event_reference,pass,WIKI-1993-028,merge
-relation_from_entity,pass,WIKI-1993-028,CNUR-000350
-complex_relation_mapping,pass,WIKI-1993-028,merge automatic=false
-relation_event_reference,pass,WIKI-1993-029,merge
-relation_from_entity,pass,WIKI-1993-029,CNUR-000351
-complex_relation_mapping,pass,WIKI-1993-029,merge automatic=false
-relation_event_reference,pass,WIKI-1993-030,merge
-relation_from_entity,pass,WIKI-1993-030,CNUR-000352
-complex_relation_mapping,pass,WIKI-1993-030,merge automatic=false
-relation_event_reference,pass,WIKI-1993-031,merge
-relation_from_entity,pass,WIKI-1993-031,CNUR-000353
-complex_relation_mapping,pass,WIKI-1993-031,merge automatic=false
-relation_event_reference,pass,WIKI-1993-032,merge
-relation_from_entity,pass,WIKI-1993-032,CNUR-000354
-complex_relation_mapping,pass,WIKI-1993-032,merge automatic=false
-relation_event_reference,pass,WIKI-1993-033,merge
-relation_from_entity,pass,WIKI-1993-033,CNUR-000355
-complex_relation_mapping,pass,WIKI-1993-033,merge automatic=false
-relation_event_reference,pass,WIKI-1993-034,abolish
-relation_from_entity,pass,WIKI-1993-034,CNUR-000343
-complex_relation_mapping,pass,WIKI-1993-034,abolish automatic=false
-relation_event_reference,pass,WIKI-1993-035,establish
-relation_from_entity,pass,WIKI-1993-035,CNUR-000222
-complex_relation_mapping,pass,WIKI-1993-035,establish automatic=false
-relation_event_reference,pass,WIKI-1993-036,rename
-relation_from_entity,pass,WIKI-1993-036,CNUR-000181
-relation_to_entity,pass,WIKI-1993-036,CNUR-000181
-complex_relation_mapping,pass,WIKI-1993-036,rename automatic=true
-relation_event_reference,pass,WIKI-1994-037,upgrade
-relation_from_entity,pass,WIKI-1994-037,CNUR-000096
-relation_to_entity,pass,WIKI-1994-037,CNUR-000096
-complex_relation_mapping,pass,WIKI-1994-037,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-038,upgrade
-relation_from_entity,pass,WIKI-1994-038,CNUR-000121
-relation_to_entity,pass,WIKI-1994-038,CNUR-000121
-complex_relation_mapping,pass,WIKI-1994-038,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-039,upgrade
-relation_from_entity,pass,WIKI-1994-039,CNUR-000147
-relation_to_entity,pass,WIKI-1994-039,CNUR-000147
-complex_relation_mapping,pass,WIKI-1994-039,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-040,upgrade
-relation_from_entity,pass,WIKI-1994-040,CNUR-000148
-relation_to_entity,pass,WIKI-1994-040,CNUR-000148
-complex_relation_mapping,pass,WIKI-1994-040,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-041,upgrade
-relation_from_entity,pass,WIKI-1994-041,CNUR-000164
-relation_to_entity,pass,WIKI-1994-041,CNUR-000164
-complex_relation_mapping,pass,WIKI-1994-041,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-042,upgrade
-relation_from_entity,pass,WIKI-1994-042,CNUR-000190
-relation_to_entity,pass,WIKI-1994-042,CNUR-000190
-complex_relation_mapping,pass,WIKI-1994-042,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-043,establish
-relation_from_entity,pass,WIKI-1994-043,CNUR-000191
-complex_relation_mapping,pass,WIKI-1994-043,establish automatic=false
+relation_event_reference,pass,WIKI-1992-024,upgrade
+relation_from_entity,pass,WIKI-1992-024,CNUR-000107
+relation_to_entity,pass,WIKI-1992-024,CNUR-000107
+complex_relation_mapping,pass,WIKI-1992-024,upgrade automatic=true
+relation_event_reference,pass,WIKI-1992-025,upgrade
+relation_from_entity,pass,WIKI-1992-025,CNUR-000342
+relation_to_entity,pass,WIKI-1992-025,CNUR-000342
+complex_relation_mapping,pass,WIKI-1992-025,upgrade automatic=true
+relation_event_reference,pass,WIKI-1992-026,abolish
+relation_from_entity,pass,WIKI-1992-026,CNUR-000349
+complex_relation_mapping,pass,WIKI-1992-026,abolish automatic=false
+relation_event_reference,pass,WIKI-1992-027,establish
+relation_from_entity,pass,WIKI-1992-027,CNUR-000057
+complex_relation_mapping,pass,WIKI-1992-027,establish automatic=false
+relation_event_reference,pass,WIKI-1992-028,upgrade
+relation_from_entity,pass,WIKI-1992-028,CNUR-000146
+relation_to_entity,pass,WIKI-1992-028,CNUR-000146
+complex_relation_mapping,pass,WIKI-1992-028,upgrade automatic=true
+relation_event_reference,pass,WIKI-1992-029,rename
+relation_from_entity,pass,WIKI-1992-029,CNUR-000150
+relation_to_entity,pass,WIKI-1992-029,CNUR-000150
+complex_relation_mapping,pass,WIKI-1992-029,rename automatic=true
+relation_event_reference,pass,WIKI-1993-030,upgrade
+relation_from_entity,pass,WIKI-1993-030,CNUR-000058
+relation_to_entity,pass,WIKI-1993-030,CNUR-000058
+complex_relation_mapping,pass,WIKI-1993-030,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-031,upgrade
+relation_from_entity,pass,WIKI-1993-031,CNUR-000070
+relation_to_entity,pass,WIKI-1993-031,CNUR-000070
+complex_relation_mapping,pass,WIKI-1993-031,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-032,establish
+relation_from_entity,pass,WIKI-1993-032,CNUR-000176
+complex_relation_mapping,pass,WIKI-1993-032,establish automatic=false
+relation_event_reference,pass,WIKI-1993-033,upgrade
+relation_from_entity,pass,WIKI-1993-033,CNUR-000246
+relation_to_entity,pass,WIKI-1993-033,CNUR-000246
+complex_relation_mapping,pass,WIKI-1993-033,upgrade automatic=true
+relation_event_reference,pass,WIKI-1993-034,merge
+relation_from_entity,pass,WIKI-1993-034,CNUR-000350
+complex_relation_mapping,pass,WIKI-1993-034,merge automatic=false
+relation_event_reference,pass,WIKI-1993-035,merge
+relation_from_entity,pass,WIKI-1993-035,CNUR-000351
+complex_relation_mapping,pass,WIKI-1993-035,merge automatic=false
+relation_event_reference,pass,WIKI-1993-036,merge
+relation_from_entity,pass,WIKI-1993-036,CNUR-000352
+complex_relation_mapping,pass,WIKI-1993-036,merge automatic=false
+relation_event_reference,pass,WIKI-1993-037,merge
+relation_from_entity,pass,WIKI-1993-037,CNUR-000353
+complex_relation_mapping,pass,WIKI-1993-037,merge automatic=false
+relation_event_reference,pass,WIKI-1993-038,merge
+relation_from_entity,pass,WIKI-1993-038,CNUR-000354
+complex_relation_mapping,pass,WIKI-1993-038,merge automatic=false
+relation_event_reference,pass,WIKI-1993-039,merge
+relation_from_entity,pass,WIKI-1993-039,CNUR-000355
+complex_relation_mapping,pass,WIKI-1993-039,merge automatic=false
+relation_event_reference,pass,WIKI-1993-040,abolish
+relation_from_entity,pass,WIKI-1993-040,CNUR-000343
+complex_relation_mapping,pass,WIKI-1993-040,abolish automatic=false
+relation_event_reference,pass,WIKI-1993-041,establish
+relation_from_entity,pass,WIKI-1993-041,CNUR-000222
+complex_relation_mapping,pass,WIKI-1993-041,establish automatic=false
+relation_event_reference,pass,WIKI-1993-042,rename
+relation_from_entity,pass,WIKI-1993-042,CNUR-000181
+relation_to_entity,pass,WIKI-1993-042,CNUR-000181
+complex_relation_mapping,pass,WIKI-1993-042,rename automatic=true
+relation_event_reference,pass,WIKI-1994-043,upgrade
+relation_from_entity,pass,WIKI-1994-043,CNUR-000096
+relation_to_entity,pass,WIKI-1994-043,CNUR-000096
+complex_relation_mapping,pass,WIKI-1994-043,upgrade automatic=true
 relation_event_reference,pass,WIKI-1994-044,upgrade
-relation_from_entity,pass,WIKI-1994-044,CNUR-000223
-relation_to_entity,pass,WIKI-1994-044,CNUR-000223
+relation_from_entity,pass,WIKI-1994-044,CNUR-000121
+relation_to_entity,pass,WIKI-1994-044,CNUR-000121
 complex_relation_mapping,pass,WIKI-1994-044,upgrade automatic=true
 relation_event_reference,pass,WIKI-1994-045,upgrade
-relation_from_entity,pass,WIKI-1994-045,CNUR-000293
-relation_to_entity,pass,WIKI-1994-045,CNUR-000293
+relation_from_entity,pass,WIKI-1994-045,CNUR-000147
+relation_to_entity,pass,WIKI-1994-045,CNUR-000147
 complex_relation_mapping,pass,WIKI-1994-045,upgrade automatic=true
-relation_event_reference,pass,WIKI-1994-046,merge
-relation_from_entity,pass,WIKI-1994-046,CNUR-000356
-complex_relation_mapping,pass,WIKI-1994-046,merge automatic=false
-relation_event_reference,pass,WIKI-1994-047,merge
-relation_from_entity,pass,WIKI-1994-047,CNUR-000357
-complex_relation_mapping,pass,WIKI-1994-047,merge automatic=false
-relation_event_reference,pass,WIKI-1994-048,merge
-relation_from_entity,pass,WIKI-1994-048,CNUR-000358
-complex_relation_mapping,pass,WIKI-1994-048,merge automatic=false
-relation_event_reference,pass,WIKI-1994-049,rename
-relation_from_entity,pass,WIKI-1994-049,CNUR-000050
-relation_to_entity,pass,WIKI-1994-049,CNUR-000050
-complex_relation_mapping,pass,WIKI-1994-049,rename automatic=true
-relation_event_reference,pass,WIKI-1994-050,rename
-relation_from_entity,pass,WIKI-1994-050,CNUR-000056
-relation_to_entity,pass,WIKI-1994-050,CNUR-000056
-complex_relation_mapping,pass,WIKI-1994-050,rename automatic=true
-relation_event_reference,pass,WIKI-1994-051,rename
-relation_from_entity,pass,WIKI-1994-051,CNUR-000189
-relation_to_entity,pass,WIKI-1994-051,CNUR-000189
-complex_relation_mapping,pass,WIKI-1994-051,rename automatic=true
-relation_event_reference,pass,WIKI-1995-052,upgrade
-relation_from_entity,pass,WIKI-1995-052,CNUR-000178
-relation_to_entity,pass,WIKI-1995-052,CNUR-000178
-complex_relation_mapping,pass,WIKI-1995-052,upgrade automatic=true
-relation_event_reference,pass,WIKI-1995-053,upgrade
-relation_from_entity,pass,WIKI-1995-053,CNUR-000192
-relation_to_entity,pass,WIKI-1995-053,CNUR-000192
-complex_relation_mapping,pass,WIKI-1995-053,upgrade automatic=true
-relation_event_reference,pass,WIKI-1995-054,upgrade
-relation_from_entity,pass,WIKI-1995-054,CNUR-000344
-relation_to_entity,pass,WIKI-1995-054,CNUR-000344
-complex_relation_mapping,pass,WIKI-1995-054,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-055,upgrade
-relation_from_entity,pass,WIKI-1996-055,CNUR-000013
-relation_to_entity,pass,WIKI-1996-055,CNUR-000013
-complex_relation_mapping,pass,WIKI-1996-055,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-056,upgrade
-relation_from_entity,pass,WIKI-1996-056,CNUR-000108
-relation_to_entity,pass,WIKI-1996-056,CNUR-000108
-complex_relation_mapping,pass,WIKI-1996-056,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-057,upgrade
-relation_from_entity,pass,WIKI-1996-057,CNUR-000122
-relation_to_entity,pass,WIKI-1996-057,CNUR-000122
-complex_relation_mapping,pass,WIKI-1996-057,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-058,upgrade
-relation_from_entity,pass,WIKI-1996-058,CNUR-000248
-relation_to_entity,pass,WIKI-1996-058,CNUR-000248
-complex_relation_mapping,pass,WIKI-1996-058,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-059,upgrade
-relation_from_entity,pass,WIKI-1996-059,CNUR-000295
-relation_to_entity,pass,WIKI-1996-059,CNUR-000295
-complex_relation_mapping,pass,WIKI-1996-059,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-060,upgrade
-relation_from_entity,pass,WIKI-1996-060,CNUR-000294
-relation_to_entity,pass,WIKI-1996-060,CNUR-000294
-complex_relation_mapping,pass,WIKI-1996-060,upgrade automatic=true
-relation_event_reference,pass,WIKI-1996-061,merge
-relation_from_entity,pass,WIKI-1996-061,CNUR-000360
-complex_relation_mapping,pass,WIKI-1996-061,merge automatic=false
-relation_event_reference,pass,WIKI-1996-062,rename
-relation_from_entity,pass,WIKI-1996-062,CNUR-000177
-relation_to_entity,pass,WIKI-1996-062,CNUR-000177
-complex_relation_mapping,pass,WIKI-1996-062,rename automatic=true
-relation_event_reference,pass,WIKI-1996-063,jurisdiction_transfer
-relation_from_entity,pass,WIKI-1996-063,CNUR-000345
-complex_relation_mapping,pass,WIKI-1996-063,jurisdiction_transfer automatic=false
-relation_event_reference,pass,WIKI-1997-064,upgrade
-relation_from_entity,pass,WIKI-1997-064,CNUR-000149
-relation_to_entity,pass,WIKI-1997-064,CNUR-000149
-complex_relation_mapping,pass,WIKI-1997-064,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-065,upgrade
-relation_from_entity,pass,WIKI-1997-065,CNUR-000165
-relation_to_entity,pass,WIKI-1997-065,CNUR-000165
-complex_relation_mapping,pass,WIKI-1997-065,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-066,upgrade
-relation_from_entity,pass,WIKI-1997-066,CNUR-000193
-relation_to_entity,pass,WIKI-1997-066,CNUR-000193
-complex_relation_mapping,pass,WIKI-1997-066,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-067,upgrade
-relation_from_entity,pass,WIKI-1997-067,CNUR-000225
-relation_to_entity,pass,WIKI-1997-067,CNUR-000225
-complex_relation_mapping,pass,WIKI-1997-067,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-068,upgrade
-relation_from_entity,pass,WIKI-1997-068,CNUR-000259
-relation_to_entity,pass,WIKI-1997-068,CNUR-000259
-complex_relation_mapping,pass,WIKI-1997-068,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-069,upgrade
-relation_from_entity,pass,WIKI-1997-069,CNUR-000267
-relation_to_entity,pass,WIKI-1997-069,CNUR-000267
-complex_relation_mapping,pass,WIKI-1997-069,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-070,upgrade
-relation_from_entity,pass,WIKI-1997-070,CNUR-000268
-relation_to_entity,pass,WIKI-1997-070,CNUR-000268
-complex_relation_mapping,pass,WIKI-1997-070,upgrade automatic=true
-relation_event_reference,pass,WIKI-1997-071,split
-relation_from_entity,pass,WIKI-1997-071,CNUR-000363
-complex_relation_mapping,pass,WIKI-1997-071,split automatic=false
-relation_event_reference,pass,WIKI-1997-072,establish_prefecture
-relation_from_entity,pass,WIKI-1997-072,CNUR-000247
-complex_relation_mapping,pass,WIKI-1997-072,establish_prefecture automatic=false
-relation_event_reference,pass,WIKI-1997-073,abolish
-relation_from_entity,pass,WIKI-1997-073,CNUR-000345
-complex_relation_mapping,pass,WIKI-1997-073,abolish automatic=false
+relation_event_reference,pass,WIKI-1994-046,upgrade
+relation_from_entity,pass,WIKI-1994-046,CNUR-000148
+relation_to_entity,pass,WIKI-1994-046,CNUR-000148
+complex_relation_mapping,pass,WIKI-1994-046,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-047,upgrade
+relation_from_entity,pass,WIKI-1994-047,CNUR-000164
+relation_to_entity,pass,WIKI-1994-047,CNUR-000164
+complex_relation_mapping,pass,WIKI-1994-047,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-048,upgrade
+relation_from_entity,pass,WIKI-1994-048,CNUR-000190
+relation_to_entity,pass,WIKI-1994-048,CNUR-000190
+complex_relation_mapping,pass,WIKI-1994-048,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-049,establish
+relation_from_entity,pass,WIKI-1994-049,CNUR-000191
+complex_relation_mapping,pass,WIKI-1994-049,establish automatic=false
+relation_event_reference,pass,WIKI-1994-050,upgrade
+relation_from_entity,pass,WIKI-1994-050,CNUR-000223
+relation_to_entity,pass,WIKI-1994-050,CNUR-000223
+complex_relation_mapping,pass,WIKI-1994-050,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-051,upgrade
+relation_from_entity,pass,WIKI-1994-051,CNUR-000293
+relation_to_entity,pass,WIKI-1994-051,CNUR-000293
+complex_relation_mapping,pass,WIKI-1994-051,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-052,merge
+relation_from_entity,pass,WIKI-1994-052,CNUR-000356
+complex_relation_mapping,pass,WIKI-1994-052,merge automatic=false
+relation_event_reference,pass,WIKI-1994-053,merge
+relation_from_entity,pass,WIKI-1994-053,CNUR-000357
+complex_relation_mapping,pass,WIKI-1994-053,merge automatic=false
+relation_event_reference,pass,WIKI-1994-054,merge
+relation_from_entity,pass,WIKI-1994-054,CNUR-000358
+complex_relation_mapping,pass,WIKI-1994-054,merge automatic=false
+relation_event_reference,pass,WIKI-1994-055,upgrade
+relation_from_entity,pass,WIKI-1994-055,CNUR-000216
+relation_to_entity,pass,WIKI-1994-055,CNUR-000216
+complex_relation_mapping,pass,WIKI-1994-055,upgrade automatic=true
+relation_event_reference,pass,WIKI-1994-056,rename
+relation_from_entity,pass,WIKI-1994-056,CNUR-000050
+relation_to_entity,pass,WIKI-1994-056,CNUR-000050
+complex_relation_mapping,pass,WIKI-1994-056,rename automatic=true
+relation_event_reference,pass,WIKI-1994-057,rename
+relation_from_entity,pass,WIKI-1994-057,CNUR-000056
+relation_to_entity,pass,WIKI-1994-057,CNUR-000056
+complex_relation_mapping,pass,WIKI-1994-057,rename automatic=true
+relation_event_reference,pass,WIKI-1994-058,rename
+relation_from_entity,pass,WIKI-1994-058,CNUR-000189
+relation_to_entity,pass,WIKI-1994-058,CNUR-000189
+complex_relation_mapping,pass,WIKI-1994-058,rename automatic=true
+relation_event_reference,pass,WIKI-1995-059,upgrade
+relation_from_entity,pass,WIKI-1995-059,CNUR-000178
+relation_to_entity,pass,WIKI-1995-059,CNUR-000178
+complex_relation_mapping,pass,WIKI-1995-059,upgrade automatic=true
+relation_event_reference,pass,WIKI-1995-060,upgrade
+relation_from_entity,pass,WIKI-1995-060,CNUR-000192
+relation_to_entity,pass,WIKI-1995-060,CNUR-000192
+complex_relation_mapping,pass,WIKI-1995-060,upgrade automatic=true
+relation_event_reference,pass,WIKI-1995-061,upgrade
+relation_from_entity,pass,WIKI-1995-061,CNUR-000344
+relation_to_entity,pass,WIKI-1995-061,CNUR-000344
+complex_relation_mapping,pass,WIKI-1995-061,upgrade automatic=true
+relation_event_reference,pass,WIKI-1995-062,upgrade
+relation_from_entity,pass,WIKI-1995-062,CNUR-000224
+relation_to_entity,pass,WIKI-1995-062,CNUR-000224
+complex_relation_mapping,pass,WIKI-1995-062,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-063,upgrade
+relation_from_entity,pass,WIKI-1996-063,CNUR-000013
+relation_to_entity,pass,WIKI-1996-063,CNUR-000013
+complex_relation_mapping,pass,WIKI-1996-063,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-064,upgrade
+relation_from_entity,pass,WIKI-1996-064,CNUR-000108
+relation_to_entity,pass,WIKI-1996-064,CNUR-000108
+complex_relation_mapping,pass,WIKI-1996-064,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-065,upgrade
+relation_from_entity,pass,WIKI-1996-065,CNUR-000122
+relation_to_entity,pass,WIKI-1996-065,CNUR-000122
+complex_relation_mapping,pass,WIKI-1996-065,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-066,upgrade
+relation_from_entity,pass,WIKI-1996-066,CNUR-000248
+relation_to_entity,pass,WIKI-1996-066,CNUR-000248
+complex_relation_mapping,pass,WIKI-1996-066,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-067,upgrade
+relation_from_entity,pass,WIKI-1996-067,CNUR-000295
+relation_to_entity,pass,WIKI-1996-067,CNUR-000295
+complex_relation_mapping,pass,WIKI-1996-067,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-068,upgrade
+relation_from_entity,pass,WIKI-1996-068,CNUR-000294
+relation_to_entity,pass,WIKI-1996-068,CNUR-000294
+complex_relation_mapping,pass,WIKI-1996-068,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-069,merge
+relation_from_entity,pass,WIKI-1996-069,CNUR-000360
+complex_relation_mapping,pass,WIKI-1996-069,merge automatic=false
+relation_event_reference,pass,WIKI-1996-070,upgrade
+relation_from_entity,pass,WIKI-1996-070,CNUR-000085
+relation_to_entity,pass,WIKI-1996-070,CNUR-000085
+complex_relation_mapping,pass,WIKI-1996-070,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-071,upgrade
+relation_from_entity,pass,WIKI-1996-071,CNUR-000086
+relation_to_entity,pass,WIKI-1996-071,CNUR-000086
+complex_relation_mapping,pass,WIKI-1996-071,upgrade automatic=true
+relation_event_reference,pass,WIKI-1996-072,rename
+relation_from_entity,pass,WIKI-1996-072,CNUR-000177
+relation_to_entity,pass,WIKI-1996-072,CNUR-000177
+complex_relation_mapping,pass,WIKI-1996-072,rename automatic=true
+relation_event_reference,pass,WIKI-1996-073,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-073,CNUR-000345
+complex_relation_mapping,pass,WIKI-1996-073,jurisdiction_transfer automatic=false
 relation_event_reference,pass,WIKI-1997-074,upgrade
-relation_from_entity,pass,WIKI-1997-074,CNUR-000235
-relation_to_entity,pass,WIKI-1997-074,CNUR-000235
+relation_from_entity,pass,WIKI-1997-074,CNUR-000149
+relation_to_entity,pass,WIKI-1997-074,CNUR-000149
 complex_relation_mapping,pass,WIKI-1997-074,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-073,upgrade
-relation_from_entity,pass,WIKI-1998-073,CNUR-000109
-relation_to_entity,pass,WIKI-1998-073,CNUR-000109
-complex_relation_mapping,pass,WIKI-1998-073,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-074,upgrade
-relation_from_entity,pass,WIKI-1998-074,CNUR-000130
-relation_to_entity,pass,WIKI-1998-074,CNUR-000130
-complex_relation_mapping,pass,WIKI-1998-074,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-075,upgrade
-relation_from_entity,pass,WIKI-1998-075,CNUR-000166
-relation_to_entity,pass,WIKI-1998-075,CNUR-000166
-complex_relation_mapping,pass,WIKI-1998-075,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-076,upgrade
-relation_from_entity,pass,WIKI-1998-076,CNUR-000179
-relation_to_entity,pass,WIKI-1998-076,CNUR-000179
-complex_relation_mapping,pass,WIKI-1998-076,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-077,upgrade
-relation_from_entity,pass,WIKI-1998-077,CNUR-000249
-relation_to_entity,pass,WIKI-1998-077,CNUR-000249
-complex_relation_mapping,pass,WIKI-1998-077,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-078,upgrade
-relation_from_entity,pass,WIKI-1998-078,CNUR-000323
-relation_to_entity,pass,WIKI-1998-078,CNUR-000323
-complex_relation_mapping,pass,WIKI-1998-078,upgrade automatic=true
-relation_event_reference,pass,WIKI-1998-079,merge
-relation_from_entity,pass,WIKI-1998-079,CNUR-000361
-complex_relation_mapping,pass,WIKI-1998-079,merge automatic=false
-relation_event_reference,pass,WIKI-1998-080,establish_prefecture
-relation_from_entity,pass,WIKI-1998-080,CNUR-000253
-complex_relation_mapping,pass,WIKI-1998-080,establish_prefecture automatic=false
-relation_event_reference,pass,WIKI-1999-081,upgrade
-relation_from_entity,pass,WIKI-1999-081,CNUR-000020
-relation_to_entity,pass,WIKI-1999-081,CNUR-000020
-complex_relation_mapping,pass,WIKI-1999-081,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-082,upgrade
-relation_from_entity,pass,WIKI-1999-082,CNUR-000071
-relation_to_entity,pass,WIKI-1999-082,CNUR-000071
-complex_relation_mapping,pass,WIKI-1999-082,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-083,upgrade
-relation_from_entity,pass,WIKI-1999-083,CNUR-000110
-relation_to_entity,pass,WIKI-1999-083,CNUR-000110
-complex_relation_mapping,pass,WIKI-1999-083,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-084,upgrade
-relation_from_entity,pass,WIKI-1999-084,CNUR-000111
-relation_to_entity,pass,WIKI-1999-084,CNUR-000111
-complex_relation_mapping,pass,WIKI-1999-084,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-085,upgrade
-relation_from_entity,pass,WIKI-1999-085,CNUR-000123
-relation_to_entity,pass,WIKI-1999-085,CNUR-000123
-complex_relation_mapping,pass,WIKI-1999-085,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-086,upgrade
-relation_from_entity,pass,WIKI-1999-086,CNUR-000194
-relation_to_entity,pass,WIKI-1999-086,CNUR-000194
-complex_relation_mapping,pass,WIKI-1999-086,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-087,upgrade
-relation_from_entity,pass,WIKI-1999-087,CNUR-000250
-relation_to_entity,pass,WIKI-1999-087,CNUR-000250
-complex_relation_mapping,pass,WIKI-1999-087,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-088,upgrade
-relation_from_entity,pass,WIKI-1999-088,CNUR-000296
-relation_to_entity,pass,WIKI-1999-088,CNUR-000296
-complex_relation_mapping,pass,WIKI-1999-088,upgrade automatic=true
-relation_event_reference,pass,WIKI-1999-089,upgrade
-relation_from_entity,pass,WIKI-1999-089,CNUR-000029
-relation_to_entity,pass,WIKI-1999-089,CNUR-000029
-complex_relation_mapping,pass,WIKI-1999-089,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-075,upgrade
+relation_from_entity,pass,WIKI-1997-075,CNUR-000165
+relation_to_entity,pass,WIKI-1997-075,CNUR-000165
+complex_relation_mapping,pass,WIKI-1997-075,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-076,upgrade
+relation_from_entity,pass,WIKI-1997-076,CNUR-000193
+relation_to_entity,pass,WIKI-1997-076,CNUR-000193
+complex_relation_mapping,pass,WIKI-1997-076,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-077,upgrade
+relation_from_entity,pass,WIKI-1997-077,CNUR-000225
+relation_to_entity,pass,WIKI-1997-077,CNUR-000225
+complex_relation_mapping,pass,WIKI-1997-077,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-078,upgrade
+relation_from_entity,pass,WIKI-1997-078,CNUR-000259
+relation_to_entity,pass,WIKI-1997-078,CNUR-000259
+complex_relation_mapping,pass,WIKI-1997-078,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-079,upgrade
+relation_from_entity,pass,WIKI-1997-079,CNUR-000267
+relation_to_entity,pass,WIKI-1997-079,CNUR-000267
+complex_relation_mapping,pass,WIKI-1997-079,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-080,upgrade
+relation_from_entity,pass,WIKI-1997-080,CNUR-000268
+relation_to_entity,pass,WIKI-1997-080,CNUR-000268
+complex_relation_mapping,pass,WIKI-1997-080,upgrade automatic=true
+relation_event_reference,pass,WIKI-1997-081,split
+relation_from_entity,pass,WIKI-1997-081,CNUR-000363
+complex_relation_mapping,pass,WIKI-1997-081,split automatic=false
+relation_event_reference,pass,WIKI-1997-082,establish_prefecture
+relation_from_entity,pass,WIKI-1997-082,CNUR-000247
+complex_relation_mapping,pass,WIKI-1997-082,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1997-083,abolish
+relation_from_entity,pass,WIKI-1997-083,CNUR-000345
+complex_relation_mapping,pass,WIKI-1997-083,abolish automatic=false
+relation_event_reference,pass,WIKI-1997-084,upgrade
+relation_from_entity,pass,WIKI-1997-084,CNUR-000235
+relation_to_entity,pass,WIKI-1997-084,CNUR-000235
+complex_relation_mapping,pass,WIKI-1997-084,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-083,upgrade
+relation_from_entity,pass,WIKI-1998-083,CNUR-000109
+relation_to_entity,pass,WIKI-1998-083,CNUR-000109
+complex_relation_mapping,pass,WIKI-1998-083,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-084,upgrade
+relation_from_entity,pass,WIKI-1998-084,CNUR-000130
+relation_to_entity,pass,WIKI-1998-084,CNUR-000130
+complex_relation_mapping,pass,WIKI-1998-084,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-085,upgrade
+relation_from_entity,pass,WIKI-1998-085,CNUR-000166
+relation_to_entity,pass,WIKI-1998-085,CNUR-000166
+complex_relation_mapping,pass,WIKI-1998-085,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-086,upgrade
+relation_from_entity,pass,WIKI-1998-086,CNUR-000179
+relation_to_entity,pass,WIKI-1998-086,CNUR-000179
+complex_relation_mapping,pass,WIKI-1998-086,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-087,upgrade
+relation_from_entity,pass,WIKI-1998-087,CNUR-000249
+relation_to_entity,pass,WIKI-1998-087,CNUR-000249
+complex_relation_mapping,pass,WIKI-1998-087,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-088,upgrade
+relation_from_entity,pass,WIKI-1998-088,CNUR-000323
+relation_to_entity,pass,WIKI-1998-088,CNUR-000323
+complex_relation_mapping,pass,WIKI-1998-088,upgrade automatic=true
+relation_event_reference,pass,WIKI-1998-089,merge
+relation_from_entity,pass,WIKI-1998-089,CNUR-000361
+complex_relation_mapping,pass,WIKI-1998-089,merge automatic=false
+relation_event_reference,pass,WIKI-1998-090,establish_prefecture
+relation_from_entity,pass,WIKI-1998-090,CNUR-000253
+complex_relation_mapping,pass,WIKI-1998-090,establish_prefecture automatic=false
+relation_event_reference,pass,WIKI-1999-091,upgrade
+relation_from_entity,pass,WIKI-1999-091,CNUR-000020
+relation_to_entity,pass,WIKI-1999-091,CNUR-000020
+complex_relation_mapping,pass,WIKI-1999-091,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-092,upgrade
+relation_from_entity,pass,WIKI-1999-092,CNUR-000071
+relation_to_entity,pass,WIKI-1999-092,CNUR-000071
+complex_relation_mapping,pass,WIKI-1999-092,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-093,upgrade
+relation_from_entity,pass,WIKI-1999-093,CNUR-000110
+relation_to_entity,pass,WIKI-1999-093,CNUR-000110
+complex_relation_mapping,pass,WIKI-1999-093,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-094,upgrade
+relation_from_entity,pass,WIKI-1999-094,CNUR-000111
+relation_to_entity,pass,WIKI-1999-094,CNUR-000111
+complex_relation_mapping,pass,WIKI-1999-094,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-095,upgrade
+relation_from_entity,pass,WIKI-1999-095,CNUR-000123
+relation_to_entity,pass,WIKI-1999-095,CNUR-000123
+complex_relation_mapping,pass,WIKI-1999-095,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-096,upgrade
+relation_from_entity,pass,WIKI-1999-096,CNUR-000194
+relation_to_entity,pass,WIKI-1999-096,CNUR-000194
+complex_relation_mapping,pass,WIKI-1999-096,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-097,upgrade
+relation_from_entity,pass,WIKI-1999-097,CNUR-000250
+relation_to_entity,pass,WIKI-1999-097,CNUR-000250
+complex_relation_mapping,pass,WIKI-1999-097,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-098,upgrade
+relation_from_entity,pass,WIKI-1999-098,CNUR-000296
+relation_to_entity,pass,WIKI-1999-098,CNUR-000296
+complex_relation_mapping,pass,WIKI-1999-098,upgrade automatic=true
+relation_event_reference,pass,WIKI-1999-099,upgrade
+relation_from_entity,pass,WIKI-1999-099,CNUR-000029
+relation_to_entity,pass,WIKI-1999-099,CNUR-000029
+complex_relation_mapping,pass,WIKI-1999-099,upgrade automatic=true
 relation_event_reference,pass,PL-2000-001,upgrade
 relation_from_entity,pass,PL-2000-001,CNUR-000131
 relation_to_entity,pass,PL-2000-001,CNUR-000131
@@ -1209,106 +1288,106 @@ complex_relation_mapping,pass,PL-2017-001,upgrade automatic=true
 relation_event_reference,pass,PL-2018-001,merge
 relation_from_entity,pass,PL-2018-001,CNUR-000146
 complex_relation_mapping,pass,PL-2018-001,merge automatic=false
-relation_event_reference,pass,WIKI-1993-034,split
-relation_from_entity,pass,WIKI-1993-034,CNUR-000343
-relation_to_entity,pass,WIKI-1993-034,CNUR-000015
-complex_relation_mapping,pass,WIKI-1993-034,split automatic=false
-relation_event_reference,pass,WIKI-1993-034,split
-relation_from_entity,pass,WIKI-1993-034,CNUR-000343
-relation_to_entity,pass,WIKI-1993-034,CNUR-000019
-complex_relation_mapping,pass,WIKI-1993-034,split automatic=false
-relation_event_reference,pass,WIKI-1993-029,merge
-relation_from_entity,pass,WIKI-1993-029,CNUR-000351
-relation_to_entity,pass,WIKI-1993-029,CNUR-000009
-complex_relation_mapping,pass,WIKI-1993-029,merge automatic=false
-relation_event_reference,pass,WIKI-1993-030,merge
-relation_from_entity,pass,WIKI-1993-030,CNUR-000352
-relation_to_entity,pass,WIKI-1993-030,CNUR-000011
-complex_relation_mapping,pass,WIKI-1993-030,merge automatic=false
-relation_event_reference,pass,WIKI-1993-031,merge
-relation_from_entity,pass,WIKI-1993-031,CNUR-000353
-relation_to_entity,pass,WIKI-1993-031,CNUR-000006
-complex_relation_mapping,pass,WIKI-1993-031,merge automatic=false
-relation_event_reference,pass,WIKI-1993-032,merge
-relation_from_entity,pass,WIKI-1993-032,CNUR-000354
-relation_to_entity,pass,WIKI-1993-032,CNUR-000007
-complex_relation_mapping,pass,WIKI-1993-032,merge automatic=false
-relation_event_reference,pass,WIKI-1993-033,merge
-relation_from_entity,pass,WIKI-1993-033,CNUR-000355
-relation_to_entity,pass,WIKI-1993-033,CNUR-000010
-complex_relation_mapping,pass,WIKI-1993-033,merge automatic=false
-relation_event_reference,pass,WIKI-1993-028,merge
-relation_from_entity,pass,WIKI-1993-028,CNUR-000350
-relation_to_entity,pass,WIKI-1993-028,CNUR-000003
-complex_relation_mapping,pass,WIKI-1993-028,merge automatic=false
-relation_event_reference,pass,WIKI-1994-046,merge
-relation_from_entity,pass,WIKI-1994-046,CNUR-000356
-relation_to_entity,pass,WIKI-1994-046,CNUR-000008
-complex_relation_mapping,pass,WIKI-1994-046,merge automatic=false
-relation_event_reference,pass,WIKI-1994-047,merge
-relation_from_entity,pass,WIKI-1994-047,CNUR-000357
-relation_to_entity,pass,WIKI-1994-047,CNUR-000171
-complex_relation_mapping,pass,WIKI-1994-047,merge automatic=false
-relation_event_reference,pass,WIKI-1994-048,merge
-relation_from_entity,pass,WIKI-1994-048,CNUR-000358
-relation_to_entity,pass,WIKI-1994-048,CNUR-000177
-complex_relation_mapping,pass,WIKI-1994-048,merge automatic=false
-relation_event_reference,pass,WIKI-1994-048,merge
-relation_from_entity,pass,WIKI-1994-048,CNUR-000359
-relation_to_entity,pass,WIKI-1994-048,CNUR-000177
-complex_relation_mapping,pass,WIKI-1994-048,merge automatic=false
-relation_event_reference,pass,WIKI-1988-010,split
-relation_from_entity,pass,WIKI-1988-010,CNUR-000347
-relation_to_entity,pass,WIKI-1988-010,CNUR-000206
-complex_relation_mapping,pass,WIKI-1988-010,split automatic=false
-relation_event_reference,pass,WIKI-1988-010,split
-relation_from_entity,pass,WIKI-1988-010,CNUR-000347
-relation_to_entity,pass,WIKI-1988-010,CNUR-000208
-complex_relation_mapping,pass,WIKI-1988-010,split automatic=false
-relation_event_reference,pass,WIKI-1988-010,split
-relation_from_entity,pass,WIKI-1988-010,CNUR-000347
-relation_to_entity,pass,WIKI-1988-010,CNUR-000209
-complex_relation_mapping,pass,WIKI-1988-010,split automatic=false
-relation_event_reference,pass,WIKI-1997-071,split
-relation_from_entity,pass,WIKI-1997-071,CNUR-000363
-relation_to_entity,pass,WIKI-1997-071,CNUR-000220
-complex_relation_mapping,pass,WIKI-1997-071,split automatic=false
-relation_event_reference,pass,WIKI-1997-071,split
-relation_from_entity,pass,WIKI-1997-071,CNUR-000363
-relation_to_entity,pass,WIKI-1997-071,CNUR-000227
-complex_relation_mapping,pass,WIKI-1997-071,split automatic=false
-relation_event_reference,pass,WIKI-1996-061,merge
-relation_from_entity,pass,WIKI-1996-061,CNUR-000360
-relation_to_entity,pass,WIKI-1996-061,CNUR-000060
-complex_relation_mapping,pass,WIKI-1996-061,merge automatic=false
-relation_event_reference,pass,WIKI-1998-079,merge
-relation_from_entity,pass,WIKI-1998-079,CNUR-000361
-relation_to_entity,pass,WIKI-1998-079,CNUR-000219
-complex_relation_mapping,pass,WIKI-1998-079,merge automatic=false
-relation_event_reference,pass,WIKI-1996-063,jurisdiction_transfer
-relation_from_entity,pass,WIKI-1996-063,CNUR-000342
-relation_to_entity,pass,WIKI-1996-063,CNUR-000235
-complex_relation_mapping,pass,WIKI-1996-063,jurisdiction_transfer automatic=false
-relation_event_reference,pass,WIKI-1996-063,jurisdiction_transfer
-relation_from_entity,pass,WIKI-1996-063,CNUR-000344
-relation_to_entity,pass,WIKI-1996-063,CNUR-000235
-complex_relation_mapping,pass,WIKI-1996-063,jurisdiction_transfer automatic=false
-relation_event_reference,pass,WIKI-1996-063,jurisdiction_transfer
-relation_from_entity,pass,WIKI-1996-063,CNUR-000345
-relation_to_entity,pass,WIKI-1996-063,CNUR-000235
-complex_relation_mapping,pass,WIKI-1996-063,jurisdiction_transfer automatic=false
-relation_event_reference,pass,WIKI-1997-073,abolish
-relation_from_entity,pass,WIKI-1997-073,CNUR-000342
-relation_to_entity,pass,WIKI-1997-073,CNUR-000235
-complex_relation_mapping,pass,WIKI-1997-073,abolish automatic=false
-relation_event_reference,pass,WIKI-1997-073,abolish
-relation_from_entity,pass,WIKI-1997-073,CNUR-000344
-relation_to_entity,pass,WIKI-1997-073,CNUR-000235
-complex_relation_mapping,pass,WIKI-1997-073,abolish automatic=false
-relation_event_reference,pass,WIKI-1997-073,abolish
-relation_from_entity,pass,WIKI-1997-073,CNUR-000345
-relation_to_entity,pass,WIKI-1997-073,CNUR-000235
-complex_relation_mapping,pass,WIKI-1997-073,abolish automatic=false
+relation_event_reference,pass,WIKI-1993-040,split
+relation_from_entity,pass,WIKI-1993-040,CNUR-000343
+relation_to_entity,pass,WIKI-1993-040,CNUR-000015
+complex_relation_mapping,pass,WIKI-1993-040,split automatic=false
+relation_event_reference,pass,WIKI-1993-040,split
+relation_from_entity,pass,WIKI-1993-040,CNUR-000343
+relation_to_entity,pass,WIKI-1993-040,CNUR-000019
+complex_relation_mapping,pass,WIKI-1993-040,split automatic=false
+relation_event_reference,pass,WIKI-1993-035,merge
+relation_from_entity,pass,WIKI-1993-035,CNUR-000351
+relation_to_entity,pass,WIKI-1993-035,CNUR-000009
+complex_relation_mapping,pass,WIKI-1993-035,merge automatic=false
+relation_event_reference,pass,WIKI-1993-036,merge
+relation_from_entity,pass,WIKI-1993-036,CNUR-000352
+relation_to_entity,pass,WIKI-1993-036,CNUR-000011
+complex_relation_mapping,pass,WIKI-1993-036,merge automatic=false
+relation_event_reference,pass,WIKI-1993-037,merge
+relation_from_entity,pass,WIKI-1993-037,CNUR-000353
+relation_to_entity,pass,WIKI-1993-037,CNUR-000006
+complex_relation_mapping,pass,WIKI-1993-037,merge automatic=false
+relation_event_reference,pass,WIKI-1993-038,merge
+relation_from_entity,pass,WIKI-1993-038,CNUR-000354
+relation_to_entity,pass,WIKI-1993-038,CNUR-000007
+complex_relation_mapping,pass,WIKI-1993-038,merge automatic=false
+relation_event_reference,pass,WIKI-1993-039,merge
+relation_from_entity,pass,WIKI-1993-039,CNUR-000355
+relation_to_entity,pass,WIKI-1993-039,CNUR-000010
+complex_relation_mapping,pass,WIKI-1993-039,merge automatic=false
+relation_event_reference,pass,WIKI-1993-034,merge
+relation_from_entity,pass,WIKI-1993-034,CNUR-000350
+relation_to_entity,pass,WIKI-1993-034,CNUR-000003
+complex_relation_mapping,pass,WIKI-1993-034,merge automatic=false
+relation_event_reference,pass,WIKI-1994-052,merge
+relation_from_entity,pass,WIKI-1994-052,CNUR-000356
+relation_to_entity,pass,WIKI-1994-052,CNUR-000008
+complex_relation_mapping,pass,WIKI-1994-052,merge automatic=false
+relation_event_reference,pass,WIKI-1994-053,merge
+relation_from_entity,pass,WIKI-1994-053,CNUR-000357
+relation_to_entity,pass,WIKI-1994-053,CNUR-000171
+complex_relation_mapping,pass,WIKI-1994-053,merge automatic=false
+relation_event_reference,pass,WIKI-1994-054,merge
+relation_from_entity,pass,WIKI-1994-054,CNUR-000358
+relation_to_entity,pass,WIKI-1994-054,CNUR-000177
+complex_relation_mapping,pass,WIKI-1994-054,merge automatic=false
+relation_event_reference,pass,WIKI-1994-054,merge
+relation_from_entity,pass,WIKI-1994-054,CNUR-000359
+relation_to_entity,pass,WIKI-1994-054,CNUR-000177
+complex_relation_mapping,pass,WIKI-1994-054,merge automatic=false
+relation_event_reference,pass,WIKI-1988-013,split
+relation_from_entity,pass,WIKI-1988-013,CNUR-000347
+relation_to_entity,pass,WIKI-1988-013,CNUR-000206
+complex_relation_mapping,pass,WIKI-1988-013,split automatic=false
+relation_event_reference,pass,WIKI-1988-013,split
+relation_from_entity,pass,WIKI-1988-013,CNUR-000347
+relation_to_entity,pass,WIKI-1988-013,CNUR-000208
+complex_relation_mapping,pass,WIKI-1988-013,split automatic=false
+relation_event_reference,pass,WIKI-1988-013,split
+relation_from_entity,pass,WIKI-1988-013,CNUR-000347
+relation_to_entity,pass,WIKI-1988-013,CNUR-000209
+complex_relation_mapping,pass,WIKI-1988-013,split automatic=false
+relation_event_reference,pass,WIKI-1997-081,split
+relation_from_entity,pass,WIKI-1997-081,CNUR-000363
+relation_to_entity,pass,WIKI-1997-081,CNUR-000220
+complex_relation_mapping,pass,WIKI-1997-081,split automatic=false
+relation_event_reference,pass,WIKI-1997-081,split
+relation_from_entity,pass,WIKI-1997-081,CNUR-000363
+relation_to_entity,pass,WIKI-1997-081,CNUR-000227
+complex_relation_mapping,pass,WIKI-1997-081,split automatic=false
+relation_event_reference,pass,WIKI-1996-069,merge
+relation_from_entity,pass,WIKI-1996-069,CNUR-000360
+relation_to_entity,pass,WIKI-1996-069,CNUR-000060
+complex_relation_mapping,pass,WIKI-1996-069,merge automatic=false
+relation_event_reference,pass,WIKI-1998-089,merge
+relation_from_entity,pass,WIKI-1998-089,CNUR-000361
+relation_to_entity,pass,WIKI-1998-089,CNUR-000219
+complex_relation_mapping,pass,WIKI-1998-089,merge automatic=false
+relation_event_reference,pass,WIKI-1996-073,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-073,CNUR-000342
+relation_to_entity,pass,WIKI-1996-073,CNUR-000235
+complex_relation_mapping,pass,WIKI-1996-073,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1996-073,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-073,CNUR-000344
+relation_to_entity,pass,WIKI-1996-073,CNUR-000235
+complex_relation_mapping,pass,WIKI-1996-073,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1996-073,jurisdiction_transfer
+relation_from_entity,pass,WIKI-1996-073,CNUR-000345
+relation_to_entity,pass,WIKI-1996-073,CNUR-000235
+complex_relation_mapping,pass,WIKI-1996-073,jurisdiction_transfer automatic=false
+relation_event_reference,pass,WIKI-1997-083,abolish
+relation_from_entity,pass,WIKI-1997-083,CNUR-000342
+relation_to_entity,pass,WIKI-1997-083,CNUR-000235
+complex_relation_mapping,pass,WIKI-1997-083,abolish automatic=false
+relation_event_reference,pass,WIKI-1997-083,abolish
+relation_from_entity,pass,WIKI-1997-083,CNUR-000344
+relation_to_entity,pass,WIKI-1997-083,CNUR-000235
+complex_relation_mapping,pass,WIKI-1997-083,abolish automatic=false
+relation_event_reference,pass,WIKI-1997-083,abolish
+relation_from_entity,pass,WIKI-1997-083,CNUR-000345
+relation_to_entity,pass,WIKI-1997-083,CNUR-000235
+complex_relation_mapping,pass,WIKI-1997-083,abolish automatic=false
 relation_event_reference,pass,PL-2002-008,split
 relation_from_entity,pass,PL-2002-008,CNUR-000362
 relation_to_entity,pass,PL-2002-008,CNUR-000218
