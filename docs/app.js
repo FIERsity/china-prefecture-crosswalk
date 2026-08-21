@@ -515,17 +515,6 @@ async function renderHistoryMap() {
       geojson.features = geojson.features.concat(external.features);
     }
   }
-  if (focusProvinceCode) {
-    const focusGroup = { "710000": "taiwan", "810000": "hongkong", "820000": "macau" }[focusProvinceCode] || "";
-    geojson.features = geojson.features.filter((feature) => {
-      const properties = feature.properties || {};
-      if (focusGroup) {
-        if (mapLevel === "province") return properties.external_only && properties.display_name_zh === { taiwan: "台湾省", hongkong: "香港特别行政区", macau: "澳门特别行政区" }[focusGroup];
-        return properties.external_group === focusGroup;
-      }
-      return properties.province_code === focusProvinceCode;
-    });
-  }
   currentMapGeojson = geojson;
   mapLayerById = new Map();
   if (historyLayer) historyLayer.remove();
@@ -549,13 +538,24 @@ async function renderHistoryMap() {
       });
     },
   }).addTo(historyMap);
-  if (geojson.features.length) historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
+  const focusGroup = { "710000": "taiwan", "810000": "hongkong", "820000": "macau" }[focusProvinceCode] || "";
+  const focusFeatures = focusProvinceCode ? geojson.features.filter((feature) => {
+    const properties = feature.properties || {};
+    if (focusGroup) {
+      if (mapLevel === "province") return properties.external_only && properties.display_name_zh === { taiwan: "台湾省", hongkong: "香港特别行政区", macau: "澳门特别行政区" }[focusGroup];
+      return properties.external_group === focusGroup;
+    }
+    return properties.province_code === focusProvinceCode;
+  }) : [];
+  const focusLayer = focusFeatures.length ? L.geoJSON({ type: "FeatureCollection", features: focusFeatures }) : null;
+  if (focusLayer) historyMap.fitBounds(focusLayer.getBounds(), { padding: [25, 25], maxZoom: mapLevel === "province" ? 7 : 8 });
+  else if (geojson.features.length) historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
   setTimeout(() => historyMap.invalidateSize(), 0);
   const levelName = mapLevel === "province" ? "省级" : mapLevel === "county" ? "县级" : "地级";
   const linked = geojson.features.filter((feature) => feature.properties.link_status === "linked" || feature.properties.link_status === "parent_linked").length;
   const provinceName = mapLevel === "county" ? ` · ${$("#map-province").selectedOptions[0]?.textContent || ""}` : "";
-  const emptyNote = !geojson.features.length ? "该省份在此层级没有可显示的对应区域。" : "";
-  $("#map-detail").innerHTML = `<div class="section-label">${externalGroup ? levelName : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${externalGroup ? $("#map-province").selectedOptions[0]?.textContent || "" : `${panelYear} 年经济面板`}</h2><p class="muted">当前加载 ${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。${emptyNote}可点击地图或使用名称、代码、CNUR 查询。</p>`;
+  const scopeText = mapLevel === "county" ? "" : "全国 ";
+  $("#map-detail").innerHTML = `<div class="section-label">${externalGroup ? levelName : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${externalGroup ? $("#map-province").selectedOptions[0]?.textContent || "" : `${panelYear} 年经济面板`}</h2><p class="muted">当前加载${scopeText}${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。可点击地图或使用名称、代码、CNUR 查询。</p>`;
   state.mapLevel = mapLevel;
 }
 
