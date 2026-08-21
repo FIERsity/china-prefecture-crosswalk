@@ -609,6 +609,21 @@ async function init() {
         state.countyNamesByNormalized.set(normalized, list);
       });
     });
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+        const syncToggle = () => {
+            const theme = document.documentElement.getAttribute("data-theme") || "light";
+            themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+            themeToggle.setAttribute("aria-label", theme === "dark" ? "切换亮色模式" : "切换夜间模式");
+        };
+        themeToggle.addEventListener("click", () => {
+            const next = (document.documentElement.getAttribute("data-theme") || "light") === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            localStorage.setItem("theme", next);
+            syncToggle();
+        });
+        syncToggle();
+    }
     $("#version-pill").textContent = `V${state.data.meta.version}`;
     $("#rule-version").textContent = state.data.meta.ruleVersion;
     const fmt = (value) => Number(value || 0).toLocaleString("en-US");

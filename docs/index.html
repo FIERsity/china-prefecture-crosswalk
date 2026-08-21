@@ -6,6 +6,13 @@
     <meta name="description" content="查询中国城市历史名称、年末状态和行政区划变更。">
     <title>China Urban Crosswalk — 中国城市行政实体匹配</title>
     <link rel="icon" href="assets/favicon.png">
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme");
+        var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
@@ -17,6 +24,7 @@
       </a>
       <div class="top-links">
         <span id="version-pill" class="version-pill">V4.0.2</span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换夜间模式" title="切换夜间模式">🌙</button>
         <a href="https://github.com/FIERsity/china-prefecture-crosswalk" target="_blank" rel="noreferrer">GitHub ↗</a>
       </div>
     </header>
