@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import json
+import argparse
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -19,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "raw" / "CTAmap1.30版本_2000-2024_2025.04.25"
 LINKS = ROOT / "data" / "processed" / "ctamap_prefecture_links.csv"
 OUTPUT = ROOT / "docs" / "data" / "maps"
-TOLERANCE = {"province": 0.03, "prefecture": 0.02, "county": 0.01}
+TOLERANCE = {"province": 0.03, "prefecture": 0.02, "county": 0.005}
 COORDINATE_PRECISION = 5
 LEVEL_DIR = {"province": "省级", "prefecture": "地级", "county": "县级"}
 
@@ -147,6 +148,15 @@ def county_features(year: int, links_by_code: dict[str, dict[str, str]], links_b
 
 
 def main() -> None:
+    global OUTPUT, TOLERANCE
+    parser = argparse.ArgumentParser(description="Build CTAmap-derived GeoJSON for the static map.")
+    parser.add_argument("--output", type=Path, default=OUTPUT, help="output directory")
+    parser.add_argument("--province-tolerance", type=float, default=TOLERANCE["province"])
+    parser.add_argument("--prefecture-tolerance", type=float, default=TOLERANCE["prefecture"])
+    parser.add_argument("--county-tolerance", type=float, default=TOLERANCE["county"])
+    args = parser.parse_args()
+    OUTPUT = args.output
+    TOLERANCE = {"province": args.province_tolerance, "prefecture": args.prefecture_tolerance, "county": args.county_tolerance}
     links_by_index, links_by_code, links_by_name = load_prefecture_links()
     provinces: dict[str, str] = {}
     level_manifest: dict[str, Any] = {"province": {"mode": "national", "years": []}, "prefecture": {"mode": "national", "years": []}, "county": {"mode": "province_partition", "years": []}}

@@ -23,3 +23,4 @@ button, input, select { font: inherit; } button { cursor: pointer; }
 .event-table th:nth-child(5), .event-table td:nth-child(5) { width: 25%; }
 .event-table th:nth-child(6), .event-table td:nth-child(6) { width: 12%; }
 .map-history > small { display: block; margin-top: 6px; color: var(--muted); font-size: 9px; line-height: 1.55; }
+.map-precision-note { margin: 8px 0 0; color: #856c20; font-size: 10px; line-height: 1.55; }

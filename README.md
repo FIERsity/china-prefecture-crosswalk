@@ -154,8 +154,11 @@ cnur events --year 1993 --type split --output events.csv
 | [`entity_name_match_ranges_1987_2026.csv`](data/processed/entity_name_match_ranges_1987_2026.csv) | 自然年内曾正式有效的名称区间 |
 | [`legal_roster_year_end_1987_2026.csv`](data/processed/legal_roster_year_end_1987_2026.csv) | 363实体 × 40年的年末状态长表 |
 | [`ctamap_prefecture_links.csv`](data/processed/ctamap_prefecture_links.csv) | CTAmap 地级要素与 CNUR 桥接 |
-| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 省、地、县三级网页 GeoJSON 的年份、分片、要素数和文件大小清单 |
+| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 省、地、县三级网页展示 GeoJSON 的年份、分片、要素数、容差和文件大小清单 |
 | [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | CTAmap 简化几何的来源、引用和独立许可说明 |
+| [`data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip`](data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip) | 县级精度分析包：2000—2024 年初、WGS84、容差 0.002°，不由网页运行时加载 |
+| [`data/releases/maps/ctamap_county_analysis_manifest.json`](data/releases/maps/ctamap_county_analysis_manifest.json) | 精度分析包的年份、分片、要素数、文件大小和构建参数 |
+| [`data/releases/maps/README.md`](data/releases/maps/README.md) | 精度包字段、构建参数、来源和下载说明 |
 | [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
 | [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
 | [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
@@ -253,7 +256,8 @@ python3 -m http.server 8765 --directory docs
 - 部分事件同时记录国务院、民政部或地方政府批文号；
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V4.0不声称已经为每条记录完成官方批复原件级核验；仅有批准日而无实施日的事件以推定口径并标注时间置信度；
-- CTAmap 简化的省、地、县 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；
+- CTAmap 简化的省、地、县 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；网页展示版县级容差为 `0.005°`，精度分析包另提供 `0.002°` 版本；
+- CTAmap 原始 Shapefile 约 2.5 GB，不直接复制入仓库；仓库保留上游下载入口、派生分析包、SHA256 校验值和可复现构建脚本；
 - 县级地图 2000—2010 年原始坐标为 Web Mercator，构建时转换为 WGS84；2011—2024 年原始坐标为 WGS84；
 - 历史地图覆盖 2000—2024 年初，对应 1999—2023 经济面板年份；县级地图按省份加载，县级要素只连接其上级地级 CNUR，不冒充地级研究实体；
 - 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
@@ -300,7 +304,8 @@ data/processed/    可复现生成的数据层
 data/releases/     面向研究者的版本化发布文件
 data/audit/        实体与连续性审计结果
 docs/              GitHub Pages 静态公共工具
-docs/data/maps/     25 年省、地、县三级简化 GeoJSON、地图清单和 CTAmap NOTICE
+docs/data/maps/     25 年省、地、县三级网页展示 GeoJSON、地图清单和 CTAmap NOTICE
+data/releases/maps/ 县级精度分析包、校验值和来源说明
 urban_crosswalk/   独立Python匹配模块
 scripts/           构建、迁移、抓取和验证脚本
 scripts/build_pages_data.py  生成浏览器端数据包

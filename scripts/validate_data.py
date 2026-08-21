@@ -221,6 +221,7 @@ def main() -> None:
     require({row["issue_type"] for row in ctamap_issues} <= {"source_name_differs_from_year_end", "year_end_entity_missing_from_snapshot"}, "CTAmap audit contains unexpected issues")
     map_manifest_path = ROOT / "docs" / "data" / "maps" / "manifest.json"
     map_manifest = json.loads(map_manifest_path.read_text(encoding="utf-8"))
+    require(map_manifest.get("simplification_tolerance_degrees", {}).get("county") == 0.005, "web county display tolerance changed without review")
     require(len(map_manifest["years"]) == 25, "web map manifest must contain 25 snapshots")
     require(all(row["feature_count"] == row["linked_feature_count"] + row["context_feature_count"] for row in map_manifest["years"]), "web map feature classification is incomplete")
     require(all(row["context_feature_count"] > 0 for row in map_manifest["years"]), "web map is missing context regions")
