@@ -13769,7 +13769,7 @@ CNUR-000345,1993,1993-12-31,year_end,黔江地区,四川省,prefecture,active,in
 CNUR-000345,1994,1994-12-31,year_end,黔江地区,四川省,prefecture,active,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,1995,1995-12-31,year_end,黔江地区,四川省,prefecture,active,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,1996,1996-12-31,year_end,黔江地区,四川省,prefecture,active,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
-CNUR-000345,1997,1997-12-31,year_end,黔江地区,四川省,prefecture,active,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
+CNUR-000345,1997,1997-12-31,year_end,,四川省,none,abolished,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,1998,1998-12-31,year_end,,四川省,none,abolished,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,1999,1999-12-31,year_end,,四川省,none,abolished,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,2000,2000-12-31,year_end,,四川省,none,abolished,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules

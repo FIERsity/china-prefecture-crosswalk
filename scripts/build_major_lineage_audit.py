@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,10 @@ CASES = [
     ("MAJOR-2002-NANNING-NN",2002,"南宁地区","CNUR-000346","南宁市","CNUR-000217","split_successor","5","major","PL-2002-009","https://zh.wikipedia.org/wiki/2002年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2003-ZHONGWEI-WZ",2003,"吴忠市","CNUR-000323","中卫市","CNUR-000325","carve_out","2","majority_of_new_entity","PL-2003-006","https://zh.wikipedia.org/wiki/2003年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2003-ZHONGWEI-GY",2003,"固原市","CNUR-000324","中卫市","CNUR-000325","territory_contribution","1","secondary","PL-2003-006","https://zh.wikipedia.org/wiki/2003年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2015-ZONGYANG",2015,"安庆市","CNUR-000140","铜陵市","CNUR-000104","carve_out","1","major","WIKI-COUNTY-2015-05-007","https://zh.wikipedia.org/wiki/2015年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2015-SHOUXIAN",2015,"六安市","CNUR-000111","淮南市","CNUR-000101","carve_out","1","major","WIKI-COUNTY-2015-05-013","https://zh.wikipedia.org/wiki/2015年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2016-JIANYANG",2016,"资阳市","CNUR-000253","成都市","CNUR-000236","carve_out","1","major","WIKI-COUNTY-2016-07-004","https://zh.wikipedia.org/wiki/2016年中华人民共和国县级以上行政区划变更列表"),
+    ("MAJOR-2020-GONGZHULING",2020,"四平市","CNUR-000053","长春市","CNUR-000051","carve_out","1","major","WIKI-COUNTY-2020-04-002","https://zh.wikipedia.org/wiki/2020年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2011-CHAOHU-HF",2011,"巢湖市","CNUR-000110","合肥市","CNUR-000098","split_successor","2","major","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2011-CHAOHU-WH",2011,"巢湖市","CNUR-000110","芜湖市","CNUR-000099","split_successor","1","material_in_three_way_split","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
     ("MAJOR-2011-CHAOHU-MA",2011,"巢湖市","CNUR-000110","马鞍山市","CNUR-000102","split_successor","2","major","PL-2011-001","https://zh.wikipedia.org/wiki/2011年中华人民共和国县级以上行政区划变更列表"),
@@ -68,6 +73,10 @@ COUNTIES = {
     "MAJOR-2002-NANNING-NN": ["隆安县","马山县","上林县","宾阳县","横县"],
     "MAJOR-2003-ZHONGWEI-WZ": ["中卫县","中宁县"],
     "MAJOR-2003-ZHONGWEI-GY": ["海原县"],
+    "MAJOR-2015-ZONGYANG": ["枞阳县"],
+    "MAJOR-2015-SHOUXIAN": ["寿县"],
+    "MAJOR-2016-JIANYANG": ["县级简阳市"],
+    "MAJOR-2020-GONGZHULING": ["县级公主岭市"],
     "MAJOR-2011-CHAOHU-HF": ["居巢区（改设县级巢湖市）","庐江县"],
     "MAJOR-2011-CHAOHU-WH": ["无为县"],
     "MAJOR-2011-CHAOHU-MA": ["含山县","和县"],
@@ -87,6 +96,31 @@ def write(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
 def main() -> None:
     fields = ["case_id","year","from_name","from_entity_key","to_name","to_entity_id","relation_type","county_unit_count","materiality","source_event_id","source_url","automatic_mapping","review_status"]
     relations = [dict(zip(fields[:-2], case)) | {"automatic_mapping":"false","review_status":"reviewed_county_composition"} for case in CASES]
+    # Re-anchor legacy normalized event ids (WIKI-YYYY-NNN) to their current ids.
+    # Event ids shift whenever earlier rows are added; (year, name) matching keeps
+    # these provenance links stable across rebuilds.
+    unified = []
+    with (OUT / "unified_events_1987_2026.csv").open(encoding="utf-8", newline="") as handle:
+        unified = list(csv.DictReader(handle))
+    legacy_re = re.compile(r"^WIKI-\d{4}-\d{3}$")
+    for case in relations:
+        if not legacy_re.match(case["source_event_id"]):
+            continue
+        resolved = ""
+        for name in (case["from_name"], case["to_name"]):
+            if not name:
+                continue
+            hits = [
+                row["event_id"] for row in unified
+                if int(row["year"]) == case["year"] and name in row["description"]
+            ]
+            if hits:
+                resolved = hits[0]
+                break
+        if resolved:
+            case["source_event_id"] = resolved
+        else:
+            case["source_event_id"] = case["source_event_id"] + "(STALE)"
     county_rows = []
     by_id = {r["case_id"]: r for r in relations}
     for case_id, names in COUNTIES.items():

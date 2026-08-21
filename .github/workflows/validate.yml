@@ -20,8 +20,8 @@ jobs:
         run: |
           python scripts/build_release.py
           python scripts/normalize_wikipedia_history.py
-          python scripts/build_major_lineage_audit.py
           python scripts/build_unified_events.py
+          python scripts/build_major_lineage_audit.py
           python scripts/migrate_cnur_ids.py
           python scripts/build_extended_roster.py
           python scripts/audit_unified_continuity.py
@@ -37,6 +37,10 @@ jobs:
         run: git diff --exit-code
       - name: Validate data
         run: python scripts/validate_data.py
+      - name: Verify data checksums
+        run: |
+          cd data && shasum -a 256 -c SHA256SUMS && cd ..
+          cd data/releases/maps && shasum -a 256 -c ctamap_county_analysis_2000_2024_t002.sha256 && cd ../../..
       - name: Run matcher tests
         run: pytest -q
       - name: Streamlit smoke test

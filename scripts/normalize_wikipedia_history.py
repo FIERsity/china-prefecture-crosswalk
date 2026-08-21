@@ -15,43 +15,92 @@ NAMES = ROOT / "data" / "processed" / "entity_names.csv"
 PROVINCE_RE = re.compile(r"(?:colspan=\"?\d+\"?\|)?(北京市|天津市|上海市|重庆市|[^|]{2,12}(?:省|自治区))$")
 DOC_RE = re.compile(r"(?:国函|民行批|民批|中发|中办厅字)〔?\d{4}〕?\d+号")
 DATE_RE = re.compile(r"(?:(\d{4})年)?(\d{1,2})月(\d{1,2})日")
+# Row-text fixes: some 1993 Hebei rows lost the leading 撤 character during
+# table extraction ("销张家口地区" instead of "撤销张家口地区").
+MISSING_ABOLISH_RE = re.compile(r"\|销([一-龥]{2,12}(?:地区|盟))，")
+# "X与Y合并，组建新的Z" / "X和Y合并，组建新的Z（地级）" merge sentence forms.
+MERGE_COMBINE_RE = re.compile(
+    r"([一-龥·]{2,16}(?:地区|盟|自治州|市))[与和]([一-龥·]{2,16}(?:地区|盟|自治州|市))合并[，,]组建新的([一-龥·]{2,16}市)"
+)
+MERGE_ABOLISH_RE = re.compile(r"撤销([一-龥·]{2,16}(?:地区|盟))[，,](?:实行地、市合并|与[一-龥·]{2,16}市合并)")
+HISTORICAL = ROOT / "data" / "processed" / "historical_entities.csv"
+# Robust to event-id shifts: keyed by (year, description fragment) instead of
+# the generated event id.
+MANUAL_NAMES_BY_TEXT = {
+    (1996, "三峡库区移民"): ("涪陵市、万县市、黔江地区", "重庆市"),
+}
+# Events that have no Wikipedia change-page row at all; sourced separately.
+SUPPLEMENTAL_EVENTS = [
+    {
+        "year": 1997, "event_type": "abolish", "old": "万县市、涪陵市、黔江地区", "new": "万县区、涪陵区、黔江开发区",
+        "entity_id": "HIST-CQ-QIANJIANG", "province": "重庆市",
+        "approval_date": "1997-12-20", "document_number": "中办厅字〔1997〕34号",
+        "automatic_continuity": "false", "confidence": "medium",
+        "normalization_status": "accepted_manual_review",
+        "review_note": "中办厅字〔1997〕34号批复（1997-12-20）：撤销万县市设立重庆市万县区（1998年5月更名万州区）、撤销涪陵市设立涪陵区、撤销黔江地区设立黔江开发区（2000年6月改设黔江区）。1996年三地已由重庆市代管（见1996年划转事件）。",
+        "risk_flags": "supplemental_event|multi_entity_relation",
+        "description": "中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复（1997年12月20日，中办厅字〔1997〕34号）：撤销万县市，设立重庆市万县区；撤销涪陵市，设立重庆市涪陵区；撤销黔江地区，设立重庆市黔江开发区。",
+        "source_url": "https://zh.wikisource.org/wiki/中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复",
+        "source_section": "重庆市",
+    },
+    {
+        "year": 1997, "event_type": "upgrade", "old": "重庆市", "new": "重庆市",
+        "entity_id": "E500100", "province": "重庆市",
+        "approval_date": "1997-03-14", "document_number": "全国人大决定",
+        "automatic_continuity": "true", "confidence": "high",
+        "normalization_status": "accepted_manual_review",
+        "review_note": "1997年3月14日八届全国人大五次会议批准设立重庆直辖市，1997年6月18日挂牌。重庆市由四川省辖计划单列市升格为直辖市，研究实体连续；万县市、涪陵市、黔江地区于1996年划归重庆代管（见1996年划转事件）。",
+        "risk_flags": "supplemental_event",
+        "description": "设立重庆直辖市（1997年3月14日八届全国人大五次会议批准）：重庆市由四川省计划单列市升格为直辖市，原万县市、涪陵市、黔江地区改由重庆市管辖。",
+        "source_url": "https://zh.wikipedia.org/wiki/重庆直辖市",
+        "source_section": "重庆市",
+    },
+]
 MANUAL_ENTITY_LINKS = {
-    "WIKI-1988-016": ("CNUR-000348", "安庆地区与既有安庆市合并并析设池州地区"),
-    "WIKI-1988-017": ("E341700", "池州地区 later continued as the Chizhou research entity"),
-    "WIKI-1988-018": ("E350700", "建阳地区 renamed 南平地区 and later became 南平市"),
-    "WIKI-1992-021": ("CNUR-000349", "宜昌地区 merged into the existing 宜昌市"),
-    "WIKI-1992-023": ("E371600", "惠民地区 renamed 滨州地区 and later became 滨州市"),
-    "WIKI-1993-028": ("CNUR-000350", "石家庄地区 merged into 石家庄市"),
-    "WIKI-1994-041": ("CNUR-000357", "郧阳地区 merged into 十堰市"),
-    "WIKI-1994-042": ("CNUR-000358", "荆州地区 and 沙市市 merged into the new 荆沙市"),
-    "WIKI-1997-065": ("E511400", "眉山地区 later became 眉山市"),
-    "WIKI-1998-072": ("E512000", "资阳地区 later became 资阳市"),
+    (1988, "安庆地区"): ("CNUR-000348", "安庆地区与既有安庆市合并并析设池州地区"),
+    (1988, "池州地区"): ("E341700", "池州地区 later continued as the Chizhou research entity"),
+    (1988, "建阳地区"): ("E350700", "建阳地区 renamed 南平地区 and later became 南平市"),
+    (1992, "宜昌地区"): ("CNUR-000349", "宜昌地区 merged into the existing 宜昌市"),
+    (1992, "惠民地区"): ("E371600", "惠民地区 renamed 滨州地区 and later became 滨州市"),
+    (1993, "石家庄地区"): ("CNUR-000350", "石家庄地区 merged into 石家庄市"),
+    (1993, "张家口地区"): ("HIST-HE-ZHANGJIAKOU", "1993年河北地市合并：撤销张家口地区并入张家口市（国函〔1993〕89号）"),
+    (1993, "沧州地区"): ("HIST-HE-CANGZHOU", "1993年河北地市合并：撤销沧州地区并入沧州市（国函〔1993〕89号）"),
+    (1993, "邯郸地区"): ("HIST-HE-HANDAN", "1993年河北地市合并：撤销邯郸地区并入邯郸市（国函〔1993〕89号）"),
+    (1993, "邢台地区"): ("HIST-HE-XINGTAI", "1993年河北地市合并：撤销邢台地区并入邢台市（国函〔1993〕89号）"),
+    (1993, "承德地区"): ("HIST-HE-CHENGDE", "1993年河北地市合并：撤销承德地区并入承德市（国函〔1993〕89号）"),
+    (1994, "保定地区"): ("HIST-HE-BAODING", "1994年保定地市合并：保定地区与保定市合并组建新的地级保定市（国函〔1994〕133号）"),
+    (1994, "郧阳地区"): ("CNUR-000357", "郧阳地区 merged into 十堰市"),
+    (1994, "沙市市"): ("CNUR-000358", "荆州地区 and 沙市市 merged into the new 荆沙市"),
+    (1996, "松花江地区"): ("HIST-HLJ-SONGHUAJIANG", "1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）"),
+    (1997, "眉山地区"): ("E511400", "眉山地区 later became 眉山市"),
+    (1998, "桂林地区"): ("HIST-GX-GUILIN", "1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）"),
+    (1998, "资阳地区"): ("E512000", "资阳地区 later became 资阳市"),
 }
 MANUAL_ACCEPT_EVENTS = {
-    "WIKI-1988-007": "朔州市 was explicitly established as a prefecture-level city",
-    "WIKI-1988-011": "汕尾市 was explicitly established as a prefecture-level city",
-    "WIKI-1988-012": "河源市 was explicitly established as a prefecture-level city",
-    "WIKI-1988-014": "阳江市 was explicitly established as a prefecture-level city",
-    "WIKI-1988-015": "清远市 was explicitly established as a prefecture-level city",
-    "WIKI-1988-016": "安庆地区 and the existing city were merged into the unified 安庆市",
-    "WIKI-1992-022": "松原市 was explicitly established as a prefecture-level city",
-    "WIKI-1993-026": "孝感市 was explicitly established as a prefecture-level city",
-    "WIKI-1993-030": "防城港市 was explicitly established as a prefecture-level city",
-    "WIKI-1994-038": "郴州市 was explicitly established as a prefecture-level city",
+    (1988, "朔州市"): "朔州市 was explicitly established as a prefecture-level city",
+    (1988, "汕尾市"): "汕尾市 was explicitly established as a prefecture-level city",
+    (1988, "河源市"): "河源市 was explicitly established as a prefecture-level city",
+    (1988, "阳江市"): "阳江市 was explicitly established as a prefecture-level city",
+    (1988, "清远市"): "清远市 was explicitly established as a prefecture-level city",
+    (1988, "安庆地区"): "安庆地区 and the existing city were merged into the unified 安庆市",
+    (1992, "松原市"): "松原市 was explicitly established as a prefecture-level city",
+    (1993, "孝感市"): "孝感市 was explicitly established as a prefecture-level city",
+    (1993, "防城港市"): "防城港市 was explicitly established as a prefecture-level city",
+    (1994, "郴州市"): "郴州市 was explicitly established as a prefecture-level city",
 }
 MANUAL_HISTORICAL_LINKS = {
-    "WIKI-1987-003": ("HIST-HN-LMZ", "abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control"),
-    "WIKI-1992-020": ("HIST-CQ-WANXIAN", "Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997"),
-    "WIKI-1993-029": ("HIST-SX-YANBEI", "Yanbei was abolished and split between Datong and Shuozhou"),
-    "WIKI-1995-048": ("HIST-CQ-FULING", "Fuling Prefecture continued as historical prefecture-level Fuling City until 1997"),
-    "WIKI-1996-056": ("HIST-CQ-QIANJIANG", "multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"),
+    (1987, "海南黎族苗族自治州"): ("HIST-HN-LMZ", "abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control"),
+    (1992, "万县地区"): ("HIST-CQ-WANXIAN", "Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997"),
+    (1993, "雁北地区"): ("HIST-SX-YANBEI", "Yanbei was abolished and split between Datong and Shuozhou"),
+    (1995, "涪陵地区"): ("HIST-CQ-FULING", "Fuling Prefecture continued as historical prefecture-level Fuling City until 1997"),
+    (1996, "黔江地区"): ("HIST-CQ-QIANJIANG", "multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"),
 }
 MANUAL_SPLIT_EVENTS = {
-    "WIKI-1988-010": ("CNUR-000347", "惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体"),
-    "WIKI-1997-064": ("CNUR-000363", "梧州地区主要分为贺州地区并将三县市划归既有梧州市"),
+    (1988, "惠阳地区"): ("CNUR-000347", "惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体"),
+    (1997, "梧州地区"): ("CNUR-000363", "梧州地区主要分为贺州地区并将三县市划归既有梧州市"),
 }
 MANUAL_MERGE_EVENTS = {
-    "WIKI-1994-042": ("CNUR-000358", "荆州地区与原地级沙市市共同组建新的荆沙市"),
+    (1994, "沙市市"): ("CNUR-000358", "荆州地区与原地级沙市市共同组建新的荆沙市"),
 }
 
 
@@ -87,7 +136,19 @@ def extract_names(kind: str, text: str) -> tuple[str, str]:
     if kind == "rename":
         match = re.search(r"([\u4e00-\u9fff·]{2,20}(?:地区|盟|自治州|市))更名为([\u4e00-\u9fff·]{2,20}(?:地区|盟|自治州|市))", text)
         if match: old, new = match.groups()
-    else:
+    elif kind == "merge":
+        match = MERGE_COMBINE_RE.search(text)
+        if match:
+            first, second, new = match.groups()
+            old = first if first.endswith(("地区", "盟")) else second
+            return old, new.removeprefix("地级")
+        match = MERGE_ABOLISH_RE.search(text)
+        if match:
+            old = match.group(1)
+            return old, old[:-2] + "市"
+        # Fall through to the generic region/city extraction below when the
+        # merge sentence has an unusual form (e.g. "撤销郧阳地区，将…划归…市").
+    if kind != "rename":
         match = re.search(r"撤销(?:[^，|]{0,8}?省)?([\u4e00-\u9fff·]{2,16}(?:地区|盟|自治州|地级市))", text)
         if match: old = match.group(1).removeprefix("地级")
         match = re.search(r"设立(?:地级)?([\u4e00-\u9fff·]{2,12}市)(?:（地级）)?", text)
@@ -108,12 +169,19 @@ def main() -> None:
                 name_to_entities.setdefault(row["name_zh"], set()).add(row["entity_id"])
     for entity_id, entity in entities.items():
         name_to_entities.setdefault(entity["canonical_name_zh"], set()).add(entity_id)
+    # Historical entities (legacy HIST-* ids; migrated to CNUR later).
+    with HISTORICAL.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            legacy = row.get("legacy_entity_id") or row["historical_entity_id"]
+            if row["canonical_name_zh"]:
+                name_to_entities.setdefault(row["canonical_name_zh"], set()).add(legacy)
     output, province_by_year = [], {}
     for row in read():
         year = int(row["year"])
         if year >= 2000:
             continue
-        text, section = row["row_text"], row["section"]
+        text = MISSING_ABOLISH_RE.sub(r"|撤销\1，", row["row_text"])
+        section = row["section"]
         province_match = PROVINCE_RE.search(text)
         if province_match and "撤销" not in text and "设立" not in text:
             province_by_year[year] = province_match.group(1)
@@ -127,6 +195,9 @@ def main() -> None:
         province = province_by_year.get(year, "")
         if province and old_name.startswith(province): old_name = old_name[len(province):]
         if province and new_name.startswith(province): new_name = new_name[len(province):]
+        for (manual_year, fragment), (old_fix, new_fix) in MANUAL_NAMES_BY_TEXT.items():
+            if manual_year == year and fragment in text:
+                old_name, new_name = old_fix, new_fix
         if old_name and new_name and kind in {"establish", "abolish"} and old_name.endswith(("地区", "盟")):
             kind = "upgrade"
         # Require a prefecture-level semantic payload, not a subordinate county row.
@@ -150,24 +221,29 @@ def main() -> None:
         automatic = kind in {"rename", "upgrade"} and bool(old_name and new_name)
         event_id = f"WIKI-{year}-{len(output)+1:03d}"
         review_note = ""
-        if event_id in MANUAL_ENTITY_LINKS:
-            entity_id, review_note = MANUAL_ENTITY_LINKS[event_id]
-            if entity_id in entities: province = entities[entity_id]["province_name_zh"]
-            risks = [risk for risk in risks if risk != "entity_unresolved"]
-        if event_id in MANUAL_ACCEPT_EVENTS:
-            review_note = MANUAL_ACCEPT_EVENTS[event_id]
-        if event_id in MANUAL_HISTORICAL_LINKS:
-            entity_id, review_note = MANUAL_HISTORICAL_LINKS[event_id]
-            risks = [risk for risk in risks if risk != "entity_unresolved"]
-            if event_id in {"WIKI-1993-029", "WIKI-1996-056"}: risks.append("multi_entity_relation")
-        if event_id in MANUAL_SPLIT_EVENTS:
-            entity_id, review_note = MANUAL_SPLIT_EVENTS[event_id]
-            kind, automatic = "split", False
-            risks = [risk for risk in risks if risk != "entity_unresolved"] + ["multi_entity_relation"]
-        if event_id in MANUAL_MERGE_EVENTS:
-            entity_id, review_note = MANUAL_MERGE_EVENTS[event_id]
-            kind, automatic = "merge", False
-            risks = [risk for risk in risks if risk != "entity_unresolved"] + ["multi_entity_relation"]
+        for (manual_year, fragment), (entity_value, note) in MANUAL_ENTITY_LINKS.items():
+            if manual_year == year and fragment in text:
+                entity_id, review_note = entity_value, note
+                if entity_id in entities: province = entities[entity_id]["province_name_zh"]
+                risks = [risk for risk in risks if risk != "entity_unresolved"]
+        for (manual_year, fragment), note in MANUAL_ACCEPT_EVENTS.items():
+            if manual_year == year and fragment in text:
+                review_note = note
+        for (manual_year, fragment), (entity_value, note) in MANUAL_HISTORICAL_LINKS.items():
+            if manual_year == year and fragment in text:
+                entity_id, review_note = entity_value, note
+                risks = [risk for risk in risks if risk != "entity_unresolved"]
+                if (manual_year, fragment) in {(1993, "雁北地区"), (1996, "黔江地区")}: risks.append("multi_entity_relation")
+        for (manual_year, fragment), (entity_value, note) in MANUAL_SPLIT_EVENTS.items():
+            if manual_year == year and fragment in text:
+                entity_id, review_note = entity_value, note
+                kind, automatic = "split", False
+                risks = [risk for risk in risks if risk != "entity_unresolved"] + ["multi_entity_relation"]
+        for (manual_year, fragment), (entity_value, note) in MANUAL_MERGE_EVENTS.items():
+            if manual_year == year and fragment in text:
+                entity_id, review_note = entity_value, note
+                kind, automatic = "merge", False
+                risks = [risk for risk in risks if risk != "entity_unresolved"] + ["multi_entity_relation"]
         status = "accepted_manual_review" if review_note else "accepted_rule_extraction" if entity_id and old_name and new_name and kind in {"rename", "upgrade"} else "review_required"
         output.append({
             "event_id": event_id, "year": year,
@@ -181,6 +257,22 @@ def main() -> None:
             "description": text, "source_section": section, "source_url": row["source_url"],
             "revision_id": row["revision_id"], "source_row_number": row["row_number"],
         })
+    for supp in SUPPLEMENTAL_EVENTS:
+        year = supp["year"]
+        suffixes = [int(e["event_id"].rsplit("-", 1)[1]) for e in output if int(e["year"]) == year]
+        event_id = f"WIKI-{year}-{max(suffixes, default=0)+1:03d}"
+        output.append({
+            "event_id": event_id, "year": year, "province_name": supp["province"],
+            "event_type": supp["event_type"], "entity_id": supp["entity_id"],
+            "old_prefecture_name": supp["old"], "new_prefecture_name": supp["new"],
+            "approval_date": supp["approval_date"], "document_number": supp["document_number"],
+            "automatic_continuity": supp["automatic_continuity"], "confidence": supp["confidence"],
+            "normalization_status": supp["normalization_status"], "review_note": supp["review_note"],
+            "risk_flags": supp["risk_flags"], "description": supp["description"],
+            "source_section": supp["source_section"], "source_url": supp["source_url"],
+            "revision_id": "", "source_row_number": "",
+        })
+    output.sort(key=lambda item: (int(item["year"]), item["event_id"]))
     with OUTPUT.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(output)

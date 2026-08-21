@@ -46,7 +46,7 @@ if page == "数据库浏览与下载":
     c1.metric("研究实体", len(master))
     c2.metric("持续追踪实体", int((master.entity_scope == "research_entity").sum()))
     c3.metric("历史实体", int((master.entity_scope == "historical_entity").sum()))
-    c4.metric("统一事件", len(m.unified_events))
+    c4.metric("统一事件", len(m.unified_event_rows))
     master_tab, annual_tab = st.tabs(["实体总表", "1987—2026 年末状态"])
     with master_tab:
         f1, f2, f3 = st.columns(3)

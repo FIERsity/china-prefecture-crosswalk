@@ -492,8 +492,8 @@ CNUR-000344,,1987,1994,not_established,year_end,inferred,medium,entity_lifespan,
 CNUR-000344,涪陵市,1995,1997,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000344,,1998,2026,abolished,year_end,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000345,,1987,1987,not_established,year_end,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
-CNUR-000345,黔江地区,1988,1997,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
-CNUR-000345,,1998,2026,abolished,year_end,inferred,medium,entity_lifespan,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
+CNUR-000345,黔江地区,1988,1996,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
+CNUR-000345,,1997,2026,abolished,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000346,南宁地区,1987,2001,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000346,,2002,2026,abolished,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000347,惠阳地区,1987,1987,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules

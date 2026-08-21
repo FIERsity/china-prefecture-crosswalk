@@ -147,16 +147,16 @@ def main() -> None:
     require(min(int(row["year"]) for row in wiki_pages) == 1987, "Wikipedia archive start year changed")
     require(max(int(row["year"]) for row in wiki_pages) == 2026, "Wikipedia archive end year changed")
     require(len(wiki_rows) >= 900, "Wikipedia prefecture archive unexpectedly small")
-    require(len(historical_events) == 81, "historical normalized event count changed")
-    require(sum(row["normalization_status"].startswith("accepted_") for row in historical_events) == 81, "accepted historical event count changed")
+    require(len(historical_events) == 91, "historical normalized event count changed")
+    require(sum(row["normalization_status"].startswith("accepted_") for row in historical_events) == 91, "accepted historical event count changed")
     require(all(row["entity_id"] for row in historical_events if row["normalization_status"].startswith("accepted_")), "accepted historical event missing entity")
-    require(len(unified_events) == 144, "unified event count changed")
+    require(len(unified_events) == 154, "unified event count changed")
     require(len({row["event_id"] for row in unified_events}) == len(unified_events), "duplicate unified event_id")
     signatures = [(row["year"], row["event_type"], row["old_prefecture_name"], row["new_prefecture_name"]) for row in unified_events]
     require(len(signatures) == len(set(signatures)), "duplicate unified event signature")
-    require(all(row["source_url"].startswith("https://zh.wikipedia.org/wiki/") for row in unified_events), "unified event source missing")
+    require(all(row["source_url"].startswith("https://zh.wikipedia.org/wiki/") or row["source_url"].startswith("https://zh.wikisource.org/wiki/") for row in unified_events), "unified event source missing")
     require(all(row["entity_id"] for row in unified_events if row["review_status"].startswith("accepted_")), "accepted unified event missing entity")
-    require(sum(row["review_status"].startswith("accepted_") for row in unified_events) == 144, "accepted unified event count changed")
+    require(sum(row["review_status"].startswith("accepted_") for row in unified_events) == 154, "accepted unified event count changed")
     require(sum(row["review_status"] == "review_required" for row in unified_events) == 0, "unresolved unified event remains")
     valid_entity_ids = {row["entity_id"] for row in entities} | {row["historical_entity_id"] for row in historical_entity_rows}
     require(all(row["entity_id"] in valid_entity_ids for row in unified_events), "unified event uses unknown entity")
@@ -170,8 +170,10 @@ def main() -> None:
     require(any(row["event_id"] == "EARLY-PREFECTURE-XZQH-COUNTY-1983-Q4-004" and row["document_number"] == "(83)国函字218号" for row in early_prefecture_events), "Chifeng approval number missing")
     require(all(row["entity_id"] in valid_entity_ids for row in early_prefecture_events if row["entity_id"]), "early prefecture event uses unknown entity")
     require(len(historical_entity_rows) == 23, "historical entity registry changed")
-    require(sum(row["event_id"] == "WIKI-1993-029" and row["relation_type"] == "split" for row in unified_relations) == 2, "Yanbei split relations missing")
-    require(sum(row["event_id"] == "WIKI-1996-056" and row["relation_type"] == "jurisdiction_transfer" and row["to_entity_id"] == "CNUR-000235" for row in unified_relations) >= 3, "1996 Chongqing transfer relations missing")
+    yanbei_event_id = next(row["event_id"] for row in unified_events if "雁北地区" in row["description"] and int(row["year"]) == 1993)
+    require(sum(row["event_id"] == yanbei_event_id and row["relation_type"] == "split" for row in unified_relations) == 2, "Yanbei split relations missing")
+    chongqing_transfer_id = next(row["event_id"] for row in unified_events if "三峡库区移民" in row["description"] and int(row["year"]) == 1996)
+    require(sum(row["event_id"] == chongqing_transfer_id and row["relation_type"] == "jurisdiction_transfer" and row["to_entity_id"] == "CNUR-000235" for row in unified_relations) >= 3, "1996 Chongqing transfer relations missing")
     require(len(continuity_audit) >= 1000, "continuity audit unexpectedly small")
     require(not any(row["status"] == "error" for row in continuity_audit), "continuity audit contains errors")
     require(len(extended_roster) == 363 * 40, "extended roster must contain 14,520 entity-years")
@@ -272,8 +274,8 @@ def main() -> None:
     require(not any(r["entity_id"] == "CNUR-000281" and "香格里拉" in r["legal_name_zh"] for r in roster), "county-level Shangri-La leaked into prefecture roster")
     require(len(id_crosswalk) == 363, "CNUR crosswalk must contain 363 entities")
     require(len({row["entity_id"] for row in id_crosswalk}) == 363, "duplicate CNUR ID")
-    require(len(major_lineage) == 37, "major lineage relation inventory changed")
-    require(len(county_transitions) == 90, "county transition evidence inventory changed")
+    require(len(major_lineage) == 41, "major lineage relation inventory changed")
+    require(len(county_transitions) == 94, "county transition evidence inventory changed")
     require(all(row["automatic_mapping"] == "false" for row in major_lineage), "major lineage must never auto-map values")
     require(len(county_pages) == 37, "county Wikipedia page inventory changed")
     require(len(county_rows) >= 1100, "county Wikipedia archive unexpectedly small")
@@ -339,6 +341,29 @@ def main() -> None:
     print("PASS: ten audited corrections and all source references are present")
     print("PASS: extended runtime coverage is 363 entities x 40 years (1987-2026)")
     print(f"PASS: source registry has {len(source_registry)} sources and county events cover 1983-2026")
+    # Province-level external display boundary must exist with the expected schema.
+    repo_root = Path(__file__).resolve().parents[1]
+    external_path = repo_root / "docs" / "data" / "maps" / "external" / "external_current.geojson"
+    require(external_path.exists(), "external_current.geojson missing (run scripts/build_external_current.py)")
+    external_payload = json.loads(external_path.read_text(encoding="utf-8"))
+    require({feature["id"] for feature in external_payload["features"]} == {"EXTERNAL-HKG", "EXTERNAL-MAC", "EXTERNAL-TWN"}, "external_current feature ids changed")
+    require(all(feature["properties"].get("map_level") == "province" for feature in external_payload["features"]), "external_current map_level must be province")
+
+    # Website data bundle must never drift from the processed layer.
+    repo_root = Path(__file__).resolve().parents[1]
+    docs_data = repo_root / "docs" / "data"
+    for name in (
+        "entities.csv", "entity_names_1987_2026.csv", "entity_names_year_end_1987_2026.csv",
+        "entity_name_match_ranges_1987_2026.csv", "legal_roster_1987_2026.csv",
+        "legal_roster_year_end_1987_2026.csv", "event_timing_reviews.csv",
+        "ctamap_snapshots.csv", "ctamap_prefecture_links.csv",
+        "unified_events_1987_2026.csv", "prefecture_administrative_events_1983_2026.csv",
+        "county_administrative_events_1983_2026.csv", "county_administrative_events_1987_2026.csv",
+        "county_unit_type_coverage_1987_2026.csv", "source_registry.csv",
+    ):
+        require((docs_data / name).exists(), f"docs/data/{name} missing")
+        require((docs_data / name).read_bytes() == (PROCESSED / name).read_bytes(),
+                f"docs/data/{name} drifted from the processed layer")
 
 
 def read_csv_at(path: Path) -> tuple[list[str], list[dict[str, str]]]:
