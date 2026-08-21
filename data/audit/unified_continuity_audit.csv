@@ -1,6 +1,6 @@
 check,status,subject,detail
 unique_event_id,pass,all_events,duplicates=0
-unique_event_signature,pass,all_events,events=154
+unique_event_signature,pass,all_events,events=157
 entity_reference,pass,WIKI-1987-001,CNUR-000106
 automatic_continuity,pass,WIKI-1987-001,type=upgrade automatic=True
 event_roster_name,pass,WIKI-1987-001,effective_year=1987 event=黄山市 roster=黄山市
@@ -54,6 +54,15 @@ automatic_continuity,pass,WIKI-1988-017,type=establish_prefecture automatic=Fals
 entity_reference,pass,WIKI-1988-018,CNUR-000121
 automatic_continuity,pass,WIKI-1988-018,type=rename automatic=True
 event_roster_name,pass,WIKI-1988-018,effective_year=1988 event=南平地区 roster=南平地区
+entity_reference,pass,WIKI-1989-001,CNUR-000145
+automatic_continuity,pass,WIKI-1989-001,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1989-001,effective_year=1989 event=日照市 roster=日照市
+entity_reference,pass,WIKI-1991-001,CNUR-000214
+automatic_continuity,pass,WIKI-1991-001,type=upgrade automatic=True
+event_roster_name,pass,WIKI-1991-001,effective_year=1991 event=潮州市 roster=潮州市
+entity_reference,pass,WIKI-1991-002,CNUR-000215
+automatic_continuity,pass,WIKI-1991-002,type=establish automatic=False
+event_roster_name,pass,WIKI-1991-002,effective_year=1991 event=揭阳市 roster=揭阳市
 entity_reference,pass,WIKI-1992-019,CNUR-000107
 automatic_continuity,pass,WIKI-1992-019,type=upgrade automatic=True
 event_roster_name,pass,WIKI-1992-019,effective_year=1992 event=滁州市 roster=滁州市
@@ -478,6 +487,9 @@ chronological_order,pass,CNUR-000348,1988
 chronological_order,pass,CNUR-000113,"1988,2000"
 name_chain,pass,CNUR-000121,WIKI-1988-018:南平地区 -> WIKI-1994-038:南平地区
 chronological_order,pass,CNUR-000121,"1988,1994"
+chronological_order,pass,CNUR-000145,1989
+chronological_order,pass,CNUR-000214,1991
+chronological_order,pass,CNUR-000215,1991
 chronological_order,pass,CNUR-000107,1992
 chronological_order,pass,CNUR-000342,1992
 chronological_order,pass,CNUR-000349,1992
@@ -671,6 +683,17 @@ relation_event_reference,pass,WIKI-1988-018,rename
 relation_from_entity,pass,WIKI-1988-018,CNUR-000121
 relation_to_entity,pass,WIKI-1988-018,CNUR-000121
 complex_relation_mapping,pass,WIKI-1988-018,rename automatic=true
+relation_event_reference,pass,WIKI-1989-001,upgrade
+relation_from_entity,pass,WIKI-1989-001,CNUR-000145
+relation_to_entity,pass,WIKI-1989-001,CNUR-000145
+complex_relation_mapping,pass,WIKI-1989-001,upgrade automatic=true
+relation_event_reference,pass,WIKI-1991-001,upgrade
+relation_from_entity,pass,WIKI-1991-001,CNUR-000214
+relation_to_entity,pass,WIKI-1991-001,CNUR-000214
+complex_relation_mapping,pass,WIKI-1991-001,upgrade automatic=true
+relation_event_reference,pass,WIKI-1991-002,establish
+relation_from_entity,pass,WIKI-1991-002,CNUR-000215
+complex_relation_mapping,pass,WIKI-1991-002,establish automatic=false
 relation_event_reference,pass,WIKI-1992-019,upgrade
 relation_from_entity,pass,WIKI-1992-019,CNUR-000107
 relation_to_entity,pass,WIKI-1992-019,CNUR-000107

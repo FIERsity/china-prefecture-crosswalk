@@ -185,6 +185,36 @@ def build_registry() -> tuple[dict[str, dict[str, str]], dict[str, str]]:
         "notes": "Supplemental event source for 1997年12月万县市、涪陵市、黔江地区行政体制调整（撤销改设区/开发区）。",
     })
     url_to_id["https://zh.wikisource.org/wiki/中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复"] = "SRC-WIKISOURCE-CQ-WFL-1997"
+    add_source(registry, {
+        "source_id": "SRC-GUOHAN-1989-43",
+        "source_type": "wikisource_official_text",
+        "title": "国务院关于山东省日照市升为地级市的批复（国函〔1989〕43号，维基文库）",
+        "url": "https://zh.wikisource.org/wiki/国务院关于山东省日照市升为地级市的批复",
+        "accessed_date": TODAY,
+        "coverage_start": "1989",
+        "coverage_end": "1989",
+        "source_locator": "full text",
+        "authority": "中华人民共和国国务院",
+        "scope": "supplemental_event_evidence",
+        "provenance_status": "reviewed_reference",
+        "notes": "Supplemental event source for 1989年6月12日日照市由县级市升为地级市（国函〔1989〕43号）。该事件不在维基1987/1988年度行政区划变更页面中。",
+    })
+    url_to_id["https://zh.wikisource.org/wiki/国务院关于山东省日照市升为地级市的批复"] = "SRC-GUOHAN-1989-43"
+    add_source(registry, {
+        "source_id": "SRC-GUOHAN-1991-84",
+        "source_type": "government_web_reprint",
+        "title": "国务院关于广东省调整汕头潮州两市行政区划的批复（国函〔1991〕84号，揭阳市政府转发）",
+        "url": "http://www.jieyang.gov.cn/zwgk/jcxxgk/zfgb/1992nian/jyzbdyq/zz/content/post_725314.html",
+        "accessed_date": TODAY,
+        "coverage_start": "1991",
+        "coverage_end": "1991",
+        "source_locator": "full reprint",
+        "authority": "中华人民共和国国务院",
+        "scope": "supplemental_event_evidence",
+        "provenance_status": "reviewed_reference",
+        "notes": "Supplemental event source for 1991年12月7日潮州市升格地级市、撤销揭阳县设立揭阳市（地级）。该事件不在维基年度行政区划变更页面中（1989—1991无年度表）。",
+    })
+    url_to_id["http://www.jieyang.gov.cn/zwgk/jcxxgk/zfgb/1992nian/jyzbdyq/zz/content/post_725314.html"] = "SRC-GUOHAN-1991-84"
     return registry, url_to_id
 
 

@@ -17,6 +17,9 @@ WIKI-1988-015,CNUR-000211,,establish,event_only,false,清远市 was explicitly e
 WIKI-1988-016,CNUR-000348,,merge,event_only,false,安庆地区 and the existing city were merged into the unified 安庆市
 WIKI-1988-017,CNUR-000113,,establish_prefecture,event_only,false,池州地区 later continued as the Chizhou research entity
 WIKI-1988-018,CNUR-000121,CNUR-000121,rename,exact,true,建阳地区 renamed 南平地区 and later became 南平市
+WIKI-1989-001,CNUR-000145,CNUR-000145,upgrade,exact,true,1989-06-12 国务院批复日照市由县级市升为地级市（国函〔1989〕43号），行政区域、人员编制不变；1989-11-05 正式对外办公。日照县撤县设市为1985年（85国函字43号，县级）。
+WIKI-1991-001,CNUR-000214,CNUR-000214,upgrade,exact,true,1991-12-07 国务院批复调整汕头、潮州两市行政区划（国函〔1991〕84号）：潮州市升格为地级市，设立潮州市湘桥区、潮安县，将潮安县和原汕头市的饶平县划归潮州市管辖。
+WIKI-1991-002,CNUR-000215,,establish,event_only,false,1991-12-07 国务院批复（国函〔1991〕84号）：撤销揭阳县，设立揭阳市（地级），设立揭阳市榕城区、揭东县，将揭东县和原汕头市的揭西、普宁、惠来四县划归揭阳市管辖。
 WIKI-1992-019,CNUR-000107,CNUR-000107,upgrade,exact,true,
 WIKI-1992-020,CNUR-000342,CNUR-000342,upgrade,exact,true,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
 WIKI-1992-021,CNUR-000349,,abolish,event_only,false,宜昌地区 merged into the existing 宜昌市
