@@ -399,7 +399,8 @@ async function renderHistoryMap() {
       const p = feature.properties;
       mapLayerById.set(feature.id, { feature, layer });
       const parentLabel = p.map_level === "county" && p.prefecture_name ? ` · ${p.prefecture_name}` : "";
-      layer.bindTooltip(`${p.source_name} · ${p.province_name}${parentLabel}`, { sticky: true });
+      const tooltipLabel = p.map_level === "province" ? p.source_name : `${p.source_name} · ${p.province_name}${parentLabel}`;
+      layer.bindTooltip(tooltipLabel, { sticky: true });
       layer.on({
         mouseover: () => layer.setStyle({ fillColor: "#f28b50", fillOpacity: .9, weight: 1.2 }),
         mouseout: () => historyLayer.resetStyle(layer),

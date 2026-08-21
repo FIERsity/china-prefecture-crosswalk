@@ -251,11 +251,22 @@ python3 -m http.server 8765 --directory docs
 - 部分事件同时记录国务院、民政部或地方政府批文号；
 - 维基可枚举的同名年度页面覆盖1987—1988、1992—2026，1989—1991和更早年份没有同类年度表；
 - V4.0不声称已经为每条记录完成官方批复原件级核验；仅有批准日而无实施日的事件以推定口径并标注时间置信度；
-- CTAmap 简化地级 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；
+- CTAmap 简化的省、地、县 GeoJSON 按上游非商业条件和独立 NOTICE 提供，不属于本项目 CC BY 4.0 数据；
+- 县级地图 2000—2010 年原始坐标为 Web Mercator，构建时转换为 WGS84；2011—2024 年原始坐标为 WGS84；
 - 历史地图覆盖 2000—2024 年初，对应 1999—2023 经济面板年份；县级地图按省份加载，县级要素只连接其上级地级 CNUR，不冒充地级研究实体；
 - 实体总表是跨期研究实体全集，不等同于任何单一年度的法定地级单位名单；逐年状态应以年度状态表为准；
 - 对高要求历史或法律研究，应结合官方批复和本项目的 `verification_status`、`confidence`、`risk_flags` 使用。
 
+
+### 港澳台公开地图资源线索
+
+本项目当前只把港澳台作为地图背景，不纳入 CNUR 地级研究实体。后续若需要补充独立边界图层，可优先核验以下公开入口：
+
+- 香港：[DATA.GOV.HK CKAN API](https://data.gov.hk/en/help/ckan-api-development-guide)、[CSDI 地理空间数据门户](https://portal.csdi.gov.hk/geoportal/)、[GeoInfo Map Service](https://www.hkmapservice.gov.hk/OneStopSystemMap/)。前两个是公开数据/目录入口，但具体行政边界图层需要按数据集和授权逐项确认。
+- 澳门：[地理空间信息入口网站](https://www.gis.gov.mo/geoportal/)、[澳门网上地图](https://webmap.gis.gov.mo/)。目前确认有官方公开地图入口，但尚未确认可直接重新分发的行政边界 Shapefile/GeoJSON 许可。
+- 台湾：[政府资料开放平台的直辖市、县市界线数据集](https://data.gov.tw/dataset/7442)，页面明确提供 TWD97 经纬度边界资料、SHP 下载和资料授权链接；另可参考 [geoBoundaries TW ADM2](https://www.geoboundaries.org/api/current/gbOpen/TWN/ADM2/)，但仍需按当前版本许可和字段核对后再导入。
+
+这些资源不能直接与 CTAmap 混合：坐标系、行政层级、政治/法律口径和许可证不同。导入前必须保留原始来源、版本日期、坐标系和许可字段。
 
 ## 引用
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
