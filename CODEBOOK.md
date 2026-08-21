@@ -36,7 +36,7 @@ Machine-readable export of the 63 core prefecture-level change events in the sou
 
 `docs/data/maps/` contains per-year province and prefecture GeoJSON plus county GeoJSON partitioned by snapshot year and province code. County features retain their source county type, prefecture/province name and code, and a nullable parent prefecture CNUR; they are not promoted to CNUR entities. County sources from 2000—2010 are transformed from Web Mercator to WGS84 before simplification, while 2011—2024 sources are already WGS84. The original Shapefiles are not redistributed and all derived geometry follows its own NOTICE rather than this project's CC BY 4.0 license.
 
-External display layers are separate from CTAmap: Taiwan contributes 22 ADM1 prefecture-equivalent regions and 368 ADM2 county-equivalent regions; Hong Kong contributes its 18 districts to the county display layer and Macau is currently represented by one unsplit external display region because a redistributable sub-district source has not been verified. These features are display-only, have no CNUR or annual legal-roster status, and are not used for research matching.
+External display layers are separate from CTAmap: Taiwan contributes 22 ADM1 prefecture-equivalent regions and 368 ADM2 county-equivalent regions; Taiwan ADM2 labels are converted to Simplified Chinese using the MIT-licensed `tw-area-json` name/centroid crosswalk. Hong Kong contributes its 18 districts to the county display layer and Macau is currently represented by one unsplit display region because a redistributable sub-district source has not been verified. These features are display-only, have no CNUR or annual legal-roster status, and are not used for research matching.
 
 ## `data/processed/event_entity_links.csv`
 

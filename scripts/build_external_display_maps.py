@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from opencc import OpenCC
 from shapely.geometry import mapping, shape
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,6 +69,9 @@ def external_feature(feature: dict, *, name: str, level: str, group: str, source
 def build_taiwan() -> tuple[list[dict], list[dict]]:
     adm1 = read_json(RAW / "taiwan_geoboundaries" / "TWN-ADM1.geojson")
     adm2 = read_json(RAW / "taiwan_geoboundaries" / "TWN-ADM2.geojson")
+    positions = read_json(RAW / "taiwan_geoboundaries" / "tw_area_position.json")
+    converter = OpenCC("t2s")
+    position_names = [(converter.convert(item["name"]), item["location"]["lng"], item["location"]["lat"]) for item in positions]
     prefecture = []
     for feature in adm1["features"]:
         source_name = feature.get("properties", {}).get("shapeName", "")
@@ -75,7 +79,9 @@ def build_taiwan() -> tuple[list[dict], list[dict]]:
     county = []
     for feature in adm2["features"]:
         source_name = feature.get("properties", {}).get("shapeName", "")
-        county.append(external_feature(feature, name=source_name, level="county", group="taiwan", source="geoBoundaries TWN ADM2", county_type="县级外部展示区"))
+        center = shape(feature["geometry"]).centroid
+        nearest = min(position_names, key=lambda item: (item[1] - center.x) ** 2 + (item[2] - center.y) ** 2)
+        county.append(external_feature(feature, name=nearest[0], level="county", group="taiwan", source="geoBoundaries TWN ADM2 + tw-area-json Chinese name crosswalk", county_type="县级外部展示区"))
     return prefecture, county
 
 

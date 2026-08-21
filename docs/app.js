@@ -1,4 +1,4 @@
-const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map() };
+const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map(), mapLevel: null, mapFocusProvinceCode: "" };
 let historyMap = null;
 let historyLayer = null;
 let mapLayerById = new Map();
@@ -430,7 +430,8 @@ function renderEvents() {
 
 function mapEntityHistoryHtml(properties) {
   if (properties.external_only) {
-    return `<div class="map-entity-card context"><span>外部展示层</span><strong>${escapeHtml(properties.display_name_zh)}</strong><span>地级父节点</span><strong>无</strong><span>CNUR</span><strong>不分配</strong></div><p class="county-history-note">港澳台在本项目中只作为当前背景展示，不参与 CNUR、逐年份面板或地级父级匹配。</p>`;
+    const levelName = properties.map_level === "province" ? "省级" : properties.map_level === "prefecture" ? "地级" : "县级";
+    return `<div class="map-entity-card"><span>行政层级</span><strong>${levelName}</strong><span>名称</span><strong>${escapeHtml(properties.display_name_zh || properties.source_name)}</strong></div>`;
   }
   if (properties.map_level === "province") {
     return `<div class="map-entity-card context"><span>行政层级</span><strong>省级</strong><span>省级类型</span><strong>${escapeHtml(properties.province_type || "—")}</strong></div>`;
@@ -463,7 +464,8 @@ function showMapFeature(featureId, zoom = false) {
   layer.openTooltip();
   const typeLabel = p.map_level === "province" ? p.province_type : p.map_level === "county" ? p.county_type : p.prefecture_type;
   const displayName = p.external_only ? p.display_name_zh : p.source_name;
-  $("#map-detail").innerHTML = `<div class="section-label">${p.external_only ? "当前外部展示层" : `${p.snapshot_year}年初 / ${p.panel_year}年末 · ${p.map_level === "province" ? "省级" : p.map_level === "county" ? "县级" : "地级"}`}</div><h2>${escapeHtml(displayName)}</h2><p class="muted">${escapeHtml(p.external_only ? "香港/澳门/台湾外部区域" : p.province_name)} · ${escapeHtml(typeLabel || "—")} · ${escapeHtml(p.source_code || "")}</p>${mapEntityHistoryHtml(p)}<p class="map-source-links"><a href="https://github.com/FIERsity/china-prefecture-crosswalk/blob/main/data/raw/external_boundaries/manifest.json" target="_blank" rel="noreferrer">来源清单与许可 ↗</a></p>`;
+  const mapLevelText = p.map_level === "province" ? "省级" : p.map_level === "county" ? "县级" : "地级";
+  $("#map-detail").innerHTML = `<div class="section-label">${p.external_only ? mapLevelText : `${p.snapshot_year}年初 / ${p.panel_year}年末 · ${mapLevelText}`}</div><h2>${escapeHtml(displayName)}</h2><p class="muted">${escapeHtml(p.province_name || "")} · ${escapeHtml(typeLabel || "—")} · ${escapeHtml(p.source_code || "")}</p>${mapEntityHistoryHtml(p)}<p class="map-source-links"><a href="https://github.com/FIERsity/china-prefecture-crosswalk/blob/main/data/raw/external_boundaries/manifest.json" target="_blank" rel="noreferrer">来源清单与许可 ↗</a></p>`;
   $$('[data-map-event-year]').forEach((button) => button.addEventListener("click", () => { $("#event-year").value = button.dataset.mapEventYear; $("#event-keyword").value = p.source_name; switchView("events"); }));
 }
 
@@ -487,6 +489,7 @@ async function renderHistoryMap() {
   const snapshotYear = panelYear + 1;
   const mapLevel = $("#map-level").value || "prefecture";
   const provinceCode = $("#map-province").value || "420000";
+  const focusProvinceCode = mapLevel === "county" ? "" : (state.mapFocusProvinceCode || "");
   if (!window.L) { $("#map-detail").innerHTML = '<p class="result-note">地图组件加载失败，请刷新页面。</p>'; return; }
   if (!historyMap) {
     historyMap = L.map("history-map", { zoomControl: true, attributionControl: false, minZoom: 3, maxZoom: 9 });
@@ -512,6 +515,17 @@ async function renderHistoryMap() {
       geojson.features = geojson.features.concat(external.features);
     }
   }
+  if (focusProvinceCode) {
+    const focusGroup = { "710000": "taiwan", "810000": "hongkong", "820000": "macau" }[focusProvinceCode] || "";
+    geojson.features = geojson.features.filter((feature) => {
+      const properties = feature.properties || {};
+      if (focusGroup) {
+        if (mapLevel === "province") return properties.external_only && properties.display_name_zh === { taiwan: "台湾省", hongkong: "香港特别行政区", macau: "澳门特别行政区" }[focusGroup];
+        return properties.external_group === focusGroup;
+      }
+      return properties.province_code === focusProvinceCode;
+    });
+  }
   currentMapGeojson = geojson;
   mapLayerById = new Map();
   if (historyLayer) historyLayer.remove();
@@ -535,13 +549,14 @@ async function renderHistoryMap() {
       });
     },
   }).addTo(historyMap);
-  historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
+  if (geojson.features.length) historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
   setTimeout(() => historyMap.invalidateSize(), 0);
   const levelName = mapLevel === "province" ? "省级" : mapLevel === "county" ? "县级" : "地级";
   const linked = geojson.features.filter((feature) => feature.properties.link_status === "linked" || feature.properties.link_status === "parent_linked").length;
   const provinceName = mapLevel === "county" ? ` · ${$("#map-province").selectedOptions[0]?.textContent || ""}` : "";
-  const externalNote = externalGroup ? "当前为外部展示层，不对应 CTAmap 年初快照或 CNUR 年度状态。" : "";
-  $("#map-detail").innerHTML = `<div class="section-label">${externalGroup ? "当前外部展示层" : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${externalGroup ? $("#map-province").selectedOptions[0]?.textContent || "外部区域" : `${panelYear} 年经济面板`}</h2><p class="muted">当前加载 ${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。${externalNote}可点击地图或使用名称、代码、CNUR 查询。</p>`;
+  const emptyNote = !geojson.features.length ? "该省份在此层级没有可显示的对应区域。" : "";
+  $("#map-detail").innerHTML = `<div class="section-label">${externalGroup ? levelName : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${externalGroup ? $("#map-province").selectedOptions[0]?.textContent || "" : `${panelYear} 年经济面板`}</h2><p class="muted">当前加载 ${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。${emptyNote}可点击地图或使用名称、代码、CNUR 查询。</p>`;
+  state.mapLevel = mapLevel;
 }
 
 function switchView(view) {
@@ -579,19 +594,22 @@ async function init() {
     $("#rule-version").textContent = state.data.meta.ruleVersion;
     for (let year = 1983; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
     for (let year = 1999; year <= 2023; year += 1) $("#map-panel-year").insertAdjacentHTML("beforeend", `<option value="${year}"${year === 2023 ? " selected" : ""}>${year}（${year + 1}年初地图）</option>`);
-    (state.mapManifest.provinces || []).forEach((province) => { const external = { "710000": "台湾省", "810000": "香港特别行政区", "820000": "澳门特别行政区" }[province.province_code]; const label = external ? `${external}（外部县级层）` : province.province_name; $("#map-province").insertAdjacentHTML("beforeend", `<option value="${escapeHtml(province.province_code)}"${province.province_code === "420000" ? " selected" : ""}>${escapeHtml(label)}</option>`); });
+    (state.mapManifest.provinces || []).forEach((province) => { const label = { "710000": "台湾省", "810000": "香港特别行政区", "820000": "澳门特别行政区" }[province.province_code] || province.province_name; $("#map-province").insertAdjacentHTML("beforeend", `<option value="${escapeHtml(province.province_code)}"${province.province_code === "420000" ? " selected" : ""}>${escapeHtml(label)}</option>`); });
     $("#match-form").addEventListener("submit", (event) => { event.preventDefault(); renderMatch(); });
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);
     $("#map-panel-year").addEventListener("change", () => renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }));
     $("#map-level").addEventListener("change", () => {
+      const nextLevel = $("#map-level").value;
+      if (state.mapLevel === "county" && nextLevel !== "county") state.mapFocusProvinceCode = $("#map-province").value;
+      if (nextLevel === "county") state.mapFocusProvinceCode = "";
       const county = $("#map-level").value === "county";
       $("#map-province-control").hidden = !county;
       $("#map-search-input").value = "";
       $("#map-search-input").placeholder = county ? "县名、县级代码或上级 CNUR" : $("#map-level").value === "province" ? "省名或省级代码" : "名称、代码或 CNUR";
       renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; });
     });
-    $("#map-province").addEventListener("change", () => renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }));
+    $("#map-province").addEventListener("change", () => { if ($("#map-level").value === "county") state.mapFocusProvinceCode = $("#map-province").value; renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }); });
     $("#map-search-form").addEventListener("submit", (event) => { event.preventDefault(); searchHistoryMap(); });
     $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; renderMatch(); }));
     $$("[data-view]").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
