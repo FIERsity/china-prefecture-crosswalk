@@ -180,6 +180,21 @@ def main() -> None:
     for alias, entity_id in (("亳州", "E341600"), ("毫州", "E341600"), ("亳州市", "E341600"), ("毫州市", "E341600")):
         aliases.append({"alias": alias, "entity_id": entity_id, "alias_type": "ocr_variant" if "毫" in alias else "manual_alias", "start_year": 2000, "end_year": 2024, "level": "prefecture", "source_id": "SRC-LEGACY-SNAPSHOT", "review_status": "reviewed", "rule_version": RULE_VERSION})
     aliases = list({(r["alias"], r["entity_id"], r["start_year"], r["end_year"]): r for r in aliases}.values())
+    # Drop aliases shadowed by a longer same-alias span of a different entity in
+    # the same province (e.g. "柳州" 2000-2001 belongs to 柳州地区/来宾市 but is
+    # already covered by 柳州市 2000-2024; keeping both would misroute matches).
+    province_by_entity = {row["entity_id"]: row.get("province_name_zh", "") for row in entity_rows}
+    shadowed = set()
+    for i, left in enumerate(aliases):
+        for j, right in enumerate(aliases):
+            if i == j or left["alias"] != right["alias"] or left["entity_id"] == right["entity_id"]:
+                continue
+            if province_by_entity.get(left["entity_id"]) != province_by_entity.get(right["entity_id"]):
+                continue
+            if (int(left["start_year"]) >= int(right["start_year"])
+                    and int(left["end_year"]) <= int(right["end_year"])):
+                shadowed.add(i)
+    aliases = [row for i, row in enumerate(aliases) if i not in shadowed]
     write_csv(PROCESSED / "aliases.csv", list(aliases[0]), aliases)
 
     exclusions = [{"name": "香格里拉市", "normalized_name": "香格里拉市", "level": "county_level_city", "parent_entity_id": "E533400", "start_year": 2015, "end_year": 2026, "risk_code": "county_level_conflict", "source_id": "SRC-WIKI-DIQING", "review_status": "reviewed", "rule_version": RULE_VERSION}]

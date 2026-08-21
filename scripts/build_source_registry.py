@@ -155,6 +155,36 @@ def build_registry() -> tuple[dict[str, dict[str, str]], dict[str, str]]:
         "provenance_status": "bibliographic_reference",
         "notes": "Bibliographic lead for year-end roster verification; not used as row-level evidence until the editions are obtained and checked.",
     })
+    add_source(registry, {
+        "source_id": "SRC-WIKI-CHONGQING-1997",
+        "source_type": "wikipedia",
+        "title": "重庆直辖市（维基百科词条：设立经过）",
+        "url": "https://zh.wikipedia.org/wiki/重庆直辖市",
+        "accessed_date": TODAY,
+        "coverage_start": "1997",
+        "coverage_end": "1997",
+        "source_locator": "establishment history section",
+        "authority": "Wikipedia",
+        "scope": "supplemental_event_evidence",
+        "provenance_status": "reviewed_reference",
+        "notes": "Supplemental event source for 1997年设立重庆直辖市（1997-03-14八届全国人大五次会议批准，1997-06-18挂牌）。该事件不在1997年度行政区划变更页面中。",
+    })
+    url_to_id["https://zh.wikipedia.org/wiki/重庆直辖市"] = "SRC-WIKI-CHONGQING-1997"
+    add_source(registry, {
+        "source_id": "SRC-WIKISOURCE-CQ-WFL-1997",
+        "source_type": "wikisource_official_text",
+        "title": "中办厅字〔1997〕34号：关于万县市、涪陵市、黔江地区行政体制调整的批复（维基文库）",
+        "url": "https://zh.wikisource.org/wiki/中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复",
+        "accessed_date": TODAY,
+        "coverage_start": "1997",
+        "coverage_end": "1997",
+        "source_locator": "full text",
+        "authority": "中共中央办公厅、国务院办公厅",
+        "scope": "supplemental_event_evidence",
+        "provenance_status": "reviewed_reference",
+        "notes": "Supplemental event source for 1997年12月万县市、涪陵市、黔江地区行政体制调整（撤销改设区/开发区）。",
+    })
+    url_to_id["https://zh.wikisource.org/wiki/中共中央办公厅、国务院办公厅关于万县市、涪陵市、黔江地区行政体制调整的批复"] = "SRC-WIKISOURCE-CQ-WFL-1997"
     return registry, url_to_id
 
 

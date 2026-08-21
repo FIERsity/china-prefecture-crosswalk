@@ -168,6 +168,7 @@ def build() -> None:
         "unified_events_1987_2026.csv",
         "prefecture_administrative_events_1983_2026.csv",
         "county_administrative_events_1983_2026.csv",
+        "county_administrative_events_1987_2026.csv",
         "county_unit_type_coverage_1987_2026.csv",
         "source_registry.csv",
     ):

@@ -82,12 +82,52 @@ def main() -> None:
         if row["entity_id"]:
             relations.append({"event_id": row["event_id"], "from_entity_id": row["entity_id"], "to_entity_id": row["entity_id"] if row["automatic_continuity"] == "true" else "", "relation_type": row["event_type"], "mapping_quality": "exact" if row["automatic_continuity"] == "true" else "event_only", "automatic_mapping": row["automatic_continuity"], "review_note": row["review_note"]})
     # Explicit non-1:1 relationships found during final network review.
+    # Event ids are resolved from (year, description fragment) so that
+    # inserting earlier events never breaks the relation graph.
+    def eid(year: int, fragment: str) -> str:
+        for row in rows:
+            if int(row["year"]) == year and fragment in row["description"]:
+                return row["event_id"]
+        raise KeyError(f"relation target not found: {year} {fragment}")
+
+    def rel(year: int, fragment: str, from_id: str, to_id: str, rtype: str, quality: str, note: str) -> dict:
+        return {"event_id": eid(year, fragment), "from_entity_id": from_id, "to_entity_id": to_id,
+                "relation_type": rtype, "mapping_quality": quality, "automatic_mapping": "false", "review_note": note}
+
     relations.extend([
-        {"event_id": "WIKI-1993-029", "from_entity_id": "HIST-SX-YANBEI", "to_entity_id": "E140200", "relation_type": "split", "mapping_quality": "disaggregate", "automatic_mapping": "false", "review_note": "seven former Yanbei counties transferred to Datong"},
-        {"event_id": "WIKI-1993-029", "from_entity_id": "HIST-SX-YANBEI", "to_entity_id": "E140600", "relation_type": "split", "mapping_quality": "disaggregate", "automatic_mapping": "false", "review_note": "Huairen, Youyu, and Ying counties transferred to Shuozhou"},
-        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-WANXIAN", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
-        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-FULING", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
-        {"event_id": "WIKI-1996-056", "from_entity_id": "HIST-CQ-QIANJIANG", "to_entity_id": "E500100", "relation_type": "jurisdiction_transfer", "mapping_quality": "aggregate", "automatic_mapping": "false", "review_note": "entrusted to Chongqing administration in 1996"},
+        rel(1993, "雁北地区", "HIST-SX-YANBEI", "E140200", "split", "disaggregate", "seven former Yanbei counties transferred to Datong"),
+        rel(1993, "雁北地区", "HIST-SX-YANBEI", "E140600", "split", "disaggregate", "Huairen, Youyu, and Ying counties transferred to Shuozhou"),
+        rel(1993, "张家口地区", "HIST-HE-ZHANGJIAKOU", "E130700", "merge", "aggregate", "1993年河北地市合并：张家口地区并入张家口市（国函〔1993〕89号）"),
+        rel(1993, "沧州地区", "HIST-HE-CANGZHOU", "E130900", "merge", "aggregate", "1993年河北地市合并：沧州地区并入沧州市（国函〔1993〕89号）"),
+        rel(1993, "邯郸地区", "HIST-HE-HANDAN", "E130400", "merge", "aggregate", "1993年河北地市合并：邯郸地区并入邯郸市（国函〔1993〕89号）"),
+        rel(1993, "邢台地区", "HIST-HE-XINGTAI", "E130500", "merge", "aggregate", "1993年河北地市合并：邢台地区并入邢台市（国函〔1993〕89号）"),
+        rel(1993, "承德地区", "HIST-HE-CHENGDE", "E130800", "merge", "aggregate", "1993年河北地市合并：承德地区并入承德市（国函〔1993〕89号）"),
+        rel(1993, "石家庄地区", "HIST-HE-SHIJIAZHUANG", "E130100", "merge", "aggregate", "1993年河北地市合并：石家庄地区并入石家庄市（国函〔1993〕89号）"),
+        rel(1994, "保定地区", "HIST-HE-BAODING", "E130600", "merge", "aggregate", "1994年保定地市合并（国函〔1994〕133号）：保定地区并入保定市"),
+        rel(1994, "郧阳地区", "HIST-HB-YUNYANG", "E420300", "merge", "aggregate", "郧阳地区 merged into 十堰市"),
+        rel(1994, "沙市市", "HIST-HB-JINGZHOU", "E421000", "merge", "aggregate", "荆州地区与原地级沙市市共同组建新的荆沙市（后更名荆州市）"),
+        rel(1994, "沙市市", "HIST-HB-SHASHI", "E421000", "merge", "aggregate", "原地级沙市市与荆州地区共同组建新的荆沙市"),
+        rel(1988, "惠阳地区", "HIST-GD-HUIYANG", "E441300", "split", "disaggregate", "惠阳地区撤销，惠州城区及部分县设立地级惠州市"),
+        rel(1988, "惠阳地区", "HIST-GD-HUIYANG", "E441500", "split", "disaggregate", "惠阳地区析出海丰、陆丰设立汕尾市"),
+        rel(1988, "惠阳地区", "HIST-GD-HUIYANG", "E441600", "split", "disaggregate", "惠阳地区析出河源县等设立河源市"),
+        rel(1997, "梧州地区", "HIST-GX-WUZHOU", "E450400", "split", "disaggregate", "梧州地区撤销，岑溪等县市划归梧州市"),
+        rel(1997, "梧州地区", "HIST-GX-WUZHOU", "E451100", "split", "disaggregate", "梧州地区主体更名为贺州地区（1997年）"),
+        rel(1996, "松花江地区", "HIST-HLJ-SONGHUAJIANG", "E230100", "merge", "aggregate", "1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）"),
+        rel(1998, "桂林地区", "HIST-GX-GUILIN", "E450300", "merge", "aggregate", "1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）"),
+        rel(1996, "三峡库区移民", "HIST-CQ-WANXIAN", "E500100", "jurisdiction_transfer", "aggregate", "entrusted to Chongqing administration in 1996"),
+        rel(1996, "三峡库区移民", "HIST-CQ-FULING", "E500100", "jurisdiction_transfer", "aggregate", "entrusted to Chongqing administration in 1996"),
+        rel(1996, "三峡库区移民", "HIST-CQ-QIANJIANG", "E500100", "jurisdiction_transfer", "aggregate", "entrusted to Chongqing administration in 1996"),
+        rel(1997, "中办厅字〔1997〕34号", "HIST-CQ-WANXIAN", "E500100", "abolish", "aggregate", "1997年12月撤销万县市设立重庆市万县区（1998年5月更名万州区）"),
+        rel(1997, "中办厅字〔1997〕34号", "HIST-CQ-FULING", "E500100", "abolish", "aggregate", "1997年12月撤销涪陵市设立重庆市涪陵区"),
+        rel(1997, "中办厅字〔1997〕34号", "HIST-CQ-QIANJIANG", "E500100", "abolish", "aggregate", "1997年12月撤销黔江地区设立重庆市黔江开发区（2000年6月改设黔江区）"),
+        rel(2002, "撤销柳州地区", "CNUR-000362", "E450200", "split", "disaggregate", "柳州地区撤销，柳江等县划归柳州市"),
+        rel(2002, "撤销柳州地区", "CNUR-000362", "E451300", "split", "disaggregate", "柳州地区析设地级来宾市"),
+        rel(2002, "撤销南宁地区", "CNUR-000346", "E450100", "split", "disaggregate", "南宁地区撤销，部分县划归南宁市"),
+        rel(2002, "撤销南宁地区", "CNUR-000346", "E451400", "split", "disaggregate", "南宁地区析设地级崇左市"),
+        rel(2011, "巢湖市", "CNUR-000110", "E340100", "split", "disaggregate", "巢湖市撤销，居巢区、庐江县划归合肥市"),
+        rel(2011, "巢湖市", "CNUR-000110", "E340200", "split", "disaggregate", "巢湖市撤销，无为县划归芜湖市"),
+        rel(2011, "巢湖市", "CNUR-000110", "E340500", "split", "disaggregate", "巢湖市撤销，含山县、和县划归马鞍山市"),
+        rel(2018, "莱芜市", "CNUR-000146", "E370100", "merge", "aggregate", "莱芜市并入济南市（2019年1月公布实施）"),
     ])
     with RELATIONS_OUTPUT.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(relations[0]), lineterminator="\n")

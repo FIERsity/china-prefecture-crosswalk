@@ -396,6 +396,12 @@ def normalize_events(raw_rows: list[dict[str, object]], names: list[tuple[str, s
             continue
         text = str(row["row_text"])
         matches = [(name, entity_id) for name, entity_id in names if name in text]
+        # Prefer the longest matching unit name: drop shorter names that are
+        # substrings of a longer match (e.g. "鞍山市" inside "马鞍山市").
+        matches = [
+            (name, entity_id) for name, entity_id in matches
+            if not any(other != name and name in other for other, _eid in matches)
+        ]
         prefecture_names = list(dict.fromkeys(name for name, _entity_id in matches))
         entity_ids = list(dict.fromkeys(entity_id for _name, entity_id in matches))
         county_names = normalize_unit_list(list(dict.fromkeys(
