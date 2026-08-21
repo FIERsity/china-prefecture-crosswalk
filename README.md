@@ -142,6 +142,8 @@ cnur events --year 1993 --type split --output events.csv
 
 直辖市在研究实体体系中按地级等价单位处理。363个实体是跨期实体总数，不代表任一年度同时存在363个法定地级单位。变更前同时存在的地区与地级市始终使用不同编号；普通撤地设市仅在法定主体连续时沿用编号。
 
+`ctamap_prefecture_links.csv` 是地图桥接表，不是地图几何：每行把某个 CTAmap 年份快照中的地级多边形、来源名称和区划码对应到一个 CNUR 研究实体及该年末名称。它用于把地图点击结果连接到研究实体，不能单独替代 GeoJSON 地图资源。
+
 
 ## 下载
 
@@ -155,6 +157,8 @@ cnur events --year 1993 --type split --output events.csv
 | [`china_prefecture_crosswalk_research_bundle_v4.0.sha256`](data/releases/v4.0/china_prefecture_crosswalk_research_bundle_v4.0.sha256) | 精简研究包 SHA256 校验值 |
 | [`data/releases/v4.0/README.md`](data/releases/v4.0/README.md) | 研究包目录和用途说明 |
 | [`ctamap_county_analysis_2000_2024_t002.zip`](data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip) | 县级精度分析包：2000—2024 年初 WGS84 分片数据 |
+| [`china_prefecture_crosswalk_web_maps_v4.0.zip`](data/releases/maps/china_prefecture_crosswalk_web_maps_v4.0.zip) | 全部网页地图资源：省级、地级、县级 25 年分片、港澳台图层、manifest 和许可说明 |
+| [`china_prefecture_crosswalk_web_maps_v4.0.sha256`](data/releases/maps/china_prefecture_crosswalk_web_maps_v4.0.sha256) | 全部网页地图资源校验值 |
 | [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 网页地图文件清单和构建参数 |
 | [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | 地图来源、引用和许可说明 |
 

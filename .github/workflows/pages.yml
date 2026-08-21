@@ -34,6 +34,7 @@ jobs:
           python scripts/build_source_registry.py
           python scripts/sync_package_data.py
           python scripts/build_external_display_maps.py
+          python scripts/build_map_release.py
           python scripts/build_pages_data.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
