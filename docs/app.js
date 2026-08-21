@@ -491,10 +491,20 @@ async function renderHistoryMap() {
   if (!historyMap) {
     historyMap = L.map("history-map", { zoomControl: true, attributionControl: false, minZoom: 3, maxZoom: 9 });
   }
-  const mapPath = mapLevel === "county" ? `data/maps/county/${snapshotYear}/${provinceCode}.geojson` : `data/maps/${mapLevel}/${snapshotYear}.geojson`;
+  const externalProvinceGroups = { "710000": "taiwan", "810000": "hongkong", "820000": "macau" };
+  const externalGroup = provinceCode.startsWith("EXTERNAL-") ? provinceCode.slice("EXTERNAL-".length).toLowerCase() : externalProvinceGroups[provinceCode] || "";
+  const mapPath = mapLevel === "county" && externalGroup ? "data/maps/external/external_county.geojson" : mapLevel === "county" ? `data/maps/county/${snapshotYear}/${provinceCode}.geojson` : `data/maps/${mapLevel}/${snapshotYear}.geojson`;
   const response = await fetch(mapPath);
   if (!response.ok) throw new Error(`map ${response.status}`);
   const geojson = await response.json();
+  if (externalGroup) geojson.features = geojson.features.filter((feature) => feature.properties.external_group === externalGroup);
+  if (mapLevel === "prefecture") {
+    const taiwanResponse = await fetch("data/maps/external/taiwan_prefecture.geojson");
+    if (taiwanResponse.ok) {
+      const taiwan = await taiwanResponse.json();
+      geojson.features = geojson.features.concat(taiwan.features);
+    }
+  }
   if (mapLevel === "province") {
     const externalResponse = await fetch("data/maps/external/external_current.geojson");
     if (externalResponse.ok) {
@@ -530,7 +540,8 @@ async function renderHistoryMap() {
   const levelName = mapLevel === "province" ? "省级" : mapLevel === "county" ? "县级" : "地级";
   const linked = geojson.features.filter((feature) => feature.properties.link_status === "linked" || feature.properties.link_status === "parent_linked").length;
   const provinceName = mapLevel === "county" ? ` · ${$("#map-province").selectedOptions[0]?.textContent || ""}` : "";
-  $("#map-detail").innerHTML = `<div class="section-label">${snapshotYear}年初 · ${levelName}${provinceName}</div><h2>${panelYear} 年经济面板</h2><p class="muted">当前加载 ${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。可点击地图或使用名称、代码、CNUR 查询。</p>`;
+  const externalNote = externalGroup ? "当前为外部展示层，不对应 CTAmap 年初快照或 CNUR 年度状态。" : "";
+  $("#map-detail").innerHTML = `<div class="section-label">${externalGroup ? "当前外部展示层" : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${externalGroup ? $("#map-province").selectedOptions[0]?.textContent || "外部区域" : `${panelYear} 年经济面板`}</h2><p class="muted">当前加载 ${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。${externalNote}可点击地图或使用名称、代码、CNUR 查询。</p>`;
 }
 
 function switchView(view) {
@@ -568,7 +579,7 @@ async function init() {
     $("#rule-version").textContent = state.data.meta.ruleVersion;
     for (let year = 1983; year <= 2026; year += 1) $("#event-year").insertAdjacentHTML("beforeend", `<option value="${year}">${year}</option>`);
     for (let year = 1999; year <= 2023; year += 1) $("#map-panel-year").insertAdjacentHTML("beforeend", `<option value="${year}"${year === 2023 ? " selected" : ""}>${year}（${year + 1}年初地图）</option>`);
-    (state.mapManifest.provinces || []).forEach((province) => $("#map-province").insertAdjacentHTML("beforeend", `<option value="${escapeHtml(province.province_code)}"${province.province_code === "420000" ? " selected" : ""}>${escapeHtml(province.province_name)}</option>`));
+    (state.mapManifest.provinces || []).forEach((province) => { const external = { "710000": "台湾省", "810000": "香港特别行政区", "820000": "澳门特别行政区" }[province.province_code]; const label = external ? `${external}（外部县级层）` : province.province_name; $("#map-province").insertAdjacentHTML("beforeend", `<option value="${escapeHtml(province.province_code)}"${province.province_code === "420000" ? " selected" : ""}>${escapeHtml(label)}</option>`); });
     $("#match-form").addEventListener("submit", (event) => { event.preventDefault(); renderMatch(); });
     $("#event-year").addEventListener("change", renderEvents);
     $("#event-keyword").addEventListener("input", renderEvents);

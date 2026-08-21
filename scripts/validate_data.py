@@ -222,6 +222,14 @@ def main() -> None:
     map_manifest_path = ROOT / "docs" / "data" / "maps" / "manifest.json"
     map_manifest = json.loads(map_manifest_path.read_text(encoding="utf-8"))
     require(map_manifest.get("simplification_tolerance_degrees", {}).get("county") == 0.005, "web county display tolerance changed without review")
+    external_dir = map_manifest_path.parent / "external"
+    external_prefecture = json.loads((external_dir / "taiwan_prefecture.geojson").read_text(encoding="utf-8"))
+    external_county = json.loads((external_dir / "external_county.geojson").read_text(encoding="utf-8"))
+    require(len(external_prefecture["features"]) == 22, "Taiwan external prefecture layer count changed")
+    require(len(external_county["features"]) == 387, "external county layer count changed")
+    require(sum(feature["properties"].get("external_group") == "taiwan" for feature in external_county["features"]) == 368, "Taiwan external county layer incomplete")
+    require(sum(feature["properties"].get("external_group") == "hongkong" for feature in external_county["features"]) == 18, "Hong Kong external county layer incomplete")
+    require(sum(feature["properties"].get("external_group") == "macau" for feature in external_county["features"]) == 1, "Macau external county layer incomplete")
     require(len(map_manifest["years"]) == 25, "web map manifest must contain 25 snapshots")
     require(all(row["feature_count"] == row["linked_feature_count"] + row["context_feature_count"] for row in map_manifest["years"]), "web map feature classification is incomplete")
     require(all(row["context_feature_count"] > 0 for row in map_manifest["years"]), "web map is missing context regions")
