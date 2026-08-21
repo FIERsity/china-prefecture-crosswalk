@@ -30,6 +30,7 @@ jobs:
           python scripts/build_source_registry.py
           python scripts/build_fixed_boundary_map.py
           python scripts/build_fixed_boundary_district.py
+          python scripts/build_event_flag_panel.py
           python scripts/sync_package_data.py
           python scripts/build_external_display_maps.py
           python scripts/build_map_release.py

@@ -163,3 +163,20 @@ summary (counts per year plus a `break_flag`) for direct merge into a panel.
 Classification is semantic (on the structured old/new unit fields) rather than
 by event type, because Wikipedia records some county-to-district conversions as
 transfer/rename/split. 撤县设市 (new unit = 市) is excluded.
+
+## Event-flag panel (city x panel-year)
+
+`fixed_boundary_event_flags_1999_2020.csv` is the ready-to-merge
+prefecture x year grid (337 units x 22 years = 7,414 rows). For each
+city-year it reports the whole-city scope break flag (merge / split /
+abolish / cross-prefecture transfer / major county transfer), the
+district-scope jump count (county-to-district conversions), the district
+merge count, the sample-entry flag (first year in the yearbook city
+sample, e.g. 撤地设市 after 1999), and a `treatment_summary` composing
+the advice (`stable` / `whole_city_break` / `district_scope_jump` /
+`district_merge` / `sample_entry`).
+
+Typical use: `panel.merge(flags, on=["prefecture_entity_id","year"],
+how="left")`, then add event dummies for `whole_city_break_flag` and
+`district_jump_flag` or run heterogeneity-robust DID with the affected
+cities as treated units.

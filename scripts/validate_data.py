@@ -361,6 +361,9 @@ def main() -> None:
     require(len(district_events) >= 400, "fixed-boundary district events unexpectedly small")
     require(len(district_breaks) >= 200, "fixed-boundary district breaks unexpectedly small")
     require(all(row["prefecture_entity_id"] for row in district_events), "district event missing prefecture")
+    _, flag_panel = read_csv_at(PROCESSED / "fixed_boundary_event_flags_1999_2020.csv")
+    require(len(flag_panel) == 337 * 22, "event flag panel must be 337 x 22 (1999-2020)")
+    require(all(row["treatment_summary"] for row in flag_panel), "event flag panel missing treatment summary")
     require(all(row["treatment_hint"] for row in legacy_links), "fixed-boundary link missing treatment hint")
 
     # Website data bundle must never drift from the processed layer.
@@ -374,6 +377,10 @@ def main() -> None:
         "unified_events_1987_2026.csv", "prefecture_administrative_events_1983_2026.csv",
         "county_administrative_events_1983_2026.csv", "county_administrative_events_1987_2026.csv",
         "county_unit_type_coverage_1987_2026.csv", "source_registry.csv",
+        "fixed_boundary_reference_units_2020.csv", "fixed_boundary_legacy_links.csv",
+        "fixed_boundary_district_events_1987_2026.csv",
+        "fixed_boundary_district_breaks_1999_2020.csv",
+        "fixed_boundary_event_flags_1999_2020.csv",
     ):
         require((docs_data / name).exists(), f"docs/data/{name} missing")
         require((docs_data / name).read_bytes() == (PROCESSED / name).read_bytes(),
