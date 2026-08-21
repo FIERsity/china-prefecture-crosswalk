@@ -356,6 +356,11 @@ def main() -> None:
     require(len(ref_units) == 337, "fixed-boundary reference unit count changed")
     require(all(row["entity_id"] for row in ref_units), "fixed-boundary unit missing entity")
     require(len(legacy_links) >= 150, "fixed-boundary legacy links unexpectedly small")
+    _, district_events = read_csv_at(PROCESSED / "fixed_boundary_district_events_1987_2026.csv")
+    _, district_breaks = read_csv_at(PROCESSED / "fixed_boundary_district_breaks_1999_2020.csv")
+    require(len(district_events) >= 400, "fixed-boundary district events unexpectedly small")
+    require(len(district_breaks) >= 200, "fixed-boundary district breaks unexpectedly small")
+    require(all(row["prefecture_entity_id"] for row in district_events), "district event missing prefecture")
     require(all(row["treatment_hint"] for row in legacy_links), "fixed-boundary link missing treatment hint")
 
     # Website data bundle must never drift from the processed layer.

@@ -137,3 +137,29 @@ county-level transfers, and the event timing reviews. It deliberately covers
 only the whole-city layer; county-to-district conversions (撤县设区) do not
 change the whole-city boundary and are handled at the municipal-district
 layer.
+
+## Fixed-boundary district layer (市辖区口径)
+
+`fixed_boundary_district_events_1987_2026.csv` extracts every municipal-district
+scope event from the county event layer: county/县级市-to-district conversions
+(`county_to_district`), district mergers (`district_merge`), partial
+township-level transfers (`district_transfer`), and other district-level
+reorganizations (`district_other`). Each row carries the affected prefecture,
+the old county units and the new district units, the unit scope
+(`whole_county` / `partial`), and a treatment hint:
+
+- `district_scope_jump_county_panel_break` — the annexed county's values should
+  be added back into the city's municipal-district series for earlier years
+  (totals aggregate; per-capita/ratio series have a structural break), and the
+  county disappears from county-level panels;
+- `district_merge_aggregate_safe` — two districts merged; totals of the merged
+  district equal the sum, only the unit count changes;
+- `district_internal_adjust` — minor partial township transfers between
+  districts.
+
+`fixed_boundary_district_breaks_1999_2020.csv` is the city x panel-year
+summary (counts per year plus a `break_flag`) for direct merge into a panel.
+
+Classification is semantic (on the structured old/new unit fields) rather than
+by event type, because Wikipedia records some county-to-district conversions as
+transfer/rename/split. 撤县设市 (new unit = 市) is excluded.

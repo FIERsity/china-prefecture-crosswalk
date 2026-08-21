@@ -25,6 +25,8 @@ FILES = [
     "source_registry.csv",
     "fixed_boundary_reference_units_2020.csv",
     "fixed_boundary_legacy_links.csv",
+    "fixed_boundary_district_events_1987_2026.csv",
+    "fixed_boundary_district_breaks_1999_2020.csv",
 ]
 
 DEST.mkdir(parents=True, exist_ok=True)
