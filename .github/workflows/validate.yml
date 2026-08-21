@@ -40,7 +40,7 @@ jobs:
       - name: Verify data checksums
         run: |
           cd data && shasum -a 256 -c SHA256SUMS && cd ..
-          shasum -a 256 -c data/releases/maps/ctamap_county_analysis_2000_2024_t002.sha256
+          cd data/releases/maps && shasum -a 256 -c ctamap_county_analysis_2000_2024_t002.sha256 && cd ../../..
       - name: Run matcher tests
         run: pytest -q
       - name: Streamlit smoke test
