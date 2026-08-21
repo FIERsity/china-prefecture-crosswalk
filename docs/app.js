@@ -3,6 +3,7 @@ let historyMap = null;
 let historyLayer = null;
 let mapLayerById = new Map();
 let currentMapGeojson = null;
+let selectedMapFeatureId = null;
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -454,11 +455,33 @@ function mapEntityHistoryHtml(properties) {
   return `<div class="map-entity-card"><span>CNUR 实体</span><strong>${escapeHtml(properties.entity_id)}</strong><span>${properties.panel_year} 年末名称</span><strong>${escapeHtml(properties.year_end_name || "—")}</strong></div>${nameHistory}${eventHistory}`;
 }
 
+function mapFeatureStyle(feature) {
+  if (feature.properties.external_only) return { color: "#fffefa", weight: .9, fillColor: "#c59a62", fillOpacity: .84, dashArray: "4 3" };
+  if (feature.properties.map_level === "province") return { color: "#fffefa", weight: .8, fillColor: "#6f9fc6", fillOpacity: .78 };
+  if (feature.properties.map_level === "county") return { color: "#fffefa", weight: .45, fillColor: feature.properties.parent_entity_id ? "#d9a05b" : "#d8ddd8", fillOpacity: .82 };
+  return feature.properties.link_status === "linked" ? { color: "#fffefa", weight: .65, fillColor: "#78b999", fillOpacity: .78 } : { color: "#fffefa", weight: .55, fillColor: "#d8ddd8", fillOpacity: .82 };
+}
+
+function selectMapFeature(featureId) {
+  if (selectedMapFeatureId && mapLayerById.has(selectedMapFeatureId)) {
+    const previous = mapLayerById.get(selectedMapFeatureId);
+    previous.layer.setStyle(mapFeatureStyle(previous.feature));
+    previous.layer.getElement()?.classList.remove("map-feature-selected");
+  }
+  selectedMapFeatureId = featureId;
+  const selected = mapLayerById.get(featureId);
+  if (!selected) return;
+  selected.layer.setStyle({ color: "#e9784f", weight: 3, opacity: 1, dashArray: null, lineCap: "round", lineJoin: "round" });
+  selected.layer.getElement()?.classList.add("map-feature-selected");
+  if (typeof selected.layer.bringToFront === "function") selected.layer.bringToFront();
+}
+
 function showMapFeature(featureId, zoom = false) {
   const item = mapLayerById.get(featureId);
   if (!item) return;
   const { feature, layer } = item;
   const p = feature.properties;
+  selectMapFeature(featureId);
   if (zoom) historyMap.fitBounds(layer.getBounds(), { padding: [35, 35], maxZoom: 7 });
   historyMap.eachLayer((candidate) => { if (typeof candidate.closeTooltip === "function") candidate.closeTooltip(); });
   layer.openTooltip();
@@ -517,14 +540,10 @@ async function renderHistoryMap() {
   }
   currentMapGeojson = geojson;
   mapLayerById = new Map();
+  selectedMapFeatureId = null;
   if (historyLayer) historyLayer.remove();
   historyLayer = L.geoJSON(geojson, {
-    style(feature) {
-      if (feature.properties.external_only) return { color: "#ffffff", weight: .9, fillColor: "#c59a62", fillOpacity: .84, dashArray: "4 3" };
-      if (feature.properties.map_level === "province") return { color: "#ffffff", weight: .8, fillColor: "#6f9fc6", fillOpacity: .78 };
-      if (feature.properties.map_level === "county") return { color: "#ffffff", weight: .45, fillColor: feature.properties.parent_entity_id ? "#d9a05b" : "#d8ddd8", fillOpacity: .82 };
-      return feature.properties.link_status === "linked" ? { color: "#ffffff", weight: .65, fillColor: "#78b999", fillOpacity: .78 } : { color: "#ffffff", weight: .55, fillColor: "#d8ddd8", fillOpacity: .82 };
-    },
+    style: mapFeatureStyle,
     onEachFeature(feature, layer) {
       const p = feature.properties;
       mapLayerById.set(feature.id, { feature, layer });
@@ -532,8 +551,8 @@ async function renderHistoryMap() {
       const tooltipLabel = p.external_only ? p.display_name_zh : p.map_level === "province" ? p.source_name : `${p.source_name} · ${p.province_name}${parentLabel}`;
       layer.bindTooltip(tooltipLabel, { sticky: true });
       layer.on({
-        mouseover: () => layer.setStyle({ fillColor: "#f28b50", fillOpacity: .9, weight: 1.2 }),
-        mouseout: () => historyLayer.resetStyle(layer),
+        mouseover: () => { if (selectedMapFeatureId !== feature.id) layer.setStyle({ color: "#1f6e5a", weight: 1.5, fillOpacity: .9 }); },
+        mouseout: () => { if (selectedMapFeatureId !== feature.id) layer.setStyle(mapFeatureStyle(feature)); },
         click: () => showMapFeature(feature.id),
       });
     },
