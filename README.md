@@ -270,6 +270,8 @@ python3 -m http.server 8765 --directory docs
 
 已抓取的 GitHub 来源缓存位于 [`data/raw/external_boundaries/`](data/raw/external_boundaries/)，当前仅供审计，不进入运行时地图：香港保留 MIT 抓取脚本，澳门保留无 License 的 2017 候选 Shapefile，台湾保留带政府来源许可记录的官方边界 RAR。清单和 SHA256 见该目录的 `manifest.json` 与 [`data/SHA256SUMS`](data/SHA256SUMS)。
 
+当前网站外部展示层使用三份非年度背景面：香港整体 WGS84 GeoJSON、澳门 Natural Earth 公共领域背景面、台湾 geoBoundaries 当前 ADM0 GeoJSON。显示名称统一为“香港特别行政区”“澳门特别行政区”“台湾省”；三者都不设置地级父节点、不分配 CNUR，也不参与历史面板。
+
 ## 引用
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 

@@ -47,6 +47,17 @@
       "source_license": "http://data.gov.tw/license",
       "source_dataset": "http://data.gov.tw/node/7438",
       "license_status": "government_source_license_recorded"
+    },
+    {
+      "region": "Taiwan",
+      "repository": "wmgeolab/geoBoundaries",
+      "repository_url": "https://github.com/wmgeolab/geoBoundaries",
+      "files": ["taiwan_geoboundaries/TWN-ADM0.geojson"],
+      "snapshot_date": "2026-08-21",
+      "coverage": "current ADM0 background",
+      "coordinate_system": "WGS84 GeoJSON",
+      "source_license": "CC BY 4.0 / ODbL",
+      "license_status": "open_license_recorded"
     }
   ]
 }

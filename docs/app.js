@@ -325,6 +325,9 @@ function renderEvents() {
 }
 
 function mapEntityHistoryHtml(properties) {
+  if (properties.external_only) {
+    return `<div class="map-entity-card context"><span>外部展示层</span><strong>${escapeHtml(properties.display_name_zh)}</strong><span>地级父节点</span><strong>无</strong><span>CNUR</span><strong>不分配</strong></div><p class="county-history-note">港澳台在本项目中只作为当前背景展示，不参与 CNUR、逐年份面板或地级父级匹配。</p>`;
+  }
   if (properties.map_level === "province") {
     return `<div class="map-entity-card context"><span>行政层级</span><strong>省级</strong><span>省级类型</span><strong>${escapeHtml(properties.province_type || "—")}</strong></div>`;
   }
@@ -354,7 +357,8 @@ function showMapFeature(featureId, zoom = false) {
   historyMap.eachLayer((candidate) => { if (typeof candidate.closeTooltip === "function") candidate.closeTooltip(); });
   layer.openTooltip();
   const typeLabel = p.map_level === "province" ? p.province_type : p.map_level === "county" ? p.county_type : p.prefecture_type;
-  $("#map-detail").innerHTML = `<div class="section-label">${p.snapshot_year}年初 / ${p.panel_year}年末 · ${p.map_level === "province" ? "省级" : p.map_level === "county" ? "县级" : "地级"}</div><h2>${escapeHtml(p.source_name)}</h2><p class="muted">${escapeHtml(p.province_name)} · ${escapeHtml(typeLabel || "—")} · ${escapeHtml(p.source_code)}</p>${mapEntityHistoryHtml(p)}<p class="map-source-links"><a href="https://github.com/ruiduobao/shengshixian.com" target="_blank" rel="noreferrer">CTAmap 数据源 ↗</a><a href="https://github.com/ruiduobao/china-divisions-map" target="_blank" rel="noreferrer">原可视化项目 ↗</a></p>`;
+  const displayName = p.external_only ? p.display_name_zh : p.source_name;
+  $("#map-detail").innerHTML = `<div class="section-label">${p.external_only ? "当前外部展示层" : `${p.snapshot_year}年初 / ${p.panel_year}年末 · ${p.map_level === "province" ? "省级" : p.map_level === "county" ? "县级" : "地级"}`}</div><h2>${escapeHtml(displayName)}</h2><p class="muted">${escapeHtml(p.external_only ? "香港/澳门/台湾外部区域" : p.province_name)} · ${escapeHtml(typeLabel || "—")} · ${escapeHtml(p.source_code || "")}</p>${mapEntityHistoryHtml(p)}<p class="map-source-links"><a href="https://github.com/FIERsity/china-prefecture-crosswalk/blob/main/data/raw/external_boundaries/manifest.json" target="_blank" rel="noreferrer">来源清单与许可 ↗</a></p>`;
   $$('[data-map-event-year]').forEach((button) => button.addEventListener("click", () => { $("#event-year").value = button.dataset.mapEventYear; $("#event-keyword").value = p.source_name; switchView("events"); }));
 }
 
@@ -364,9 +368,9 @@ function searchHistoryMap() {
   const historicalEntityIds = new Set((state.data.names || []).filter((row) => normalizeName(`${row.name}${row.normalized}`).includes(query)).map((row) => row.entity_id));
   const matches = currentMapGeojson.features.filter((feature) => {
     const p = feature.properties;
-    return historicalEntityIds.has(p.entity_id) || historicalEntityIds.has(p.parent_entity_id) || [p.source_name, p.year_end_name, p.source_code, p.entity_id, p.province_name, p.province_code, p.prefecture_name, p.prefecture_code, p.parent_entity_id, p.former_name].some((value) => normalizeName(value).includes(query));
+    return historicalEntityIds.has(p.entity_id) || historicalEntityIds.has(p.parent_entity_id) || [p.display_name_zh, p.source_name, p.year_end_name, p.source_code, p.entity_id, p.province_name, p.province_code, p.prefecture_name, p.prefecture_code, p.parent_entity_id, p.former_name].some((value) => normalizeName(value).includes(query));
   });
-  const exact = matches.find((feature) => [feature.properties.source_name, feature.properties.year_end_name, feature.properties.source_code, feature.properties.entity_id].some((value) => normalizeName(value) === query));
+  const exact = matches.find((feature) => [feature.properties.display_name_zh, feature.properties.source_name, feature.properties.year_end_name, feature.properties.source_code, feature.properties.entity_id].some((value) => normalizeName(value) === query));
   if (exact) { showMapFeature(exact.id, true); return; }
   if (matches.length === 1) { showMapFeature(matches[0].id, true); return; }
   $("#map-detail").innerHTML = matches.length ? `<div class="section-label">SEARCH RESULT</div><h2>找到 ${matches.length} 个区域</h2><div class="map-search-results">${matches.slice(0, 20).map((feature) => `<button type="button" data-map-feature-id="${escapeHtml(feature.id)}"><strong>${escapeHtml(feature.properties.source_name)}</strong><span>${escapeHtml(feature.properties.province_name)} · ${escapeHtml(feature.properties.source_code)}</span></button>`).join("")}</div>` : `<p class="result-note">当前地图没有找到“${escapeHtml($("#map-search-input").value)}”。可尝试历史名称、六位区划码或 CNUR 编号。</p>`;
@@ -386,11 +390,19 @@ async function renderHistoryMap() {
   const response = await fetch(mapPath);
   if (!response.ok) throw new Error(`map ${response.status}`);
   const geojson = await response.json();
+  if (mapLevel === "province") {
+    const externalResponse = await fetch("data/maps/external/external_current.geojson");
+    if (externalResponse.ok) {
+      const external = await externalResponse.json();
+      geojson.features = geojson.features.concat(external.features);
+    }
+  }
   currentMapGeojson = geojson;
   mapLayerById = new Map();
   if (historyLayer) historyLayer.remove();
   historyLayer = L.geoJSON(geojson, {
     style(feature) {
+      if (feature.properties.external_only) return { color: "#ffffff", weight: .9, fillColor: "#c59a62", fillOpacity: .84, dashArray: "4 3" };
       if (feature.properties.map_level === "province") return { color: "#ffffff", weight: .8, fillColor: "#6f9fc6", fillOpacity: .78 };
       if (feature.properties.map_level === "county") return { color: "#ffffff", weight: .45, fillColor: feature.properties.parent_entity_id ? "#d9a05b" : "#d8ddd8", fillOpacity: .82 };
       return feature.properties.link_status === "linked" ? { color: "#ffffff", weight: .65, fillColor: "#78b999", fillOpacity: .78 } : { color: "#ffffff", weight: .55, fillColor: "#d8ddd8", fillOpacity: .82 };
@@ -399,7 +411,7 @@ async function renderHistoryMap() {
       const p = feature.properties;
       mapLayerById.set(feature.id, { feature, layer });
       const parentLabel = p.map_level === "county" && p.prefecture_name ? ` · ${p.prefecture_name}` : "";
-      const tooltipLabel = p.map_level === "province" ? p.source_name : `${p.source_name} · ${p.province_name}${parentLabel}`;
+      const tooltipLabel = p.external_only ? p.display_name_zh : p.map_level === "province" ? p.source_name : `${p.source_name} · ${p.province_name}${parentLabel}`;
       layer.bindTooltip(tooltipLabel, { sticky: true });
       layer.on({
         mouseover: () => layer.setStyle({ fillColor: "#f28b50", fillOpacity: .9, weight: 1.2 }),
