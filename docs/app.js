@@ -630,7 +630,7 @@ async function init() {
     });
     $("#map-province").addEventListener("change", () => { if ($("#map-level").value === "county") state.mapFocusProvinceCode = $("#map-province").value; renderHistoryMap().catch((error) => { $("#map-detail").innerHTML = `<p class="result-note">地图加载失败：${escapeHtml(error.message)}</p>`; }); });
     $("#map-search-form").addEventListener("submit", (event) => { event.preventDefault(); searchHistoryMap(); });
-    $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; renderMatch(); }));
+    $$("[data-example]").forEach((button) => button.addEventListener("click", () => { const [name, province, year] = button.dataset.example.split("|"); $("#name-input").value = name; $("#province-input").value = province; $("#year-input").value = year || ""; renderMatch(); }));
     $$("[data-view]").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
   } catch (error) {
     $("#match-result").innerHTML = `<p class="result-note">数据加载失败：${escapeHtml(error.message)}。请刷新页面，或查看 GitHub Actions 发布状态。</p>`;
