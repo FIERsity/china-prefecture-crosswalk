@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import re
 import zipfile
 from collections import Counter, defaultdict
@@ -19,6 +20,24 @@ AUDIT = ROOT / "data" / "audit"
 OUTPUT = ROOT / "data" / "releases" / "v4.0"
 FIXED_DATETIME = datetime(2026, 8, 20, tzinfo=timezone.utc)
 FIXED_ZIP_TIME = (2026, 8, 20, 0, 0, 0)
+CURATED_DATA_FILES = (
+    "entities.csv",
+    "entity_id_crosswalk.csv",
+    "aliases.csv",
+    "entity_names_year_end_1987_2026.csv",
+    "entity_name_match_ranges_1987_2026.csv",
+    "legal_roster_year_end_1987_2026.csv",
+    "unified_events_1987_2026.csv",
+    "prefecture_administrative_events_1983_2026.csv",
+    "county_administrative_events_1983_2026.csv",
+    "event_timing_reviews.csv",
+    "unified_event_relations.csv",
+    "major_lineage_relations.csv",
+    "county_affiliation_transitions.csv",
+    "ctamap_prefecture_links.csv",
+    "ctamap_snapshots.csv",
+    "source_registry.csv",
+)
 
 
 def read(name: str) -> list[dict[str, str]]:
@@ -118,14 +137,19 @@ def main() -> None:
         writer.book.properties.modified = FIXED_DATETIME
     normalize_zip(xlsx_path)
 
-    bundle_path = OUTPUT / "china_prefecture_crosswalk_data_v4.0.zip"
+    bundle_path = OUTPUT / "china_prefecture_crosswalk_research_bundle_v4.0.zip"
     with zipfile.ZipFile(bundle_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
-        for path in sorted(DATA.glob("*.csv")):
-            archive.writestr(deterministic_zip_info(path.name), path.read_bytes())
-        for name in ("year_end_roster_diff_v3_v4.csv", "ctamap_alignment_issues.csv", "unified_continuity_audit.csv"):
-            path = AUDIT / name
-            if path.exists():
-                archive.writestr(deterministic_zip_info(f"audit/{path.name}"), path.read_bytes())
+        for name in CURATED_DATA_FILES:
+            path = DATA / name
+            if not path.exists():
+                raise FileNotFoundError(path)
+            archive.writestr(deterministic_zip_info(f"data/{path.name}"), path.read_bytes())
+        archive.writestr(deterministic_zip_info("CODEBOOK.md"), (ROOT / "CODEBOOK.md").read_bytes())
+        archive.writestr(deterministic_zip_info("README.md"), (OUTPUT / "README.md").read_bytes())
+    digest = hashlib.sha256(bundle_path.read_bytes()).hexdigest()
+    (OUTPUT / "china_prefecture_crosswalk_research_bundle_v4.0.sha256").write_text(
+        f"{digest}  {bundle_path.name}\n", encoding="utf-8"
+    )
     print(f"rows={len(rows)} csv={csv_path} xlsx={xlsx_path} bundle={bundle_path}")
 
 

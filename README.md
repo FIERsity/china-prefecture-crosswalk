@@ -8,7 +8,7 @@
 [![Web app](https://img.shields.io/badge/use-GitHub_Pages-1F6E5A?logo=github&logoColor=white)](https://fiersity.github.io/china-prefecture-crosswalk/)
 [![Download CSV](https://img.shields.io/badge/download-V4.0_CSV-2F81F7?logo=files&logoColor=white)](data/releases/v4.0/china_city_entity_master_V4.0.csv)
 [![Download Excel](https://img.shields.io/badge/download-V4.0_Excel-217346?logo=microsoftexcel&logoColor=white)](data/releases/v4.0/china_city_entity_master_V4.0.xlsx)
-[![Download Data bundle](https://img.shields.io/badge/download-V4.0_Data-888?logo=zip&logoColor=white)](data/releases/v4.0/china_prefecture_crosswalk_data_v4.0.zip)
+[![Download Research bundle](https://img.shields.io/badge/download-V4.0_Research_bundle-888?logo=zip&logoColor=white)](data/releases/v4.0/china_prefecture_crosswalk_research_bundle_v4.0.zip)
 [![Python and CLI](https://img.shields.io/badge/use-Python_%26_CLI-3776AB?logo=python&logoColor=white)](#快速开始)
 
 面向中国城市面板研究的地级行政实体数据库与名称匹配工具。
@@ -144,31 +144,19 @@ cnur events --year 1993 --type split --output events.csv
 
 
 ## 下载
+
+下载区只列面向研究者的成果文件。构建缓存、原始抓取行、年度页面索引、兼容副本和内部审计文件不作为研究下载提供。
+
 | 文件 | 用途 |
 |---|---|
 | [`china_city_entity_master_V4.0.csv`](data/releases/v4.0/china_city_entity_master_V4.0.csv) | 机器读取、R/Python合并 |
 | [`china_city_entity_master_V4.0.xlsx`](data/releases/v4.0/china_city_entity_master_V4.0.xlsx) | 人工浏览、筛选和核查 |
-| [`china_prefecture_crosswalk_data_v4.0.zip`](data/releases/v4.0/china_prefecture_crosswalk_data_v4.0.zip) | V4.0 processed 数据与核心审计快照 |
-| [`entity_id_crosswalk.csv`](data/processed/entity_id_crosswalk.csv) | CNUR编号与旧编号兼容映射 |
-| [`entity_names_year_end_1987_2026.csv`](data/processed/entity_names_year_end_1987_2026.csv) | 1987—2026 年末正式名称区间 |
-| [`entity_name_match_ranges_1987_2026.csv`](data/processed/entity_name_match_ranges_1987_2026.csv) | 自然年内曾正式有效的名称区间 |
-| [`legal_roster_year_end_1987_2026.csv`](data/processed/legal_roster_year_end_1987_2026.csv) | 363实体 × 40年的年末状态长表 |
-| [`ctamap_prefecture_links.csv`](data/processed/ctamap_prefecture_links.csv) | CTAmap 地级要素与 CNUR 桥接 |
-| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 省、地、县三级网页展示 GeoJSON 的年份、分片、要素数、容差和文件大小清单 |
-| [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | CTAmap 简化几何的来源、引用和独立许可说明 |
-| [`data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip`](data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip) | 县级精度分析包：2000—2024 年初、WGS84、容差 0.002°，不由网页运行时加载 |
-| [`data/releases/maps/ctamap_county_analysis_manifest.json`](data/releases/maps/ctamap_county_analysis_manifest.json) | 精度分析包的年份、分片、要素数、文件大小和构建参数 |
-| [`data/releases/maps/README.md`](data/releases/maps/README.md) | 精度包字段、构建参数、来源和下载说明 |
-| [`unified_events_1987_2026.csv`](data/processed/unified_events_1987_2026.csv) | 统一行政区划事件主表 |
-| [`prefecture_administrative_events_1983_2026.csv`](data/processed/prefecture_administrative_events_1983_2026.csv) | 1983—2026 地级行政单位事件层，保留来源描述 |
-| [`major_lineage_relations.csv`](data/processed/major_lineage_relations.csv) | 按县级构成审核的重大拆分、析设和多来源关系 |
-| [`county_affiliation_transitions.csv`](data/processed/county_affiliation_transitions.csv) | 支撑重大实体关系的县级单位去向底表 |
-| [`county_administrative_events_1983_2026.csv`](data/processed/county_administrative_events_1983_2026.csv) | 1983—2026 县级变更事件，合并早期版面、批复转录与 Wikipedia 记录 |
-| [`county_administrative_events_1983_1986.csv`](data/processed/county_administrative_events_1983_1986.csv) | 1983—1986 早期县级以上变更补录，含原文、页面定位和来源 ID |
-| [`county_unit_type_coverage_1987_2026.csv`](data/processed/county_unit_type_coverage_1987_2026.csv) | 八类县级行政区划类型覆盖审计（含零记录类型） |
-| [`wikipedia_county_change_rows.csv`](data/processed/wikipedia_county_change_rows.csv) | 县级年度页原始表格行与修订号 |
-| [`source_registry.csv`](data/processed/source_registry.csv) | 统一来源登记：来源类型、时间范围、定位、权威性和核验状态 |
-| [`unified_event_relations.csv`](data/processed/unified_event_relations.csv) | 改名、升格、合并、拆分和代管关系 |
+| [`china_prefecture_crosswalk_research_bundle_v4.0.zip`](data/releases/v4.0/china_prefecture_crosswalk_research_bundle_v4.0.zip) | 精简研究包：主表、名称、年末状态、地级/县级事件、时间口径、关系、地图桥接和来源登记 |
+| [`china_prefecture_crosswalk_research_bundle_v4.0.sha256`](data/releases/v4.0/china_prefecture_crosswalk_research_bundle_v4.0.sha256) | 精简研究包 SHA256 校验值 |
+| [`data/releases/v4.0/README.md`](data/releases/v4.0/README.md) | 研究包目录和用途说明 |
+| [`ctamap_county_analysis_2000_2024_t002.zip`](data/releases/maps/ctamap_county_analysis_2000_2024_t002.zip) | 县级精度分析包：2000—2024 年初 WGS84 分片数据 |
+| [`docs/data/maps/manifest.json`](docs/data/maps/manifest.json) | 网页地图文件清单和构建参数 |
+| [`docs/data/maps/NOTICE.md`](docs/data/maps/NOTICE.md) | 地图来源、引用和许可说明 |
 
 完整字段说明见 [`CODEBOOK.md`](CODEBOOK.md)，版本变化见 [`CHANGELOG.md`](CHANGELOG.md)。
 
