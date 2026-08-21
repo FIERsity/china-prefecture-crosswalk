@@ -1,0 +1,34 @@
+{
+  "retrieved_at": "2026-08-21",
+  "purpose": "external_boundary_source_acquisition_and_review",
+  "runtime_integrated": false,
+  "sources": [
+    {
+      "region": "Hong Kong",
+      "repository": "funglkf/hk-geodata",
+      "repository_url": "https://github.com/funglkf/hk-geodata",
+      "files": ["hongkong_github_scraper/get_hkgeo-data.py", "hongkong_github_scraper/README.md", "hongkong_github_scraper/LICENSE"],
+      "upstream_data_api": "https://geodata.gov.hk/gs/geodataQueryAPI-datasets",
+      "code_license": "MIT",
+      "data_license_status": "dataset_specific_review_required"
+    },
+    {
+      "region": "Macau",
+      "repository": "justinelliotmeyers/Macau_Boundary_Line_04282017",
+      "repository_url": "https://github.com/justinelliotmeyers/Macau_Boundary_Line_04282017",
+      "files": ["macau_github_2017/China_Macau_U.dbf", "macau_github_2017/China_Macau_U.prj", "macau_github_2017/China_Macau_U.shp", "macau_github_2017/China_Macau_U.shx"],
+      "snapshot_date": "2017-04-28",
+      "coordinate_system": "EPSG:4326",
+      "license_status": "no_license_declared_review_only"
+    },
+    {
+      "region": "Taiwan",
+      "repository": "justinelliotmeyers/official_taiwan_administrative_boundary_shapefile",
+      "repository_url": "https://github.com/justinelliotmeyers/official_taiwan_administrative_boundary_shapefile",
+      "files": ["taiwan_github_official/taiwan_shapefile.rar", "taiwan_github_official/source_license.txt"],
+      "source_license": "http://data.gov.tw/license",
+      "source_dataset": "http://data.gov.tw/node/7438",
+      "license_status": "government_source_license_recorded"
+    }
+  ]
+}

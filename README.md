@@ -268,6 +268,8 @@ python3 -m http.server 8765 --directory docs
 
 这些资源不能直接与 CTAmap 混合：坐标系、行政层级、政治/法律口径和许可证不同。导入前必须保留原始来源、版本日期、坐标系和许可字段。
 
+已抓取的 GitHub 来源缓存位于 [`data/raw/external_boundaries/`](data/raw/external_boundaries/)，当前仅供审计，不进入运行时地图：香港保留 MIT 抓取脚本，澳门保留无 License 的 2017 候选 Shapefile，台湾保留带政府来源许可记录的官方边界 RAR。清单和 SHA256 见该目录的 `manifest.json` 与 [`data/SHA256SUMS`](data/SHA256SUMS)。
+
 ## 引用
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 

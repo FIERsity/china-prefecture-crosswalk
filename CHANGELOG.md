@@ -14,6 +14,7 @@
 - Added map search by current or historical name, six-digit source code and CNUR ID; linked map details now show year-end name history and open related event queries.
 - Added 25 annual province maps (850 features) and 25 years of county maps (71,610 features) partitioned by province for lazy loading; 2000—2010 county Web Mercator sources are normalized to WGS84 before simplification.
 - Added province/prefecture/county level selection, county province selection, county type and parent-prefecture CNUR display, and related county-event lookup in the historical map UI.
+- Added a non-runtime external-boundary acquisition cache: Hong Kong GitHub scraper and source metadata, Macau 2017 review-only Shapefile candidate, and Taiwan official-boundary RAR with government source-license record; all files are checksum-tracked and excluded from CTAmap/CNUR data.
 - Published V4.0 CSV, Excel, and full data bundle outputs and switched Python, CLI, Streamlit, and GitHub Pages metadata to the year-end rule.
 
 ## 3.4.1 - 2026-08-05
