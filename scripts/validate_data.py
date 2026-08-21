@@ -349,6 +349,15 @@ def main() -> None:
     require({feature["id"] for feature in external_payload["features"]} == {"EXTERNAL-HKG", "EXTERNAL-MAC", "EXTERNAL-TWN"}, "external_current feature ids changed")
     require(all(feature["properties"].get("map_level") == "province" for feature in external_payload["features"]), "external_current map_level must be province")
 
+    # Fixed-boundary (2020 reference) map: 337 reference units and a
+    # complete legacy-link graph.
+    _, ref_units = read_csv_at(PROCESSED / "fixed_boundary_reference_units_2020.csv")
+    _, legacy_links = read_csv_at(PROCESSED / "fixed_boundary_legacy_links.csv")
+    require(len(ref_units) == 337, "fixed-boundary reference unit count changed")
+    require(all(row["entity_id"] for row in ref_units), "fixed-boundary unit missing entity")
+    require(len(legacy_links) >= 150, "fixed-boundary legacy links unexpectedly small")
+    require(all(row["treatment_hint"] for row in legacy_links), "fixed-boundary link missing treatment hint")
+
     # Website data bundle must never drift from the processed layer.
     repo_root = Path(__file__).resolve().parents[1]
     docs_data = repo_root / "docs" / "data"

@@ -1,0 +1,191 @@
+from_entity_id,from_name,to_entity_id,to_name,relation_type,year,automatic_continuity,mapping_quality,treatment_hint,review_note
+CNUR-000106,黄山市,CNUR-000106,黄山市,upgrade,0,true,exact,continuous_identity,
+CNUR-000095,舟山市,CNUR-000095,舟山市,upgrade,0,true,exact,continuous_identity,
+CNUR-000341,海南黎族苗族自治州,,,abolish,0,false,event_only,break_flag_only,abolished historical autonomous prefecture; former counties moved to direct Hainan Administrative Region control
+CNUR-000238,攀枝花市,CNUR-000238,攀枝花市,rename,0,true,exact,continuous_identity,
+CNUR-000254,阿坝藏族羌族自治州,CNUR-000254,阿坝藏族羌族自治州,rename,0,true,exact,continuous_identity,
+CNUR-000012,廊坊市,CNUR-000012,廊坊市,upgrade,0,true,exact,continuous_identity,
+CNUR-000019,朔州市,,,establish,0,false,event_only,break_flag_only,朔州市 was explicitly established as a prefecture-level city
+CNUR-000188,常德市,CNUR-000188,常德市,upgrade,0,true,exact,continuous_identity,
+CNUR-000205,肇庆市,CNUR-000205,肇庆市,upgrade,0,true,exact,continuous_identity,
+CNUR-000347,惠阳地区,,,split,0,false,event_only,break_flag_only,惠阳地区撤销并形成惠州、汕尾、河源三个主要后继实体
+CNUR-000208,汕尾市,,,establish,0,false,event_only,break_flag_only,汕尾市 was explicitly established as a prefecture-level city
+CNUR-000209,河源市,,,establish,0,false,event_only,break_flag_only,河源市 was explicitly established as a prefecture-level city
+CNUR-000207,梅州市,CNUR-000207,梅州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000210,阳江市,,,establish,0,false,event_only,break_flag_only,阳江市 was explicitly established as a prefecture-level city
+CNUR-000211,清远市,,,establish,0,false,event_only,break_flag_only,清远市 was explicitly established as a prefecture-level city
+CNUR-000348,安庆地区,,,merge,0,false,event_only,break_flag_only,安庆地区 and the existing city were merged into the unified 安庆市
+CNUR-000113,池州市,,,establish_prefecture,0,false,event_only,break_flag_only,池州地区 later continued as the Chizhou research entity
+CNUR-000121,南平市,CNUR-000121,南平市,rename,0,true,exact,continuous_identity,建阳地区 renamed 南平地区 and later became 南平市
+CNUR-000145,日照市,CNUR-000145,日照市,upgrade,0,true,exact,continuous_identity,1989-06-12 国务院批复日照市由县级市升为地级市（国函〔1989〕43号），行政区域、人员编制不变；1989-11-05 正式对外办公。日照县撤县设市为1985年（85国函字43号，县级）。
+CNUR-000214,潮州市,CNUR-000214,潮州市,upgrade,0,true,exact,continuous_identity,1991-12-07 国务院批复调整汕头、潮州两市行政区划（国函〔1991〕84号）：潮州市升格为地级市，设立潮州市湘桥区、潮安县，将潮安县和原汕头市的饶平县划归潮州市管辖。
+CNUR-000215,揭阳市,,,establish,0,false,event_only,break_flag_only,1991-12-07 国务院批复（国函〔1991〕84号）：撤销揭阳县，设立揭阳市（地级），设立揭阳市榕城区、揭东县，将揭东县和原汕头市的揭西、普宁、惠来四县划归揭阳市管辖。
+CNUR-000107,滁州市,CNUR-000107,滁州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000342,万县市,CNUR-000342,万县市,upgrade,0,true,exact,continuous_identity,Wanxian Prefecture continued as the historical prefecture-level Wanxian City until 1997
+CNUR-000349,宜昌地区,,,abolish,0,false,event_only,break_flag_only,宜昌地区 merged into the existing 宜昌市
+CNUR-000057,松原市,,,establish,0,false,event_only,break_flag_only,松原市 was explicitly established as a prefecture-level city
+CNUR-000150,滨州市,CNUR-000150,滨州市,rename,0,true,exact,continuous_identity,惠民地区 renamed 滨州地区 and later became 滨州市
+CNUR-000058,白城市,CNUR-000058,白城市,upgrade,0,true,exact,continuous_identity,
+CNUR-000070,黑河市,CNUR-000070,黑河市,upgrade,0,true,exact,continuous_identity,
+CNUR-000176,孝感市,,,establish,0,false,event_only,break_flag_only,孝感市 was explicitly established as a prefecture-level city
+CNUR-000246,南充市,CNUR-000246,南充市,upgrade,0,true,exact,continuous_identity,
+CNUR-000350,石家庄地区,,,merge,0,false,event_only,break_flag_only,石家庄地区 merged into 石家庄市
+CNUR-000351,张家口地区,,,merge,0,false,event_only,break_flag_only,1993年河北地市合并：撤销张家口地区并入张家口市（国函〔1993〕89号）
+CNUR-000352,沧州地区,,,merge,0,false,event_only,break_flag_only,1993年河北地市合并：撤销沧州地区并入沧州市（国函〔1993〕89号）
+CNUR-000353,邯郸地区,,,merge,0,false,event_only,break_flag_only,1993年河北地市合并：撤销邯郸地区并入邯郸市（国函〔1993〕89号）
+CNUR-000354,邢台地区,,,merge,0,false,event_only,break_flag_only,1993年河北地市合并：撤销邢台地区并入邢台市（国函〔1993〕89号）
+CNUR-000355,承德地区,,,merge,0,false,event_only,break_flag_only,1993年河北地市合并：撤销承德地区并入承德市（国函〔1993〕89号）
+CNUR-000343,雁北地区,,,abolish,0,false,event_only,break_flag_only,Yanbei was abolished and split between Datong and Shuozhou
+CNUR-000222,防城港市,,,establish,0,false,event_only,break_flag_only,防城港市 was explicitly established as a prefecture-level city
+CNUR-000181,恩施土家族苗族自治州,CNUR-000181,恩施土家族苗族自治州,rename,0,true,exact,continuous_identity,
+CNUR-000096,台州市,CNUR-000096,台州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000121,南平市,CNUR-000121,南平市,upgrade,0,true,exact,continuous_identity,
+CNUR-000147,临沂市,CNUR-000147,临沂市,upgrade,0,true,exact,continuous_identity,
+CNUR-000148,德州市,CNUR-000148,德州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000164,南阳市,CNUR-000164,南阳市,upgrade,0,true,exact,continuous_identity,
+CNUR-000190,益阳市,CNUR-000190,益阳市,upgrade,0,true,exact,continuous_identity,
+CNUR-000191,郴州市,,,establish,0,false,event_only,break_flag_only,郴州市 was explicitly established as a prefecture-level city
+CNUR-000223,钦州市,CNUR-000223,钦州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000293,渭南市,CNUR-000293,渭南市,upgrade,0,true,exact,continuous_identity,
+CNUR-000356,保定地区,,,merge,0,false,event_only,break_flag_only,1994年保定地市合并：保定地区与保定市合并组建新的地级保定市（国函〔1994〕133号）
+CNUR-000357,郧阳地区,,,merge,0,false,event_only,break_flag_only,郧阳地区 merged into 十堰市
+CNUR-000358,荆州地区,,,merge,0,false,event_only,break_flag_only,荆州地区与原地级沙市市共同组建新的荆沙市
+CNUR-000050,葫芦岛市,CNUR-000050,葫芦岛市,rename,0,true,exact,continuous_identity,
+CNUR-000056,白山市,CNUR-000056,白山市,rename,0,true,exact,continuous_identity,
+CNUR-000189,张家界市,CNUR-000189,张家界市,rename,0,true,exact,continuous_identity,
+CNUR-000178,黄冈市,CNUR-000178,黄冈市,upgrade,0,true,exact,continuous_identity,
+CNUR-000192,永州市,CNUR-000192,永州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000344,涪陵市,CNUR-000344,涪陵市,upgrade,0,true,exact,continuous_identity,Fuling Prefecture continued as historical prefecture-level Fuling City until 1997
+CNUR-000013,衡水市,CNUR-000013,衡水市,upgrade,0,true,exact,continuous_identity,
+CNUR-000108,阜阳市,CNUR-000108,阜阳市,upgrade,0,true,exact,continuous_identity,
+CNUR-000122,龙岩市,CNUR-000122,龙岩市,upgrade,0,true,exact,continuous_identity,
+CNUR-000248,宜宾市,CNUR-000248,宜宾市,upgrade,0,true,exact,continuous_identity,
+CNUR-000295,汉中市,CNUR-000295,汉中市,upgrade,0,true,exact,continuous_identity,
+CNUR-000294,延安市,CNUR-000294,延安市,upgrade,0,true,exact,continuous_identity,
+CNUR-000360,松花江地区,,,merge,0,false,event_only,break_flag_only,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
+CNUR-000177,荆州市,CNUR-000177,荆州市,rename,0,true,exact,continuous_identity,
+CNUR-000345,黔江地区,,,jurisdiction_transfer,0,false,event_only,transfer_aggregate_safe,"multi-entity transition: Wanxian City, Fuling City, and Qianjiang Prefecture were entrusted to Chongqing administration"
+CNUR-000149,聊城市,CNUR-000149,聊城市,upgrade,0,true,exact,continuous_identity,
+CNUR-000165,商丘市,CNUR-000165,商丘市,upgrade,0,true,exact,continuous_identity,
+CNUR-000193,怀化市,CNUR-000193,怀化市,upgrade,0,true,exact,continuous_identity,
+CNUR-000225,玉林市,CNUR-000225,玉林市,upgrade,0,true,exact,continuous_identity,
+CNUR-000259,遵义市,CNUR-000259,遵义市,upgrade,0,true,exact,continuous_identity,
+CNUR-000267,曲靖市,CNUR-000267,曲靖市,upgrade,0,true,exact,continuous_identity,
+CNUR-000268,玉溪市,CNUR-000268,玉溪市,upgrade,0,true,exact,continuous_identity,
+CNUR-000363,梧州地区,,,split,0,false,event_only,break_flag_only,梧州地区主要分为贺州地区并将三县市划归既有梧州市
+CNUR-000247,眉山市,,,establish_prefecture,0,false,event_only,break_flag_only,眉山地区 later became 眉山市
+CNUR-000345,黔江地区,,,abolish,0,false,event_only,break_flag_only,中办厅字〔1997〕34号批复（1997-12-20）：撤销万县市设立重庆市万县区（1998年5月更名万州区）、撤销涪陵市设立涪陵区、撤销黔江地区设立黔江开发区（2000年6月改设黔江区）。1996年三地已由重庆市代管（见1996年划转事件）。
+CNUR-000235,重庆市,CNUR-000235,重庆市,upgrade,0,true,exact,continuous_identity,1997年3月14日八届全国人大五次会议批准设立重庆直辖市，1997年6月18日挂牌。重庆市由四川省辖计划单列市升格为直辖市，研究实体连续；万县市、涪陵市、黔江地区于1996年划归重庆代管（见1996年划转事件）。
+CNUR-000109,宿州市,CNUR-000109,宿州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000130,赣州市,CNUR-000130,赣州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000166,信阳市,CNUR-000166,信阳市,upgrade,0,true,exact,continuous_identity,
+CNUR-000179,咸宁市,CNUR-000179,咸宁市,upgrade,0,true,exact,continuous_identity,
+CNUR-000249,广安市,CNUR-000249,广安市,upgrade,0,true,exact,continuous_identity,
+CNUR-000323,吴忠市,CNUR-000323,吴忠市,upgrade,0,true,exact,continuous_identity,
+CNUR-000361,桂林地区,,,merge,0,false,event_only,break_flag_only,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
+CNUR-000253,资阳市,,,establish_prefecture,0,false,event_only,break_flag_only,资阳地区 later became 资阳市
+CNUR-000020,晋中市,CNUR-000020,晋中市,upgrade,0,true,exact,continuous_identity,
+CNUR-000071,绥化市,CNUR-000071,绥化市,upgrade,0,true,exact,continuous_identity,
+CNUR-000110,巢湖市,CNUR-000110,巢湖市,upgrade,0,true,exact,continuous_identity,
+CNUR-000111,六安市,CNUR-000111,六安市,upgrade,0,true,exact,continuous_identity,
+CNUR-000123,宁德市,CNUR-000123,宁德市,upgrade,0,true,exact,continuous_identity,
+CNUR-000194,娄底市,CNUR-000194,娄底市,upgrade,0,true,exact,continuous_identity,
+CNUR-000250,达州市,CNUR-000250,达州市,upgrade,0,true,exact,continuous_identity,
+CNUR-000296,榆林市,CNUR-000296,榆林市,upgrade,0,true,exact,continuous_identity,
+CNUR-000029,通辽市,CNUR-000029,通辽市,upgrade,0,true,exact,continuous_identity,
+CNUR-000131,吉安市,CNUR-000131,吉安市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000097,丽水市,CNUR-000097,丽水市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000132,宜春市,CNUR-000132,宜春市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000167,周口市,CNUR-000167,周口市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000168,驻马店市,CNUR-000168,驻马店市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000150,滨州市,CNUR-000150,滨州市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000247,眉山市,CNUR-000247,眉山市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000251,雅安市,CNUR-000251,雅安市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000252,巴中市,CNUR-000252,巴中市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000253,资阳市,CNUR-000253,资阳市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000021,运城市,CNUR-000021,运城市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000022,忻州市,CNUR-000022,忻州市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000023,临汾市,CNUR-000023,临汾市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000260,安顺市,CNUR-000260,安顺市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000297,安康市,CNUR-000297,安康市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000133,抚州市,CNUR-000133,抚州市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000134,上饶市,CNUR-000134,上饶市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000151,菏泽市,CNUR-000151,菏泽市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000113,池州市,CNUR-000113,池州市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000114,宣城市,CNUR-000114,宣城市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000269,保山市,CNUR-000269,保山市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000112,亳州市,CNUR-000112,亳州市,upgrade,0,true,exact,continuous_identity,按用户口径计为新增地级市。
+CNUR-000180,随州市,CNUR-000180,随州市,upgrade,0,true,exact,continuous_identity,按用户口径计为新增地级市。
+CNUR-000081,淮安市,CNUR-000081,淮安市,rename,0,true,exact,continuous_identity,实体连续，地级单位净变化0。
+CNUR-000270,昭通市,CNUR-000270,昭通市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000030,鄂尔多斯市,CNUR-000030,鄂尔多斯市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000304,武威市,CNUR-000304,武威市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000324,固原市,CNUR-000324,固原市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000298,商洛市,CNUR-000298,商洛市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000031,呼伦贝尔市,CNUR-000031,呼伦贝尔市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000338,伊犁地区,,,abolish,0,false,event_only,break_flag_only,没有新设地级单位，全部地级单位净减少1。
+CNUR-000305,张掖市,CNUR-000305,张掖市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000226,百色市,CNUR-000226,百色市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000306,平凉市,CNUR-000306,平凉市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000227,贺州市,CNUR-000227,贺州市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000228,河池市,CNUR-000228,河池市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000307,酒泉市,CNUR-000307,酒泉市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000308,庆阳市,CNUR-000308,庆阳市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000362,柳州地区,,,split,0,false,event_only,break_flag_only,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000346,南宁地区,,,split,0,false,event_only,break_flag_only,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000271,丽江市,CNUR-000271,丽江市,upgrade,0,true,exact,continuous_identity,部分新市名称与原地区驻地县不同，但仍属于地区撤销、新设地级市。
+CNUR-000309,定西市,CNUR-000309,定西市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000024,吕梁市,CNUR-000024,吕梁市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000272,普洱市,CNUR-000272,普洱市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000032,巴彦淖尔市,CNUR-000032,巴彦淖尔市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000033,乌兰察布市,CNUR-000033,乌兰察布市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000325,中卫市,,,establish,0,false,event_only,break_flag_only,原单位为县级，按用户口径计为新增地级市。
+CNUR-000310,陇南市,CNUR-000310,陇南市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位净变化0。
+CNUR-000272,普洱市,CNUR-000272,普洱市,rename,0,true,exact,continuous_identity,实体连续，地级单位净变化0。
+CNUR-000173,襄阳市,CNUR-000173,襄阳市,rename,0,true,exact,continuous_identity,名称和建制层级连续；新增与撤销均按历史名称记录，地级单位净变化为0。
+CNUR-000110,巢湖市,,,split,0,false,event_only,break_flag_only,县级巢湖市是新县级单位，不计入地级新增。
+CNUR-000261,毕节市,CNUR-000261,毕节市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位数量净变化0。
+CNUR-000262,铜仁市,CNUR-000262,铜仁市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位数量净变化0。
+CNUR-000233,三沙市,,,establish,0,false,event_only,break_flag_only,原办事处不按地级行政单位计入撤销，因此地级单位净增1。
+CNUR-000314,海东市,CNUR-000314,海东市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位数量净变化0。
+CNUR-000283,日喀则市,CNUR-000283,日喀则市,upgrade,0,true,exact,continuous_identity,同名县级市终止，不计作地级撤销。
+CNUR-000234,儋州市,CNUR-000234,儋州市,upgrade,0,true,exact,continuous_identity,按用户口径视为新增地级市；原县级市终止不计地级撤销。
+CNUR-000285,林芝市,CNUR-000285,林芝市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位数量净变化0。
+CNUR-000328,吐鲁番市,CNUR-000328,吐鲁番市,upgrade,0,true,exact,continuous_identity,地级市数量增加1；全部地级单位数量净变化0。
+CNUR-000286,山南市,CNUR-000286,山南市,upgrade,0,true,exact,continuous_identity,按批准日期归入2016年；地级市数量增加1，全部地级单位净变化0。
+CNUR-000329,哈密市,CNUR-000329,哈密市,upgrade,0,true,exact,continuous_identity,同名县级市终止不计地级撤销。
+CNUR-000287,那曲市,CNUR-000287,那曲市,upgrade,0,true,exact,continuous_identity,按批准年份归入2017年；公布实施发生于2018年。
+CNUR-000146,莱芜市,,,merge,0,false,event_only,break_flag_only,按批准年份归入2018年；济南市为既存地级市，不计新增。
+CNUR-000343,雁北地区,CNUR-000015,大同市,split,0,false,disaggregate,split_needs_weight,seven former Yanbei counties transferred to Datong
+CNUR-000343,雁北地区,CNUR-000019,朔州市,split,0,false,disaggregate,split_needs_weight,"Huairen, Youyu, and Ying counties transferred to Shuozhou"
+CNUR-000351,张家口地区,CNUR-000009,张家口市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：张家口地区并入张家口市（国函〔1993〕89号）
+CNUR-000352,沧州地区,CNUR-000011,沧州市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：沧州地区并入沧州市（国函〔1993〕89号）
+CNUR-000353,邯郸地区,CNUR-000006,邯郸市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：邯郸地区并入邯郸市（国函〔1993〕89号）
+CNUR-000354,邢台地区,CNUR-000007,邢台市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：邢台地区并入邢台市（国函〔1993〕89号）
+CNUR-000355,承德地区,CNUR-000010,承德市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：承德地区并入承德市（国函〔1993〕89号）
+CNUR-000350,石家庄地区,CNUR-000003,石家庄市,merge,0,false,aggregate,aggregate_safe,1993年河北地市合并：石家庄地区并入石家庄市（国函〔1993〕89号）
+CNUR-000356,保定地区,CNUR-000008,保定市,merge,0,false,aggregate,aggregate_safe,1994年保定地市合并（国函〔1994〕133号）：保定地区并入保定市
+CNUR-000357,郧阳地区,CNUR-000171,十堰市,merge,0,false,aggregate,aggregate_safe,郧阳地区 merged into 十堰市
+CNUR-000358,荆州地区,CNUR-000177,荆州市,merge,0,false,aggregate,aggregate_safe,荆州地区与原地级沙市市共同组建新的荆沙市（后更名荆州市）
+CNUR-000359,沙市市,CNUR-000177,荆州市,merge,0,false,aggregate,aggregate_safe,原地级沙市市与荆州地区共同组建新的荆沙市
+CNUR-000347,惠阳地区,CNUR-000206,惠州市,split,0,false,disaggregate,split_needs_weight,惠阳地区撤销，惠州城区及部分县设立地级惠州市
+CNUR-000347,惠阳地区,CNUR-000208,汕尾市,split,0,false,disaggregate,split_needs_weight,惠阳地区析出海丰、陆丰设立汕尾市
+CNUR-000347,惠阳地区,CNUR-000209,河源市,split,0,false,disaggregate,split_needs_weight,惠阳地区析出河源县等设立河源市
+CNUR-000363,梧州地区,CNUR-000220,梧州市,split,0,false,disaggregate,split_needs_weight,梧州地区撤销，岑溪等县市划归梧州市
+CNUR-000363,梧州地区,CNUR-000227,贺州市,split,0,false,disaggregate,split_needs_weight,梧州地区主体更名为贺州地区（1997年）
+CNUR-000360,松花江地区,CNUR-000060,哈尔滨市,merge,0,false,aggregate,aggregate_safe,1996年松花江地区与哈尔滨市合并（国函〔1996〕64号）
+CNUR-000361,桂林地区,CNUR-000219,桂林市,merge,0,false,aggregate,aggregate_safe,1998年桂林市和桂林地区合并组建新的桂林市（国函〔1998〕73号）
+CNUR-000342,万县市,CNUR-000235,重庆市,jurisdiction_transfer,0,false,aggregate,aggregate_safe,entrusted to Chongqing administration in 1996
+CNUR-000344,涪陵市,CNUR-000235,重庆市,jurisdiction_transfer,0,false,aggregate,aggregate_safe,entrusted to Chongqing administration in 1996
+CNUR-000345,黔江地区,CNUR-000235,重庆市,jurisdiction_transfer,0,false,aggregate,aggregate_safe,entrusted to Chongqing administration in 1996
+CNUR-000342,万县市,CNUR-000235,重庆市,abolish,0,false,aggregate,aggregate_safe,1997年12月撤销万县市设立重庆市万县区（1998年5月更名万州区）
+CNUR-000344,涪陵市,CNUR-000235,重庆市,abolish,0,false,aggregate,aggregate_safe,1997年12月撤销涪陵市设立重庆市涪陵区
+CNUR-000345,黔江地区,CNUR-000235,重庆市,abolish,0,false,aggregate,aggregate_safe,1997年12月撤销黔江地区设立重庆市黔江开发区（2000年6月改设黔江区）
+CNUR-000362,柳州地区,CNUR-000218,柳州市,split,0,false,disaggregate,split_needs_weight,柳州地区撤销，柳江等县划归柳州市
+CNUR-000362,柳州地区,CNUR-000229,来宾市,split,0,false,disaggregate,split_needs_weight,柳州地区析设地级来宾市
+CNUR-000346,南宁地区,CNUR-000217,南宁市,split,0,false,disaggregate,split_needs_weight,南宁地区撤销，部分县划归南宁市
+CNUR-000346,南宁地区,CNUR-000230,崇左市,split,0,false,disaggregate,split_needs_weight,南宁地区析设地级崇左市
+CNUR-000110,巢湖市,CNUR-000098,合肥市,split,0,false,disaggregate,split_needs_weight,巢湖市撤销，居巢区、庐江县划归合肥市
+CNUR-000110,巢湖市,CNUR-000099,芜湖市,split,0,false,disaggregate,split_needs_weight,巢湖市撤销，无为县划归芜湖市
+CNUR-000110,巢湖市,CNUR-000102,马鞍山市,split,0,false,disaggregate,split_needs_weight,巢湖市撤销，含山县、和县划归马鞍山市
+CNUR-000146,莱芜市,CNUR-000135,济南市,merge,0,false,aggregate,aggregate_safe,莱芜市并入济南市（2019年1月公布实施）

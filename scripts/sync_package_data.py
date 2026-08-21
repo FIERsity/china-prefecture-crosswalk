@@ -23,6 +23,8 @@ FILES = [
     "county_administrative_events_1987_2026.csv", "county_administrative_events_1983_1986.csv",
     "county_administrative_events_1983_2026.csv", "county_unit_type_coverage_1987_2026.csv",
     "source_registry.csv",
+    "fixed_boundary_reference_units_2020.csv",
+    "fixed_boundary_legacy_links.csv",
 ]
 
 DEST.mkdir(parents=True, exist_ok=True)

@@ -109,3 +109,31 @@ The two flags are deliberately different layers: a 撤地设市 upgrade keeps th
 - **Project provenance**: `project_snapshot` (项目早期快照).
 
 Rows cite `source_id`, `source_url`, `source_locator`, `source_confidence` and `provenance_status`; treat official-text rows as the verification target and summary/wikipedia rows as evidence pending original-document review.
+
+## Fixed-boundary (2020 reference) map
+
+`fixed_boundary_reference_units_2020.csv` lists the 337 prefecture-level units
+active at the 2020 year end — the reference boundary for whole-city panels —
+with a `formation_path` (stable / continuous_upgrade / new_established /
+merge_successor / split_successor / transfer_in / merged_away), the `break_years`
+in which its whole-city statistical scope was mechanically altered during the
+1999—2020 panel, the `sample_entry_year` if the unit first entered the city
+sample of statistical yearbooks after 1999 (e.g. a 撤地设市 upgrade), and a
+`treatment_hint`.
+
+`fixed_boundary_legacy_links.csv` maps every predecessor unit (historical
+entities and since-merged/abolished units) to the 2020 reference unit it feeds,
+with the relation type and a per-link `treatment_hint`:
+
+- `continuous_identity` — rename / upgrade, same entity, no boundary change;
+- `aggregate_safe` — merge or transfer, whole-city totals can be summed;
+- `split_needs_weight` — split/disaggregate, historical values must be
+  apportioned by a chosen weight (population share is recommended);
+- `break_flag_only` — the value series has a structural break; add an event
+  dummy or flag rather than imputing.
+
+The map is derived from the unified event relations, the major-lineage
+county-level transfers, and the event timing reviews. It deliberately covers
+only the whole-city layer; county-to-district conversions (撤县设区) do not
+change the whole-city boundary and are handled at the municipal-district
+layer.
