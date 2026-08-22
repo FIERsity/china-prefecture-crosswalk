@@ -275,6 +275,10 @@ python3 -m http.server 8765 --directory docs
 
 当前网站外部展示层按层级处理港澳台：省级使用三份当前背景面；地级层追加台湾 geoBoundaries ADM1（22 个外部地级对应区）；县级层追加台湾 ADM2（368 个）、香港 18 区和澳门 1 个未拆分外部展示区。显示名称统一以台湾省、香港特别行政区、澳门特别行政区为省级名称；香港、澳门不设置地级父节点，三者都不分配 CNUR，也不参与历史面板。
 
+## Agent 协作
+
+仓库用 [`AGENTS.md`](AGENTS.md) 作为跨会话 Agent 入口，并将稳定项目地图、动态近况和长期决定分别维护在 [`docs/agent/`](docs/agent/) 中。Agent 文档用于快速定位和交接；代码、数据、Git 历史和 GitHub 实时状态仍是最终事实源。
+
 ## 引用
 建议引用 GitHub Release 或具体提交，并注明使用的数据版本：
 
@@ -309,4 +313,6 @@ scripts/build_pages_data.py  生成浏览器端数据包
 scripts/build_ctamap_web_maps.py  从本地 CTAmap Shapefile 重建网页地图
 tests/             回归与网页测试
 app.py             Streamlit网页入口
+AGENTS.md           Agent 启动、验证与交接规则
+docs/agent/         稳定上下文、动态近况与长期决定
 ```
