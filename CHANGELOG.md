@@ -2,12 +2,12 @@
 
 ## Unreleased
 
-- Unified the province, prefecture and county map switcher around one national
-  map context. County detail now overlays the national province outline;
-  switching Taiwan, Hong Kong or Macao back to prefecture/province keeps the
-  same geographic focus instead of leaking the hidden county filter or showing
-  an unrelated external layer. Duplicate province outlines were also removed,
-  and stale asynchronous map renders can no longer overwrite the latest level.
+- Corrected the province, prefecture and county map scope. County view now shows
+  only the selected province or external region; switching Taiwan, Hong Kong,
+  Macao or a mainland province back to prefecture/province loads the complete
+  national layer and keeps the same geographic focus. Hidden county filters no
+  longer leak into nationwide levels, duplicate province outlines were removed,
+  and stale asynchronous map renders cannot overwrite the latest selection.
 
 ## 4.0.2 - 2026-08-21
 

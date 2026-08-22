@@ -1,7 +1,6 @@
 const state = { data: null, namesByNormalized: new Map(), countyNamesByNormalized: new Map(), entityMap: new Map(), mapLevel: null, mapFocusProvinceCode: "" };
 let historyMap = null;
 let historyLayer = null;
-let historyContextLayer = null;
 let mapLayerById = new Map();
 let currentMapGeojson = null;
 let selectedMapFeatureId = null;
@@ -506,10 +505,6 @@ function mapFeatureStyle(feature) {
   return feature.properties.link_status === "linked" ? { color: "#fffefa", weight: .65, fillColor: "#78b999", fillOpacity: .78 } : { color: "#fffefa", weight: .55, fillColor: "#d8ddd8", fillOpacity: .82 };
 }
 
-function mapContextStyle() {
-  return { color: "#80938a", weight: .7, fillColor: "#e4e9e6", fillOpacity: .32 };
-}
-
 function selectMapFeature(featureId) {
   if (selectedMapFeatureId && mapLayerById.has(selectedMapFeatureId)) {
     const previous = mapLayerById.get(selectedMapFeatureId);
@@ -562,7 +557,7 @@ async function renderHistoryMap() {
   const snapshotYear = panelYear + 1;
   const mapLevel = $("#map-level").value || "prefecture";
   const provinceCode = $("#map-province").value || "420000";
-  const focusProvinceCode = state.mapFocusProvinceCode || (mapLevel === "county" ? provinceCode : "");
+  const focusProvinceCode = mapLevel === "county" ? provinceCode : (state.mapFocusProvinceCode || "");
   if (!window.L) { $("#map-detail").innerHTML = '<p class="result-note">地图组件加载失败，请刷新页面。</p>'; return; }
   if (!historyMap) {
     historyMap = L.map("history-map", { zoomControl: true, attributionControl: false, minZoom: 3, maxZoom: 9 });
@@ -572,7 +567,6 @@ async function renderHistoryMap() {
   const sourceGeojson = await fetchMapGeojson(mapPath);
   let features = sourceGeojson.features.slice();
   if (countyExternalGroup) features = features.filter((feature) => feature.properties.external_group === countyExternalGroup);
-  let contextGeojson = null;
   if (mapLevel === "prefecture") {
     const [taiwan, externalProvinces] = await Promise.all([
       fetchMapGeojson("data/maps/external/taiwan_prefecture.geojson"),
@@ -585,24 +579,12 @@ async function renderHistoryMap() {
     const externalProvinces = await fetchMapGeojson("data/maps/external/external_current.geojson");
     features = replaceExternalProvinceOutlines(features, externalProvinces.features);
   }
-  if (mapLevel === "county") {
-    const [provinceContext, externalProvinces] = await Promise.all([
-      fetchMapGeojson(`data/maps/province/${snapshotYear}.geojson`),
-      fetchMapGeojson("data/maps/external/external_current.geojson"),
-    ]);
-    contextGeojson = {
-      ...provinceContext,
-      features: replaceExternalProvinceOutlines(provinceContext.features, externalProvinces.features),
-    };
-  }
   if (renderSequence !== mapRenderSequence) return;
   const geojson = { ...sourceGeojson, features };
   currentMapGeojson = geojson;
   mapLayerById = new Map();
   selectedMapFeatureId = null;
   if (historyLayer) historyLayer.remove();
-  if (historyContextLayer) historyContextLayer.remove();
-  historyContextLayer = contextGeojson ? L.geoJSON(contextGeojson, { style: mapContextStyle, interactive: false }).addTo(historyMap) : null;
   historyLayer = L.geoJSON(geojson, {
     style: mapFeatureStyle,
     onEachFeature(feature, layer) {
@@ -621,15 +603,17 @@ async function renderHistoryMap() {
   historyMap.invalidateSize({ pan: false });
   const focusFeatures = focusProvinceCode ? geojson.features.filter((feature) => mapFeatureProvinceCode(feature.properties) === focusProvinceCode) : [];
   const focusLayer = focusFeatures.length ? L.geoJSON({ type: "FeatureCollection", features: focusFeatures }) : null;
-  if (focusLayer) historyMap.fitBounds(focusLayer.getBounds(), { padding: [25, 25], maxZoom: mapLevel === "province" ? 7 : 8 });
-  else if (geojson.features.length) historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8] });
+  historyMap.stop();
+  if (focusLayer) historyMap.fitBounds(focusLayer.getBounds(), { padding: [25, 25], maxZoom: mapLevel === "province" ? 7 : 8, animate: false });
+  else if (geojson.features.length) historyMap.fitBounds(historyLayer.getBounds(), { padding: [8, 8], animate: false });
   setTimeout(() => historyMap.invalidateSize(), 0);
   const levelName = mapLevel === "province" ? "省级" : mapLevel === "county" ? "县级" : "地级";
   const linked = geojson.features.filter((feature) => feature.properties.link_status === "linked" || feature.properties.link_status === "parent_linked").length;
   const selectedProvinceName = $("#map-province").selectedOptions[0]?.textContent || "";
   const provinceName = mapLevel === "county" ? ` · ${selectedProvinceName}` : "";
-  const scopeText = mapLevel === "county" ? `在全国底图上叠加${selectedProvinceName} ` : "全国 ";
-  $("#map-detail").innerHTML = `<div class="section-label">${countyExternalGroup ? `${levelName} · 当前外部展示` : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${countyExternalGroup ? selectedProvinceName : `${panelYear} 年经济面板`}</h2><p class="muted">当前${scopeText}${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。地图始终保留全国轮廓；可点击区域或使用名称、代码、CNUR 查询。</p>`;
+  const scopeText = mapLevel === "county" ? `${selectedProvinceName} ` : "全国 ";
+  const switchNote = mapLevel === "county" ? "县级视图仅显示所选省份；切换到地级或省级后会加载全国图并继续聚焦这里。" : "当前已加载全国完整图层，视窗保留所选省份焦点。";
+  $("#map-detail").innerHTML = `<div class="section-label">${countyExternalGroup ? `${levelName} · 当前外部展示` : `${snapshotYear}年初 · ${levelName}${provinceName}`}</div><h2>${countyExternalGroup ? selectedProvinceName : `${panelYear} 年经济面板`}</h2><p class="muted">当前显示${scopeText}${geojson.features.length} 个${levelName}要素${linked ? `，其中 ${linked} 个可连接地级 CNUR` : ""}。${switchNote}可点击区域或使用名称、代码、CNUR 查询。</p>`;
   state.mapLevel = mapLevel;
 }
 
