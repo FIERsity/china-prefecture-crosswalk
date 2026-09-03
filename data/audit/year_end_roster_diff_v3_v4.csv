@@ -1,4 +1,5 @@
 entity_id,year,changed_fields,v3_name,v4_year_end_name,v3_status,v4_year_end_status,v3_level,v4_year_end_level,transition_event_ids,v4_derivation_basis,review_status
+CNUR-000031,2001,legal_name_zh,呼伦贝尔市,呼伦贝尔盟,active,active,prefecture,prefecture,PL-2001-006,reviewed_event_chain,explained
 CNUR-000110,2025,legal_name_zh,巢湖市,,abolished,abolished,none,none,,reviewed_event_chain,explained
 CNUR-000110,2026,legal_name_zh,巢湖市,,abolished,abolished,none,none,,reviewed_event_chain,explained
 CNUR-000112,1987,legal_name_zh|status|legal_level,亳州市,,active,not_established,prefecture,none,,entity_year_end_override,explained
@@ -67,4 +68,5 @@ CNUR-000284,1997,legal_name_zh,昌都市,昌都地区,active,active,prefecture,p
 CNUR-000284,1998,legal_name_zh,昌都市,昌都地区,active,active,prefecture,prefecture,,reviewed_name_span_override,explained
 CNUR-000284,1999,legal_name_zh,昌都市,昌都地区,active,active,prefecture,prefecture,,reviewed_name_span_override,explained
 CNUR-000287,2017,legal_name_zh,那曲市,那曲地区,active,active,prefecture,prefecture,PL-2017-001,reviewed_event_chain,explained
+CNUR-000325,2003,legal_name_zh|status|legal_level,中卫市,,active,not_established,prefecture,none,PL-2003-006,entity_year_end_override,explained
 CNUR-000345,1997,legal_name_zh|status|legal_level,黔江地区,,active,abolished,prefecture,none,WIKI-1996-073、WIKI-1997-083,reviewed_event_chain,explained

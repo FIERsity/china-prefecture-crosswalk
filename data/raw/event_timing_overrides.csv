@@ -1,3 +1,5 @@
 event_id,announcement_date,effective_date,implementation_date,annual_effective_year,annual_effective_basis,date_precision,temporal_confidence,review_status,source_ids,review_note
 PL-2017-001,2018-04,,2018-04,2018,official_announcement_and_implementation,month,high,reviewed,SRC-WIKI-2017,2017年批准；2018年4月公布实施，年末状态从2018年起采用那曲市。
 PL-2018-001,2019-01,,2019-01,2019,official_publication_and_implementation,month,high,reviewed,SRC-WIKI-2019,2018年12月批准；2019年1月公布实施，莱芜市保留至2018年末。
+PL-2001-006,2001-10-10,2001-10-10,2002-02,2002,official_announcement_and_implementation,month,high,reviewed,SRC-WIKI-2001,2001年10月10日批准（国函〔2001〕130号）；2002年2月完成建制调整，年末状态从2002年起采用呼伦贝尔市。
+PL-2003-006,2003-12-31,2003-12-31,2004-02-06,2004,official_announcement_and_implementation,day,high,reviewed,SRC-WIKI-2003,2003年12月31日批准（国函〔2003〕139号）；2004年2月6日宁政发〔2004〕12号执行，年末状态从2004年起采用中卫市。

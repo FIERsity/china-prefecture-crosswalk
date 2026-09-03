@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Year-end roster convention calibrated against three sources (CNUR events, 《中国城市统计年鉴》 rosters,
+  and State Council gazette entries), 2026-09-03: year-end status follows the **implemented-state rule**
+  (批复日期 vs 实施/挂牌日期 separated). 呼伦贝尔 (PL-2001-006): approved 2001-10-10 (国函〔2001〕130号),
+  implemented 2002-02 → 2001 year-end roster is 呼伦贝尔盟, 2002 onward 呼伦贝尔市. 中卫 (PL-2003-006):
+  approved 2003-12-31 (国函〔2003〕139号), implemented 2004-02-06 (宁政发〔2004〕12号) → 2003 year-end
+  not_established, 2004 onward active. Backfilled doc numbers: 定西 国函〔2003〕46号, 吕梁 国函〔2003〕112号.
+  Added the missing county-layer event 海拉尔市→海拉尔区 (WIKI-COUNTY-2001-01-036, 2001-10-10). Derived
+  name/range tables and both legal-roster editions updated consistently.
 - Corrected the province, prefecture and county map scope. County view now shows
   only the selected province or external region; switching Taiwan, Hong Kong,
   Macao or a mainland province back to prefecture/province loads the complete

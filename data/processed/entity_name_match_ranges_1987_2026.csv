@@ -38,8 +38,8 @@ CNUR-000029,哲里木盟,1987,1999,valid_during_calendar_year,WIKI-1999-099,SRC-
 CNUR-000029,通辽市,1999,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-1999,derived_from_event_chain
 CNUR-000030,伊克昭盟,1987,2001,valid_during_calendar_year,PL-2001-002,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
 CNUR-000030,鄂尔多斯市,2001,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
-CNUR-000031,呼伦贝尔市,2001,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
-CNUR-000031,呼伦贝尔盟,1987,2001,valid_during_calendar_year,PL-2001-006,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
+CNUR-000031,呼伦贝尔市,2002,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
+CNUR-000031,呼伦贝尔盟,1987,2002,valid_during_calendar_year,PL-2001-006,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
 CNUR-000032,巴彦淖尔市,2003,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_event_chain
 CNUR-000032,巴彦淖尔盟,1987,2003,valid_during_calendar_year,PL-2003-004,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_event_chain
 CNUR-000033,乌兰察布市,2003,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_event_chain
@@ -433,7 +433,7 @@ CNUR-000323,吴忠市,1998,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT�
 CNUR-000323,银南地区,1987,1998,valid_during_calendar_year,WIKI-1998-088,SRC-LEGACY-SNAPSHOT、SRC-WIKI-1998,derived_from_event_chain
 CNUR-000324,固原地区,1987,2001,valid_during_calendar_year,PL-2001-004,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
 CNUR-000324,固原市,2001,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_event_chain
-CNUR-000325,中卫市,2003,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_event_chain
+CNUR-000325,中卫市,2004,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_event_chain
 CNUR-000326,乌鲁木齐市,1987,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT,derived_from_event_chain
 CNUR-000327,克拉玛依市,1987,2026,valid_during_calendar_year,,SRC-LEGACY-SNAPSHOT,derived_from_event_chain
 CNUR-000328,吐鲁番地区,1987,2015,valid_during_calendar_year,PL-2015-003,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2015,derived_from_event_chain

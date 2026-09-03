@@ -321,7 +321,7 @@ CNUR-000321,银川市,宁夏回族自治区,stable,,0,aggregate_safe
 CNUR-000322,石嘴山市,宁夏回族自治区,stable,,0,aggregate_safe
 CNUR-000323,吴忠市,宁夏回族自治区,merged_away,2003,0,break_flag_only
 CNUR-000324,固原市,宁夏回族自治区,merged_away,2003,0,break_flag_only
-CNUR-000325,中卫市,宁夏回族自治区,transfer_in,2003,2003,break_flag_only
+CNUR-000325,中卫市,宁夏回族自治区,transfer_in,2003,2004,break_flag_only
 CNUR-000326,乌鲁木齐市,新疆维吾尔自治区,stable,,0,aggregate_safe
 CNUR-000327,克拉玛依市,新疆维吾尔自治区,stable,,0,aggregate_safe
 CNUR-000328,吐鲁番市,新疆维吾尔自治区,continuous_upgrade,,0,aggregate_safe

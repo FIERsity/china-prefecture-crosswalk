@@ -401,7 +401,7 @@ automatic_continuity,pass,PL-2001-005,type=upgrade automatic=True
 event_roster_name,pass,PL-2001-005,effective_year=2001 event=商洛市 roster=商洛市
 entity_reference,pass,PL-2001-006,CNUR-000031
 automatic_continuity,pass,PL-2001-006,type=upgrade automatic=True
-event_roster_name,pass,PL-2001-006,effective_year=2001 event=呼伦贝尔市 roster=呼伦贝尔市
+event_roster_name,pass,PL-2001-006,effective_year=2002 event=呼伦贝尔市 roster=呼伦贝尔市
 entity_reference,pass,PL-2001-007,CNUR-000338
 automatic_continuity,pass,PL-2001-007,type=abolish automatic=False
 entity_reference,pass,PL-2002-001,CNUR-000305
@@ -451,7 +451,7 @@ automatic_continuity,pass,PL-2003-005,type=upgrade automatic=True
 event_roster_name,pass,PL-2003-005,effective_year=2003 event=乌兰察布市 roster=乌兰察布市
 entity_reference,pass,PL-2003-006,CNUR-000325
 automatic_continuity,pass,PL-2003-006,type=establish automatic=False
-event_roster_name,pass,PL-2003-006,effective_year=2003 event=中卫市 roster=中卫市
+event_roster_name,pass,PL-2003-006,effective_year=2004 event=中卫市 roster=中卫市
 entity_reference,pass,PL-2004-001,CNUR-000310
 automatic_continuity,pass,PL-2004-001,type=upgrade automatic=True
 event_roster_name,pass,PL-2004-001,effective_year=2004 event=陇南市 roster=陇南市

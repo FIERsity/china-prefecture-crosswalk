@@ -39,8 +39,8 @@ CNUR-000029,哲里木盟,1987,1998,active,year_end,inferred,medium,reviewed_even
 CNUR-000029,通辽市,1999,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-1999,derived_from_reviewed_year_end_rules
 CNUR-000030,伊克昭盟,1987,2000,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000030,鄂尔多斯市,2001,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_reviewed_year_end_rules
-CNUR-000031,呼伦贝尔盟,1987,2000,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
-CNUR-000031,呼伦贝尔市,2001,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_reviewed_year_end_rules
+CNUR-000031,呼伦贝尔盟,1987,2001,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
+CNUR-000031,呼伦贝尔市,2002,2026,active,year_end,reviewed,high,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_reviewed_year_end_rules
 CNUR-000032,巴彦淖尔盟,1987,2002,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000032,巴彦淖尔市,2003,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_reviewed_year_end_rules
 CNUR-000033,乌兰察布盟,1987,2002,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
@@ -462,8 +462,8 @@ CNUR-000323,银南地区,1987,1997,active,year_end,inferred,medium,reviewed_even
 CNUR-000323,吴忠市,1998,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-1998,derived_from_reviewed_year_end_rules
 CNUR-000324,固原地区,1987,2000,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000324,固原市,2001,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2001,derived_from_reviewed_year_end_rules
-CNUR-000325,,1987,2002,not_established,year_end,reviewed,high,entity_year_end_override,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_reviewed_year_end_rules
-CNUR-000325,中卫市,2003,2026,active,year_end,reviewed,high,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_reviewed_year_end_rules
+CNUR-000325,,1987,2003,not_established,year_end,reviewed,high,entity_year_end_override,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_reviewed_year_end_rules
+CNUR-000325,中卫市,2004,2026,active,year_end,reviewed,high,reviewed_event_chain,SRC-LEGACY-SNAPSHOT、SRC-WIKI-2003,derived_from_reviewed_year_end_rules
 CNUR-000326,乌鲁木齐市,1987,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000327,克拉玛依市,1987,2026,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
 CNUR-000328,吐鲁番地区,1987,2014,active,year_end,inferred,medium,reviewed_event_chain,SRC-LEGACY-SNAPSHOT,derived_from_reviewed_year_end_rules
