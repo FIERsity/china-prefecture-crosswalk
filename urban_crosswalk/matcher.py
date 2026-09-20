@@ -4,6 +4,7 @@ import json
 import re
 import unicodedata
 from dataclasses import asdict, dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -27,14 +28,19 @@ MAX_YEAR = 2026
 PUNCT = re.compile(r"[\s\u200b-\u200f\u2060\ufeff·•,，。.;；:：()（）\[\]【】_-]+")
 
 
-def normalize_name(value: Any) -> str:
-    if value is None or pd.isna(value):
-        return ""
-    text = unicodedata.normalize("NFKC", str(value))
+@lru_cache(maxsize=100_000)
+def _normalize_cached(text: str) -> str:
+    # NFKC has already been applied by the caller, so `text` is a clean cache key.
     if _converter:
         text = _converter.convert(text)
     text = text.replace("巿", "市")
     return PUNCT.sub("", text).strip()
+
+
+def normalize_name(value: Any) -> str:
+    if value is None or pd.isna(value):
+        return ""
+    return _normalize_cached(unicodedata.normalize("NFKC", str(value)))
 
 
 def clean_text(value: Any) -> str:
@@ -121,22 +127,38 @@ class CrosswalkMatcher:
         self.unified_relations = pd.read_csv(data_dir / "unified_event_relations.csv", dtype=str).fillna("")
         self.major_lineage_relations = pd.read_csv(data_dir / "major_lineage_relations.csv", dtype=str).fillna("")
         self.county_transitions = pd.read_csv(data_dir / "county_affiliation_transitions.csv", dtype=str).fillna("")
+        # Indexed once at construction: `_year_row` used to rescan the whole
+        # roster (14k+ rows) with two boolean masks on every lookup, and it is
+        # reached 1-3 times per match. First occurrence wins, matching `iloc[0]`.
+        self._roster_index: dict[tuple[str, int], dict[str, Any]] = {}
+        for eid, yr, row in zip(self.roster.entity_id, self.roster.year, self.roster.to_dict("records")):
+            if pd.isna(yr):
+                continue
+            self._roster_index.setdefault((eid, int(yr)), row)
+
+        # Normalised once at construction: `match_name` used to re-normalise the
+        # entire exclusions column (OpenCC + NFKC + regex) on every single call.
+        # Row order is preserved so `[0]` still equals the old `iloc[0]`.
+        self._exclusions_by_norm: dict[str, list[dict[str, Any]]] = {}
+        for excl_norm, row in zip(self.exclusions.normalized_name.map(normalize_name), self.exclusions.to_dict("records")):
+            self._exclusions_by_norm.setdefault(excl_norm, []).append(row)
+
         self.entity_map = self.entities.set_index("entity_id").to_dict("index")
-        for _, row in self.historical_entities.iterrows():
-            self.entity_map[row.historical_entity_id] = {
-                **row.to_dict(),
-                "canonical_name_zh": row.canonical_name_zh,
-                "province_name_zh": row.province_at_time,
+        for row in self.historical_entities.to_dict("records"):
+            self.entity_map[row["historical_entity_id"]] = {
+                **row,
+                "canonical_name_zh": row["canonical_name_zh"],
+                "province_name_zh": row["province_at_time"],
                 "entity_level": "prefecture",
             }
         self.index: dict[str, list[dict[str, Any]]] = {}
-        for _, r in self.match_names.iterrows():
+        for r in self.match_names.to_dict("records"):
             if r["name_zh"] and ("legal_status" not in r or r.get("legal_status", "active") == "active"):
                 self._add(
                     r["name_zh"], r["entity_id"], "official_name_valid_during_year",
                     int(r["start_year"]), int(r["end_year"]), clean_text(r.get("transition_event_ids", "")),
                 )
-        for _, r in self.aliases.iterrows():
+        for r in self.aliases.to_dict("records"):
             self._add(r["alias"], r["entity_id"], r["alias_type"], int(r["start_year"]), int(r["end_year"]))
         self.choices = list(self.index)
 
@@ -149,8 +171,7 @@ class CrosswalkMatcher:
     def _year_row(self, entity_id: str, year: int | None) -> dict[str, Any]:
         if year is None or not ROSTER_MIN_YEAR <= year <= MAX_YEAR:
             return {}
-        rows = self.roster[(self.roster.entity_id == entity_id) & (self.roster.year == year)]
-        return rows.iloc[0].to_dict() if len(rows) else {}
+        return self._roster_index.get((entity_id, int(year)), {})
 
     def _apply_temporal(
         self,
@@ -203,12 +224,12 @@ class CrosswalkMatcher:
         except (ValueError, TypeError):
             return MatchResult(normalized_input=norm, year_status="invalid_year", risk_codes="invalid_year")
         province_norm = normalize_province(province)
-        excluded = self.exclusions[self.exclusions.normalized_name.map(normalize_name) == norm]
-        if len(excluded):
-            r = excluded.iloc[0]
-            if year is None or int(r.start_year) <= year <= int(r.end_year):
-                parent = self.entity_map.get(r.parent_entity_id, {})
-                return MatchResult(r.parent_entity_id, parent.get("canonical_name_zh", ""), norm, "problem", "level_exclusion", 1.0, self._year_status(r.parent_entity_id, year), "county_level_conflict", r.risk_code, 1, [{"entity_id": r.parent_entity_id, "canonical_name": parent.get("canonical_name_zh", ""), "score": 100}])
+        excluded = self._exclusions_by_norm.get(norm)
+        if excluded:
+            r = excluded[0]
+            if year is None or int(r["start_year"]) <= year <= int(r["end_year"]):
+                parent = self.entity_map.get(r["parent_entity_id"], {})
+                return MatchResult(r["parent_entity_id"], parent.get("canonical_name_zh", ""), norm, "problem", "level_exclusion", 1.0, self._year_status(r["parent_entity_id"], year), "county_level_conflict", r["risk_code"], 1, [{"entity_id": r["parent_entity_id"], "canonical_name": parent.get("canonical_name_zh", ""), "score": 100}])
 
         builtin = self._exact(norm, year, province_norm)
         custom = self._custom(norm, custom_rules)
@@ -283,7 +304,10 @@ class CrosswalkMatcher:
         return str(rows.iloc[-1].entity_id) if len(rows) else ""
 
     def match_dataframe(self, df: pd.DataFrame, name_col: str, year_col: str | None = None, province_col: str | None = None, custom_rules: pd.DataFrame | None = None) -> tuple[pd.DataFrame, list[MatchResult]]:
-        results = [self.match_name(row[name_col], row[year_col] if year_col else None, row[province_col] if province_col else None, custom_rules) for _, row in df.iterrows()]
+        names = df[name_col].tolist()
+        years = df[year_col].tolist() if year_col else [None] * len(df)
+        provinces = df[province_col].tolist() if province_col else [None] * len(df)
+        results = [self.match_name(n, y, p, custom_rules) for n, y, p in zip(names, years, provinces)]
         out = df.copy()
         for key in results[0].output_columns() if results else MatchResult().output_columns():
             out[key] = [r.output_columns()[key] for r in results]

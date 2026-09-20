@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Sped up `urban_crosswalk.matcher` roughly sixfold with no change to any observable
+  output. The year-end roster is now indexed by `(entity_id, year)` at construction
+  instead of being rescanned with two boolean masks on every lookup (it is reached
+  one to three times per match), the exclusions table is normalised once instead of
+  re-normalising the whole column on every `match_name` call, `normalize_name` is
+  memoised, and `match_dataframe` no longer iterates rows with `DataFrame.iterrows`.
+  Verified by a differential run over 5,705 name/year/province cases covering every
+  match-range name, alias, exclusion and degenerate input: all `MatchResult` fields
+  are identical to the previous implementation, `pytest` stays green, and the suite
+  runtime fell from 23.2s to 1.9s.
 - Year-end roster convention calibrated against three sources (CNUR events, 《中国城市统计年鉴》 rosters,
   and State Council gazette entries), 2026-09-03: year-end status follows the **implemented-state rule**
   (批复日期 vs 实施/挂牌日期 separated). 呼伦贝尔 (PL-2001-006): approved 2001-10-10 (国函〔2001〕130号),
