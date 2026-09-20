@@ -1,18 +1,18 @@
 # 项目近况
 
-> 动态快照。最后核验：2026-08-22（Asia/Shanghai）。新 Agent 应用 Git 和 GitHub 实时状态复核本页，发现变化时直接刷新。
+> 动态快照。最后核验：2026-09-20（Asia/Shanghai）。新 Agent 应用 Git 和 GitHub 实时状态复核本页，发现变化时直接刷新。
 
 ## 仓库与发布
 
 | 项目 | 已核验状态 |
 |---|---|
 | 远程仓库 | [`FIERsity/china-prefecture-crosswalk`](https://github.com/FIERsity/china-prefecture-crosswalk)，公开仓库，默认分支 `main` |
-| 本次建档前远程基线 | `66da364`（2026-08-21，网页静态资源 cache-busting） |
+| 本次建档前远程基线 | `9d75aa9`（2026-09-03，年末名册与事件三源校准） |
 | 项目版本 | `4.0.2` |
 | 最新 Release | [`v4.0.2`](https://github.com/FIERsity/china-prefecture-crosswalk/releases/tag/v4.0.2)，2026-08-21 发布，含主表、研究包与地图包 |
-| 开放 Issues / PR | 0 / 0（2026-08-22 核验） |
-| 建档时已核验的 `validate-data` 基线 | [`run 32499754506`](https://github.com/FIERsity/china-prefecture-crosswalk/actions/runs/32499754506)，`66da364`，成功 |
-| 建档时已核验的 `deploy-pages` 基线 | [`run 32499754596`](https://github.com/FIERsity/china-prefecture-crosswalk/actions/runs/32499754596)，`66da364`，成功 |
+| 开放 Issues / PR | 0 / 0（2026-09-20 核验） |
+| 建档时已核验的 `validate-data` 基线 | [`run 33746535391`](https://github.com/FIERsity/china-prefecture-crosswalk/actions/runs/33746535391)，`9d75aa9`，成功 |
+| 建档时已核验的 `deploy-pages` 基线 | [`run 33746535295`](https://github.com/FIERsity/china-prefecture-crosswalk/actions/runs/33746535295)，`9d75aa9`，成功 |
 | 线上站点 | <https://fiersity.github.io/china-prefecture-crosswalk/> |
 
 这里记录“文件修订前最后已核验的基线”，而不是声称永远等于文件所在提交。版本化文件无法引用验证自身的 workflow run；每次开始任务和最终交付仍应重新查询远程。
@@ -25,6 +25,7 @@
 
 ## 最近完成
 
+- `urban_crosswalk.matcher` 性能重构，约 6 倍提速且不改变任何可观察输出：年末名册改为构造期建立 `(entity_id, year)` 索引（原先每次查询用两个布尔掩码全表扫描 14,520 行，每次匹配触发 1—3 次），exclusions 表只归一化一次（原先每次 `match_name` 都重算整列），`normalize_name` 加记忆化，`match_dataframe` 不再用 `iterrows` 逐行。以 5,705 个 name/year/province 用例做前后差分，`MatchResult` 全字段一致；`pytest` 20 项全绿，套件耗时由 23.2s 降至 1.9s。该模块不在数据构建链内，`data/` 与 `docs/data/` 产物未受影响。
 - 修复地图层级切换：县级只显示所选省份细节；港澳台或大陆省份切到地级、省级时加载全国图并保留同一焦点，不再误跳其他区域或重复叠加边界。
 - `v4.0.2` 全量覆盖检查补回 10 个此前因句式未覆盖而漏抽的地级升格事件；统一事件增至 167，地级展示事件层增至 234。
 - `v4.0.1` 增加 2020 参考年的固定边界单位、历史链接、市辖区事件和 337 城市 × 22 年事件旗标面板。
